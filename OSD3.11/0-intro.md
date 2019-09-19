@@ -23,9 +23,9 @@ In this lab, you’ll go through a set of tasks that will help you understand so
 
 Some of the things you’ll be going through:
 
-- Creating a project on the Azure Red Hat OpenShift Web Console
-- Deploying an application via the Source-to-Image (S2I) builder
-- Explore DevOps pipeline to deploy the application as well
+- TBD
+- ...
+- ...
 - Familiarization with OpenShift and Kubernetes functionality
 
 You’ll be doing the majority of the labs using the OpenShift CLI, but you can also accomplish them using the OpenShift Dedicated web console.
