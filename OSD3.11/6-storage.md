@@ -2,11 +2,11 @@ In this section we will execute a simple example of using persistent storage by 
 
 Inside the OpenShift web UI click on *Storage* in the left menu. You will then see a list of all persistent volume claims that our application has made.  In this case there is just one called "ostoy-pvc".  You will also see other pertinent information such as whether it is bound or not, size, access mode and age.  
 
-In this case the mode is RWO (Read-Write-Once) which means that the volume can only be mounted to one node, but the pod(s) can both read and write to that volume.  The default in ARO is for Persistent Volumes to be backed by Azure Disk, but it is possible to chose Azure Files so that you can use the RWX (Read-Write-Many) access mode.  ([See here for more info on access modes](https://docs.openshift.com/aro/architecture/additional_concepts/storage.html#pv-access-modes))
+In this case the mode is RWO (Read-Write-Once) which means that the volume can only be mounted to one node, but the pod(s) can both read and write to that volume.  As Persistent Volumes in OSD are backed by EBS it only supports RWO.  ([See here for more info on access modes](https://docs.openshift.com/dedicated/3/architecture/additional_concepts/storage.html#pv-access-modes))
 
 In the OSToy app click on *Persistent Storage* in the left menu.  In the "Filename" area enter a filename for the file you will create. (ie: "test-pv.txt")
 
-Underneath that, in the "File Contents" box, enter text to be stored in the file. (ie: "Azure Red Hat OpenShift is the greatest thing since sliced bread!" or "test" :) ).  Then click "Create file".
+Underneath that, in the "File Contents" box, enter text to be stored in the file. (ie: "OpenShift is the greatest thing since sliced bread!" or "test" :) ).  Then click "Create file".
 
 ![Create File](/images/6-ostoy-createfile.png)
 
@@ -53,7 +53,7 @@ ostoy-microservice-6cf764974f-hx4qm   1/1       Running   0          18m
 lost+found   test-pv.txt
 
 /var/demo_files $ cat test-pv.txt 
-Azure Red Hat OpenShift is the greatest thing since sliced bread!
+OpenShift is the greatest thing since sliced bread!
 ```
 
 Then exit the SSH session by typing `exit`. You will then be in your CLI.
