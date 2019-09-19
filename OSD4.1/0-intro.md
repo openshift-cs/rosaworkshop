@@ -1,4 +1,4 @@
-## Introduction to the workshop
+## Introduction to the Workshop
 
 ### What is OpenShift Dedicated?
 
@@ -8,7 +8,7 @@ You can learn more at: https://www.openshift.com/dedicated
 
 ### What will we do in this workshop?
 
-In this lab, you’ll go through a set of tasks that will help you understand some of the concepts of deploying and securing container based applications on top of OpenShift Dedicated.
+In this lab, you’ll go through a set of tasks that will help you understand some of the concepts of deploying and securing container based applications on top of OpenShift Dedicated 4.1.
 
 Some of the things you’ll be going through:
 
