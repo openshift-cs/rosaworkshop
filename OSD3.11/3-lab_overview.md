@@ -9,9 +9,11 @@
 
 > **Note** In order to simplify the deployment of the app (which you will do next) we have included all the objects needed in the above YAMLs as "all-in-one" YAMLs.  In reality though, an enterprise would most likely want to have a different yaml file for each Kubernetes object.
 
+**TODO: CONFIRM THE ABOVE IF WILL DO WITH S2I**
+
 ### About OSToy
 
-OSToy is a simple Node.js application that we will deploy to Azure Red Hat OpenShift. It is used to help us explore the functionality of Kubernetes. This application has a user interface which you can:
+OSToy is a simple Node.js application that we will deploy to OpenShift Dedicated. It is used to help us explore the functionality of Kubernetes. This application has a user interface which you can:
 
 - write messages to the log (stdout / stderr)
 - intentionally crash the application to view self-healing
