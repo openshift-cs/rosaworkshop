@@ -3,7 +3,7 @@
 - The source code for this app is available here: <https://github.com/openshift-cs/ostoy>
 - OSToy front-end container image: <https://quay.io/aroworkshop/ostoy-frontend>
 - OSToy microservice container image: <https://quay.io/aroworkshop/ostoy-microservice>
-- Deployment Definition YAMLs:
+- Deployment Definition YAMLs (***TO DO: CORRECT***):
   - [ostoy-fe-deployment.yaml](/yaml/ostoy-fe-deployment.yaml)
   - [ostoy-microservice-deployment.yaml](/yaml/ostoy-microservice-deployment.yaml)
 
