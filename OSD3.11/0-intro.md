@@ -6,6 +6,17 @@ OpenShift Dedicated is an OpenShift cluster provided as a managed cloud service,
 
 You can learn more at: https://www.openshift.com/dedicated
 
+### Choosing between OSD 3.11 and OSD 4.1
+
+| Requirement                        | 3.11 | 4.1          |
+|------------------------------------|------|--------------|
+| Private Clusters                   | Yes  | No (roadmap) |
+| Logging Stack on Infra Nodes       | Yes  | No           |
+| Operator Support                   | No   | Yes          |
+| BYOC                               | Yes  | No (roadmap) |
+| Consumption-based billing          | Yes  | No (roadmap) |
+| Red Hat Managed Integration (RHMI) | Yes  | No (roadmap) |
+
 ### What will we do in this workshop?
 
 In this lab, you’ll go through a set of tasks that will help you understand some of the concepts of deploying and securing container based applications on top of OpenShift Dedicated 3.11.
