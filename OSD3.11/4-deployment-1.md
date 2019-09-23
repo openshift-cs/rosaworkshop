@@ -5,9 +5,9 @@ There are multiple methods to deploy applications in OpenShift. First we will de
 1. Add Secret to OpenShift
 The example emulates a `.env` file and shows how easy it is to move these directly into an
 OpenShift environment. Files can even be renamed in the Secret.  In your CLI enter the following command:<br><br>
-```$ oc create -f https://raw.githubusercontent.com/openshift-cs/ostoy/master/deployment/yaml/secret.yaml
+$ oc create -f https://raw.githubusercontent.com/openshift-cs/ostoy/master/deployment/yaml/secret.yaml
 
-secret "ostoy-secret" created```
+secret "ostoy-secret" created
 
 2. Add ConfigMap to OpenShift
 The example emulates an HAProxy config file, and is typically used for overriding
