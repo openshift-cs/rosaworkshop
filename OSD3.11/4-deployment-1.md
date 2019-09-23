@@ -1,25 +1,29 @@
-There are multiple methods to deploy applications in OpenShift.  
+## Using S2I to build and deploy our application.
 
-# Add Secret to OpenShift
-# The example emulates a `.env` file and shows how easy it is to move these directly into an
-# OpenShift environment. Files can even be renamed in the Secret
-$ oc create -f https://raw.githubusercontent.com/openshift-cs/ostoy/master/deployment/yaml/secret.yaml
+There are multiple methods to deploy applications in OpenShift. First we will deploy the application using the integrated Source-to-Image builder.
 
-secret "ostoy-secret" created
+1. Add Secret to OpenShift
+The example emulates a `.env` file and shows how easy it is to move these directly into an
+OpenShift environment. Files can even be renamed in the Secret.  In your CLI enter the following command:
+`$ oc create -f https://raw.githubusercontent.com/openshift-cs/ostoy/master/deployment/yaml/secret.yaml`
 
-# Add ConfigMap to OpenShift
-# The example emulates an HAProxy config file, and is typically used for overriding
-# default configurations in an OpenShift application. Files can even be renamed in the ConfigMap
-$ oc create -f https://raw.githubusercontent.com/openshift-cs/ostoy/master/deployment/yaml/configmap.yaml
+You will see the following respoonse
+```secret "ostoy-secret" created```
 
+2. Add ConfigMap to OpenShift
+The example emulates an HAProxy config file, and is typically used for overriding
+default configurations in an OpenShift application. Files can even be renamed in the ConfigMap
+Enter the following into your CLI `$ oc create -f https://raw.githubusercontent.com/openshift-cs/ostoy/master/deployment/yaml/configmap.yaml`
+
+```You will see the following response```
 configmap "ostoy-config" created
 
-# Deploy microservice
-# We deploy the microservice first to ensure that the SERVICE environment variables
-# will be available from the UI application. `--context-dir` is used here to only
-# build the application defined in the `microservice` directory in the git repo.
-# Using the `app` label allows us to ensure the UI application and microservice
-# are both grouped in the OpenShift UI
+3. Deploy the microservice
+We deploy the microservice first to ensure that the SERVICE environment variables
+will be available from the UI application. `--context-dir` is used here to only
+build the application defined in the `microservice` directory in the git repo.
+Using the `app` label allows us to ensure the UI application and microservice
+are both grouped in the OpenShift UI
 $ oc new-app https://github.com/openshift-cs/ostoy \
     --context-dir=microservice \
     --name=ostoy-microservice \
@@ -36,10 +40,8 @@ Success
    'oc expose svc/ostoy-microservice'
   Run 'oc status' to view your app.
 
-# Deploy the UI Application
-# The applicaiton has been architected to rely on several environment variables to define
-# external settings. We will attach the previously created Secret and ConfigMap afterward,
-# along with creating a PersistentVolume
+4. Deploy the UI Application
+The applicaiton has been architected to rely on several environment variables to define external settings. We will attach the previously created Secret and ConfigMap afterward, along with creating a PersistentVolume
 $ oc new-app https://github.com/openshift-cs/ostoy \
     --env=MICROSERVICE_NAME=OSTOY_MICROSERVICE
 
