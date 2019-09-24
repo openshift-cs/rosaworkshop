@@ -1,6 +1,7 @@
-In this section we will intentionally crash our pods as well as make a pod non-responsive to the liveliness probes from Kubernetes and see how Kubernetes behaves.  We will first intentionally crash our pod and see that Kubernetes will self-heal and immediately spin it back up. Then we will trigger the health check by stopping the response on the `/health` endpoint in our app. After three consecutive failures Kubernetes should kill the pod and then recreate it.
+## Health Checks
+In this section we will intentionally crash our pods as well as make a pod non-responsive to the liveness probes from Kubernetes and see how Kubernetes behaves.  We will first intentionally crash our pod and see that Kubernetes will self-heal and immediately spin it back up. Then we will trigger the health check by stopping the response on the `/health` endpoint in our app. After three consecutive failures Kubernetes should kill the pod and then recreate it.
 
-It would be best to prepare by splitting your screen between the OpenShift Web UI and the OSToy application so that you can see the results of our actions immediately.
+1. It would be best to prepare by splitting your screen between the OpenShift Web UI and the OSToy application so that you can see the results of our actions immediately.
 
 ![Splitscreen](/images/5-ostoy-splitscreen.png)
 
@@ -10,22 +11,22 @@ Applications > Deployments > click the number in the "Last Version" column for t
 
 ![Deploy Num](/images/5-ostoy-deploynum.png)
 
-Go to the OSToy app, click on *Home* in the left menu, and enter a message in the "Crash Pod" tile (ie: "This is goodbye!") and press the "Crash Pod" button.  This will cause the pod to crash and Kubernetes should restart the pod. After you press the button you will see:
+2. Go to the OSToy app, click on *Home* in the left menu, and enter a message in the "Crash Pod" tile (ie: "This is goodbye!") and press the "Crash Pod" button.  This will cause the pod to crash and Kubernetes should restart the pod. After you press the button you will see:
 
 ![Crash Message](/images/5-ostoy-crashmsg.png)
 
-Quickly switch to the Deployment screen. You will see that the pod is red, meaning it is down but should quickly come back up and show blue.
+3. Quickly switch to the Deployment screen. You will see that the pod is red, meaning it is down but should quickly come back up and show blue.
 
 ![Pod Crash](/images/5-ostoy-podcrash.png)
 
-You can also check in the pod events and further verify that the container has crashed and been restarted.
+4. You can also check in the pod events and further verify that the container has crashed and been restarted.
 
 ![Pod Events](/images/5-ostoy-podevents.png)
 
-Keep the page from the pod events still open from step 4.  Then in the OSToy app click on the "Toggle Health" button, in the "Toggle Health Status" tile.  You will see the "Current Health" switch to "I'm not feeling all that well".
+5. Keep the page from the pod events still open from step 4.  Then in the OSToy app click on the "Toggle Health" button, in the "Toggle Health Status" tile.  You will see the "Current Health" switch to "I'm not feeling all that well".
 
 ![Pod Events](/images/5-ostoy-togglehealth.png)
 
-This will cause the app to stop responding with a "200 HTTP code". After 3 such consecutive failures ("A"), Kubernetes will kill the pod ("B") and restart it ("C"). Quickly switch back to the pod events tab and you will see that the liveliness probe failed and the pod as being restarted.
+6. This will cause the app to stop responding with a "200 HTTP code". After 3 such consecutive failures ("A"), Kubernetes will kill the pod ("B") and restart it ("C"). Quickly switch back to the pod events tab and you will see that the liveness probe failed and the pod as being restarted.
 
 ![Pod Events2](/images/5-ostoy-podevents2.png)
