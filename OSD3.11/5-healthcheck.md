@@ -7,7 +7,7 @@ In this section we will intentionally crash our pods as well as make a pod non-r
 
 But if your screen is too small or that just won't work, then open the OSToy application in another tab so you can quickly switch to OpenShift Web Console once you click the button. To get to this deployment in the OpenShift Web Console go to: 
 
-Applications > Deployments > click the number in the "Last Version" column for the "ostoy-frontend" row
+*Applications* > *Deployments* > click the number in the "Last Version" column for the "ostoy-frontend" row
 
 ![Deploy Num](/images/5-ostoy-deploynum.png)
 
