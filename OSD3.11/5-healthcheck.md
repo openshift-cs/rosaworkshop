@@ -1,7 +1,8 @@
 ## Health Checks
 In this section we will intentionally crash our pods as well as make a pod non-responsive to the liveness probes from Kubernetes and see how Kubernetes behaves.  We will first intentionally crash our pod and see that Kubernetes will self-heal and immediately spin it back up. Then we will trigger the health check by stopping the response on the `/health` endpoint in our app. After three consecutive failures Kubernetes should kill the pod and then recreate it.
 
-1. It would be best to prepare by splitting your screen between the OpenShift Web UI and the OSToy application so that you can see the results of our actions immediately.
+#### 1.Prepare the desktop
+It would be best to prepare by splitting your screen between the OpenShift Web UI and the OSToy application so that you can see the results of our actions immediately.
 
 ![Splitscreen](/images/5-ostoy-splitscreen.png)
 
@@ -11,7 +12,7 @@ But if your screen is too small or that just won't work, then open the OSToy app
 
 ![Deploy Num](/images/5-ostoy-deploynum.png)
 
-2. Go to the OSToy app, click on *Home* in the left menu, and enter a message in the "Crash Pod" tile (ie: "This is goodbye!") and press the "Crash Pod" button.  This will cause the pod to crash and Kubernetes should restart the pod. After you press the button you will see:
+1. Go to the OSToy app, click on *Home* in the left menu, and enter a message in the "Crash Pod" tile (ie: "This is goodbye!") and press the "Crash Pod" button.  This will cause the pod to crash and Kubernetes should restart the pod. After you press the button you will see:
 
 ![Crash Message](/images/5-ostoy-crashmsg.png)
 
