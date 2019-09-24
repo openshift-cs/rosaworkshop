@@ -50,7 +50,7 @@ Feel free to open them up and take a look at what we will be deploying. For simp
 
 [ostoy-microservice-deployment.yaml](/yaml/ostoy-microservice-deployment.yaml)
 
-#### 4. Deploy backend microservice
+#### 4. Deploy the backend microservice
 The microservice application serves internal web requests and returns a JSON object containing the current hostname and a randomly generated color string.
 
 In your command line deploy the microservice using the following command:
