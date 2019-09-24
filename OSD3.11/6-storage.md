@@ -20,7 +20,9 @@ You will then see the file you created appear above under "Existing files".  Cli
 ![View File](/images/6-ostoy-viewfile.png)
 
 #### 4. Kill the pod
-We now want to kill the pod and ensure that the new pod that spins up will be able to see the file we created. Exactly like we did in the previous section. Click on *Home* in the left menu.
+We now want to kill the pod and ensure that the new pod that spins up will be able to see the file we created. Exactly like we did in the previous section. 
+
+Click on *Home* in the left menu.
 
 Click on the "Crash pod" button.  (You can enter a message if you'd like).
 
