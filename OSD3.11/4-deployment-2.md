@@ -11,8 +11,8 @@ If not logged in via the CLI, click on the dropdown arrow next to your name in t
 Then go to your terminal and paste that command and press enter.  You will see a similar confirmation message if you successfully logged in.
 
 ```sh
-[okashi@ok-vm ostoy]# oc login https://openshift.abcd1234.eastus.azmosa.io --token=hUXXXXXX
-Logged into "https://openshift.abcd1234.eastus.azmosa.io:443" as "okashi" using the token provided.
+[okashi@ok-vm ostoy]# oc login https://api.demo1234.openshift.com --token=HS1QpKXXXXXXXXXXX
+Logged into "https://api.demo1234.openshift.com" as "0kashi" using the token provided.
 
 You have access to the following projects and can switch between them with 'oc project <projectname>':
 
@@ -33,7 +33,7 @@ You should receive the following response
 
 ```sh
 [okashi@ok-vm ostoy]# oc new-project ostoy
-Now using project "ostoy" on server "https://openshift.abcd1234.eastus.azmosa.io:443".
+Now using project "ostoy" on server "https://api.demo1234.openshift.com:443".
 
 You can add applications to this project with the 'new-app' command. For example, try:
 
@@ -48,7 +48,7 @@ Equivalently you can also create this new project using the web UI by selecting 
 
 ### Download YAML configuration
 
-Download the Kubernetes deployment object yamls from the following locations to your Azure Cloud Shell, in a directory of your choosing (just remember where you placed them for the next step).
+Download the Kubernetes deployment object yamls from the following locations to your local machine, in a directory of your choosing (just remember where you placed them for the next step).
 
 Feel free to open them up and take a look at what we will be deploying. For simplicity of this lab we have placed all the Kubernetes objects we are deploying in one "all-in-one" yaml file.  Though in reality there are benefits to separating these out into individual yaml files.
 
