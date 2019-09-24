@@ -90,7 +90,7 @@ In your command line deploy the frontend along with creating all objects mention
 
 You should see all objects created successfully
 
-```sh
+```
 [okashi@ok-vm ostoy]# oc apply -f ostoy-fe-deployment.yaml
 persistentvolumeclaim/ostoy-pvc created
 deployment.apps/ostoy-frontend created
@@ -108,11 +108,11 @@ Get the route so that we can access the application via `oc get route`
 
 You should see the following response:
 
-```sh
-NAME           HOST/PORT                                                      PATH      SERVICES              PORT      TERMINATION   WILDCARD
-ostoy-route   ostoy-route-ostoy.apps.abcd1234.eastus.azmosa.io             ostoy-frontend-svc   <all>                   None
+```
+NAME          HOST/PORT                                     PATH      SERVICES              PORT      TERMINATION   WILDCARD
+ostoy-route   ostoy-route-ostoy-osd.993f.demo1234.openshiftapps.com  ostoy-frontend-svc   <all>             None
 ```
 
-Copy `ostoy-route-ostoy.apps.abcd1234.eastus.azmosa.io` above and paste it into your browser and press enter.  You should see the homepage of our application.
+Copy `ostoy-route-ostoy-osd.993f.demo1234.openshiftapps.com` above and paste it into your browser and press enter.  You should see the homepage of our application.
 
-![Home Page](/media/managedlab/10-ostoy-homepage.png)
+![Home Page](/images/4-ostoy-homepage.png)
