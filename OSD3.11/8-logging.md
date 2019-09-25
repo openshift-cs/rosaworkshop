@@ -43,6 +43,21 @@ You should see both the *stdout* and *stderr* messages.
 #### 5. View the Kibana console
 Open up a new browser tab and go to `https://logs.<cluster name>.openshfit.com` to access the Kibana console.  Ensure the correct project is selected.  In the beginning of this lab we created the `ostoy` project.
 
-![Logging stderr](/images/8-kibana.png)
+![Kibana console](/images/8-kibana.png)
 
-#### 6. 
+#### 6. View the output
+In the main part of the console you should see three entries. These will match exactly what we saw in the above section (viewing through the pods).  You will see the *stdout* and *stderr* messages that we inputed earlier.  In addition to the log output you will see information about each entry.  You can see things like:
+- namespace name
+- pod name
+- host ip address
+- timestamp
+- log level
+
+![Kibana data](/images/8-logoutput.png)
+
+If you wanted to see the data in tabular format or in JSON format you can click on the twisty-tie on the right of the row.
+
+![Expand data](/images/8-expandlog.png)
+
+#### 7. Filter Results
+In this case since we only had 3
