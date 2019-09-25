@@ -4,12 +4,12 @@ We will take a look at the availalbe options for logging in OpenShift Dedicated 
 #### 1. Output a message to *stdout* 
 Click on the *Home* menu item and then click in the message box for "Log Message (stdout)" and write any message you want to output to the *stdout* stream.  You can try "**All is well!**".  Then click "Send Message".
 
-![Logging stdout](/images/8-ostoy-stdout.png)
+![Logging stdout](/images/9-ostoy-stdout.png)
 
 #### 2. Output a message to *stderr*
 Click in the message box for "Log Message (stderr)" and write any message you want to output to the *stderr* stream. You can try "**Oh no! Error!**".  Then click "Send Message".
 
-![Logging stderr](/images/8-ostoy-stderr.png)
+![Logging stderr](/images/9-ostoy-stderr.png)
 
 ### Viewing pod logs
 
@@ -43,7 +43,7 @@ You should see both the *stdout* and *stderr* messages.
 #### 5. View the Kibana console
 Open up a new browser tab and go to `https://logs.<cluster name>.openshfit.com` to access the Kibana console.  Ensure the correct project is selected.  In the beginning of this lab we created the `ostoy` project.
 
-![Kibana console](/images/8-kibana.png)
+![Kibana console](/images/9-kibana.png)
 
 #### 6. View the output
 In the main part of the console you should see three entries. These will match exactly what we saw in the above section (viewing through the pods).  You will see the *stdout* and *stderr* messages that we inputed earlier.  In addition to the log output you will see information about each entry.  You can see things like:
@@ -53,11 +53,11 @@ In the main part of the console you should see three entries. These will match e
 - timestamp
 - log level
 
-![Kibana data](/images/8-logoutput.png)
+![Kibana data](/images/9-logoutput.png)
 
 If you wanted to see the data in tabular format or in JSON format you can click on the twisty-tie on the right of the row.
 
-![Expand data](/images/8-expandlog.png)
+![Expand data](/images/9-expandlog.png)
 
 #### 7. Filter Results
 In this case since we only had 3
