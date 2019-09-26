@@ -1,5 +1,5 @@
 ## Logging
-We will take a look at the availalbe options for logging in OpenShift Dedicated (OSD).  As OSD comes preconfigured with EFK stack (Elasticsearch, Fluentd, Kibana) it is easy to search the logs.  In this section we will take a look at two methods with which one can view their logs. First we will look at the logs directly through the pod using `oc logs`.  Second we will use Kibana to search our logs.
+We will take a look at the available options for logging in OpenShift Dedicated (OSD).  As OSD comes preconfigured with EFK stack (Elasticsearch, Fluentd, Kibana) it is easy to search the logs.  In this section we will take a look at two methods with which one can view their logs. First we will look at the logs directly through the pod using `oc logs`.  Second we will use Kibana to search our logs.
 
 #### 1. Output a message to *stdout* 
 Click on the *Home* menu item and then click in the message box for "Log Message (stdout)" and write any message you want to output to the *stdout* stream.  You can try "**All is well!**".  Then click "Send Message".
@@ -41,12 +41,12 @@ You should see both the *stdout* and *stderr* messages.
 ### Using Kibana to search logs
 
 #### 5. View the Kibana console
-Open up a new browser tab and go to `https://logs.<cluster name>.openshfit.com` to access the Kibana console.  Ensure the correct project is selected.  In the beginning of this lab we created the `ostoy` project. So select the one the begins with `project.ostoy...`.
+Open up a new browser tab and go to `https://logs.<cluster name>.openshfit.com` to access the Kibana console.  Ensure the correct project is selected.  In the beginning of this lab we created the `ostoy` project. So select the one that begins with `project.ostoy...`.
 
 ![Kibana console](/images/9-kibana.png)
 
 #### 6. Familiarization with the data
-In the main part of the console you should see three entries. These will contain what we saw in the above section (viewing through the pods).  You will see the *stdout* and *stderr* messages that we inputed earlier (though you may not see it right away as we might have to filter for it).  In addition to the log output you will see information about each entry.  You can see things like:
+In the main part of the console you should see three entries. These will contain what we saw in the above section (viewing through the pods).  You will see the *stdout* and *stderr* messages that we inputted earlier (though you may not see it right away as we might have to filter for it).  In addition to the log output you will see information about each entry.  You can see things like:
 - namespace name
 - pod name
 - host ip address
@@ -68,7 +68,7 @@ Furthermore, if you wanted to see the data in tabular format or in JSON format y
 ![Expand data](/images/9-expandlog.png)
 
 #### 6. Filtering Results
-Let's look for any errors encountered in our app.  Since we have many log enteries (most from the previous networking section) we may need to filter to make it easier to find the errors.  To find the error message we outputted to *stderr* lets create a filter.  
+Let's look for any errors encountered in our app.  Since we have many log entries (most from the previous networking section) we may need to filter to make it easier to find the errors.  To find the error message we outputted to *stderr* lets create a filter.  
 
 1. Click on "Add a filter+" under the search bar on the upper left.
 2. For "Fields..." select (or type) "level"
@@ -82,4 +82,4 @@ You should see now only one row is returned that contains our error message.
 
 ![Expand data](/images/9-erronly.png)
 
-> NOTE: If nothing is returned, depending on how much time has elapsed since you've outputted the messages to the *stdout* and *stderr* streams you may need to set the proper timeframe for the filter.  If you are following this lab consistently then the defualt should be fine.  Otherwise, in the Kibana console click on the top right where it should say "Last 15 minutes" and click on "Quick" then "Last 1 hour" (though adjust to your situation as needed).
+> NOTE: If nothing is returned, depending on how much time has elapsed since you've outputted the messages to the *stdout* and *stderr* streams you may need to set the proper time frame for the filter.  If you are following this lab consistently then the default should be fine.  Otherwise, in the Kibana console click on the top right where it should say "Last 15 minutes" and click on "Quick" then "Last 1 hour" (though adjust to your situation as needed).
