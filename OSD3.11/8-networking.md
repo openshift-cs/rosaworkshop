@@ -5,17 +5,15 @@ Let's review how this application is set up...
 
 ![OSToy Diagram](/images/3-ostoy-arch.png)
 
-As can be seen in the image above we see we have defined at least 2 separate pods, each with its own service.  One is the frontend web application (with a service and a publicly accessible route) and the other is the backend microservice with a service object created so that the frontend pod can communicate with the microservice (accross the pods if more than one).  Therefore this microservice is not accessible from outside this cluster, nor from other namespaces/projects (due to OSD's network policy, **ovs-networkpolicy**).  The sole purpose of this microservice is to serve internal web requests and return a JSON object containing the current hostname (which is the podname) and a randomly generated color string.  This color string is used to display a box with that color displayed in the tile (titled "Intra-cluster Communication").
+As can be seen in the image above, we have defined at least 2 separate pods, each with its own service.  One is the frontend web application (with a service and a publicly accessible route) and the other is the backend microservice with a service object created so that the frontend pod can communicate with the microservice (accross the pods if more than one).  Therefore this microservice is not accessible from outside this cluster, nor from other namespaces/projects (due to OSD's network policy, **ovs-networkpolicy**).  The sole purpose of this microservice is to serve internal web requests and return a JSON object containing the current hostname (which is the podname) and a randomly generated color string.  This color string is used to display a box with that color displayed in the tile titled "Intra-cluster Communication".
 
 ### Networking
 
 #### 1. Intra-cluster networking
-Click on *Networking* in the left menu. Review the networking configuration.
-
-The right tile titled "Hostname Lookup" illustrates how the service name created for a pod can be used to translate into an internal ClusterIP address. 
+Click on *Networking* in the left menu. Review the networking configuration. The right tile titled "Hostname Lookup" illustrates how the service name created for a pod can be used to translate into an internal ClusterIP address. 
 
 #### 2. Lookup internal IP address of the service name
-Enter the name of the microservice following the format of `my-svc.my-namespace.svc.cluster.local` which we created in our `ostoy-microservice.yaml` which can be seen here:
+Enter the name of the microservice we created in the right tile ("Hostname Lookup") following the format of `my-svc.my-namespace.svc.cluster.local` which we created in the service definition of `ostoy-microservice.yaml` which can be seen here:
 
 ```
 apiVersion: v1
@@ -36,8 +34,8 @@ spec:
 
 In this case we will enter: `ostoy-microservice-svc.ostoy.svc.cluster.local`
 
-#### 3. IP Address Returned
-We will see an IP address returned.  In our example it is ```172.30.165.246```.  This is the intra-cluster IP address; only accessible from within the cluster.
+#### 3. IP address returned
+We will see an IP address returned. In our example it is ```172.30.165.246```.  This is the intra-cluster IP address; only accessible from within the cluster.
 
 ![ostoy DNS](/images/8-ostoy-dns.png)
 
@@ -59,9 +57,9 @@ ostoy-microservice-86b4c6f559-p594d   1/1       Running   0          1h
 #### 5. Scale pods via Deployment definition
 Let's change our microservice definition yaml to reflect that we want 3 pods instead of the one we see. Download the [ostoy-microservice-deployment.yaml](/yaml/ostoy-microservice-deployment.yaml) and save it on your local machine.
 
-Open the file using your favorite editor. Ex: `vi ostoy-microservice-deployment.yaml`.
+- Open the file using your favorite editor. Ex: `vi ostoy-microservice-deployment.yaml`.
 
-Find the line that states `replicas: 1` and change that to `replicas: 3`. Then save and quit.
+- Find the line that states `replicas: 1` and change that to `replicas: 3`. Then save and quit.
 
 It will look like this
 
@@ -73,13 +71,13 @@ spec:
     replicas: 3
  ```
 
-Assuming you are still logged in via the CLI, execute the following command:
+- Assuming you are still logged in via the CLI, execute the following command:
 
 `oc apply -f ostoy-microservice-deployment.yaml`
 
-Confirm that there are now 3 pods via the CLI (`oc get pods`) or the web UI (*Overview > expand "ostoy-microservice"*).
+- Confirm that there are now 3 pods via the CLI (`oc get pods`) or the web UI (*Overview > expand "ostoy-microservice"*).
 
-See this visually by visiting the OSToy app and seeing how many boxes you now see.  It should be three.
+- See this visually by visiting the OSToy app and seeing how many boxes you now see.  It should be three.
 
 ![UI Scale](/images/8-ostoy-colorspods.png)
 
