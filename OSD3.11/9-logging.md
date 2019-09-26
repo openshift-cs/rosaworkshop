@@ -41,23 +41,41 @@ You should see both the *stdout* and *stderr* messages.
 ### Using Kibana to search logs
 
 #### 5. View the Kibana console
-Open up a new browser tab and go to `https://logs.<cluster name>.openshfit.com` to access the Kibana console.  Ensure the correct project is selected.  In the beginning of this lab we created the `ostoy` project.
+Open up a new browser tab and go to `https://logs.<cluster name>.openshfit.com` to access the Kibana console.  Ensure the correct project is selected.  In the beginning of this lab we created the `ostoy` project. So select the one the begins with `project.ostoy...`.
 
 ![Kibana console](/images/9-kibana.png)
 
-#### 6. View the output
-In the main part of the console you should see three entries. These will match exactly what we saw in the above section (viewing through the pods).  You will see the *stdout* and *stderr* messages that we inputed earlier.  In addition to the log output you will see information about each entry.  You can see things like:
+#### 6. Familiarization with the data
+In the main part of the console you should see three entries. These will contain what we saw in the above section (viewing through the pods).  You will see the *stdout* and *stderr* messages that we inputed earlier (though you may not see it right away as we might have to filter for it).  In addition to the log output you will see information about each entry.  You can see things like:
 - namespace name
 - pod name
 - host ip address
 - timestamp
 - log level
+- message
 
 ![Kibana data](/images/9-logoutput.png)
 
-If you wanted to see the data in tabular format or in JSON format you can click on the twisty-tie on the right of the row.
+You will also see that there is data from multiple sources and multiple messages.  In the image below you can see that 
+A) shows the message we outputted to the *stdout*
+B) shows what our frontend pod received from the microservice (which pod sent it and what color was sent)  
+C) shows what color the microservice pod is responding with
+
+![log data](/images/9-logdata.png)
+
+Furthermore, ff you wanted to see the data in tabular format or in JSON format you can click on the twisty-tie on the right of the row.
 
 ![Expand data](/images/9-expandlog.png)
 
-#### 7. Filter Results
-In this case since we only had 3
+#### 6. Filtering Results
+Let's look for any errors encountered in our app.  Since we have many log enteries (most from the previous networking section) we may need to filter to make it easier to find the errors.  To find the error message we outputted to *stderr* lets create a filter.  
+
+1. Click on "+Add a filter" under the search bar on the upper left.
+2. For "Fields..." select (or type) "level"
+3. For "Operators" select "is"
+4. In "Value..." type in "err"
+5. Click save
+
+![Expand data](/images/9-filtererr.png)
+
+> NOTE: If nothing is returned, depending on how much time has elapsed since you've outputted the messages to the *stdout* and *stderr* streams you may need to set the proper timeframe for the filter.  If you are following this lab consistently then the defualt should be fine.  Otherwise, in the Kibana console click on the top right where it should say "Last 15 minutes" and click on "Quick" then "Last 1 hour" (though adjust to your situation as needed).
