@@ -57,13 +57,13 @@ In the main part of the console you should see three entries. These will contain
 ![Kibana data](/images/9-logoutput.png)
 
 You will also see that there is data from multiple sources and multiple messages.  In the image below you can see that 
-A) shows the message we outputted to the *stdout*
-B) shows what our frontend pod received from the microservice (which pod sent it and what color was sent)  
-C) shows what color the microservice pod is responding with
+- A) shows the message we outputted to the *stdout*
+- B) shows what our frontend pod received from the microservice (which pod sent it and what color was sent)  
+- C) shows what color the microservice pod is responding with
 
 ![log data](/images/9-logdata.png)
 
-Furthermore, ff you wanted to see the data in tabular format or in JSON format you can click on the twisty-tie on the right of the row.
+Furthermore, if you wanted to see the data in tabular format or in JSON format you can click on the twisty-tie on the left of the row.
 
 ![Expand data](/images/9-expandlog.png)
 
