@@ -74,7 +74,7 @@ Let's look for any errors encountered in our app.  Since we have many log entrie
 2. For "Fields..." select (or type) "level"
 3. For "Operators" select "is"
 4. In "Value..." type in "err"
-5. Click save
+5. Click "Save"
 
 ![Expand data](/images/9-filtererr.png)
 
