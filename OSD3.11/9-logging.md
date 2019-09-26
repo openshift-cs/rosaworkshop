@@ -78,4 +78,8 @@ Let's look for any errors encountered in our app.  Since we have many log enteri
 
 ![Expand data](/images/9-filtererr.png)
 
+You should see now only one row is returned that contains our error message.
+
+![Expand data](/images/9-erronly.png)
+
 > NOTE: If nothing is returned, depending on how much time has elapsed since you've outputted the messages to the *stdout* and *stderr* streams you may need to set the proper timeframe for the filter.  If you are following this lab consistently then the defualt should be fine.  Otherwise, in the Kibana console click on the top right where it should say "Last 15 minutes" and click on "Quick" then "Last 1 hour" (though adjust to your situation as needed).
