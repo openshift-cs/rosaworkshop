@@ -102,3 +102,5 @@ Lastly let's use the web UI to scale back down to one pod.
 ![UI Scale](/images/8-ostoy-uiscale.png)
 
 - See this visually by visiting the OSToy app and seeing how many boxes you now see.  It should be one.
+
+- You can also confirm this via the CLI or the web UI
