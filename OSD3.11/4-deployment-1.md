@@ -2,7 +2,7 @@
 
 There are multiple methods to deploy applications in OpenShift. First we will deploy the application using the integrated Source-to-Image builder.
 
-#### 1. Retrieve the login command
+#### 0. Retrieve the login command
 If not logged in via the CLI, click on the dropdown arrow next to your name in the top-right and select *Copy Login Command*.
 
 ![CLI Login](/images/4-cli-login.png)
@@ -19,6 +19,9 @@ You have access to the following projects and can switch between them with 'oc p
   * aro-shifty
   ...
 ```
+#### 1. Create a project
+Create a new project for us to work in.
+
 
 #### 2. Add Secret to OpenShift
 The example emulates a `.env` file and shows how easy it is to move these directly into an
@@ -62,8 +65,22 @@ Success
    'oc expose svc/ostoy-microservice'
   Run 'oc status' to view your app.
 ```
+#### 5. Check the status of the application
+Before moving onto the next step we should be sure that the microservice was created and is running correctly.  To do this run:
 
-#### 5. Deploy the UI Application
+```
+[root@ok-vm ~]# oc status
+In project ostoy-s2i on server https://api.bu-demo.openshift.com:443
+
+svc/ostoy-microservice - 172.30.119.88:8080
+  dc/ostoy-microservice deploys istag/ostoy-microservice:latest <-
+    bc/ostoy-microservice source builds https://github.com/openshift-cs/ostoy on openshift/nodejs:10 
+    deployment #1 deployed about a minute ago - 1 pod
+``` 
+
+Wait until you see that it was successfully deployed. You can also check this through the web UI.
+
+#### 6. Deploy the UI Application
 The applicaiton has been architected to rely on several environment variables to define external settings. We will attach the previously created Secret and ConfigMap afterward, along with creating a PersistentVolume.  Enter the following into the CLI:
 ```
 $ oc new-app https://github.com/openshift-cs/ostoy \
@@ -81,7 +98,7 @@ Success
   Run 'oc status' to view your app.
 ```
 
-#### 6. Update the Deployment 
+#### 7. Update the Deployment 
 We need to update the deployment to use a "Recreate" deployment strategy (as opposed to the default of `RollingUpdate` for consistent deployments with persistent volumes. Reasoning here is that the PV is backed by EBS and as such only supports the `RWO` method.  If the deployment is updated without all existing pods being killed it may not be able to schedule a new pod and create a PVC for the PV as it's still bound to the existing pod.
 ```
 $ oc patch dc/ostoy -p '{"spec": {"strategy": {"type": "Recreate"}}}'
@@ -89,7 +106,7 @@ $ oc patch dc/ostoy -p '{"spec": {"strategy": {"type": "Recreate"}}}'
 deploymentconfig "ostoy" patched
 ```
 
-#### 7. Set a Liveness probe 
+#### 8. Set a Liveness probe 
 We need to create a Liveliness Probe on the Deployment to ensure the pod is restarted if something isn't healthy within the application.  Enter the following into the CLI:
 ```
 $ oc set probe dc/ostoy --liveness --get-url=http://:8080/health
@@ -97,7 +114,7 @@ $ oc set probe dc/ostoy --liveness --get-url=http://:8080/health
 deploymentconfig "ostoy" updated
 ```
 
-#### 8. Attach Secret, ConfigMap, and PersistentVolume to Deployment
+#### 9. Attach Secret, ConfigMap, and PersistentVolume to Deployment
 We are using the default paths defined in the application, but these paths can be overriden in the application via environment variables
 
 - Attach Secret
@@ -132,7 +149,7 @@ persistentvolumeclaims/pvc-gbpx7
 deploymentconfig "ostoy" updated
 ```
 
-#### 9. Expose the UI application as an OpenShift Route
+#### 10. Expose the UI application as an OpenShift Route
 Using OpenShift Dedicated's included TLS wildcard certicates, we can easily deploy this as an HTTPS application
 ```
 $ oc create route edge --service=ostoy --insecure-policy=Redirect
@@ -140,7 +157,7 @@ $ oc create route edge --service=ostoy --insecure-policy=Redirect
 route "ostoy" created
 ```
 
-#### 10. Browse to your application!
+#### 11. Browse to your application!
 Enter the following into your CLI:
 
 `$ python -m webbrowser "$(oc get route ostoy -o template --template='https://{{.spec.host}}')"`
