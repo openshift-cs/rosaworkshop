@@ -3,7 +3,7 @@
 There are multiple methods to deploy applications in OpenShift. Let's explore usingthe application using the integrated Source-to-Image builder. As mentioned in the [concepts](/OSD3.11/2-concepts.md) section, S2I is a tool for building reproducible, Docker-formatted container images. 
 
 #### 0. Retrieve the login command (if not logged in via CLI)
-If not logged in via the CLI, click on the dropdown arrow next to your name in the top-right and select *Copy Login Command*.
+If not logged in via the CLI, click on the dropdown arrow next to your name in the top-right of the cluster console and select *Copy Login Command*.
 
 ![CLI Login](/images/4-cli-login.png)
 
