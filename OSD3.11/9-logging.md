@@ -70,11 +70,11 @@ Furthermore, if you wanted to see the data in tabular format or in JSON format y
 #### 6. Filtering Results
 Let's look for any errors encountered in our app.  Since we have many log entries (most from the previous networking section) we may need to filter to make it easier to find the errors.  To find the error message we outputted to *stderr* lets create a filter.  
 
-1. Click on "Add a filter+" under the search bar on the upper left.
-2. For "Fields..." select (or type) "level"
-3. For "Operators" select "is"
-4. In "Value..." type in "err"
-5. Click "Save"
+- Click on "Add a filter+" under the search bar on the upper left.
+- For "Fields..." select (or type) "level"
+- For "Operators" select "is"
+- In "Value..." type in "err"
+- Click "Save"
 
 ![Expand data](/images/9-filtererr.png)
 
