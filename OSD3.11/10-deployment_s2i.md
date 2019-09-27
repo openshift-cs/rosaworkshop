@@ -19,11 +19,11 @@ You have access to the following projects and can switch between them with 'oc p
   * aro-shifty
   ...
 ```
+
 #### 1. Create a project
 Create a new project for us to work in for this part. Let's call is `ostoy-s2i`.  
 
 You can create a new project by running `oc new-project ostoy-s2i`.
-
 
 #### 2. Add Secret to OpenShift
 The example emulates a `.env` file and shows how easy it is to move these directly into an
