@@ -69,7 +69,7 @@ Success
 Before moving onto the next step we should be sure that the microservice was created and is running correctly.  To do this run:
 
 ```
-[root@ok-vm ~]# oc status
+$ oc status
 In project ostoy-s2i on server https://api.bu-demo.openshift.com:443
 
 svc/ostoy-microservice - 172.30.119.88:8080
