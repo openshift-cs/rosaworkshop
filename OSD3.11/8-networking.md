@@ -57,8 +57,7 @@ ostoy-microservice-86b4c6f559-p594d   1/1       Running   0          1h
 #### 5. Scale pods via Deployment definition
 Let's change our microservice definition yaml to reflect that we want 3 pods instead of the one we see. Download the [ostoy-microservice-deployment.yaml](/yaml/ostoy-microservice-deployment.yaml) and save it on your local machine.
 
-- Open the file using your favorite editor. Ex: `vi ostoy-microservice-deployment.yaml`.
-
+- Open the file using your favorite editor. Ex: `vi ostoy-microservice-deployment.yaml`
 - Find the line that states `replicas: 1` and change that to `replicas: 3`. Then save and quit.
 
 It will look like this
@@ -72,11 +71,9 @@ spec:
  ```
 
 - Assuming you are still logged in via the CLI, execute the following command:
-
 `oc apply -f ostoy-microservice-deployment.yaml`
 
 - Confirm that there are now 3 pods via the CLI (`oc get pods`) or the web UI (*Overview > expand "ostoy-microservice"*).
-
 - See this visually by visiting the OSToy app and seeing how many boxes you now see.  It should be three.
 
 ![UI Scale](/images/8-ostoy-colorspods.png)
@@ -85,22 +82,18 @@ spec:
 Now we will scale the pods down using the command line.  
 
 - Execute the following command from the CLI: 
-
 `oc scale deployment ostoy-microservice --replicas=2`
 
 - Confirm that there are indeed 2 pods, via the CLI (`oc get pods`) or the web UI.
-
 - See this visually by visiting the OSToy App and seeing how many boxes you now see.  It should be two.
 
 #### 7. Scale down via web UI
 Lastly let's use the web UI to scale back down to one pod.  
 
 - In the project you created for this app (ie: "ostoy") in the left menu click *Overview > expand "ostoy-microservice"*.  On the right you will see a blue circle with the number 2 in the middle. 
-
 - Click on the down arrow to the right of that to scale the number of pods down to 1.
 
 ![UI Scale](/images/8-ostoy-uiscale.png)
 
 - See this visually by visiting the OSToy app and seeing how many boxes you now see.  It should be one.
-
 - You can also confirm this via the CLI or the web UI
