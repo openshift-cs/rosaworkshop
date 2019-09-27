@@ -81,9 +81,7 @@ spec:
 #### 6. Scale down via CLI
 Now we will scale the pods down using the command line.  
 
-- Execute the following command from the CLI: 
-`oc scale deployment ostoy-microservice --replicas=2`
-
+- Execute the following command from the CLI: `oc scale deployment ostoy-microservice --replicas=2`
 - Confirm that there are indeed 2 pods, via the CLI (`oc get pods`) or the web UI.
 - See this visually by visiting the OSToy App and seeing how many boxes you now see.  It should be two.
 
