@@ -4,6 +4,9 @@
 
 Source-to-Image (S2I) is a toolkit and workflow for building reproducible container images from source code. S2I produces ready-to-run images by injecting source code into a container image and letting the container prepare that source code for execution. By creating self-assembling builder images, you can version and control your build environments exactly like you use container images to version your runtime environments.
 
+[S2I Requirements](https://docs.openshift.com/dedicated/3/creating_images/s2i.html#creating-images-s2i)
+[S2I Builds](https://docs.openshift.com/dedicated/3/architecture/core_concepts/builds_and_image_streams.html#source-build)
+
 #### How it works
 
 For a dynamic language like Ruby, the build-time and run-time environments are typically the same. Starting with a builder image that describes this environment - with Ruby, Bundler, Rake, Apache, GCC, and other packages needed to set up and run a Ruby application installed - source-to-image performs the following steps:
