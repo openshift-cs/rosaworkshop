@@ -1,4 +1,3 @@
-<script async defer src="https://buttons.github.io/buttons.js"></script>
 ## Leveraging source-to-image (S2I) webhooks for CICD
 If we'd like to automatically trigger a build and deploy anytime we change the source code we can do that by using a webhook.
 
@@ -7,7 +6,6 @@ See [Triggering Builds](https://docs.openshift.com/dedicated/3/dev_guide/builds/
 #### 1. Fork the repository
 In order to trigger S2I builds when you push code into your GitHib repo, you’ll need to setup the GitHub webhook.  And in order to setup the webhooks, you’ll first need to fork the application into your personal GitHub repository.
 
-<!-- Place this tag where you want the button to render. -->
 <a class="github-button" href="https://github.com/openshift-cs/ostoy/fork" data-icon="octicon-repo-forked" data-size="large" aria-label="Fork openshift-cs/ostoy on GitHub">Fork</a>
 
 #### 2. Get trigger secret
@@ -16,8 +14,7 @@ Retrieve the GitHub webhook trigger secret using the command below. You’ll nee
 `oc get bc ostoy -o=jsonpath='{.spec.triggers..github.secret}'`
 
 You will get a response similar to:
-```$ oc get bc ostoy -o=jsonpath='{.spec.triggers..github.secret}'
-o_3x9M1qoI2Wj_czRWiK```
+`o_3x9M1qoI2Wj_czRWiK`
 
 Note the secret as you will need to use it shortly.
 
