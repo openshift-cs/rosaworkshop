@@ -10,7 +10,7 @@ If not logged in via the CLI, click on the dropdown arrow next to your name in t
 Then go to your terminal and paste that command and press enter.  You will see a similar confirmation message if you successfully logged in.
 
 ```
-[okashi@ok-vm ostoy]# oc login https://api.demo1234.openshift.com --token=HS1QpKXXXXXXXXXXX
+$ oc login https://api.demo1234.openshift.com --token=HS1QpKXXXXXXXXXXX
 Logged into "https://api.demo1234.openshift.com" as "0kashi" using the token provided.
 
 You have access to the following projects and can switch between them with 'oc project <projectname>':
