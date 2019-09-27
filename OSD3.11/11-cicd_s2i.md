@@ -35,9 +35,7 @@ In the URL retrieved in the last step replace the `<secret>` text with the actua
 ![Add Webhook](/images/11-webhook.png)
 
 - Paste the URL from step 4 into the "Payload URL" field
-
 - Change the "Content type" to `application/json`
-
 - Click add webhook at the bottom
 
 ![Finish Add Webhook](/images/11-webhookfinish.png)
