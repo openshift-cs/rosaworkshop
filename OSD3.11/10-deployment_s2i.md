@@ -19,17 +19,23 @@ You have access to the following projects and can switch between them with 'oc p
   * shifty
   ...
 ```
+#### 1. Fork the repository
+In the next section (after this) we will be triggering automated builds based on changes to the source code. In order to trigger S2I builds when you push code into your GitHib repo, you’ll need to setup the GitHub webhook.  And in order to setup the webhooks, you’ll first need to fork the application into your personal GitHub repository.
 
-#### 1. Create a project
+<a class="github-button" href="https://github.com/openshift-cs/ostoy/fork" data-icon="octicon-repo-forked" data-size="large" aria-label="Fork openshift-cs/ostoy on GitHub">Fork</a>
+
+> **NOTE:** Going forward you will need to replace any reference to "openshift-cs" in any of the URLs for commands with your own username.  So in this example I would always replace "openshift-cs" with "0kashi".
+
+#### 2. Create a project
 Create a new project for us to work in for this part. Let's call is `ostoy-s2i`.  
 
 You can create a new project by running `oc new-project ostoy-s2i`.
 
-#### 2. Add Secret to OpenShift
+#### 3. Add Secret to OpenShift
 The example emulates a `.env` file and shows how easy it is to move these directly into an
 OpenShift environment. Files can even be renamed in the Secret.  In your CLI enter the following command:<br><br>
 ```
-$ oc create -f https://raw.githubusercontent.com/openshift-cs/ostoy/master/deployment/yaml/secret.yaml
+$ oc create -f https://raw.githubusercontent.com/<username>/ostoy/master/deployment/yaml/secret.yaml
 
 secret "ostoy-secret" created
 ```
@@ -39,7 +45,7 @@ The example emulates an HAProxy config file, and is typically used for overridin
 default configurations in an OpenShift application. Files can even be renamed in the ConfigMap
 Enter the following into your CLI 
 ```
-$ oc create -f https://raw.githubusercontent.com/openshift-cs/ostoy/master/deployment/yaml/configmap.yaml
+$ oc create -f https://raw.githubusercontent.com/<username>/ostoy/master/deployment/yaml/configmap.yaml
 
 configmap "ostoy-config" created
 ```
@@ -51,7 +57,7 @@ build the application defined in the `microservice` directory in the git repo.
 Using the `app` label allows us to ensure the UI application and microservice
 are both grouped in the OpenShift UI.  Enter the following into the CLI
 ```
-$ oc new-app https://github.com/openshift-cs/ostoy \
+$ oc new-app https://github.com/<username>/ostoy \
     --context-dir=microservice \
     --name=ostoy-microservice \
     --labels=app=ostoy
@@ -76,7 +82,7 @@ In project ostoy-s2i on server https://api.demo1234.openshift.com:443
 
 svc/ostoy-microservice - 172.30.119.88:8080
   dc/ostoy-microservice deploys istag/ostoy-microservice:latest <-
-    bc/ostoy-microservice source builds https://github.com/openshift-cs/ostoy on openshift/nodejs:10 
+    bc/ostoy-microservice source builds https://github.com/<username>/ostoy on openshift/nodejs:10 
     deployment #1 deployed about a minute ago - 1 pod
 ``` 
 
@@ -85,7 +91,7 @@ Wait until you see that it was successfully deployed. You can also check this th
 #### 6. Deploy the frontend UI of the application
 The applicaiton has been architected to rely on several environment variables to define external settings. We will attach the previously created Secret and ConfigMap afterward, along with creating a PersistentVolume.  Enter the following into the CLI:
 ```
-$ oc new-app https://github.com/openshift-cs/ostoy \
+$ oc new-app https://github.com/<username>/ostoy \
     --env=MICROSERVICE_NAME=OSTOY_MICROSERVICE
 
 Creating resources ...
