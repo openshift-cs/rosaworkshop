@@ -10,6 +10,6 @@ You will need to [download and install](https://docs.openshift.com/dedicated/cli
 #### 2. A GitHub Account
 You will need your own GitHub account for some portions of this lab.  If you do not already have a GitHub account please visit https://github.com/join to create your account.
 
-#### 2. Install Git
+#### 3. Install Git
 
 Install Git on your workstation.  See the official [Git documentation](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) for instructions per your workstation’s operating system.
