@@ -1,4 +1,4 @@
-## Using S2I to build and deploy our application.
+## Using S2I to build and deploy our application
 
 There are multiple methods to deploy applications in OpenShift. Let's explore usingthe application using the integrated Source-to-Image builder. As mentioned in the [concepts](/OSD3.11/2-concepts.md) section, S2I is a tool for building reproducible, Docker-formatted container images. 
 
@@ -164,5 +164,4 @@ Enter the following into your CLI:
 
 `$ python -m webbrowser "$(oc get route ostoy -o template --template='https://{{.spec.host}}')"`
 
-or you can manually get the route for the application and copy/paste that into your browser via
-`oc get routes`
+or you can get the route for the application by using `oc get route` and copy/paste that into your browser
