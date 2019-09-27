@@ -34,4 +34,19 @@ In the URL retrieved in the last step replace the `<secret>` text with the actua
 
 `https://api.demo1234.openshift.com:443/apis/build.openshift.io/v1/namespaces/ostoy-s2i/buildconfigs/ostoy/webhooks/o_3x9M1qoI2Wj_czRWiK/github`
 
-#### 5. Setup webhook URL in GitHub repository
+#### 5. Setup the webhook URL in GitHub repository
+- In your repository, click on *Settings > Webhooks > Add webhook*
+
+![Add Webhook](/images/11-webhook.png)
+
+- Paste the URL from step 4 into the "Payload URL" field
+
+- Change the "Content type" to `application/json`
+
+- Click add webhook at the bottom
+
+![Finish Add Webhook](/images/11-webhookfinish.png)
+
+You should see a message from GitHub stating that your webhook was successfully configured. Now, whenever you push a change to your GitHub repository, a new build will automatically start, and upon a successful build a new deployment will start.
+
+#### 6. Make a change and see the update
