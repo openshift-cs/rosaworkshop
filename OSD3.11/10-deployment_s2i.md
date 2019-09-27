@@ -72,7 +72,7 @@ Before moving onto the next step we should be sure that the microservice was cre
 
 ```
 $ oc status
-In project ostoy-s2i on server https://api.bu-demo.openshift.com:443
+In project ostoy-s2i on server https://api.demo1234.openshift.com:443
 
 svc/ostoy-microservice - 172.30.119.88:8080
   dc/ostoy-microservice deploys istag/ostoy-microservice:latest <-
