@@ -15,7 +15,8 @@ Retrieve the GitHub webhook trigger secret using the command below. You’ll nee
 
 `oc get bc ostoy -o=jsonpath='{.spec.triggers..github.secret}'`
 
-You will get a response similar to ```$ oc get bc ostoy -o=jsonpath='{.spec.triggers..github.secret}'
+You will get a response similar to:
+```$ oc get bc ostoy -o=jsonpath='{.spec.triggers..github.secret}'
 o_3x9M1qoI2Wj_czRWiK```
 
 Note the secret as you will need to use it shortly.
