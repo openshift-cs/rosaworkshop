@@ -67,7 +67,7 @@ Success
    'oc expose svc/ostoy-microservice'
   Run 'oc status' to view your app.
 ```
-#### 5. Check the status of the application
+#### 5. Check the status of the microservice
 Before moving onto the next step we should be sure that the microservice was created and is running correctly.  To do this run:
 
 ```
@@ -82,7 +82,7 @@ svc/ostoy-microservice - 172.30.119.88:8080
 
 Wait until you see that it was successfully deployed. You can also check this through the web UI.
 
-#### 6. Deploy the UI Application
+#### 6. Deploy the frontend UI of the application
 The applicaiton has been architected to rely on several environment variables to define external settings. We will attach the previously created Secret and ConfigMap afterward, along with creating a PersistentVolume.  Enter the following into the CLI:
 ```
 $ oc new-app https://github.com/openshift-cs/ostoy \
