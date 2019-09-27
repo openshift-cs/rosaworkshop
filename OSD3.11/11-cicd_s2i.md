@@ -1,3 +1,4 @@
+<script async defer src="https://buttons.github.io/buttons.js"></script>
 ## Leveraging source-to-image (S2I) webhooks for CICD
 If we'd like to automatically trigger a build and deploy anytime we change the source code we can do that by using a webhook.
 
