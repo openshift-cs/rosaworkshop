@@ -24,7 +24,7 @@ In the next section (after this) we will be triggering automated builds based on
 
 <a class="github-button" href="https://github.com/openshift-cs/ostoy/fork" data-icon="octicon-repo-forked" data-size="large" aria-label="Fork openshift-cs/ostoy on GitHub">Fork</a>
 
-> **NOTE:** Going forward you will need to replace any reference to "openshift-cs" in any of the URLs for commands with your own username.  So in this example I would always replace "openshift-cs" with "0kashi".
+> **NOTE:** Going forward you will need to replace any reference to "<username>" in any of the URLs for commands with your own username.  So in this example I would always replace "<username>" with "0kashi".
 
 #### 2. Create a project
 Create a new project for us to work in for this part. Let's call is `ostoy-s2i`.  
