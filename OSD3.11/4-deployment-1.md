@@ -2,7 +2,7 @@
 
 There are multiple methods to deploy applications in OpenShift. First we will deploy the application using the integrated Source-to-Image builder.
 
-#### 0. Retrieve the login command
+#### 0. Retrieve the login command (if not logged in via CLI)
 If not logged in via the CLI, click on the dropdown arrow next to your name in the top-right and select *Copy Login Command*.
 
 ![CLI Login](/images/4-cli-login.png)
