@@ -14,8 +14,8 @@ Logged into "https://api.demo1234.openshift.com" as "0kashi" using the token pro
 
 You have access to the following projects and can switch between them with 'oc project <projectname>':
 
-    aro-demo
-  * aro-shifty
+    demo
+  * shifty
   ...
 ```
 
