@@ -39,7 +39,7 @@ The example emulates an HAProxy config file, and is typically used for overridin
 default configurations in an OpenShift application. Files can even be renamed in the ConfigMap
 Enter the following into your CLI 
 ```
-$ oc create -f https://raw.githubusercontent.com/openshift-cs/ostoy/master/deployment/yaml/configmap.yaml`
+$ oc create -f https://raw.githubusercontent.com/openshift-cs/ostoy/master/deployment/yaml/configmap.yaml
 
 configmap "ostoy-config" created
 ```
