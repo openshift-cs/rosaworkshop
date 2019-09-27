@@ -1,6 +1,6 @@
 ## Using S2I to build and deploy our application.
 
-There are multiple methods to deploy applications in OpenShift. First we will deploy the application using the integrated Source-to-Image builder.
+There are multiple methods to deploy applications in OpenShift. Let's explore usingthe application using the integrated Source-to-Image builder. As mentioned in the [concepts](/OSD3.11/2-concepts.md) section, S2I is a tool for building reproducible, Docker-formatted container images. 
 
 #### 0. Retrieve the login command (if not logged in via CLI)
 If not logged in via the CLI, click on the dropdown arrow next to your name in the top-right and select *Copy Login Command*.
@@ -20,7 +20,7 @@ You have access to the following projects and can switch between them with 'oc p
   ...
 ```
 #### 1. Create a project
-Create a new project for us to work in.
+Create a new project for us to work in for this part. Let's call is `ostoy-s2i`.  You can create a new project by running `oc new-project ostoy-s2i`.
 
 
 #### 2. Add Secret to OpenShift
