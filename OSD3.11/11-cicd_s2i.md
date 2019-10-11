@@ -27,7 +27,7 @@ Webhook GitHub:
 #### 3. Replace the secret
 In the URL retrieved in the last step replace the `<secret>` text with the actual secret you recieved in step 2 above.  Your URL will look like:
 
-`https://api.demo1234.openshift.com:443/apis/build.openshift.io/v1/namespaces/ostoy-s2i/buildconfigs/ostoy/webhooks/o_3x9M1qoI2Wj_czRWiK/github`
+`https://api.demo1234.openshift.com:443/apis/build.openshift.io/v1/namespaces/ostoy-s2i/buildconfigs/ostoy-microservice/webhooks/o_3x9M1qoI2Wj_czRWiK/github`
 
 #### 4. Setup the webhook URL in GitHub repository
 - In your repository, click on *Settings > Webhooks > Add webhook*
@@ -58,6 +58,6 @@ Immediately in your cluster web UI click under *Builds > Builds* and you will se
 ![Build Run](/images/11-builddone.png)
 
 #### 8. View change in browser
-Once the deployment has finished go back to your browser and reload the page.  You will now see that the text in the top right is now green.
+Once the deployment has finished go back to your browser, access the *Networking* menu item on the left.  You will now see that the box color is limited to only greyscale colors.
 
-![Green](/images/11-green.png)
+![Green](/images/11-grey.png)
