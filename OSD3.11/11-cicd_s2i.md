@@ -60,4 +60,4 @@ Immediately in your cluster web UI click under *Builds > Builds* and you will se
 #### 8. View change in browser
 Once the deployment has finished go back to your browser, access the *Networking* menu item on the left.  You will now see that the box color is limited to greyscale colors only.
 
-![Green](/images/11-grey.png)
+![Grey](/images/11-grey.png)
