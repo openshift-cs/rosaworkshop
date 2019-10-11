@@ -43,12 +43,13 @@ In the URL retrieved in the last step replace the `<secret>` text with the actua
 You should see a message from GitHub stating that your webhook was successfully configured. Now, whenever you push a change to your GitHub repository, a new build will automatically start, and upon a successful build a new deployment will start.
 
 #### 6. Make a change and see the update
-Now we will make a change in our source code and see it automatically trigger a build and deployment.  
+Now we will make a change in our source code and see it automatically trigger a build and deployment.  We saw in our Networking section that the colors of the box randomly change colors.  Now we will make that box only display greyscale.
 
-- Go to `https://github.com/<username>/ostoy/blob/master/public/css/styles.css`
+- Go to `https://github.com/<username>/ostoy/blob/master/microservice/app.js`
 - Edit the file
-- On line 6 change `white` to `green` (or any other color of your choosing)
-- Enter a message for the updated like "changed text to green"
+- Comment out line 8 (containing `let randomColor = getRandomColor();`)
+- Uncomment line 9 (containing `let randomColor = getRandomGrayScaleColor();`)
+- Enter a message for the updated like "changed box to greyscale colors"
 - Click *Commit* at the bottom to commit the changes to the master branch
 
 #### 7. View the build run and Deployment complete
