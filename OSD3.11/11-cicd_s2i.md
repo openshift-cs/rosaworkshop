@@ -6,7 +6,7 @@ See [Triggering Builds](https://docs.openshift.com/dedicated/3/dev_guide/builds/
 #### 1. Get the trigger secret
 Retrieve the GitHub webhook trigger secret using the command below. You’ll need use this secret in the GitHub webhook URL.
 
-`oc get bc/ostoy -o=jsonpath='{.spec.triggers..github.secret}'`
+`oc get bc/ostoy-microservice -o=jsonpath='{.spec.triggers..github.secret}'`
 
 You will get a response similar to:
 `o_3x9M1qoI2Wj_czRWiK`
