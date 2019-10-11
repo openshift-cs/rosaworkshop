@@ -16,7 +16,7 @@ Note the secret as you will need to use it shortly.
 #### 2. Retrieve the GitHub webhook trigger URL
 You will need to get the GitHub webhook trigger url from the buildconfig.  Use following command to retrieve it
 
-`oc describe bc/ostoy`
+`oc describe bc/ostoy-microservice`
 
 You will get a response with much data but look for the line that looks like
 
