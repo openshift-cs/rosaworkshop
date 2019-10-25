@@ -60,7 +60,7 @@ Colorful graphs will appear showing resource usage across CPU and memory.  The t
 
 ![CPU](/images/12-grafana-cpu.png)
 
-If you mouse over the graph the tool will display the names and corresponding CPU consumption of each pod as seen below.
+Mmouse over the graph and the tool will display the names and corresponding CPU consumption of each pod as seen below.
 
 ![CPU](/images/12-grafana-metrics.png)
 
