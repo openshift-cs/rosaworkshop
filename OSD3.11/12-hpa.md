@@ -38,7 +38,7 @@ After about a minute we'll see the new pods show up on the page. Confirm that th
 You can use the following command to see only the running microservice pods:
 `oc get pods --field-selector=status.phase=Running | grep microservice`
 
-> **Note that the page may still lag a bit which is normal.**
+> **Note:** The page may still lag a bit which is normal.
 
 ### Review resources in Grafana
 
@@ -48,10 +48,12 @@ Go to the following url `https://grafana-openshift-monitoring.<number>.<clustern
 
 ![Grafana](/images/12-grafana-home.png)
 
-Click on *Home* on the top right and select the "K8s / Compute Resources / Namespace" dashboard.
+Click on *Home* on the top left and select the "K8s / Compute Resources / Namespace" dashboard.
 
 ![Select Dash](/images/12-grafana-dash.png)
 
 Click on *Namespace* and select our project name "ostoy".
 
 ![Select NS](/images/12-grafana-ns.png)
+
+
