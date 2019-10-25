@@ -56,7 +56,7 @@ Click on *Namespace* and select our project name "ostoy".
 
 ![Select NS](/images/12-grafana-ns.png)
 
-Colorful graphs will appear showing resource usage across CPU and memory.  The top graph will show you recent CPU consumption per pod and the lower graph will indicate memory usage.  Looking at this graph you can see how things developed. As soon as the load started to increase (A), three new pods started to spin up (B,C D). The thickness of each graph is its CPU consumption so we can see which pods handled more load.  WE also see that after a few minutes when the load decrased the pods were spun back down (E).
+Colorful graphs will appear showing resource usage across CPU and memory.  The top graph will show you recent CPU consumption per pod and the lower graph will indicate memory usage.  Looking at this graph you can see how things developed. As soon as the load started to increase (A), three new pods started to spin up (B,C D). The thickness of each graph is its CPU consumption so we can see which pods handled more load.  We also see that after a few minutes when the load decrased the pods were spun back down (E).
 
 ![CPU](/images/12-grafana-cpu.png)
 
