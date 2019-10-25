@@ -15,9 +15,43 @@ Run the following command to create the autoscaler. The following command will c
 
 ### View the current number of pods
 
-View the current number of pods via the menu item on the left for HPA.
+On the left menu click on "Autoscaling" to access this portion of the workshop.  
 
+![HPA Menu](/images/12-hpa-menu.png)
+
+As was in the networking section you will see the total number of pods available for the microservice by counting the number of colored boxes.  In this case we have only one.  This can be verified throuhg the web UI or from the CLI.
+
+![HPA Main](/images/12-hpa-mainpage.png)
 
 ### Increase the load
 
-### View the pods scale up
+Now that we have seen that we only have one pod let's increase the workload that the pod needs to perform. Click the link in the center of the card that says "increase the load".  **Please click only *ONCE*!**
+
+This will generate some CPU intensive calculations.  If you are curious about what it is doing you can click [here](https://github.com/0kashi/ostoy/blob/master/microservice/app.js#L32) to see.
+
+> **Note:** You may see the page become slightly unresponsive.  This is normal so be patient while the new pods spin up.
+
+### See the pods scale up
+
+After about a minute we'll see the new pods show up on the page. Confirm that the pods did indeed scale up through the web UI or the CLI.
+
+You can use the following command to see only the running microservice pods:
+`oc get pods --field-selector=status.phase=Running | grep microservice`
+
+> **Note that the page may still lag a bit which is normal.**
+
+### Review resources in Grafana
+
+After seeing that indeed the autoscaler did spin up new pods switch to Grafana so we can visually see the resource consumption of our pods and see how the workloads were distributed.
+
+Go to the following url `https://grafana-openshift-monitoring.<number>.<clustername>.openshiftapps.com`
+
+![Grafana](/images/12-grafana-home.png)
+
+Click on *Home* on the top right and select the "K8s / Compute Resources / Namespace" dashboard.
+
+![Select Dash](/images/12-grafana-dash.png)
+
+Click on *Namespace* and select our project name "ostoy".
+
+![Select NS](/images/12-grafana-ns.png)
