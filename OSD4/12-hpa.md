@@ -7,13 +7,13 @@ As defined in the Kubernetes documentation:
 
 We will create an HPA and then use OSToy to generate CPU intensive workloads.  We will then observe how the HPA will scale up the number of pods in order to handle the increased workloads.  
 
-#### 1. Create the Horizontal Pod Autoscaler
+### Create the Horizontal Pod Autoscaler
 
 Run the following command to create the autoscaler. The following command will create an HPA that maintains between 1 and 10 replicas of the Pods controlled by the *ostoy-microservice* DeploymentConfig created. Roughly speaking, the HPA will increase and decrease the number of replicas (via the deployment) to maintain an average CPU utilization across all Pods of 80% (since each pod requests 50 millicores, this means average CPU usage of 40 millicores)
 
 `oc autoscale dc/ostoy-microservice --cpu-percent=80 --min=1 --max=10`
 
-#### 2. View the current number of pods
+### View the current number of pods
 
 On the left menu click on "Autoscaling" to access this portion of the workshop.  
 
@@ -26,7 +26,7 @@ You can use the following command to see only the running microservice pods:
 
 ![HPA Main](/images/12-hpa-mainpage.png)
 
-#### 3. Increase the load
+### Increase the load
 
 Now that we have seen that we only have one pod let's increase the workload that the pod needs to perform. Click the link in the center of the card that says "increase the load".  **Please click only *ONCE*!**
 
@@ -34,13 +34,13 @@ This will generate some CPU intensive calculations.  If you are curious about wh
 
 > **Note:** The page may become slightly unresponsive.  This is normal; so be patient while the new pods spin up.
 
-#### 4. See the pods scale up
+### See the pods scale up
 
 After about a minute the new pods will show up on the page (represented by the colored rectagles). Confirm that the pods did indeed scale up through the web UI or the CLI.
 
 > **Note:** The page may still lag a bit which is normal.
 
-#### 5. Review resources in Grafana
+### Review resources in Grafana
 
 After confirming that the autoscaler did spin up new pods, switch to Grafana so to visually see the resource consumption of the pods and see how the workloads were distributed.
 
