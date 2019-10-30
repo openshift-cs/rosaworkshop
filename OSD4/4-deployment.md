@@ -6,7 +6,7 @@ If not logged in via the CLI, click on the dropdown arrow next to your name in t
 
 ![CLI Login](/images/4-cli-login.png)
 
-A new tab will open and select the authentication method you are using (in our case its *github*)
+A new tab will open and select the authentication method you are using (in our case it's *github*)
 
 Click *Display Token*
 
@@ -23,7 +23,7 @@ You don't have any projects. You can try to create a new project, by running
 ```
 
 #### 2. Create new project
-Create a new project called "OSToy" in your cluster by entering the following command:
+Create a new project called "ostoy" in your cluster by entering the following command:
 
 `oc new-project ostoy`
 
@@ -40,7 +40,7 @@ You can add applications to this project with the 'new-app' command. For example
 to build a new example application in Ruby.
 ```
 
-Equivalently you can also create this new project using the web UI by selecting "Application Console" at the top  then clicking on "+Create Project" button on the right.
+Equivalently you can also create this new project using the web UI by clicking on "Create Project" button on the left.
 
 ![UI Create Project](/images/OSD4/4-createnewproj.png)
 
@@ -103,11 +103,11 @@ Get the route so that we can access the application via `oc get route`
 You should see the following response:
 
 ```
-NAME          HOST/PORT                                     PATH      SERVICES              PORT      TERMINATION   WILDCARD
-ostoy-route   ostoy-route-ostoy-osd.993f.demo1234.openshiftapps.com  ostoy-frontend-svc   <all>             None
+NAME          HOST/PORT                                       PATH      SERVICES              PORT      TERMINATION   WILDCARD
+ostoy-route   ostoy-route-ostoy.apps.osd4-demo.abc1.p1.openshiftapps.com  ostoy-frontend-svc   <all>             None
 ```
 
 #### 7. View the app
-Copy `ostoy-route-ostoy-osd.993f.demo1234.openshiftapps.com` above and paste it into your browser and press enter.  You should see the homepage of our application.
+Copy `ostoy-route-ostoy.apps.osd4-demo.abc1.p1.openshiftapps.com` above and paste it into your browser and press enter.  You should see the homepage of our application.
 
 ![Home Page](/images/4-ostoy-homepage.png)

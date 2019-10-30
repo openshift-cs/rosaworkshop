@@ -5,31 +5,21 @@ There are multiple methods to deploy applications in OpenShift. Let's explore us
 #### 0. Retrieve the login command (if not logged in via CLI)
 If not logged in via the CLI, click on the dropdown arrow next to your name in the top-right of the cluster console and select *Copy Login Command*.
 
-![CLI Login](/images/4-cli-login.png)
+Follow the steps from [Step 1](/OSD4/4-deployment.md#1-retrieve-the-login-command) of the Deployment section.
 
-Then go to your terminal and paste that command and press enter.  You will see a similar confirmation message if you successfully logged in.
-
-```
-$ oc login https://api.demo1234.openshift.com --token=HS1QpKXXXXXXXXXXX
-Logged into "https://api.demo1234.openshift.com" as "0kashi" using the token provided.
-
-You have access to the following projects and can switch between them with 'oc project <projectname>':
-
-    demo
-  * shifty
-  ...
-```
 #### 1. Fork the repository
-In the next section (after this) we will be triggering automated builds based on changes to the source code. In order to trigger S2I builds when you push code into your GitHib repo, you’ll need to setup the GitHub webhook.  And in order to setup the webhooks, you’ll first need to fork the application into your personal GitHub repository.
+In the next section (after this) we will trigger automated builds based on changes to the source code. In order to trigger S2I builds when you push code into your GitHib repo, you’ll need to setup the GitHub webhook.  And in order to setup the webhooks, you’ll first need to fork the application into your personal GitHub repository.
 
 <a class="github-button" href="https://github.com/openshift-cs/ostoy/fork" data-icon="octicon-repo-forked" data-size="large" aria-label="Fork openshift-cs/ostoy on GitHub">Fork</a>
 
 > **NOTE:** Going forward you will need to replace any reference to "<username>" in any of the URLs for commands with your own username.  So in this example I would always replace "<username>" with "0kashi".
 
 #### 2. Create a project
-Create a new project for us to work in for this part. Let's call is `ostoy-s2i`.  
+Create a new project for this part. Let's call it `ostoy-s2i`.  
 
 You can create a new project by running `oc new-project ostoy-s2i`.
+
+### Steps to Deploy OSToy imperatively using S2I
 
 #### 3. Add Secret to OpenShift
 The example emulates a `.env` file and shows how easy it is to move these directly into an
@@ -78,7 +68,7 @@ Before moving onto the next step we should be sure that the microservice was cre
 
 ```
 $ oc status
-In project ostoy-s2i on server https://api.demo1234.openshift.com:443
+In project ostoy-s2i on server https://api.osd4-demo.abc1.p1.openshiftapps.com:6443
 
 svc/ostoy-microservice - 172.30.119.88:8080
   dc/ostoy-microservice deploys istag/ostoy-microservice:latest <-

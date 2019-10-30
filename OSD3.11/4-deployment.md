@@ -37,7 +37,7 @@ You can add applications to this project with the 'new-app' command. For example
 to build a new example application in Ruby.
 ```
 
-Equivalently you can also create this new project using the web UI by selecting "Application Console" at the top  then clicking on "+Create Project" button on the right.
+Equivalently you can also create this new project using the web UI by selecting "Application Console" at the top then clicking on "+Create Project" button on the right.
 
 ![UI Create Project](/images/4-createnewproj.png)
 

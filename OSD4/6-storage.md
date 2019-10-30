@@ -3,9 +3,9 @@
 In this section we will execute a simple example of using persistent storage by creating a file that will be stored on a persistent volume in our cluster and then confirm that it will "persist" across pod failures and recreation.
 
 #### 1. View Persistent Volume Claims
-Inside the OpenShift web UI click on *Storage* in the left menu. You will then see a list of all persistent volume claims that our application has made.  In this case there is just one called "ostoy-pvc".  You will also see other pertinent information such as whether it is bound or not, size, access mode and age.  
+Inside the OpenShift web UI click on *Storage* in the left menu then *Persistent Volume Claims*. You will then see a list of all persistent volume claims that our application has made.  In this case there is just one called "ostoy-pvc".  If you click on it you will also see other pertinent information such as whether it is bound or not, size, access mode and age.  
 
-In this case the mode is RWO (Read-Write-Once) which means that the volume can only be mounted to one node, but the pod(s) can both read and write to that volume.  As Persistent Volumes in OSD are backed by EBS it only supports RWO.  ([See here for more info on access modes](https://docs.openshift.com/dedicated/3/architecture/additional_concepts/storage.html#pv-access-modes))
+In this case the mode is RWO (Read-Write-Once) which means that the volume can only be mounted to one node, but the pod(s) can both read and write to that volume.  As Persistent Volumes in OSD are backed by EBS it only supports RWO.  ([See here for more info on access modes](https://docs.openshift.com/dedicated/4/storage/understanding-persistent-storage.html))
 
 #### 2. Create a file to store
 In the OSToy app click on *Persistent Storage* in the left menu.  In the "Filename" area enter a filename for the file you will create. (ie: "test-pv.txt")

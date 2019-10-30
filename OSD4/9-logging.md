@@ -1,6 +1,8 @@
 ## Logging
 We will take a look at the available options for logging in OpenShift Dedicated (OSD).  As OSD comes preconfigured with EFK stack (Elasticsearch, Fluentd, Kibana) it is easy to search the logs.  In this section we will take a look at two methods with which one can view their logs. First we will look at the logs directly through the pod using `oc logs`.  Second we will use Kibana to search our logs.
 
+### Output data to the streams/logs
+
 #### 1. Output a message to *stdout* 
 Click on the *Home* menu item and then click in the message box for "Log Message (stdout)" and write any message you want to output to the *stdout* stream.  You can try "**All is well!**".  Then click "Send Message".
 

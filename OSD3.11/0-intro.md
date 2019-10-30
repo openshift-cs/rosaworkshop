@@ -31,7 +31,6 @@ Some of the things you’ll be going through:
 - Use persistent storage to share data across pod restarts
 - Explore networking within Kubernetes and applications
 - Familiarization with OpenShift and Kubernetes functionality
-
-**TODO:ADD HPA SECTION????**
+- Explore the Horizontal Pod Autoscaler
 
 You’ll be doing the majority of the labs using the OpenShift CLI, but you can also accomplish them using the OpenShift Dedicated web console.

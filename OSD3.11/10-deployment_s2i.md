@@ -27,7 +27,7 @@ In the next section (after this) we will be triggering automated builds based on
 > **NOTE:** Going forward you will need to replace any reference to "<username>" in any of the URLs for commands with your own username.  So in this example I would always replace "<username>" with "0kashi".
 
 #### 2. Create a project
-Create a new project for us to work in for this part. Let's call is `ostoy-s2i`.  
+Create a new project for this part. Let's call it `ostoy-s2i`.  
 
 You can create a new project by running `oc new-project ostoy-s2i`.
 

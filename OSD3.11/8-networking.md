@@ -5,7 +5,7 @@ Let's review how this application is set up...
 
 ![OSToy Diagram](/images/3-ostoy-arch.png)
 
-As can be seen in the image above, we have defined at least 2 separate pods, each with its own service.  One is the frontend web application (with a service and a publicly accessible route) and the other is the backend microservice with a service object created so that the frontend pod can communicate with the microservice (accross the pods if more than one).  Therefore this microservice is not accessible from outside this cluster, nor from other namespaces/projects (due to OSD's network policy, **ovs-networkpolicy**).  The sole purpose of this microservice is to serve internal web requests and return a JSON object containing the current hostname (which is the podname) and a randomly generated color string.  This color string is used to display a box with that color displayed in the tile titled "Intra-cluster Communication".
+As can be seen in the image above, we have defined at least 2 separate pods, each with its own service.  One is the frontend web application (with a service and a publicly accessible route) and the other is the backend microservice with a service object created so that the frontend pod can communicate with the microservice (across the pods if more than one).  Therefore this microservice is not accessible from outside this cluster, nor from other namespaces/projects (due to OSD's network policy, **ovs-networkpolicy**).  The sole purpose of this microservice is to serve internal web requests and return a JSON object containing the current hostname (which is the podname) and a randomly generated color string.  This color string is used to display a box with that color displayed in the tile titled "Intra-cluster Communication".
 
 ### Networking
 
@@ -55,7 +55,7 @@ ostoy-microservice-86b4c6f559-p594d   1/1       Running   0          1h
 ```
 
 #### 5. Scale pods via Deployment definition
-Let's change our microservice definition yaml to reflect that we want 3 pods instead of the one we see. Download the [ostoy-microservice-deployment.yaml](/yaml/ostoy-microservice-deployment.yaml) and save it on your local machine.
+Let's change our microservice definition yaml to reflect that we want 3 pods instead of the one we see. Download the [ostoy-microservice-deployment.yaml](/yaml/ostoy-microservice-deployment.yaml) and save it on your local machine, if you didn't do so already.
 
 - Open the file using your favorite editor. Ex: `vi ostoy-microservice-deployment.yaml`
 - Find the line that states `replicas: 1` and change that to `replicas: 3`. Then save and quit.
