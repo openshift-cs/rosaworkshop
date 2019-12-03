@@ -46,9 +46,9 @@ Download the Kubernetes deployment object yamls from the following locations to 
 
 Feel free to open them up and take a look at what we will be deploying. For simplicity of this lab we have placed all the Kubernetes objects we are deploying for the front-end in an "all-in-one" yaml file.  Though in reality there are benefits (ease of maintenance and less risk) to separating these out into individual yaml files.
 
-[ostoy-fe-deployment.yaml](/yaml/ostoy-fe-deployment.yaml)
+[ostoy-fe-deployment.yaml](https://raw.githubusercontent.com/0kashi/osdworkshop/master/yaml/ostoy-fe-deployment.yaml)
 
-[ostoy-microservice-deployment.yaml](/yaml/ostoy-microservice-deployment.yaml)
+[ostoy-microservice-deployment.yaml](https://raw.githubusercontent.com/0kashi/osdworkshop/master/yaml/ostoy-microservice-deployment.yaml)
 
 #### 4. Deploy the backend microservice
 The microservice application serves internal web requests and returns a JSON object containing the current hostname and a randomly generated color string.

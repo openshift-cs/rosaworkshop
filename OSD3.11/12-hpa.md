@@ -52,7 +52,7 @@ Click on *Home* on the top left and select the *"K8s / Compute Resources / Names
 
 ![Select Dash](/images/12-grafana-dash.png)
 
-Click on *Namespace* and select our project name "ostoy".
+Click on *Namespace* and select our project name "ostoy-s2i".
 
 ![Select NS](/images/12-grafana-ns.png)
 
