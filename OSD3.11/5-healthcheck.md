@@ -23,7 +23,7 @@ Quickly switch to the Deployment screen. You will see that the pod is red, meani
 ![Pod Crash](/images/5-ostoy-podcrash.png)
 
 #### 4. Confirm
-You can also check in the pod events and further verify that the container has crashed and been restarted.
+You can also check in the pod events and further verify that the container has crashed and been restarted.  Scroll down the page and click on the pod name in the table under the "Pods" section.  Then click the "Events" tab.
 
 ![Pod Events](/images/5-ostoy-podevents.png)
 

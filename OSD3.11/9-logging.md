@@ -38,14 +38,17 @@ stderr: Oh no! Error!
 
 You should see both the *stdout* and *stderr* messages.
 
+#### 5. View logs in the OpenShift UI
+Switch the to tab that has the OpenShift Web Console and click from the left menu on *Applications > Pods* then click on the microservice pod.  Click on the *Logs* tab.
+
 ### Using Kibana to search logs
 
-#### 5. View the Kibana console
-Open up a new browser tab and go to `https://logs.<cluster name>.openshfit.com` to access the Kibana console.  Ensure the correct project is selected.  In the beginning of this lab we created the `ostoy` project. So select the one that begins with `project.ostoy...`.
+#### 6. View the Kibana console
+Open up a new browser tab and go to `https://logs.<cluster name>.openshift.com` to access the Kibana console.  Ensure the correct project is selected.  In the beginning of this lab we created the `ostoy` project. So select the one that begins with `project.ostoy...`.
 
 ![Kibana console](/images/9-kibana.png)
 
-#### 6. Familiarization with the data
+#### 7. Familiarization with the data
 In the main part of the console you should see three entries. These will contain what we saw in the above section (viewing through the pods).  You will see the *stdout* and *stderr* messages that we inputted earlier (though you may not see it right away as we might have to filter for it).  In addition to the log output you will see information about each entry.  You can see things like:
 - namespace name
 - pod name
@@ -67,7 +70,7 @@ Furthermore, if you wanted to see the data in tabular format or in JSON format y
 
 ![Expand data](/images/9-expandlog.png)
 
-#### 6. Filtering Results
+#### 8. Filtering Results
 Let's look for any errors encountered in our app.  Since we have many log entries (most from the previous networking section) we may need to filter to make it easier to find the errors.  To find the error message we outputted to *stderr* lets create a filter.  
 
 - Click on "Add a filter+" under the search bar on the upper left.

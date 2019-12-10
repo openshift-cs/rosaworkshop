@@ -1,6 +1,6 @@
 ## Using S2I to build and deploy our application
 
-There are multiple methods to deploy applications in OpenShift. Let's explore usingthe application using the integrated Source-to-Image builder. As mentioned in the [concepts](/OSD3.11/2-concepts.md) section, S2I is a tool for building reproducible, Docker-formatted container images. 
+There are multiple methods to deploy applications in OpenShift. Let's explore using the integrated Source-to-Image builder. As mentioned in the [concepts](/OSD3.11/2-concepts.md) section, S2I is a tool for building reproducible, Docker-formatted container images. 
 
 #### 0. Retrieve the login command (if not logged in via CLI)
 If not logged in via the CLI, click on the dropdown arrow next to your name in the top-right of the cluster console and select *Copy Login Command*.
@@ -24,12 +24,10 @@ In the next section (after this) we will be triggering automated builds based on
 
 <a class="github-button" href="https://github.com/openshift-cs/ostoy/fork" data-icon="octicon-repo-forked" data-size="large" aria-label="Fork openshift-cs/ostoy on GitHub">Fork</a>
 
-> **NOTE:** Going forward you will need to replace any reference to "<username>" in any of the URLs for commands with your own username.  So in this example I would always replace "<username>" with "0kashi".
+> **NOTE:** Going forward you will need to replace any reference to <username> in any of the URLs for commands with your own username.  So in this example I would always replace <username> with "0kashi".
 
 #### 2. Create a project
-Create a new project for this part. Let's call it `ostoy-s2i`.  
-
-You can create a new project by running `oc new-project ostoy-s2i`.
+Create a new project for this part. Let's call it `ostoy-s2i`. You can create a new project from the CLI by running `oc new-project ostoy-s2i` or use the OpenShift Web Console.
 
 #### 3. Add Secret to OpenShift
 The example emulates a `.env` file and shows how easy it is to move these directly into an
@@ -51,11 +49,7 @@ configmap "ostoy-config" created
 ```
 
 #### 4. Deploy the microservice
-We deploy the microservice first to ensure that the SERVICE environment variables
-will be available from the UI application. `--context-dir` is used here to only
-build the application defined in the `microservice` directory in the git repo.
-Using the `app` label allows us to ensure the UI application and microservice
-are both grouped in the OpenShift UI.  Enter the following into the CLI
+We deploy the microservice first to ensure that the SERVICE environment variables will be available from the UI application. `--context-dir` is used here to only build the application defined in the `microservice` directory in the git repo. Using the `app` label allows us to ensure the UI application and microservice are both grouped in the OpenShift UI.  Enter the following into the CLI
 ```
 $ oc new-app https://github.com/<username>/ostoy \
     --context-dir=microservice \
@@ -123,7 +117,7 @@ deploymentconfig "ostoy" updated
 ```
 
 #### 9. Attach Secret, ConfigMap, and PersistentVolume to Deployment
-We are using the default paths defined in the application, but these paths can be overriden in the application via environment variables
+We are using the default paths defined in the application, but these paths can be overridden in the application via environment variables
 
 - Attach Secret
 ```

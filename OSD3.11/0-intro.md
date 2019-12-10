@@ -2,14 +2,14 @@
 
 ### What is OpenShift Dedicated?
 
-OpenShift Dedicated (OSD) is an OpenShift cluster provided as a managed cloud service, configuredfor high availability (HA), and dedicated to a single customer (single-tenant). OpenShift Dedicated is managed by Red Hat Operations, providing increased security and years ofoperational experience working with OpenShift in both development and production. OpenShift Dedicated also comes with award-winning 24x7 Red Hat Premium Support.
+OpenShift Dedicated (OSD) is an OpenShift cluster provided as a managed cloud service, configured for high availability (HA), and dedicated to a single customer (single-tenant). OpenShift Dedicated is managed by Red Hat Operations, providing increased security and years ofoperational experience working with OpenShift in both development and production. OpenShift Dedicated also comes with award-winning 24x7 Red Hat Premium Support.
 
 You can learn more at: https://www.openshift.com/dedicated
 
-### Choosing between OSD 3.11 and OSD 4.1
-Today OpenShift Dedicated clusters are available in both 3.11 or 4.1 versions.  Below is a summary table to help you assess which might be the correct fit. We are working to achieve feature parity across both versions, but until that happens there are some differences.
+### Choosing between OSD 3.11 and OSD 4.2
+Today OpenShift Dedicated clusters are available in both 3.11 or 4.2 versions.  Below is a summary table to help you assess which might be the correct fit. We are actively working to achieve feature parity across both versions, but until that happens there are some differences.
 
-| Requirement                        | 3.11 | 4.1          |
+| Requirement                        | 3.11 | 4.2          |
 |------------------------------------|------|--------------|
 | Private Clusters                   | Yes  | No (roadmap) |
 | Logging Stack on Infra Nodes       | Yes  | No           |
@@ -24,7 +24,7 @@ In this lab, you’ll go through a set of tasks that will help you understand so
 Some of the things you’ll be going through:
 
 - Deploy a node.js based app via S2I and Kubernetes Deployment objects
-- Set up an continuous delivery pipeline to automatically push changes to the source code
+- Set up a continuous delivery pipeline to automatically push changes to the source code
 - Explore logging in OSD
 - Experience self healing of applications
 - Explore configuration management through configmaps, secrets and environment variables
