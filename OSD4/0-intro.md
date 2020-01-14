@@ -6,10 +6,10 @@ OpenShift Dedicated (OSD) is an OpenShift cluster provided as a managed cloud se
 
 You can learn more at: https://www.openshift.com/dedicated
 
-### Choosing between OSD 3.11 and OSD 4.1
-Today OpenShift Dedicated clusters are available in both 3.11 or 4.1 versions.  Below is a summary table to help you assess which might be the correct fit. We are working to achieve feature parity across both versions, but until that happens there are some differences.
+### Choosing between OSD 3.11 and OSD 4.2
+Today OpenShift Dedicated clusters are available in both 3.11 or 4.2 versions.  Below is a summary table to help you assess which might be the correct fit. We are working to achieve feature parity across both versions, but until that happens there are some differences.
 
-| Requirement                        | 3.11 | 4.1          |
+| Requirement                        | 3.11 | 4.2          |
 |------------------------------------|------|--------------|
 | Private Clusters                   | Yes  | No (roadmap) |
 | Logging Stack on Infra Nodes       | Yes  | No           |
