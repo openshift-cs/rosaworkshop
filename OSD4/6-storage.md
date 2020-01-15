@@ -12,12 +12,12 @@ In the OSToy app click on *Persistent Storage* in the left menu.  In the "Filena
 
 Underneath that, in the "File Contents" box, enter text to be stored in the file. (ie: "OpenShift is the greatest thing since sliced bread!" or "test" :) ).  Then click "Create file".
 
-![Create File](/OSD4/images/6-ostoy-createfile.png)
+![Create File](images/6-ostoy-createfile.png)
 
 #### 3. View the file created
 You will then see the file you created appear above, under "Existing files".  Click on the file and you will see the filename and the contents you entered.
 
-![View File](/OSD4/images/6-ostoy-viewfile.png)
+![View File](images/6-ostoy-viewfile.png)
 
 #### 4. Kill the pod
 We now want to kill the pod and ensure that the new pod that spins up will be able to see the file we created. Exactly like we did in the previous section. 
@@ -31,7 +31,7 @@ Once the pod is back up, click on *Persistent Storage* in the left menu
 
 You will see the file you created is still there and you can open it to view its contents to confirm.
 
-![ExistingFile](/OSD4/images/6-ostoy-existingfile.png)
+![ExistingFile](images/6-ostoy-existingfile.png)
 
 #### 6. Confirm via the container
 Now let's confirm that it's actually there by using the CLI and checking if it is available to the container.  If you looked inside the deployment YAML file, we mounted the directory `/var/demo-files` to our PVC.  So get the name of your front-end pod

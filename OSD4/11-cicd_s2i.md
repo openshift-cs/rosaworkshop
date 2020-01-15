@@ -32,13 +32,13 @@ In the URL retrieved in the last step replace the `<secret>` text with the actua
 #### 4. Setup the webhook URL in GitHub repository
 - In your repository, click on *Settings > Webhooks > Add webhook*
 
-![Add Webhook](/OSD4/images/11-webhook.png)
+![Add Webhook](images/11-webhook.png)
 
 - Paste the URL from step 4 into the "Payload URL" field
 - Change the "Content type" to `application/json`
 - Click add webhook at the bottom
 
-![Finish Add Webhook](/OSD4/images/11-webhookfinish.png)
+![Finish Add Webhook](images/11-webhookfinish.png)
 
 You should see a message from GitHub stating that your webhook was successfully configured. Now, whenever you push a change to your GitHub repository, a new build will automatically start, and upon a successful build a new deployment will start.
 
@@ -55,9 +55,9 @@ Now we will make a change in our source code and see it automatically trigger a 
 #### 6. View the build run and Deployment complete
 Immediately, in your cluster web UI, click under *Builds > Builds* and you will see that it says "running" then it will show "complete".  Once complete the deployment begins.  You can also check the status by running `oc status`.  
 
-![Build Run](/OSD4/images/11-builddone.png)
+![Build Run](images/11-builddone.png)
 
 #### 7. View change in browser
 Once the deployment has finished go back to OSToy app in your browser, access the *Networking* menu item on the left.  You will now see that the box color is limited to greyscale colors only.
 
-![Grey](/OSD4/images/11-grey.png)
+![Grey](images/11-grey.png)

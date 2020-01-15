@@ -3,7 +3,7 @@ In this section we'll see how OSToy uses intra-cluster networking to separate fu
 
 Let's review how this application is set up...
 
-![OSToy Diagram](/OSD4/images/3-ostoy-arch.png)
+![OSToy Diagram](images/3-ostoy-arch.png)
 
 As can be seen in the image above, we have defined at least 2 separate pods, each with its own service.  One is the frontend web application (with a service and a publicly accessible route) and the other is the backend microservice with a service object so that the frontend pod can communicate with the microservice (across the pods if more than one).  Therefore this microservice is not accessible from outside this cluster, nor from other namespaces/projects (due to OSD's network policy, [**ovs-networkpolicy**](https://docs.openshift.com/dedicated/3/admin_guide/managing_networking.html#admin-guide-networking-networkpolicy)).  The sole purpose of this microservice is to serve internal web requests and return a JSON object containing the current hostname (which is the podname) and a randomly generated color string.  This color string is used to display a box with that color displayed in the tile titled "Intra-cluster Communication".
 
@@ -37,7 +37,7 @@ In this case we will enter: `ostoy-microservice-svc.ostoy.svc.cluster.local`
 #### 3. IP address returned
 We will see an IP address returned. In our example it is `172.30.165.246`.  This is the intra-cluster IP address; only accessible from within the cluster.
 
-![ostoy DNS](/OSD4/images/8-ostoy-dns.png)
+![ostoy DNS](images/8-ostoy-dns.png)
 
 ### Scaling
 OpenShift allows one to scale up/down the number of pods for each part of an application as needed.  This can be accomplished via changing our *replicaset/deployment* definition (declarative), by the command line (imperative), or via the web UI (imperative). In our *deployment* definition (part of our `ostoy-fe-deployment.yaml`) we stated that we only want one pod for our microservice to start with. This means that the Kubernetes Replication Controller will always strive to keep one pod alive. We can also define [autoscalling](https://docs.openshift.com/container-platform/3.11/dev_guide/pod_autoscaling.html) based on load to expand past what we defined if needed which we will do in a later section of this lab.
@@ -76,7 +76,7 @@ spec:
 - Confirm that there are now 3 pods via the CLI (`oc get pods`) or the web UI (*Workloads > Deployments > ostoy-microservice*).
 - See this visually by visiting the OSToy app and seeing how many boxes you now see.  It should be three.
 
-![UI Scale](/OSD4/images/8-ostoy-colorspods.png)
+![UI Scale](images/8-ostoy-colorspods.png)
 
 #### 6. Scale down via CLI
 Now we will scale the pods down using the command line.  
@@ -91,7 +91,7 @@ Lastly, let's use the web UI to scale back down to one pod.
 - In the project you created for this app (ie: "ostoy") in the left menu click *Workloads > Deployments > ostoy-microservice*.  On the left you will see a blue circle with the number 2 in the middle. 
 - Click on the down arrow to the right of that to scale the number of pods down to 1.
 
-![UI Scale](/OSD4/images/8-ostoy-uiscale1.png)
+![UI Scale](images/8-ostoy-uiscale1.png)
 
 - See this visually by visiting the OSToy app and seeing how many boxes you now see.  It should be one.
 - You can also confirm this via the CLI or the web UI
