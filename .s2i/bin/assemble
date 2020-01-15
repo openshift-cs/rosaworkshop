@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# Execute the default S2I script
+source ${STI_SCRIPTS_PATH}/assemble
+
+# Install mkdocs
+curl -s https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+python get-pip.py --user
+python -m pip install --user mkdocs
+
+# Generate static HTML files
+python -m mkdocs build
+
+# Fix source directory permissions
+fix-permissions ./
