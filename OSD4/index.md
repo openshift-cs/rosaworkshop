@@ -4,7 +4,7 @@
 
 OpenShift Dedicated (OSD) is an OpenShift cluster provided as a managed cloud service, configured for high availability (HA), and dedicated to a single customer (single-tenant). OpenShift Dedicated is managed by Red Hat Operations, providing increased security and years ofoperational experience working with OpenShift in both development and production. OpenShift Dedicated also comes with award-winning 24x7 Red Hat Premium Support.
 
-You can learn more at: https://www.openshift.com/dedicated
+You can learn more at: <https://www.openshift.com/dedicated>
 
 ### Choosing between OSD 3.11 and OSD 4.2
 Today, OpenShift Dedicated clusters are available in both 3.11 or 4.2 versions.  Below is a summary table to help you assess which might be the correct fit. We are working to achieve feature parity across both versions, but until that happens there are some differences.
