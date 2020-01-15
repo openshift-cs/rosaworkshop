@@ -57,4 +57,6 @@ This will display the environment variables available to the OSToy application. 
     value: OSTOY_MICROSERVICE_SVC
 ```
 
+You may have to do a 'ctrl+f' to find them. Search for the three names above.
+
 The last one, `MICROSERVICE_NAME` is used for the intra-cluster communications between pods for this application.  The application looks for this environment variable to know how to access the microservice in order to get the colors.

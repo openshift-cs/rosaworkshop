@@ -1,6 +1,6 @@
 ## Using S2I to build and deploy our application
 
-There are multiple methods to deploy applications in OpenShift. Let's explore usingthe application using the integrated Source-to-Image builder. As mentioned in the [concepts](/OSD3.11/2-concepts.md) section, S2I is a tool for building reproducible, Docker-formatted container images. 
+There are multiple methods to deploy applications in OpenShift. Let's explore using the integrated Source-to-Image (S2I) builder. As mentioned in the [concepts](/OSD4/2-concepts.md) section, S2I is a tool for building reproducible, Docker-formatted container images. 
 
 #### 0. Retrieve the login command (if not logged in via CLI)
 If not logged in via the CLI, click on the dropdown arrow next to your name in the top-right of the cluster console and select *Copy Login Command*.
@@ -8,22 +8,21 @@ If not logged in via the CLI, click on the dropdown arrow next to your name in t
 Follow the steps from [Step 1](/OSD4/4-deployment.md#1-retrieve-the-login-command) of the Deployment section.
 
 #### 1. Fork the repository
-In the next section (after this) we will trigger automated builds based on changes to the source code. In order to trigger S2I builds when you push code into your GitHib repo, you’ll need to setup the GitHub webhook.  And in order to setup the webhooks, you’ll first need to fork the application into your personal GitHub repository.
+In the next section we will trigger automated builds based on changes to the source code. In order to trigger S2I builds when you push code into your GitHub repo, you’ll need to setup the GitHub webhook.  And in order to setup the webhook, you’ll first need to fork the application into your personal GitHub repository.
 
 <a class="github-button" href="https://github.com/openshift-cs/ostoy/fork" data-icon="octicon-repo-forked" data-size="large" aria-label="Fork openshift-cs/ostoy on GitHub">Fork</a>
 
-> **NOTE:** Going forward you will need to replace any reference to "<username>" in any of the URLs for commands with your own username.  So in this example I would always replace "<username>" with "0kashi".
+> **NOTE:** Going forward you will need to replace any reference to "\<username>" in any of the URLs for commands with your own username.  So in this example I would always replace "\<username>" with "0kashi".
 
 #### 2. Create a project
 Create a new project for this part. Let's call it `ostoy-s2i`.  
 
-You can create a new project by running `oc new-project ostoy-s2i`.
+You can create a new project by running `oc new-project ostoy-s2i`. You can create a new project from the CLI by running `oc new-project ostoy-s2i` or use the OpenShift Web Console.
 
 ### Steps to Deploy OSToy imperatively using S2I
 
 #### 3. Add Secret to OpenShift
-The example emulates a `.env` file and shows how easy it is to move these directly into an
-OpenShift environment. Files can even be renamed in the Secret.  In your CLI enter the following command:<br><br>
+The example emulates a `.env` file and shows how easy it is to move these directly into an OpenShift environment. Files can even be renamed in the Secret.  In your CLI enter the following command:<br><br>
 ```
 $ oc create -f https://raw.githubusercontent.com/<username>/ostoy/master/deployment/yaml/secret.yaml
 
@@ -31,8 +30,8 @@ secret "ostoy-secret" created
 ```
 
 #### 3. Add ConfigMap to OpenShift
-The example emulates an HAProxy config file, and is typically used for overriding
-default configurations in an OpenShift application. Files can even be renamed in the ConfigMap
+The example emulates an HAProxy config file, and is typically used for overriding default configurations in an OpenShift application. Files can even be renamed in the ConfigMap.
+
 Enter the following into your CLI 
 ```
 $ oc create -f https://raw.githubusercontent.com/<username>/ostoy/master/deployment/yaml/configmap.yaml
@@ -41,11 +40,9 @@ configmap "ostoy-config" created
 ```
 
 #### 4. Deploy the microservice
-We deploy the microservice first to ensure that the SERVICE environment variables
-will be available from the UI application. `--context-dir` is used here to only
-build the application defined in the `microservice` directory in the git repo.
-Using the `app` label allows us to ensure the UI application and microservice
-are both grouped in the OpenShift UI.  Enter the following into the CLI
+We deploy the microservice first to ensure that the SERVICE environment variables will be available from the UI application. `--context-dir` is used here to only build the application defined in the `microservice` directory in the git repo. Using the `app` label allows us to ensure the UI application and microservice are both grouped in the OpenShift UI.  
+
+Enter the following into the CLI
 ```
 $ oc new-app https://github.com/<username>/ostoy \
     --context-dir=microservice \
@@ -105,7 +102,7 @@ deploymentconfig "ostoy" patched
 ```
 
 #### 8. Set a Liveness probe 
-We need to create a Liveliness Probe on the Deployment to ensure the pod is restarted if something isn't healthy within the application.  Enter the following into the CLI:
+We need to create a Liveness Probe on the Deployment to ensure the pod is restarted if something isn't healthy within the application.  Enter the following into the CLI:
 ```
 $ oc set probe dc/ostoy --liveness --get-url=http://:8080/health
 
@@ -113,7 +110,7 @@ deploymentconfig "ostoy" updated
 ```
 
 #### 9. Attach Secret, ConfigMap, and PersistentVolume to Deployment
-We are using the default paths defined in the application, but these paths can be overriden in the application via environment variables
+We are using the default paths defined in the application, but these paths can be overridden in the application via environment variables
 
 - Attach Secret
 ```
@@ -160,4 +157,4 @@ Enter the following into your CLI:
 
 `$ python -m webbrowser "$(oc get route ostoy -o template --template='https://{{.spec.host}}')"`
 
-or you can get the route for the application by using `oc get route` and copy/paste that into your browser
+or you can get the route for the application by using `oc get route` and copy/paste the route into your browser

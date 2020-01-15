@@ -25,7 +25,7 @@ Webhook GitHub:
 	URL:	https://api.demo1234.openshift.com:443/apis/build.openshift.io/v1/namespaces/ostoy-s2i/buildconfigs/ostoy/webhooks/<secret>/github
 ```
 #### 3. Replace the secret
-In the URL retrieved in the last step replace the `<secret>` text with the actual secret you recieved in step 2 above.  Your URL will look like:
+In the URL retrieved in the last step replace the `<secret>` text with the actual secret you recieved in step 1 above.  Your URL will look like:
 
 `https://api.demo1234.openshift.com:443/apis/build.openshift.io/v1/namespaces/ostoy-s2i/buildconfigs/ostoy-microservice/webhooks/o_3x9M1qoI2Wj_czRWiK/github`
 
@@ -42,22 +42,22 @@ In the URL retrieved in the last step replace the `<secret>` text with the actua
 
 You should see a message from GitHub stating that your webhook was successfully configured. Now, whenever you push a change to your GitHub repository, a new build will automatically start, and upon a successful build a new deployment will start.
 
-#### 6. Make a change and see the update
+#### 5. Make a change and see the update
 Now we will make a change in our source code and see it automatically trigger a build and deployment.  We saw in our Networking section that the colors of the box randomly change colors.  Now we will make that box only display greyscale.
 
-- Go to `https://github.com/<username>/ostoy/blob/master/microservice/app.js`
+- Go to the source code in your repository `https://github.com/<username>/ostoy/blob/master/microservice/app.js`
 - Edit the file
 - Comment out line 8 (containing `let randomColor = getRandomColor();`)
 - Uncomment line 9 (containing `let randomColor = getRandomGrayScaleColor();`)
-- Enter a message for the updated like "changed box to greyscale colors"
+- Enter a message for the update like "changed box to greyscale colors"
 - Click *Commit* at the bottom to commit the changes to the master branch
 
-#### 7. View the build run and Deployment complete
-Immediately in your cluster web UI click under *Builds > Builds* and you will see that it says "running" then it will show "complete".  Once complete the deployment begins.  You can also check the status by running `oc status`.  
+#### 6. View the build run and Deployment complete
+Immediately, in your cluster web UI, click under *Builds > Builds* and you will see that it says "running" then it will show "complete".  Once complete the deployment begins.  You can also check the status by running `oc status`.  
 
 ![Build Run](/images/11-builddone.png)
 
-#### 8. View change in browser
-Once the deployment has finished go back to your browser, access the *Networking* menu item on the left.  You will now see that the box color is limited to greyscale colors only.
+#### 7. View change in browser
+Once the deployment has finished go back to OSToy app in your browser, access the *Networking* menu item on the left.  You will now see that the box color is limited to greyscale colors only.
 
 ![Grey](/images/11-grey.png)

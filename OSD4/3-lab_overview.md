@@ -7,19 +7,19 @@
   - [ostoy-fe-deployment.yaml](/yaml/ostoy-fe-deployment.yaml)
   - [ostoy-microservice-deployment.yaml](/yaml/ostoy-microservice-deployment.yaml)
 
-> **Note** In order to simplify the deployment of the app (which you will do next) we have included all the objects needed in the above YAMLs as "all-in-one" YAMLs.  In reality though, an enterprise would most likely want to have a different yaml file for each Kubernetes object.
+> **Note** In order to simplify the deployment of the app (which you will do next) we have included all the objects needed in the above YAMLs as "all-in-one" YAMLs.  Though in reality, an enterprise would most likely want to have a different yaml file for each Kubernetes object.
 
 ### About OSToy
 
-OSToy is a simple Node.js application that we will deploy to OpenShift Dedicated. It is used to help us explore the functionality of Kubernetes. This application has a user interface which you can:
+OSToy is a simple Node.js application that we will deploy to OpenShift Dedicated. It is used to help us explore the functionality of Kubernetes. This application has a user interface where you can:
 
 - write messages to the log (stdout / stderr)
 - intentionally crash the application to view self-healing
-- toggle a liveliness probe and monitor OpenShift behavior
+- toggle a liveness probe and monitor OpenShift behavior
 - read config maps, secrets, and env variables
 - if connected to shared storage, read and write files
 - check network connectivity, intra-cluster DNS, and intra-communication with an included microservice
-- increase the load in order to test the Horizontal Pod Autoscaler
+- increase the load to view automatic scaling of the pods to handle the load (via the Horizontal Pod Autoscaler)
 
 ### OSToy Application Diagram
 

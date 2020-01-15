@@ -1,5 +1,5 @@
 ## Deploy via a Kubernetes Deployment
-One way to deploy the application would be to have the images for the front-end and back-end microservice containers already created (via CI/CD) and stored in an image repository.  You can then create Kubernetes deployments (YAML) and use those to deploy the application.  We will do that here.
+One way to deploy the application would be to have the images for the front-end and back-end microservice containers already created (via CI/CD) and stored in an image repository.  You can then create Kubernetes deployments (YAML) and use those to deploy the application.  We will do that now.
 
 #### 1. Retrieve the login command
 If not logged in via the CLI, click on the dropdown arrow next to your name in the top-right and select *Copy Login Command*.
@@ -47,14 +47,14 @@ Equivalently you can also create this new project using the web UI by clicking o
 #### 3. Download the YAML configuration
 Download the Kubernetes deployment object yamls from the following locations to your local machine, in a directory of your choosing (just remember where you placed them for the next step).
 
-Feel free to open them up and take a look at what we will be deploying. For simplicity of this lab we have placed all the Kubernetes objects we are deploying for the front-end in an "all-in-one" yaml file.  Though in reality there are benefits (ease of maintenance and less risk) to separating these out into individual yaml files.
+Feel free to open them up and take a look at what we will be deploying. For simplicity of this lab we have placed all the Kubernetes objects for the front-end in an "all-in-one" yaml file.  Though in reality there are benefits (ease of maintenance and less risk) to separating these out into individual yaml files.
 
 [ostoy-fe-deployment.yaml](https://raw.githubusercontent.com/0kashi/osdworkshop/master/yaml/ostoy-fe-deployment.yaml)
 
 [ostoy-microservice-deployment.yaml](https://raw.githubusercontent.com/0kashi/osdworkshop/master/yaml/ostoy-microservice-deployment.yaml)
 
 #### 4. Deploy the backend microservice
-The microservice application serves internal web requests and returns a JSON object containing the current hostname and a randomly generated color string.
+The microservice serves internal web requests and returns a JSON object containing the current hostname and a randomly generated color string.
 
 In your command line deploy the microservice using the following command:
 
@@ -79,7 +79,7 @@ The frontend deployment contains the node.js frontend for our application along 
 - Configmaps
 - Secrets
 
-In your command line deploy the frontend along with creating all objects mentioned above by entering:
+In your command line, deploy the frontend along with creating all objects mentioned above by entering:
 
 `oc apply -f ostoy-fe-deployment.yaml`
 

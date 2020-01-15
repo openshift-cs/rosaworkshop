@@ -53,7 +53,7 @@ Now we will make a change in our source code and see it automatically trigger a 
 - Click *Commit* at the bottom to commit the changes to the master branch
 
 #### 6. View the build run and Deployment complete
-Immediately in your cluster web UI click under *Builds > Builds* and you will see that it says "running" then it will show "complete".  Once complete the deployment begins.  You can also check the status by running `oc status`.  
+Immediately, in your cluster web UI, click under *Builds > Builds* and you will see that it says "running" then it will show "complete".  Once complete the deployment begins.  You can also check the status by running `oc status`.  
 
 ![Build Run](/images/11-builddone.png)
 

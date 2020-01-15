@@ -20,11 +20,11 @@ You have access to the following projects and can switch between them with 'oc p
   ...
 ```
 #### 1. Fork the repository
-In the next section (after this) we will be triggering automated builds based on changes to the source code. In order to trigger S2I builds when you push code into your GitHib repo, you’ll need to setup the GitHub webhook.  And in order to setup the webhooks, you’ll first need to fork the application into your personal GitHub repository.
+In the next section we will be triggering automated builds based on changes to the source code. In order to trigger S2I builds when you push code into your GitHib repo, you’ll need to setup the GitHub webhook.  And in order to setup the webhooks, you’ll first need to fork the application into your personal GitHub repository.
 
 <a class="github-button" href="https://github.com/openshift-cs/ostoy/fork" data-icon="octicon-repo-forked" data-size="large" aria-label="Fork openshift-cs/ostoy on GitHub">Fork</a>
 
-> **NOTE:** Going forward you will need to replace any reference to <username> in any of the URLs for commands with your own username.  So in this example I would always replace <username> with "0kashi".
+> **NOTE:** Going forward you will need to replace any reference to \<username> in any of the URLs for commands with your own username.  So in this example I would always replace <username> with "0kashi".
 
 #### 2. Create a project
 Create a new project for this part. Let's call it `ostoy-s2i`. You can create a new project from the CLI by running `oc new-project ostoy-s2i` or use the OpenShift Web Console.
@@ -109,7 +109,7 @@ deploymentconfig "ostoy" patched
 ```
 
 #### 8. Set a Liveness probe 
-We need to create a Liveliness Probe on the Deployment to ensure the pod is restarted if something isn't healthy within the application.  Enter the following into the CLI:
+We need to create a Liveness Probe on the Deployment to ensure the pod is restarted if something isn't healthy within the application.  Enter the following into the CLI:
 ```
 $ oc set probe dc/ostoy --liveness --get-url=http://:8080/health
 
@@ -164,4 +164,4 @@ Enter the following into your CLI:
 
 `$ python -m webbrowser "$(oc get route ostoy -o template --template='https://{{.spec.host}}')"`
 
-or you can get the route for the application by using `oc get route` and copy/paste that into your browser
+or you can get the route for the application by using `oc get route` and copy/paste the route into your browser

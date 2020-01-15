@@ -12,7 +12,7 @@ As can be seen in the image above, we have defined at least 2 separate pods, eac
 #### 1. Intra-cluster networking
 Click on *Networking* in the left menu. Review the networking configuration. The right tile titled "Hostname Lookup" illustrates how the service name created for a pod can be used to translate into an internal ClusterIP address. 
 
-#### 2. Lookup internal IP address of the service name
+#### 2. Lookup internal IP address of the service
 Enter the name of the microservice we created in the right tile ("Hostname Lookup") following the format of `my-svc.my-namespace.svc.cluster.local` which we created in the service definition of `ostoy-microservice.yaml` which can be seen here:
 
 ```
@@ -35,7 +35,7 @@ spec:
 In this case we will enter: `ostoy-microservice-svc.ostoy.svc.cluster.local`
 
 #### 3. IP address returned
-We will see an IP address returned. In our example it is ```172.30.165.246```.  This is the intra-cluster IP address; only accessible from within the cluster.
+We will see an IP address returned. In our example it is `172.30.165.246`.  This is the intra-cluster IP address; only accessible from within the cluster.
 
 ![ostoy DNS](/images/8-ostoy-dns.png)
 

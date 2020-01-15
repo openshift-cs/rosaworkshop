@@ -65,7 +65,7 @@ Using an ImageStream makes it easy to change a tag for a container image.  Other
 You can also use ImageStreams in conjuction with DeploymentConfigs to set a trigger that will start a deployment as soon as a new image appears or a tag changes its reference.
 
 See here for more details: [https://blog.openshift.com/image-streams-faq/](https://blog.openshift.com/image-streams-faq/) <br>
-OpenShift Docs: [https://docs.openshift.com/container-platform/3.11/dev_guide/managing_images.html](https://docs.openshift.com/container-platform/3.11/dev_guide/managing_images.html)<br>
+OpenShift Docs: [https://docs.openshift.com/dedicated/4/openshift_images/images-understand.html](https://docs.openshift.com/dedicated/4/openshift_images/images-understand.html)<br>
 ImageStream and Builds: [https://cloudowski.com/articles/why-managing-container-images-on-openshift-is-better-than-on-kubernetes/](https://cloudowski.com/articles/why-managing-container-images-on-openshift-is-better-than-on-kubernetes/)
 
 
@@ -76,4 +76,4 @@ OpenShift Container Platform leverages Kubernetes by creating Docker-formatted c
 
 Build objects share common characteristics: inputs for a build, the need to complete a build process, logging the build process, publishing resources from successful builds, and publishing the final status of the build. Builds take advantage of resource restrictions, specifying limitations on resources such as CPU usage, memory usage, and build or pod execution time.
 
-See here for more details: [https://docs.openshift.com/container-platform/3.11/architecture/core_concepts/builds_and_image_streams.html](https://docs.openshift.com/container-platform/3.11/architecture/core_concepts/builds_and_image_streams.html)
+See here for more details: [https://docs.openshift.com/dedicated/4/builds/understanding-image-builds.html](https://docs.openshift.com/dedicated/4/builds/understanding-image-builds.html)

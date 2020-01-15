@@ -15,7 +15,7 @@ Underneath that, in the "File Contents" box, enter text to be stored in the file
 ![Create File](/images/6-ostoy-createfile.png)
 
 #### 3. View the file created
-You will then see the file you created appear above under "Existing files".  Click on the file and you will see the filename and the contents you entered.
+You will then see the file you created appear above, under "Existing files".  Click on the file and you will see the filename and the contents you entered.
 
 ![View File](/images/6-ostoy-viewfile.png)
 
@@ -34,7 +34,7 @@ You will see the file you created is still there and you can open it to view its
 ![ExistingFile](/images/6-ostoy-existingfile.png)
 
 #### 6. Confirm via the container
-Now let's confirm that it's actually there by using the CLI and checking if it is available to the container.  If you remember we mounted the directory `/var/demo_files` to our PVC.  So get the name of your front-end pod
+Now let's confirm that it's actually there by using the CLI and checking if it is available to the container.  If you looked inside the deployment YAML file, we mounted the directory `/var/demo_files` to our PVC.  So get the name of your front-end pod
 
 `oc get pods`
 

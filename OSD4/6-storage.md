@@ -5,17 +5,17 @@ In this section we will execute a simple example of using persistent storage by 
 #### 1. View Persistent Volume Claims
 Inside the OpenShift web UI click on *Storage* in the left menu then *Persistent Volume Claims*. You will then see a list of all persistent volume claims that our application has made.  In this case there is just one called "ostoy-pvc".  If you click on it you will also see other pertinent information such as whether it is bound or not, size, access mode and age.  
 
-In this case the mode is RWO (Read-Write-Once) which means that the volume can only be mounted to one node, but the pod(s) can both read and write to that volume.  As Persistent Volumes in OSD are backed by EBS it only supports RWO.  ([See here for more info on access modes](https://docs.openshift.com/dedicated/4/storage/understanding-persistent-storage.html))
+In this case the mode is RWO (Read-Write-Once) which means that the volume can only be mounted to one node, but the pod(s) can both read and write to that volume.  As Persistent Volumes in OSD are backed by EBS it only supports RWO.  ([See here for more info on access modes](https://docs.openshift.com/dedicated/4/storage/understanding-persistent-storage.html#pv-access-modes_understanding-persistent-storage))
 
 #### 2. Create a file to store
-In the OSToy app click on *Persistent Storage* in the left menu.  In the "Filename" area enter a filename for the file you will create. (ie: "test-pv.txt")
+In the OSToy app click on *Persistent Storage* in the left menu.  In the "Filename" area enter a filename for the file you will create (ie: "test-pv.txt"). Please use a *".txt"* extension so that the file will be visible in the browser.
 
 Underneath that, in the "File Contents" box, enter text to be stored in the file. (ie: "OpenShift is the greatest thing since sliced bread!" or "test" :) ).  Then click "Create file".
 
 ![Create File](/images/6-ostoy-createfile.png)
 
 #### 3. View the file created
-You will then see the file you created appear above under "Existing files".  Click on the file and you will see the filename and the contents you entered.
+You will then see the file you created appear above, under "Existing files".  Click on the file and you will see the filename and the contents you entered.
 
 ![View File](/images/6-ostoy-viewfile.png)
 
@@ -34,7 +34,7 @@ You will see the file you created is still there and you can open it to view its
 ![ExistingFile](/images/6-ostoy-existingfile.png)
 
 #### 6. Confirm via the container
-Now let's confirm that it's actually there by using the CLI and checking if it is available to the container.  If you remember we mounted the directory `/var/demo-files` to our PVC.  So get the name of your front-end pod
+Now let's confirm that it's actually there by using the CLI and checking if it is available to the container.  If you looked inside the deployment YAML file, we mounted the directory `/var/demo-files` to our PVC.  So get the name of your front-end pod
 
 `oc get pods`
 
