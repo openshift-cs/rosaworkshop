@@ -3,5 +3,19 @@ site_url: https://www.osdworkshop.io
 repo_url: https://github.com/openshift-cs/osdworkshop
 site_description: A guided workshop that ranges from application deployment to cluster configuration for OpenShift Dedicated clusters.
 site_author: Red Hat
+nav:
+  - Introduction: 0-intro.md
+  - Prerequisites: 1-prereqs.md
+  - Concepts: 2-concepts.md
+  - Lab Overview: 3-lab_overview.md
+  - Deployment: 4-deployment.md
+  - Health Check: 5-healthcheck.md
+  - Storage: 6-storage.md
+  - ConfigMaps, Secrets, Env Var: 7-confsecenv.md
+  - Networking: 8-networking.md
+  - Logging: 9-logging.md
+  - S2I Deployments: 10-deployment_s2i.md
+  - S2I Webhooks for CICD: 11-cicd_s2i.md
+  - Autoscaling: 12-hpa.md
 theme: readthedocs
 docs_dir: OSD4
