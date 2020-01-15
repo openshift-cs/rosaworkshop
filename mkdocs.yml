@@ -4,7 +4,7 @@ repo_url: https://github.com/openshift-cs/osdworkshop
 site_description: A guided workshop that ranges from application deployment to cluster configuration for OpenShift Dedicated clusters.
 site_author: Red Hat
 nav:
-  - Introduction: 0-intro.md
+  - Introduction: index.md
   - Prerequisites: 1-prereqs.md
   - Concepts: 2-concepts.md
   - Lab Overview: 3-lab_overview.md
