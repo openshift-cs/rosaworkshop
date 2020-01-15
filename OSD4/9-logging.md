@@ -1,5 +1,5 @@
 ## Logging
-We will take a look at the available options for logging in OpenShift Dedicated (OSD).  As OSD 4 does not comes preconfigured with a logging solution we can easily set one up. In this section we will install the EFK (Elasticsearch, Fluentd and Kibana) stack (via Operators), then take a look at two methods with which one can view their logs. First we will look at the logs directly through the pod using `oc logs`.  Second we will use Kibana to search our logs.
+We will take a look at the available options for logging in OpenShift Dedicated (OSD).  As OSD 4 does not come preconfigured with a logging solution, we can easily set one up. In this section we will install the EFK (Elasticsearch, Fluentd and Kibana) stack (via Operators), then take a look at two methods with which one can view their logs. First we will look at the logs directly through the pod using `oc logs`.  Second we will use Kibana to search our logs.
 
 The cluster logging components are based upon Elasticsearch, Fluentd, and Kibana (EFK). The collector, Fluentd, is deployed to each node in the OpenShift Dedicated cluster. It collects application logs and writes them to Elasticsearch (ES). Kibana is the centralized, web UI where users and administrators can create rich visualizations and dashboards with the aggregated data.
 
