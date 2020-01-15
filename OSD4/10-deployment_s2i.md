@@ -76,7 +76,7 @@ svc/ostoy-microservice - 172.30.119.88:8080
 Wait until you see that it was successfully deployed. You can also check this through the web UI.
 
 #### 6. Deploy the frontend UI of the application
-The applicaiton has been architected to rely on several environment variables to define external settings. We will attach the previously created Secret and ConfigMap afterward, along with creating a PersistentVolume.  Enter the following into the CLI:
+The application has been architected to rely on several environment variables to define external settings. We will attach the previously created Secret and ConfigMap afterward, along with creating a PersistentVolume.  Enter the following into the CLI:
 ```
 $ oc new-app https://github.com/<username>/ostoy \
     --env=MICROSERVICE_NAME=OSTOY_MICROSERVICE
@@ -145,7 +145,7 @@ deploymentconfig "ostoy" updated
 ```
 
 #### 10. Expose the UI application as an OpenShift Route
-Using OpenShift Dedicated's included TLS wildcard certicates, we can easily deploy this as an HTTPS application
+Using OpenShift Dedicated's included TLS wildcard certificates, we can easily deploy this as an HTTPS application
 ```
 $ oc create route edge --service=ostoy --insecure-policy=Redirect
 

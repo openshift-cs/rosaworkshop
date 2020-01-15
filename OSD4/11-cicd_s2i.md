@@ -25,7 +25,7 @@ Webhook GitHub:
 	URL:	https://api.demo1234.openshift.com:443/apis/build.openshift.io/v1/namespaces/ostoy-s2i/buildconfigs/ostoy/webhooks/<secret>/github
 ```
 #### 3. Replace the secret
-In the URL retrieved in the last step replace the `<secret>` text with the actual secret you recieved in step 1 above.  Your URL will look like:
+In the URL retrieved in the last step replace the `<secret>` text with the actual secret you received in step 1 above.  Your URL will look like:
 
 `https://api.demo1234.openshift.com:443/apis/build.openshift.io/v1/namespaces/ostoy-s2i/buildconfigs/ostoy-microservice/webhooks/o_3x9M1qoI2Wj_czRWiK/github`
 

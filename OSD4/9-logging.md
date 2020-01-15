@@ -1,5 +1,15 @@
 ## Logging
-We will take a look at the available options for logging in OpenShift Dedicated (OSD).  As OSD comes preconfigured with EFK stack (Elasticsearch, Fluentd, Kibana) it is easy to search the logs.  In this section we will take a look at two methods with which one can view their logs. First we will look at the logs directly through the pod using `oc logs`.  Second we will use Kibana to search our logs.
+We will take a look at the available options for logging in OpenShift Dedicated (OSD).  As OSD 4 does not comes preconfigured with a logging solution we can easily set one up. In this section we will install the EFK (Elasticsearch, Fluentd and Kibana) stack (via Operators), then take a look at two methods with which one can view their logs. First we will look at the logs directly through the pod using `oc logs`.  Second we will use Kibana to search our logs.
+
+The cluster logging components are based upon Elasticsearch, Fluentd, and Kibana (EFK). The collector, Fluentd, is deployed to each node in the OpenShift Dedicated cluster. It collects application logs and writes them to Elasticsearch (ES). Kibana is the centralized, web UI where users and administrators can create rich visualizations and dashboards with the aggregated data.
+
+Learn more about logging on OSD 4 here: [https://docs.openshift.com/dedicated/4/logging/cluster-logging.html](https://docs.openshift.com/dedicated/4/logging/cluster-logging.html)
+
+<!--
+### Deploy Cluster Logging
+Use the procedure located in the OpenShift Dedicated documentation [here](https://docs.openshift.com/dedicated/4/logging/dedicated-cluster-deploying.html#dedicated-cluster-install-deploy) to install.
+
+**TODO: Decide if this is needed, depending on what we use for hosting the lab** -->
 
 ### Output data to the streams/logs
 
@@ -43,6 +53,8 @@ You should see both the *stdout* and *stderr* messages.
 ### Using Kibana to search logs
 
 #### 5. View the Kibana console
+In the OpenShift Webconsole click on *Monitoring > Logging* in the left menu.
+
 Open up a new browser tab and go to `https://logs.<cluster name>.openshfit.com` to access the Kibana console.  Ensure the correct project is selected.  In the beginning of this lab we created the `ostoy` project. So select the one that begins with `project.ostoy...`.
 
 ![Kibana console](/images/9-kibana.png)

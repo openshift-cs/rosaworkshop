@@ -36,7 +36,7 @@ This will generate some CPU intensive calculations.  (If you are curious about w
 
 #### 4. See the pods scale up
 
-After about a minute the new pods will show up on the page (represented by the colored rectagles). Confirm that the pods did indeed scale up through the OpenShift Web Console or the CLI (you can use the command above).
+After about a minute the new pods will show up on the page (represented by the colored rectangles). Confirm that the pods did indeed scale up through the OpenShift Web Console or the CLI (you can use the command above).
 
 > **Note:** The page may still lag a bit which is normal.
 
