@@ -48,14 +48,14 @@ If we look at the tile on the left we should see one box randomly changing color
 To confirm that we only have one pod running for our microservice, run the following command, or use the web UI.
 
 ```
-[okashi@ok-vm ostoy]# oc get pods
+$ oc get pods
 NAME                                   READY     STATUS    RESTARTS   AGE
 ostoy-frontend-679cb85695-5cn7x       1/1       Running   0          1h
 ostoy-microservice-86b4c6f559-p594d   1/1       Running   0          1h
 ```
 
 #### 5. Scale pods via Deployment definition
-Let's change our microservice definition yaml to reflect that we want 3 pods instead of the one we see. Download the [ostoy-microservice-deployment.yaml](https://raw.githubusercontent.com/0kashi/osdworkshop/master/yaml/ostoy-microservice-deployment.yaml) and save it on your local machine, if you didn't do so already.
+Let's change our microservice definition yaml to reflect that we want 3 pods instead of the one we see. Download the [ostoy-microservice-deployment.yaml](https://raw.githubusercontent.com/openshift-cs/osdworkshop/master/OSD4/yaml/ostoy-microservice-deployment.yaml) and save it on your local machine, if you didn't do so already.
 
 - Open the file using your favorite editor. Ex: `vi ostoy-microservice-deployment.yaml`
 - Find the line that states `replicas: 1` and change that to `replicas: 3`. Then save and quit.
@@ -76,7 +76,7 @@ spec:
 - Confirm that there are now 3 pods via the CLI (`oc get pods`) or the web UI (*Workloads > Deployments > ostoy-microservice*).
 - See this visually by visiting the OSToy app and seeing how many boxes you now see.  It should be three.
 
-![UI Scale](/images/8-ostoy-colorspods.png)
+![UI Scale](/OSD4/images/8-ostoy-colorspods.png)
 
 #### 6. Scale down via CLI
 Now we will scale the pods down using the command line.  
@@ -91,7 +91,7 @@ Lastly, let's use the web UI to scale back down to one pod.
 - In the project you created for this app (ie: "ostoy") in the left menu click *Workloads > Deployments > ostoy-microservice*.  On the left you will see a blue circle with the number 2 in the middle. 
 - Click on the down arrow to the right of that to scale the number of pods down to 1.
 
-![UI Scale](/images/OSD4/8-ostoy-uiscale1.png)
+![UI Scale](/OSD4/images/8-ostoy-uiscale1.png)
 
 - See this visually by visiting the OSToy app and seeing how many boxes you now see.  It should be one.
 - You can also confirm this via the CLI or the web UI
