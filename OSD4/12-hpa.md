@@ -17,14 +17,14 @@ Run the following command to create the autoscaler. This will create an HPA that
 
 In the OSToy app in the left menu click on "Autoscaling" to access this portion of the workshop.  
 
-![HPA Menu](/images/12-hpa-menu.png)
+![HPA Menu](/OSD4/images/12-hpa-menu.png)
 
 As was in the networking section you will see the total number of pods available for the microservice by counting the number of colored boxes.  In this case we have only one.  This can be verified through the web UI or from the CLI.
 
 You can use the following command to see the running microservice pods only:
 `oc get pods --field-selector=status.phase=Running | grep microservice`
 
-![HPA Main](/images/12-hpa-mainpage.png)
+![HPA Main](/OSD4/images/12-hpa-mainpage.png)
 
 #### 3. Increase the load
 
@@ -46,20 +46,20 @@ After confirming that the autoscaler did spin up new pods, switch to Grafana to 
 
 Go to the following url `https://grafana-openshift-monitoring.<number>.<clustername>.openshiftapps.com`
 
-![Grafana](/images/12-grafana-home.png)
+![Grafana](/OSD4/images/12-grafana-home.png)
 
 Click on *Home* on the top left and select the *"K8s / Compute Resources / Namespace"* dashboard.
 
-![Select Dash](/images/12-grafana-dash.png)
+![Select Dash](/OSD4/images/12-grafana-dash.png)
 
 Click on *Namespace* and select our project name "ostoy-s2i".
 
-![Select NS](/images/12-grafana-ns.png)
+![Select NS](/OSD4/images/12-grafana-ns.png)
 
 Colorful graphs will appear showing resource usage across CPU and memory.  The top graph will show recent CPU consumption per pod and the lower graph will indicate memory usage.  Looking at this graph you can see how things developed. As soon as the load started to increase (A), three new pods started to spin up (B, C, D). The thickness of each graph is its CPU consumption indicating which pods handled more load.  We also see that after the load decreased, the pods were spun back down (E).
 
-![CPU](/images/12-grafana-cpu.png)
+![CPU](/OSD4/images/12-grafana-cpu.png)
 
 Mouse over the graph and the tool will display the names and corresponding CPU consumption of each pod as seen below.
 
-![CPU](/images/12-grafana-metrics.png)
+![CPU](/OSD4/images/12-grafana-metrics.png)

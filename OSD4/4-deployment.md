@@ -4,7 +4,7 @@ One way to deploy the application would be to have the images for the front-end 
 #### 1. Retrieve the login command
 If not logged in via the CLI, click on the dropdown arrow next to your name in the top-right and select *Copy Login Command*.
 
-![CLI Login](/images/4-cli-login.png)
+![CLI Login](/OSD4/images/4-cli-login.png)
 
 A new tab will open and select the authentication method you are using (in our case it's *github*)
 
@@ -42,7 +42,7 @@ to build a new example application in Ruby.
 
 Equivalently you can also create this new project using the web UI by clicking on "Create Project" button on the left.
 
-![UI Create Project](/images/OSD4/4-createnewproj.png)
+![UI Create Project](/OSD4/images/4-createnewproj.png)
 
 #### 3. Download the YAML configuration
 Download the Kubernetes deployment object yamls from the following locations to your local machine, in a directory of your choosing (just remember where you placed them for the next step).
@@ -110,4 +110,4 @@ ostoy-route   ostoy-route-ostoy.apps.osd4-demo.abc1.p1.openshiftapps.com  ostoy-
 #### 7. View the app
 Copy `ostoy-route-ostoy.apps.osd4-demo.abc1.p1.openshiftapps.com` above and paste it into your browser and press enter.  You should see the homepage of our application.
 
-![Home Page](/images/4-ostoy-homepage.png)
+![Home Page](/OSD4/images/4-ostoy-homepage.png)

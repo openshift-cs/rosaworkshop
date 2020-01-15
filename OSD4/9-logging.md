@@ -16,12 +16,12 @@ Use the procedure located in the OpenShift Dedicated documentation [here](https:
 #### 1. Output a message to *stdout* 
 Click on the *Home* menu item and then click in the message box for "Log Message (stdout)" and write any message you want to output to the *stdout* stream.  You can try "**All is well!**".  Then click "Send Message".
 
-![Logging stdout](/images/9-ostoy-stdout.png)
+![Logging stdout](/OSD4/images/9-ostoy-stdout.png)
 
 #### 2. Output a message to *stderr*
 Click in the message box for "Log Message (stderr)" and write any message you want to output to the *stderr* stream. You can try "**Oh no! Error!**".  Then click "Send Message".
 
-![Logging stderr](/images/9-ostoy-stderr.png)
+![Logging stderr](/OSD4/images/9-ostoy-stderr.png)
 
 ### Viewing pod logs
 
@@ -57,7 +57,7 @@ In the OpenShift Webconsole click on *Monitoring > Logging* in the left menu.
 
 Open up a new browser tab and go to `https://logs.<cluster name>.openshfit.com` to access the Kibana console.  Ensure the correct project is selected.  In the beginning of this lab we created the `ostoy` project. So select the one that begins with `project.ostoy...`.
 
-![Kibana console](/images/9-kibana.png)
+![Kibana console](/OSD4/images/9-kibana.png)
 
 #### 6. Familiarization with the data
 In the main part of the console you should see three entries. These will contain what we saw in the above section (viewing through the pods).  You will see the *stdout* and *stderr* messages that we inputted earlier (though you may not see it right away as we might have to filter for it).  In addition to the log output you will see information about each entry.  You can see things like:
@@ -68,18 +68,18 @@ In the main part of the console you should see three entries. These will contain
 - log level
 - message
 
-![Kibana data](/images/9-logoutput.png)
+![Kibana data](/OSD4/images/9-logoutput.png)
 
 You will also see that there is data from multiple sources and multiple messages.  In the image below you can see that 
 - A) shows the message we outputted to the *stdout*
 - B) shows what our frontend pod received from the microservice (which pod sent it and what color was sent)  
 - C) shows what color the microservice pod is responding with
 
-![log data](/images/9-logdata.png)
+![log data](/OSD4/images/9-logdata.png)
 
 Furthermore, if you wanted to see the data in tabular format or in JSON format you can click on the twisty-tie on the left of the row.
 
-![Expand data](/images/9-expandlog.png)
+![Expand data](/OSD4/images/9-expandlog.png)
 
 #### 6. Filtering Results
 Let's look for any errors encountered in our app.  Since we have many log entries (most from the previous networking section) we may need to filter to make it easier to find the errors.  To find the error message we outputted to *stderr* lets create a filter.  
@@ -90,10 +90,10 @@ Let's look for any errors encountered in our app.  Since we have many log entrie
 - In "Value..." type in "err"
 - Click "Save"
 
-![Expand data](/images/9-filtererr.png)
+![Expand data](/OSD4/images/9-filtererr.png)
 
 You should see now only one row is returned that contains our error message.
 
-![Expand data](/images/9-erronly.png)
+![Expand data](/OSD4/images/9-erronly.png)
 
 > NOTE: If nothing is returned, depending on how much time has elapsed since you've outputted the messages to the *stdout* and *stderr* streams you may need to set the proper time frame for the filter.  If you are following this lab consistently then the default should be fine.  Otherwise, in the Kibana console click on the top right where it should say "Last 15 minutes" and click on "Quick" then "Last 1 hour" (though adjust to your situation as needed).

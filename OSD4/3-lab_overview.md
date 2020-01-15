@@ -4,8 +4,8 @@
 - OSToy front-end container image: <https://quay.io/ostoylab/ostoy-frontend>
 - OSToy microservice container image: <https://quay.io/ostoylab/ostoy-microservice>
 - Deployment Definition YAMLs:
-  - [ostoy-fe-deployment.yaml](/yaml/ostoy-fe-deployment.yaml)
-  - [ostoy-microservice-deployment.yaml](/yaml/ostoy-microservice-deployment.yaml)
+  - [ostoy-fe-deployment.yaml](/OSD4/yaml/ostoy-fe-deployment.yaml)
+  - [ostoy-microservice-deployment.yaml](/OSD4/yaml/ostoy-microservice-deployment.yaml)
 
 > **Note** In order to simplify the deployment of the app (which you will do next) we have included all the objects needed in the above YAMLs as "all-in-one" YAMLs.  Though in reality, an enterprise would most likely want to have a different yaml file for each Kubernetes object.
 
@@ -23,7 +23,7 @@ OSToy is a simple Node.js application that we will deploy to OpenShift Dedicated
 
 ### OSToy Application Diagram
 
-![OSTOY Architecture](/images/3-ostoy-arch.png)
+![OSTOY Architecture](/OSD4/images/3-ostoy-arch.png)
 
 ### Familiarization with the Application UI
 
@@ -37,10 +37,10 @@ OSToy is a simple Node.js application that we will deploy to OpenShift Dedicated
 8. **Auto Scaling:** Tool to increase the load of the pods and test the HPA.
 9. Shows some more information about the application.
 
-![Home Page](/images/3-ostoy-homepage-1.png)
+![Home Page](/OSD4/images/3-ostoy-homepage-1.png)
 
 ### Learn more about the application
 
 To learn more, click on the "About" menu item on the left once we deploy the app.
 
-![ostoy About](/images/3-ostoy-about.png)
+![ostoy About](/OSD4/images/3-ostoy-about.png)
