@@ -20,7 +20,7 @@ You will need to get the GitHub webhook trigger url from the buildconfig.  Use f
 
 You will get a response with much data but look for the line that looks like
 
-```
+```shell
 Webhook GitHub:
 	URL:	https://api.demo1234.openshift.com:443/apis/build.openshift.io/v1/namespaces/ostoy-s2i/buildconfigs/ostoy/webhooks/<secret>/github
 ```

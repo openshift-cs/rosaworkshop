@@ -47,7 +47,7 @@ Dockerfiles are run without many of the normal operational controls of container
 
 
 ### Routes
-An OpenShift `Route` exposes a service at a host name, like www.example.com, so that external clients can reach it by name. When a `Route` object is created on OpenShift, it gets picked up by the built-in HAProxy load balancer in order to expose the requested service and make it externally available with the given configuration. You might be familiar with the Kubernetes `Ingress` object and might already be asking "what's the difference?". Red Hat created the concept of `Route` in order to fill this need and then contributed the design principles behind this to the community; which heavily influenced the `Ingress` design.  Though a `Route` does have some additional features as can be seen in the chart below.
+An OpenShift Route exposes a service at a host name, like www.example.com, so that external clients can reach it by name. When a Route object is created on OpenShift, it gets picked up by the built-in HAProxy load balancer in order to expose the requested service and make it externally available with the given configuration. You might be familiar with the Kubernetes Ingress object and might already be asking "what's the difference?". Red Hat created the concept of Route in order to fill this need and then contributed the design principles behind this to the community; which heavily influenced the Ingress design.  Though a Route does have some additional features as can be seen in the chart below.
 
 ![routes vs ingress](images/2-routes_vs_ingress.png)
 
@@ -60,7 +60,7 @@ An ImageStream stores a mapping of tags to images, metadata overrides that are a
 
 
 #### What are the benefits? 
-Using an ImageStream makes it easy to change a tag for a container image.  Otherwise to change a tag you need to download the whole image, change it locally, then push it all back. Also promoting applications by having to do that to change the tag and then update the deployment object entails many steps.  With ImageStreams you upload a container image once and then you manage it’s virtual tags internally in OpenShift.  In one project you may use the `dev` tag and only change reference to it internally, in prod you may use a `prod` tag and also manage it internally. You don't really have to deal with the registry!
+Using an ImageStream makes it easy to change a tag for a container image.  Otherwise to change a tag you need to download the whole image, change it locally, then push it all back. Also promoting applications by having to do that to change the tag and then update the deployment object entails many steps.  With ImageStreams you upload a container image once and then you manage it’s virtual tags internally in OpenShift.  In one project you may use the dev tag and only change reference to it internally, in prod you may use a prod tag and also manage it internally. You don't really have to deal with the registry!
 
 You can also use ImageStreams in conjunction with DeploymentConfigs to set a trigger that will start a deployment as soon as a new image appears or a tag changes its reference.
 

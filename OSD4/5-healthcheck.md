@@ -18,7 +18,7 @@ Go to the OSToy app, click on *Home* in the left menu, and enter a message in th
 ![Crash Message](images/5-ostoy-crashmsg.png)
 
 #### 3. View the revival
-Quickly switch to the Deployment - Pods screen (from step 1). You will see that the pod is in an error state, meaning it is down but should quickly come back up. (**Note:** this does happen quite fast. If you are switching tabs you might miss it).
+Quickly switch to the Deployment - Pods screen (from step 1). You will see that the pod is in an error state, meaning it is down but should quickly come back up. (**Note:** this may happen quickly. If you are switching tabs you might miss it).
 
 ![Pod Crash](images/5-ostoy-podcrash.png)
 

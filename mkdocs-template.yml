@@ -139,8 +139,6 @@ objects:
             paths:
               - sourcePath: "/opt/app-root/src/site/."
                 destinationDir: "."
-              - sourcePath: /opt/app-root/src/OSD4/img/.
-                destinationDir: img/.
       strategy:
         type: "Source"
         sourceStrategy:

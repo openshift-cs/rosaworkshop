@@ -2,24 +2,12 @@
 
 ### What is OpenShift Dedicated?
 
-OpenShift Dedicated (OSD) is an OpenShift cluster provided as a managed cloud service, configured for high availability (HA), and dedicated to a single customer (single-tenant). OpenShift Dedicated is managed by Red Hat Operations, providing increased security and years ofoperational experience working with OpenShift in both development and production. OpenShift Dedicated also comes with award-winning 24x7 Red Hat Premium Support.
+OpenShift Dedicated (OSD) is an OpenShift cluster provided as a managed cloud service, configured for high availability (HA), and dedicated to a single customer (single-tenant). OpenShift Dedicated is managed by Red Hat Operations, providing increased security and years of operational experience working with OpenShift in both development and production. OpenShift Dedicated also comes with award-winning 24x7 Red Hat Premium Support.
 
 You can learn more at: <https://www.openshift.com/dedicated>
 
-### Choosing between OSD 3.11 and OSD 4.2
-Today, OpenShift Dedicated clusters are available in both 3.11 or 4.2 versions.  Below is a summary table to help you assess which might be the correct fit. We are working to achieve feature parity across both versions, but until that happens there are some differences.
-
-| Requirement                        | 3.11 | 4.2          |
-|------------------------------------|------|--------------|
-| Private Clusters                   | Yes  | No (roadmap) |
-| Logging Stack on Infra Nodes       | Yes  | No           |
-| Operator Support                   | No   | Yes          |
-| BYOC                               | Yes  | No (roadmap) |
-| Consumption-based billing          | Yes  | No (roadmap) |
-| Red Hat Managed Integration (RHMI) | Yes  | No (roadmap) |
-
 ### What will we do in this workshop?
-In this lab, you’ll go through a set of tasks that will help you understand the concepts of deploying and using container based applications on top of OpenShift Dedicated 4.2.
+In this lab, you’ll go through a set of tasks that will help you understand the concepts of deploying and using container based applications on top of OpenShift Dedicated 4.
 
 Some of the things you’ll be going through:
 

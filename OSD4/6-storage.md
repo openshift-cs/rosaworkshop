@@ -1,6 +1,6 @@
 ## Using Persistent Volumes
 
-In this section we will execute a simple example of using persistent storage by creating a file that will be stored on a persistent volume in our cluster and then confirm that it will "persist" across pod failures and recreation.
+In this section we will execute a simple example of using persistent storage by creating a file that will be stored on a Persistent Volume in our cluster and then confirm that it will "persist" across pod failures and recreation.
 
 #### 1. View Persistent Volume Claims
 Inside the OpenShift web UI click on *Storage* in the left menu then *Persistent Volume Claims*. You will then see a list of all persistent volume claims that our application has made.  In this case there is just one called "ostoy-pvc".  If you click on it you will also see other pertinent information such as whether it is bound or not, size, access mode and age.  
@@ -48,9 +48,9 @@ if you enter `ls` you can see all the files you created.  Next, let's open the f
 
 `cat test-pv.txt`
 
-You should see the text you entered in the UI.
+You should see the text you entered in the UI.  The whole flow would look like the below:
 
-```
+```shell
 $ oc get pods
 NAME                                  READY     STATUS    RESTARTS   AGE
 ostoy-frontend-5fc8d486dc-wsw24       1/1       Running   0          18m

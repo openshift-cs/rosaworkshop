@@ -8,7 +8,7 @@ Click on *Config Maps* in the left menu.
 
 This will display the contents of the configmap available to the OSToy application.  We defined this in the `ostoy-fe-deployment.yaml` here:
 
-```
+```shell
 kind: ConfigMap
 apiVersion: v1
 metadata:
@@ -24,7 +24,7 @@ Click on *Secrets* in the left menu.
 
 This will display the contents of the secrets available to the OSToy application.  We defined this in the `ostoy-fe-deployment.yaml` here:
 
-```
+```shell
 apiVersion: v1
 kind: Secret
 metadata:
@@ -41,7 +41,7 @@ Click on *ENV Variables* in the left menu.
 
 This will display the environment variables available to the OSToy application.  We added three as defined in the deployment spec of `ostoy-fe-deployment.yaml` here:
 
-```
+```shell
   env:
   - name: ENV_TOY_CONFIGMAP
     valueFrom:

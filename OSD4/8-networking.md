@@ -15,7 +15,7 @@ Click on *Networking* in the left menu. Review the networking configuration. The
 #### 2. Lookup internal IP address of the service
 Enter the name of the microservice we created in the right tile ("Hostname Lookup") following the format of `my-svc.my-namespace.svc.cluster.local` which we created in the service definition of `ostoy-microservice.yaml` which can be seen here:
 
-```
+```shell
 apiVersion: v1
 kind: Service
 metadata:
@@ -47,7 +47,7 @@ If we look at the tile on the left we should see one box randomly changing color
 #### 4. Confirm number of pods running
 To confirm that we only have one pod running for our microservice, run the following command, or use the web UI.
 
-```
+```shell
 $ oc get pods
 NAME                                   READY     STATUS    RESTARTS   AGE
 ostoy-frontend-679cb85695-5cn7x       1/1       Running   0          1h
@@ -62,7 +62,7 @@ Let's change our microservice definition yaml to reflect that we want 3 pods ins
 
 It will look like this
 
-```
+```shell
 spec:
     selector:
       matchLabels:
@@ -74,7 +74,7 @@ spec:
 `oc apply -f ostoy-microservice-deployment.yaml`
 
 - Confirm that there are now 3 pods via the CLI (`oc get pods`) or the web UI (*Workloads > Deployments > ostoy-microservice*).
-- See this visually by visiting the OSToy app and seeing how many boxes you now see.  It should be three.
+- See this visually by visiting the OSToy app and counting how many boxes there are now.  It should be three.
 
 ![UI Scale](images/8-ostoy-colorspods.png)
 
@@ -83,7 +83,7 @@ Now we will scale the pods down using the command line.
 
 - Execute the following command from the CLI: `oc scale deployment ostoy-microservice --replicas=2`
 - Confirm that there are indeed 2 pods, via the CLI (`oc get pods`) or the web UI.
-- See this visually by visiting the OSToy App and seeing how many boxes you now see.  It should be two.
+- See this visually by visiting the OSToy app and counting how many boxes there are now.  It should be two.
 
 #### 7. Scale down via web UI
 Lastly, let's use the web UI to scale back down to one pod.  
@@ -93,5 +93,5 @@ Lastly, let's use the web UI to scale back down to one pod.
 
 ![UI Scale](images/8-ostoy-uiscale1.png)
 
-- See this visually by visiting the OSToy app and seeing how many boxes you now see.  It should be one.
+- See this visually by visiting the OSToy app and counting how many boxes there are now.  It should be one.
 - You can also confirm this via the CLI or the web UI

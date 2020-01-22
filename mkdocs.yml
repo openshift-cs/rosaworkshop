@@ -1,8 +1,14 @@
+# Project Information
 site_name: OpenShift Dedicated Workshop
 site_url: https://www.osdworkshop.io
-repo_url: https://github.com/openshift-cs/osdworkshop
 site_description: A guided workshop that ranges from application deployment to cluster configuration for OpenShift Dedicated clusters.
 site_author: Red Hat
+
+# Repository
+repo_name: openshift-cs/osdworkshop
+repo_url: https://github.com/openshift-cs/osdworkshop
+
+# Nav Menu Definition
 nav:
   - Introduction: index.md
   - Prerequisites: 1-prereqs.md
@@ -17,5 +23,23 @@ nav:
   - S2I Deployments: 10-deployment_s2i.md
   - S2I Webhooks for CICD: 11-cicd_s2i.md
   - Autoscaling: 12-hpa.md
-theme: readthedocs
+  - Feedback: feedback.md
+
+# Theme Configuration
+theme:
+  name: material
+  language: 'en'
+  palette:
+    primary: black
+    accent: red
+  font:
+    text: Overpass
+    code: Overpass Mono
+  logo: images/favicon.ico
+  favicon: images/favicon.ico
 docs_dir: OSD4
+
+# Extensions
+markdown_extensions:
+  - toc:
+      permalink: "#"
