@@ -3,9 +3,6 @@
 # Execute the default S2I script
 source ${STI_SCRIPTS_PATH}/assemble
 
-#install Material theme
-pip install mkdocs-material
-
 # Generate static HTML files
 python -m mkdocs build
 
