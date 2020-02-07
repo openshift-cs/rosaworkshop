@@ -43,3 +43,8 @@ docs_dir: OSD4
 markdown_extensions:
   - toc:
       permalink: "#"
+
+# Google Analytics
+google_analytics:
+  - 'UA-30752912-5'
+  - 'auto'
