@@ -44,7 +44,7 @@ After about a minute the new pods will show up on the page (represented by the c
 
 After confirming that the autoscaler did spin up new pods, switch to Grafana to visually see the resource consumption of the pods and see how the workloads were distributed.
 
-Go to the following url `https://grafana-openshift-monitoring.<number>.<clustername>.openshiftapps.com`
+Go to the following url `https://grafana-openshift-monitoring.<cluster-id>.<shard-id>.p1.openshiftapps.com`  (ie: https://grafana-openshift-monitoring.apps.demo-cluster.a1b2.p1.openshiftapps.com/)
 
 ![Grafana](images/12-grafana-home.png)
 
