@@ -1,7 +1,7 @@
 # Project Information
-site_name: OpenShift Dedicated Workshop
-site_url: https://www.osdworkshop.io
-site_description: A guided workshop that ranges from application deployment to cluster configuration for OpenShift Dedicated clusters.
+site_name: Amazon Red Hat OpenShift Workshop
+site_url: https://amroworkshop.io
+site_description: A guided workshop that ranges from application deployment to cluster configuration for Amazon Red Hat OpenShift clusters.
 site_author: Red Hat
 
 # Repository
@@ -37,7 +37,7 @@ theme:
     code: Overpass Mono
   logo: images/favicon.ico
   favicon: images/favicon.ico
-docs_dir: OSD4
+docs_dir: AMRO
 
 # Extensions
 markdown_extensions:

@@ -10,7 +10,7 @@ In this case the mode is RWO (Read-Write-Once) which means that the volume can o
 #### 2. Create a file to store
 In the OSToy app click on *Persistent Storage* in the left menu.  In the "Filename" area enter a filename for the file you will create (ie: "test-pv.txt"). Please use a *".txt"* extension so that the file will be visible in the browser.
 
-Underneath that, in the "File Contents" box, enter text to be stored in the file. (ie: "OpenShift is the greatest thing since sliced bread!" or "test" :) ).  Then click "Create file".
+Underneath that, in the "File Contents" box, enter text to be stored in the file. (e.g.: "OpenShift is the greatest thing since sliced bread!" or "test" :) ).  Then click "Create file".
 
 ![Create File](images/6-ostoy-createfile.png)
 

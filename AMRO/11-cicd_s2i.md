@@ -1,7 +1,7 @@
 ## Leveraging Source-to-Image (S2I) webhooks for automated deployment
 If we'd like to automatically trigger a build and deploy anytime we change the source code we can do that by using a webhook.
 
-See [Triggering Builds](https://docs.openshift.com/dedicated/3/dev_guide/builds/triggering_builds.html) for more details.
+See [Triggering Builds](https://docs.openshift.com/dedicated/4/builds/triggering-builds-build-hooks.html) for more details.
 
 #### 1. Get the trigger secret
 Retrieve the GitHub webhook trigger secret using the command below. You’ll need use this secret in the GitHub webhook URL.

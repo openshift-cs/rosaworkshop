@@ -11,7 +11,7 @@
 
 ### About OSToy
 
-OSToy is a simple Node.js application that we will deploy to OpenShift Dedicated. It is used to help us explore the functionality of Kubernetes. This application has a user interface where you can:
+OSToy is a simple Node.js application that we will deploy to Amazon Red Hat OpenShift. It is used to help us explore the functionality of Kubernetes. This application has a user interface where you can:
 
 - write messages to the log (stdout / stderr)
 - intentionally crash the application to view self-healing
