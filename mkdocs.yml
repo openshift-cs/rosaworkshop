@@ -5,13 +5,14 @@ site_description: A guided workshop that ranges from application deployment to c
 site_author: Red Hat
 
 # Repository
-repo_name: openshift-cs/osdworkshop
-repo_url: https://github.com/openshift-cs/osdworkshop
+repo_name: openshift-cs/amroworkshop
+repo_url: https://github.com/openshift-cs/amroworkshop
 
 # Nav Menu Definition
 nav:
   - Introduction: index.md
   - Prerequisites: 1-prereqs.md
+  - Cluster Creation: 1b-create_amro.md
   - Concepts: 2-concepts.md
   - Lab Overview: 3-lab_overview.md
   - Deployment: 4-deployment.md
