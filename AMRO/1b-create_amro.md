@@ -7,7 +7,7 @@ This guide is going to take a direct and guided approach to creating an Amazon R
 #### 1. Select the AWS account that you want to use
 If you are using AWS organizations and you need to have a Service Control Policy (SCP) applied to the AWS account you plan to use, see the [Red Hat Requirements for Customer Cloud Subscriptions](https://www.openshift.com/dedicated/ccs#scp) for details on the minimum required SCP.
 
-You will need the following pieces of information from your account:
+You will need the following pieces of information from your account:  
 
 - AWS Access Key ID
 - AWS Secret Access Key
@@ -311,7 +311,7 @@ Any optional fields can be left empty and a default will be selected.
   - Click on 'Register application'
 ```
 
-Please open that in a new tab in your browser.  It will prefill all the fields needed to register a new OAuth application.  Click the green **Register application** button.
+Open that link in a new tab.  It will prefill all the fields needed to register a new OAuth application.  Click the green **Register application** button.
 
 In the following page it will give you a **Client ID** and a **Client Secret**.
 
