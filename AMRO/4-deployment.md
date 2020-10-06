@@ -47,9 +47,9 @@ Equivalently you can also create this new project using the web UI by clicking o
 #### 3. Download the YAML configuration
 Download the Kubernetes deployment object yamls from the following locations to your local machine, in a directory of your choosing (just remember where you placed them for the next step).
 
-[ostoy-fe-deployment.yaml](https://raw.githubusercontent.com/openshift-cs/osdworkshop/master/OSD4/yaml/ostoy-fe-deployment.yaml)
+[ostoy-fe-deployment.yaml](https://raw.githubusercontent.com/openshift-cs/amroworkshop/master/AMRO/yaml/ostoy-fe-deployment.yaml)
 
-[ostoy-microservice-deployment.yaml](https://raw.githubusercontent.com/openshift-cs/osdworkshop/master/OSD4/yaml/ostoy-microservice-deployment.yaml)
+[ostoy-microservice-deployment.yaml](https://raw.githubusercontent.com/openshift-cs/amroworkshop/master/AMRO/yaml/ostoy-microservice-deployment.yaml)
 
 Feel free to open them up and take a look at what we will be deploying. For simplicity of this lab we have placed all the Kubernetes objects for the front-end in an "all-in-one" yaml file.  Though in reality there are benefits (ease of maintenance and less risk) to separating these out into individual yaml files.
 
