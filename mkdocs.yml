@@ -1,12 +1,12 @@
 # Project Information
-site_name: Amazon Red Hat OpenShift Workshop
-site_url: https://amroworkshop.io
-site_description: A guided workshop that ranges from application deployment to cluster configuration for Amazon Red Hat OpenShift clusters.
+site_name: Red Hat OpenShift Service on AWS
+site_url: https://rosaworkshop.io
+site_description: A guided workshop that ranges from application deployment to cluster configuration for ROSA clusters.
 site_author: Red Hat
 
 # Repository
-repo_name: openshift-cs/amroworkshop
-repo_url: https://github.com/openshift-cs/amroworkshop
+repo_name: openshift-cs/rosaworkshop
+repo_url: https://github.com/openshift-cs/rosaworkshop
 
 # Nav Menu Definition
 nav:
