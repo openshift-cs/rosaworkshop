@@ -11,7 +11,7 @@
 
 ### About OSToy
 
-OSToy is a simple Node.js application that we will deploy to Amazon Red Hat OpenShift. It is used to help us explore the functionality of Kubernetes. This application has a user interface where you can:
+OSToy is a simple Node.js application that we will deploy to ROSA. It is used to help us explore the functionality of Kubernetes. This application has a user interface where you can:
 
 - write messages to the log (stdout / stderr)
 - intentionally crash the application to view self-healing
@@ -44,3 +44,7 @@ OSToy is a simple Node.js application that we will deploy to Amazon Red Hat Open
 To learn more, click on the "About" menu item on the left once we deploy the app.
 
 ![ostoy About](images/3-ostoy-about.png)
+
+*[ROSA]: Red Hat OpenShift Service on AWS
+*[IdP]: Identity Provider
+*[OCM]: OpenShift Cluster Manager

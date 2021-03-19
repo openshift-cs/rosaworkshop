@@ -2,6 +2,8 @@
 
 There are multiple methods to deploy applications in OpenShift. Let's explore using the integrated Source-to-Image (S2I) builder. As mentioned in the [concepts](2-concepts.md) section, S2I is a tool for building reproducible, Docker-formatted container images. 
 
+### Before Starting
+
 #### 0. Retrieve the login command (if not logged in via CLI)
 If not logged in via the CLI, click on the dropdown arrow next to your name in the top-right of the cluster console and select *Copy Login Command*.
 
@@ -22,8 +24,9 @@ You can create a new project from the CLI by running `oc new-project ostoy-s2i` 
 ### Steps to Deploy OSToy imperatively using S2I
 
 #### 3. Add Secret to OpenShift
-The example emulates a `.env` file and shows how easy it is to move these directly into an OpenShift environment. Files can even be renamed in the Secret.  In your CLI enter the following command:<br><br>
-```shell
+The example emulates a `.env` file and shows how easy it is to move these directly into an OpenShift environment. Files can even be renamed in the Secret.  In your CLI enter the following command:
+
+```
 $ oc create -f https://raw.githubusercontent.com/<username>/ostoy/master/deployment/yaml/secret.yaml
 
 secret "ostoy-secret" created

@@ -3,7 +3,7 @@ We will take a look at the available options for logging in OpenShift Dedicated 
 
 The cluster logging components are based upon Elasticsearch, Fluentd, and Kibana (EFK). The collector, Fluentd, is deployed to each node in the OpenShift Dedicated cluster. It collects application logs and writes them to Elasticsearch (ES). Kibana is the centralized, web UI where users and administrators can create rich visualizations and dashboards with the aggregated data.
 
-Learn more about logging on OSD 4 here: [https://docs.openshift.com/dedicated/4/logging/cluster-logging.html](https://docs.openshift.com/dedicated/4/logging/cluster-logging.html)
+Learn more about logging on here: [https://docs.openshift.com/dedicated/4/logging/cluster-logging.html](https://docs.openshift.com/dedicated/4/logging/cluster-logging.html)
 
 ### Output data to the streams/logs
 

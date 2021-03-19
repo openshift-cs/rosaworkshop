@@ -4,8 +4,8 @@
 
 Source-to-Image (S2I) is a toolkit and workflow for building reproducible container images from source code. S2I produces ready-to-run images by injecting source code into a container image and letting the container prepare that source code for execution. By creating self-assembling builder images, you can version and control your build environments exactly like you use container images to version your runtime environments.
 
-[S2I Builds](https://github.com/openshift/source-to-image)
-[Creating Images](https://docs.openshift.com/dedicated/4/openshift_images/create-images.html)
+  * [S2I Builds](https://github.com/openshift/source-to-image)
+  * [Creating Images](https://docs.openshift.com/dedicated/4/openshift_images/create-images.html)
 
 #### How it works
 
