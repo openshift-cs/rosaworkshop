@@ -4,18 +4,25 @@
 Cluster admin rights are not automatically granted to any new users that you add to the cluster.  If there are new users that you want to grant this level of privilege to you will need to manually add it to each user.  Let's start off with granting it to ourselves using the GitHub username we just created for the cluster.
 
 1. Via `rosa` CLI
-    1. Assuming you are logged into `oc` with the admin user we created earlier you can enable cluster admin for the cluster by running `rosa edit cluster <cluster_name> --enable-cluster-admins`
+    1. Assuming you are logged into `oc` with the admin user we created earlier you can enable cluster admin for the cluster by running
+
+        `rosa edit cluster <cluster_name> --enable-cluster-admins`
+
     1. Give our GitHub username cluster-admin access by running
 
-        `rosa grant user cluster-admin --user <idp_user_name> --cluster <cluster_name>`
+        `rosa grant user cluster-admin --user <idp_user_name> --cluster=<cluster_name>`
 
-    1. Let’s verify that we were added as a cluster-admin by running `rosa list users --cluster=”<cluster-name>”`.  You should see your GitHub ID of the user listed.
+    1. Verify that we were added as a cluster-admin by running
 
-        $ rosa list users --cluster=rosa-1234
-        ID        GROUPS
-        <user>    cluster-admins
+        `rosa list users --cluster=<cluster-name>`
 
-    1. If we logout and log back into the cluster we should see a new perspective with the “Administrator Panel”. (You might need to try an Incognito/Private window)
+        You should see your GitHub ID of the user listed.
+
+            $ rosa list users --cluster=my-cluster
+            ID        GROUPS
+            <user>    cluster-admins
+
+    1. Logout and log back into the cluster to see a new perspective with the “Administrator Panel”. (You might need to try an Incognito/Private window)
 
         ![adminpanel](images/5-adminpanel.png)
 

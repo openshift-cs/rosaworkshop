@@ -10,13 +10,16 @@ When using your cluster there may be times when you need to change aspects of yo
     `rosa list machinepools -c <cluster-name>`
 
     You will see a response like:
-    ![mp](images/7-mp.png)
+
+        ID         AUTOSCALING  REPLICAS  INSTANCE TYPE  LABELS   TAINTS    AVAILABILITY ZONES
+        default    No           2         m5.xlarge                         us-east-1a
 
 1. To scale this out to 3 nodes run
 
     `rosa edit machinepool -c <cluster-name> --replicas <number-worker-nodes> <machinepool-name>`
 
     For example:
+
     `rosa edit machinepool -c my-cluster --replicas 3 default`
 
 1. Run `rosa describe cluster -c <cluster-name>` to see that it has taken effect.  You will see a response showing 3 nodes:
@@ -40,12 +43,12 @@ When using your cluster there may be times when you need to change aspects of yo
 
     For example:
 
-        $ rosa create machinepool --cluster=ok-rosa-012321 --name=db-nodes-mp --replicas=2 --labels='app=db','tier=backend'
-        I: Machine pool 'db-nodes-mp' created successfully on cluster 'ok-rosa-012321'
+        $ rosa create machinepool --cluster=my-cluster --name=db-nodes-mp --replicas=2 --labels='app=db','tier=backend'
+        I: Machine pool 'db-nodes-mp' created successfully on cluster 'my-cluster'
         
-        This will create us an additional 2 nodes that we can manage as one unit and also assign them the labels shown.  
+    This will create an additional 2 nodes that can be managed as one unit and also assign them the labels shown.  
 
-1. Now run `rosa list machinepools -c <cluster-name>` you will see the new machine pool created along with the labels we gave.
+1. Now run `rosa list machinepools -c <cluster-name>` to see the new machine pool created along with the labels we gave.
 
 	![mp](images/7-new_mp.png)
 
@@ -58,7 +61,7 @@ When using your cluster there may be times when you need to change aspects of yo
 
 	For example:
 	
-    `rosa create machinepool --cluster=ok-rosa-012321 --name=db-nodes-large-mp --replicas=2 --labels='app=db','tier=backend' --instance-type=m5.2xlarge`
+    `rosa create machinepool --cluster=my-cluster --name=db-nodes-large-mp --replicas=2 --labels='app=db','tier=backend' --instance-type=m5.2xlarge`
 
 1. If you’d like to see all the [instance types available](https://www.openshift.com/products/dedicated/service-definition#compute-types), or to make the decisions step-by-step, then use the `--interactive` flag
 

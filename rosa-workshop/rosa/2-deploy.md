@@ -38,7 +38,7 @@ Use the `rosa` CLI to create the ROSA cluster.
     * 3 Master Nodes, 2 Infra Nodes, 2 Worker Nodes
     * Worker node type: m5.xlarge
     * Region: As configured for the AWS CLI
-    * The most recent version of OpenShift available to moactl
+    * The most recent version of OpenShift available to `rosa`
     * A single availability zone
     * Public cluster (Public API)
 
