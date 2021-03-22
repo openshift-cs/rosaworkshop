@@ -3,7 +3,9 @@
 Finding the right help when you need it is important.  So we will review the resources at your disposal for when you need some assistance.
 
 - [ROSA Documentation](https://docs.openshift.com/rosa/welcome/index.html)
-- Blogs
+- [OpenShift Documentation](https://docs.openshift.com/container-platform/4.7/welcome/index.html)(for all OpenShift related information)
+- [Blogs](https://www.redhat.com/en/blog)
+- [Policies and Definitions](https://www.openshift.com/products/dedicated/policies)
 - Contact Support - Reviewed in detail below
 
 #### Contacting Red Hat for support
