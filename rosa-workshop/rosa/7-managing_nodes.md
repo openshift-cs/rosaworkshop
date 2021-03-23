@@ -7,7 +7,7 @@ When using your cluster there may be times when you need to change aspects of yo
 1. To scale the number of worker nodes we need to edit the machine pool they belong to. The default machine pool is called “default” which is created with every cluster.
 1. We should see the “default” pool that is created with each cluster.
 
-    `rosa list machinepools -c <cluster-name>`
+    `rosa list machinepools --cluster=<cluster-name>`
 
     You will see a response like:
 
@@ -16,15 +16,46 @@ When using your cluster there may be times when you need to change aspects of yo
 
 1. To scale this out to 3 nodes run
 
-    `rosa edit machinepool -c <cluster-name> --replicas <number-worker-nodes> <machinepool-name>`
+    `rosa edit machinepool --cluster=<cluster-name> --replicas <number-worker-nodes> <machinepool-name>`
 
     For example:
 
-    `rosa edit machinepool -c my-cluster --replicas 3 default`
+    `rosa edit machinepool --cluster=my-rosa-cluster --replicas 3 default`
 
-1. Run `rosa describe cluster -c <cluster-name>` to see that it has taken effect.  You will see a response showing 3 nodes:
+1. Run the following to see that it has taken effect
 
-    ![mp](images/7-describe.png)
+    `rosa describe cluster --cluster=<cluster-name>`
+
+    You will see a response showing 3 compute nodes:
+
+        $ rosa describe cluster --cluster=my-rosa-cluster
+        Name:                       my-rosa-cluster
+        ID:                         1jgpoh4jm5jjiu12k12h000000000000
+        External ID:                a3fa460d-6405-48aa-ad24-000000000000
+        OpenShift Version:          4.7.2
+        Channel Group:              stable
+        DNS:                        my-rosa-cluster.abcd.p1.openshiftapps.com
+        AWS Account:                000000000000
+        API URL:                    https://api.my-rosa-cluster.abcd.p1.openshiftapps.com:6443
+        Console URL:                https://console-openshift-console.apps.my-rosa-cluster.abcd.p1.openshiftapps.com
+        Region:                     us-east-1
+        Multi-AZ:                   false
+        Nodes:
+         - Master:                  3
+         - Infra:                   2
+         - Compute:                 3 (m5.xlarge)
+        Network:
+         - Service CIDR:            172.30.0.0/16
+         - Machine CIDR:            10.0.0.0/16
+         - Pod CIDR:                10.128.0.0/14
+         - Host Prefix:             /23
+        State:                      ready 
+        Private:                    No
+        Created:                    Mar 19 2021 00:03:19 UTC
+        Details Page:               https://cloud.redhat.com/openshift/details/1jgpoh4jm5jjiu12k12h000000000000
+
+
+    <!--- ![mp](images/7-describe.png) -->
 
 1. One can also confirm this by accessing OCM (<https://cloud.redhat.com/openshift>) and selecting the cluster
 
@@ -43,12 +74,12 @@ When using your cluster there may be times when you need to change aspects of yo
 
     For example:
 
-        $ rosa create machinepool --cluster=my-cluster --name=db-nodes-mp --replicas=2 --labels='app=db','tier=backend'
-        I: Machine pool 'db-nodes-mp' created successfully on cluster 'my-cluster'
+        $ rosa create machinepool --cluster=my-rosa-cluster --name=db-nodes-mp --replicas=2 --labels='app=db','tier=backend'
+        I: Machine pool 'db-nodes-mp' created successfully on cluster 'my-rosa-cluster'
         
     This will create an additional 2 nodes that can be managed as one unit and also assign them the labels shown.  
 
-1. Now run `rosa list machinepools -c <cluster-name>` to see the new machine pool created along with the labels we gave.
+1. Now run `rosa list machinepools --cluster=<cluster-name>` to see the new machine pool created along with the labels we gave.
 
 	![mp](images/7-new_mp.png)
 
@@ -61,9 +92,9 @@ When using your cluster there may be times when you need to change aspects of yo
 
 	For example:
 	
-    `rosa create machinepool --cluster=my-cluster --name=db-nodes-large-mp --replicas=2 --labels='app=db','tier=backend' --instance-type=m5.2xlarge`
+    `rosa create machinepool --cluster=my-rosa-cluster --name=db-nodes-large-mp --replicas=2 --labels='app=db','tier=backend' --instance-type=m5.2xlarge`
 
-1. If you’d like to see all the [instance types available](https://www.openshift.com/products/dedicated/service-definition#compute-types), or to make the decisions step-by-step, then use the `--interactive` flag
+1. If you’d like to see all the [instance types available](https://www.openshift.com/products/dedicated/service-definition#compute-types), or to make the decisions step-by-step, then use the `--interactive` flag:
 
     `rosa create machinepool -c <cluster-name> --interactive`
 

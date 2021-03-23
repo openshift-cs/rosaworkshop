@@ -24,7 +24,7 @@ We will go through these three scenarios.
 
 1. Upgrade the cluster to the latest version by running
 
- 	`rosa upgrade cluster -c my-cluster --version 4.6.15`
+ 	`rosa upgrade cluster -c my-rosa-cluster --version 4.6.15`
 
 1. This will schedule the cluster for immediate upgrade.  It will take some time to complete.
 

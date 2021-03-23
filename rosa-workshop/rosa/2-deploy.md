@@ -7,17 +7,21 @@ Use the `rosa` CLI to create the ROSA cluster.
 
     `rosa create cluster --cluster-name=<cluster name>`
 
+    For example: 
+
+    `rosa create cluster --cluster-name=my-rosa-cluster`
+
     You should see a response like the following:
 
     
-        I: Creating cluster 'rosa-1234'
+        I: Creating cluster 'my-rosa-cluster'
         I: To view a list of clusters and their status, run 'rosa list clusters'
-        I: Cluster 'rosa-1234' has been created.
+        I: Cluster 'my-rosa-cluster' has been created.
         I: Once the cluster is installed you will need to add an Identity Provider before you can login into the cluster. See 'rosa create idp --help' for more information.
-        I: To determine when your cluster is Ready, run 'rosa describe cluster -c rosa-1234'.
-        I: To watch your cluster installation logs, run 'rosa logs install -c rosa-1234 --watch'.
-        Name:                       rosa-1234
-        DNS:                        rosa-1234.aaaa.p1.openshiftapps.com
+        I: To determine when your cluster is Ready, run 'rosa describe cluster -c my-rosa-cluster'.
+        I: To watch your cluster installation logs, run 'rosa logs install -c my-rosa-cluster --watch'.
+        Name:                       my-rosa-cluster
+        DNS:                        my-rosa-cluster.abcd.p1.openshiftapps.com
         ID:                         1idb8u7qc0jinctmmf0000000000000
         External ID:                
         AWS Account:                000000000000
@@ -44,7 +48,7 @@ Use the `rosa` CLI to create the ROSA cluster.
 
 1. You can run the following command to check the status of the cluster
 
-    `rosa describe cluster rosa-1234`
+    `rosa describe cluster my-rosa-cluster`
 
     You should notice the state change from “pending” to “installing”.
     

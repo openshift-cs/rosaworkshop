@@ -2,7 +2,7 @@
 There are multiple ways to interact with your cluster.  You can connect to it via the CLI or via the Web Console. We will review both options below.
 
 #### Accessing the cluster via the Web Console
-1. Copy the url provided from the previous step where we set up the IdP and paste it into your web browser.  It will be in the format of <https://console-openshift-console.apps.rosa-1234.aaaa.p1.openshiftapps.com> 
+1. Copy the url provided from the previous step where we set up the IdP and paste it into your web browser.  It will be in the format of <https://console-openshift-console.apps.my-rosa-cluster.abcd.p1.openshiftapps.com> 
 1. Click on your IdP.  In the guide we created “rosa-github”.
 
     ![login](images/4-login.png)
@@ -29,8 +29,8 @@ In order to access the cluster via the CLI you must have the `oc` command instal
 
 1. Copy the `oc login` command and paste it into your terminal. Press enter
 
-        $ oc login --token=sha256~1ytZZb9kwYDvPqGyPuxwMcREX0000000000000000 --server=https://api.ok-rosa-012321.vgyx.p1.openshiftapps.com:6443
-        Logged into "https://api.ok-rosa-012321.vgyx.p1.openshiftapps.com:6443" as "<User>" using the token provided.
+        $ oc login --token=sha256~GBAfS4JQ0t1UTKYHbWAK6OUWGUkdMGz000000000000 --server=https://api.my-rosa-cluster.abcd.p1.openshiftapps.com:6443
+        Logged into "https://api.my-rosa-cluster.abcd.p1.openshiftapps.com:6443" as "rosa-user" using the token provided.
         
         You have access to 79 projects, the list has been suppressed. You can list all projects with ' projects'
         
@@ -39,7 +39,7 @@ In order to access the cluster via the CLI you must have the `oc` command instal
 1. We can confirm that we are now the user we logged in with by running `oc whoami`
 
         $ oc whoami
-        <User>
+        rosa-user
 
 1. We can now start using our cluster.
 

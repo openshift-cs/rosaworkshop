@@ -95,7 +95,7 @@ Verify that all the credentials set up are correct.
         OCM Account Name:             Your Name
         OCM Account Username:         you@domain.com
         OCM Account Email:            you@domain.com
-        OCM Organization ID:          1HopHfA2hc00000000000000000
+        OCM Organization ID:          1HopHfA20000000000000000000
         OCM Organization Name:        Red Hat
         OCM Organization External ID: 0000000
 
@@ -114,7 +114,7 @@ This step runs a CloudFormation template that prepares your AWS account for clus
 
 1. Run `rosa init` in your terminal window.  You will see a response like the below.  Make sure all looks good and there are no errors.
 
-        I: Logged in as 'user@redhat.com' on 'https://api.openshift.com'
+        I: Logged in as 'you@domain.com' on 'https://api.openshift.com'
         I: Validating AWS credentials...
         I: AWS credentials are valid!
         I: Validating SCP policies...

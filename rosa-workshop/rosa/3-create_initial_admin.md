@@ -3,22 +3,22 @@ If you want to be able to access your cluster immediately and have a cluster-adm
 
 1. Run this command to create the admin user
 
-    `rosa create admin -c rosa-1234` 
+    `rosa create admin --cluster=my-rosa-cluster` 
 
     You will see a response like the following:
 
         W: It is recommended to add an identity provider to login to this cluster. See 'rosa create idp --help' for more information.
-        I: Admin account has been added to cluster 'rosa-1234'. It may take up to a minute for the account to become active.
+        I: Admin account has been added to cluster 'my-rosa-cluster'. It may take up to a minute for the account to become active.
         I: To login, run the following command:
-        oc login https://api.rosa-1234.aaaa.p1.openshiftapps.com:6443 \
+        oc login https://api.my-rosa-cluster.abcd.p1.openshiftapps.com:6443 \
         --username cluster-admin \
-        --password FWGYL-2mkJI-3ZTTZ-00000
+        --password FWGYL-2mkJI-00000-00000
 
 2. Copy the login command returned to you in the previous step and paste that into your terminal. This should log you into the cluster via the CLI so you can start using the cluster.
     
-        $ oc login https://api.rosa-1234.aaaa.p1.openshiftapps.com:6443 \
+        $ oc login https://api.my-rosa-cluster.abcd.p1.openshiftapps.com:6443 \
         >    --username cluster-admin \
-        >    --password FWGYL-2mkJI-3ZTTZ-00000
+        >    --password FWGYL-2mkJI-00000-00000
 
         Login successful.
 
