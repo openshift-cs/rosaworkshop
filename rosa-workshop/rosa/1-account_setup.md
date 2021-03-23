@@ -1,6 +1,6 @@
 ## Prerequisites
 
-Further details on the prerequisites can be found in the documentation at [Prerequisites for ROSA](https://docs.openshift.com/rosa/rosa_getting_started/rosa-aws-prereqs.html)
+Please review the prerequisites found in the documentation at [Prerequisites for ROSA](https://docs.openshift.com/rosa/rosa_getting_started/rosa-aws-prereqs.html) before getting started.
 
 #### 1. An AWS Account
 If you are using AWS organizations and you need to have a Service Control Policy (SCP) applied to the AWS account you plan to use, see the [Minimum required Service Control Policy](https://docs.openshift.com/rosa/rosa_getting_started/rosa-aws-prereqs.html#rosa-minimum-spc_prerequisites) for details on the minimum required SCP.

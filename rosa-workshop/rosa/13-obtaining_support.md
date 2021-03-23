@@ -3,9 +3,12 @@
 Finding the right help when you need it is important.  So we will review the resources at your disposal for when you need some assistance.
 
 - [ROSA Documentation](https://docs.openshift.com/rosa/welcome/index.html) (ROSA specific documentation)
+    - [Policies and Definitions](https://docs.openshift.com/rosa/rosa_policy/rosa-service-definition.html)
+    - [Responsibility Assignment Matrix](https://docs.openshift.com/rosa/rosa_policy/rosa-policy-responsibility-matrix.html)
+    - [Understanding Process and Security](https://docs.openshift.com/rosa/rosa_policy/rosa-policy-process-security.html)
+    - [About Availability](https://docs.openshift.com/rosa/rosa_policy/rosa-policy-understand-availability.html)
 - [OpenShift Documentation](https://docs.openshift.com/container-platform/4.7/welcome/index.html) (for all OpenShift related information)
 - [Blogs](https://www.redhat.com/en/blog)
-- [Policies and Definitions](https://www.openshift.com/products/dedicated/policies)
 - Contact Support - Reviewed in detail below
 
 #### Contacting Red Hat for support
