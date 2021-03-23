@@ -4,7 +4,7 @@
 ROSA is a _fully_ managed Red Hat OpenShift service running natively on Amazon Web Services (AWS), which allows customers to quickly and easily build, deploy, and manage Kubernetes applications on the industry’s most comprehensive Kubernetes platform in the AWS public cloud. 
 
 ### What information is on this site?
-These pages are split into two sections. One contains the steps to getting started on ROSA ("Getting started with ROSA").  While the other is about deploying an appliation to ROSA to get better familiar with the internals of OpenShift ("OpenShift Internals Lab") and deploy your first application on ROSA.
+These pages are split into two sections. One contains the steps to getting started on ROSA ("Getting started with ROSA").  While the other is about deploying an application to ROSA to get better familiar with the internals of OpenShift ("OpenShift Internals Lab") and deploy your first application on ROSA.
 
 ### Creating your first ROSA Cluster
 If you'd like an easy to follow guide for creating your first ROSA cluster you've come to the right place.

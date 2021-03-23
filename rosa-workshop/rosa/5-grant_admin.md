@@ -18,7 +18,7 @@ Cluster admin rights are not automatically granted to any new users that you add
 
         You should see your GitHub ID of the user listed.
 
-            $ rosa list users --cluster=my-cluster
+            $ rosa list users --cluster=my-rosa-cluster
             ID        GROUPS
             <user>    cluster-admins
 

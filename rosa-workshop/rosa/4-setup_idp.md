@@ -49,7 +49,7 @@ To log in to your cluster, it is recommended to set up an identity provider (IdP
 
     ![inputs](images/4-inputs.png)
 
-18. Copy and paste the link returned at the end into your browser and you should see the IdP we just set up available.  If you followed this tutorial it is called “rosa-github”. You can click on this and use your GitHub credentials to access the cluster.
+18. Copy and paste the link returned at the end into your browser and you should see the IdP we just set up available.  If you've followed this tutorial it is called “rosa-github”. You can click on this and use your GitHub credentials to access the cluster.
 
     ![login](images/4-login.png)
 

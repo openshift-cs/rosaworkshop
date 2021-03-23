@@ -8,7 +8,7 @@ There are multiple ways to interact with your cluster.  You can connect to it vi
     ![login](images/4-login.png)
 
 1. Enter your GitHub user credentials (or other credentials if not using GitHub)
-1. You should be logged in. If you followed these guides in order, you will be a cluster-admin and should see a web console like the following with the "Administrator" panel visible.
+1. You should be logged in. If you've followed this guide in order, you will be a cluster-admin and should see a web console like the following with the "Administrator" panel visible.
 
     ![loggedin](images/6-logged.png)
 

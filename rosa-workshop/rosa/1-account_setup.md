@@ -112,7 +112,7 @@ Verify that all the credentials set up are correct.
 ## Verify quota, permissions and initialize your AWS account
 This step runs a CloudFormation template that prepares your AWS account for cluster deployment and management. This step typically takes 1-2 minutes to complete. This step also will verify that your account quota is adequate and permissions are accurate.
 
-1. Run `rosa init` in your terminal window.  You will see a response like the below.  Make sure all looks good and there are no errors.
+1. Run `rosa init` in your terminal window.  You will see a response like the below.  Make sure everything looks good and there are no errors.
 
         I: Logged in as 'you@domain.com' on 'https://api.openshift.com'
         I: Validating AWS credentials...
