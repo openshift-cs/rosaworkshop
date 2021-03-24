@@ -148,7 +148,7 @@ deploymentconfig "ostoy" updated
 ```
 
 #### 11. Expose the UI application as an OpenShift Route
-Using OpenShift Dedicated's included TLS wildcard certificates, we can easily deploy this as an HTTPS application
+Using the included TLS wildcard certificates, we can easily deploy this as an HTTPS application
 ```shell
 $ oc create route edge --service=ostoy --insecure-policy=Redirect
 

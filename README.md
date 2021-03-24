@@ -23,11 +23,12 @@ If you'd like an easy to follow guide for creating your first ROSA cluster you'v
     - [Responsibility Assignment Matrix](https://docs.openshift.com/rosa/rosa_policy/rosa-policy-responsibility-matrix.html)
     - [Understanding Process and Security](https://docs.openshift.com/rosa/rosa_policy/rosa-policy-process-security.html)
     - [About Availability](https://docs.openshift.com/rosa/rosa_policy/rosa-policy-understand-availability.html)
-* [OpenShift Container Platform](https://docs.openshift.com/container-platform/4.7/welcome/index.html) (for all other OpenShift related information)
+    - [Updates Lifecycle](https://docs.openshift.com/rosa/rosa_policy/rosa-life-cycle.html)
+* [OpenShift Container Platform Documentation](https://docs.openshift.com/container-platform/4.7/welcome/index.html) (for all other OpenShift related information)
 * [Red Hat Support](https://support.redhat.com)
 * [OpenShift Cluster Manager](https://cloud.redhat.com/OpenShift)
 * [Learn about OpenShift](https://learn.openshift.com)
-* [Red Hat Blogs](https://www.redhat.com/en/blog)
+* [OpenShift Blog](https://www.openshift.com/blog)
 
 
 **Note:** Anytime "ROSA" is used in this lab it stands for Red Hat OpenShift Service on AWS. The ROSA acronym will be used mostly.
