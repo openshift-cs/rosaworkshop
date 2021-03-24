@@ -8,7 +8,7 @@ Finding the right help when you need it is important.  So we will review the res
     - [Understanding Process and Security](https://docs.openshift.com/rosa/rosa_policy/rosa-policy-process-security.html)
     - [About Availability](https://docs.openshift.com/rosa/rosa_policy/rosa-policy-understand-availability.html)
 - [OpenShift Documentation](https://docs.openshift.com/container-platform/4.7/welcome/index.html) (for all OpenShift related information)
-- [Blogs](https://www.redhat.com/en/blog)
+- [Blogs](https://www.openshift.com/blog)
 - Contact Support - Reviewed in detail below
 
 #### Contacting Red Hat for support

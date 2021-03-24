@@ -250,7 +250,7 @@ parameters:
     displayName: "Git Repository URL"
     description: "The URL of the repository with your application source code."
     required: true
-    value: "https://github.com/0kashi/rosaworkshop.git"
+    value: "https://github.com/openshift-cs/rosaworkshop.git"
 
   - name: "SOURCE_REPOSITORY_REF"
     displayName: "Git Reference"
