@@ -1,29 +1,43 @@
 # Project Information
-site_name: Amazon Red Hat OpenShift Workshop
-site_url: https://amroworkshop.io
-site_description: A guided workshop that ranges from application deployment to cluster configuration for Amazon Red Hat OpenShift clusters.
+site_name: Red Hat OpenShift Service on AWS
+site_url: https://rosaworkshop.io
+site_description: A guided workshop that ranges from application deployment to cluster configuration for ROSA clusters.
 site_author: Red Hat
 
 # Repository
-repo_name: openshift-cs/osdworkshop
-repo_url: https://github.com/openshift-cs/osdworkshop
+repo_name: openshift-cs/rosaworkshop
+repo_url: https://github.com/openshift-cs/rosaworkshop
 
 # Nav Menu Definition
 nav:
-  - Introduction: index.md
-  - Prerequisites: 1-prereqs.md
-  - Concepts: 2-concepts.md
-  - Lab Overview: 3-lab_overview.md
-  - Deployment: 4-deployment.md
-  - Health Check: 5-healthcheck.md
-  - Storage: 6-storage.md
-  - ConfigMaps, Secrets, Env Var: 7-confsecenv.md
-  - Networking: 8-networking.md
-  - Logging: 9-logging.md
-  - S2I Deployments: 10-deployment_s2i.md
-  - S2I Webhooks for CICD: 11-cicd_s2i.md
-  - Autoscaling: 12-hpa.md
-  - Feedback: feedback.md
+  - Home: index.md
+  - Getting Started with ROSA:
+    - Setup: 'rosa/1-account_setup.md'
+    - Deploy the cluster: 'rosa/2-deploy.md'
+    - Create Admin user: 'rosa/3-create_initial_admin.md'
+    - Setup an IdP: 'rosa/4-setup_idp.md'
+    - Granting Admin Rights: 'rosa/5-grant_admin.md'
+    - Accessing your cluster: 'rosa/6-access_cluster.md'
+    - Managing worker nodes: 'rosa/7-managing_nodes.md'
+    - Autoscaling: 'rosa/8-autoscaling.md'
+    - Upgrade the cluster: 'rosa/9-upgrade.md'
+    - Delete the cluster: 'rosa/12-delete_cluster.md'
+    - Obtaining support: 'rosa/13-obtaining_support.md'
+  - OpenShift Internals Lab:
+    - Introduction: 'ostoy/lab_intro.md'
+    - Prerequisites: 'ostoy/1-prereqs.md'
+    - Concepts: 'ostoy/2-concepts.md'
+    - Lab Overview: 'ostoy/3-lab_overview.md'
+    - Deployment: 'ostoy/4-deployment.md'
+    - Health Check: 'ostoy/5-healthcheck.md'
+    - Storage: 'ostoy/6-storage.md'
+    - ConfigMaps, Secrets, Env Var: 'ostoy/7-confsecenv.md'
+    - Networking: 'ostoy/8-networking.md'
+    - Logging: 'ostoy/9-logging.md'
+    - S2I Deployments: 'ostoy/10-deployment_s2i.md'
+    - S2I Webhooks for CICD: 'ostoy/11-cicd_s2i.md'
+    - Autoscaling: 'ostoy/12-hpa.md'
+  - Feedback: 'feedback.md'
 
 # Theme Configuration
 theme:
@@ -35,12 +49,13 @@ theme:
   font:
     text: Overpass
     code: Overpass Mono
-  logo: images/favicon.ico
-  favicon: images/favicon.ico
-docs_dir: AMRO
+  logo: favicon.ico
+  favicon: favicon.ico
+docs_dir: rosa-workshop
 
 # Extensions
 markdown_extensions:
+  - abbr
   - toc:
       permalink: "#"
 
