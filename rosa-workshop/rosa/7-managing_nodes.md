@@ -94,7 +94,7 @@ When using your cluster there may be times when you need to change aspects of yo
 	
     `rosa create machinepool --cluster=my-rosa-cluster --name=db-nodes-large-mp --replicas=2 --labels='app=db','tier=backend' --instance-type=m5.2xlarge`
 
-1. If you’d like to see all the [instance types available](https://www.openshift.com/products/dedicated/service-definition#compute-types), or to make the decisions step-by-step, then use the `--interactive` flag:
+1. If you’d like to see all the [instance types available](https://docs.openshift.com/rosa/rosa_policy/rosa-service-definition.html#rosa-sdpolicy-aws-compute-types_rosa-service-definition), or to make the decisions step-by-step, then use the `--interactive` flag:
 
     `rosa create machinepool -c <cluster-name> --interactive`
 
