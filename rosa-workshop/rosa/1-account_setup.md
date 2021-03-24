@@ -18,10 +18,9 @@ If you do not already have a Red Hat account, create one here <https://cloud.red
 [Install the AWS CLI](https://aws.amazon.com/cli/) as per your operating system.
 
 #### 4. ROSA CLI
-- Install the [ROSA CLI](https://github.com/openshift/rosa/releases) as per your operating system. 
-- Download the relevant file for your operating system and store it in a location within your "PATH". 
-- It is also advised to shorten the name to `rosa`.
-- Run `rosa version` to make sure it works and that it returns the version you downloaded.
+- Install the [ROSA CLI](https://www.openshift.com/products/amazon-openshift/download) as per your operating system. 
+- Download and extract the relevant file for your operating system and store it in a location within your "PATH". 
+- Run `rosa version` to make sure it works and that it returns the version number.
 
 #### 5. OpenShift Command Line Interface
 There are a few ways to install the `oc` CLI:
@@ -104,7 +103,7 @@ Verify that all the credentials set up are correct.
 
 ## Enable the AWS account to use ROSA (one time only)
 1. Visit <https://console.aws.amazon.com/rosa> to enable your account to use ROSA.
-1. Click on the orange "Enable service" button on the right.
+1. Click on the orange "Enable OpenShift" button on the right.
 
     ![Enable](images/1-enable.png)
 
