@@ -9,7 +9,7 @@ These pages are split into two sections. One contains the steps to getting start
 ### Creating your first ROSA Cluster
 If you'd like an easy to follow guide for creating your first ROSA cluster you've come to the right place.
 
-1. First please review the [Prerequisites](https://docs.openshift.com/rosa/rosa_getting_started/rosa-aws-prereqs.html) which contains important information about the AWS account requirements.  
+1. First please review the [prerequisites](https://docs.openshift.com/rosa/rosa_getting_started/rosa-aws-prereqs.html) which contains important information about the AWS account requirements.  
 1. Then visit the Getting Started tutorial for [Setting up your account](rosa/1-account_setup.md).
 
 ### Resources
@@ -23,7 +23,8 @@ If you'd like an easy to follow guide for creating your first ROSA cluster you'v
     - [Responsibility Assignment Matrix](https://docs.openshift.com/rosa/rosa_policy/rosa-policy-responsibility-matrix.html)
     - [Understanding Process and Security](https://docs.openshift.com/rosa/rosa_policy/rosa-policy-process-security.html)
     - [About Availability](https://docs.openshift.com/rosa/rosa_policy/rosa-policy-understand-availability.html)
-* [OpenShift Container Platform](https://docs.openshift.com/container-platform/4.7/welcome/index.html) (for all other OpenShift related information)
+    - [Updates Lifecycle](https://docs.openshift.com/rosa/rosa_policy/rosa-life-cycle.html)
+* [OpenShift Container Platform Documentation](https://docs.openshift.com/container-platform/4.7/welcome/index.html) (for all other OpenShift related information)
 * [Red Hat Support](https://support.redhat.com)
 * [OpenShift Cluster Manager](https://cloud.redhat.com/OpenShift)
 * [Learn about OpenShift](https://learn.openshift.com)

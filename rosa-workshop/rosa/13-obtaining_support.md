@@ -7,6 +7,7 @@ Finding the right help when you need it is important.  So we will review the res
     - [Responsibility Assignment Matrix](https://docs.openshift.com/rosa/rosa_policy/rosa-policy-responsibility-matrix.html)
     - [Understanding Process and Security](https://docs.openshift.com/rosa/rosa_policy/rosa-policy-process-security.html)
     - [About Availability](https://docs.openshift.com/rosa/rosa_policy/rosa-policy-understand-availability.html)
+    - [Updates Lifecycle](https://docs.openshift.com/rosa/rosa_policy/rosa-life-cycle.html)
 - [OpenShift Documentation](https://docs.openshift.com/container-platform/4.7/welcome/index.html) (for all OpenShift related information)
 - [Blogs](https://www.openshift.com/blog)
 - Contact Support - Reviewed in detail below

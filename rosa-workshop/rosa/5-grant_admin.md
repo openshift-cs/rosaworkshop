@@ -1,14 +1,10 @@
 ##  Granting admin rights to users
 
 #### Granting cluster-admin rights
-Cluster admin rights are not automatically granted to any new users that you add to the cluster.  If there are new users that you want to grant this level of privilege to you will need to manually add it to each user.  Let's start off with granting it to ourselves using the GitHub username we just created for the cluster.
+Cluster admin rights are not automatically granted to any new users that you add to the cluster.  If there are new users that you want to grant this level of privilege to you will need to manually add it to each user.  Let's start off with granting it to ourselves using the GitHub username we just created for the cluster. There are two ways to do this; either from the ROSA CLI or the OCM web UI.
 
 1. Via `rosa` CLI
-    1. Assuming you are logged into `oc` with the admin user we created earlier you can enable cluster admin for the cluster by running
-
-        `rosa edit cluster <cluster_name> --enable-cluster-admins`
-
-    1. Give our GitHub username cluster-admin access by running
+    1. Assuming you are the user who created the cluster, you can grant cluster-admin to a user (or our GitHub user) by running
 
         `rosa grant user cluster-admin --user <idp_user_name> --cluster=<cluster_name>`
 
@@ -19,12 +15,16 @@ Cluster admin rights are not automatically granted to any new users that you add
         You should see your GitHub ID of the user listed.
 
             $ rosa list users --cluster=my-rosa-cluster
-            ID        GROUPS
-            <user>    cluster-admins
+            ID           GROUPS
+            rosa-user    cluster-admins
 
     1. Logout and log back into the cluster to see a new perspective with the “Administrator Panel”. (You might need to try an Incognito/Private window)
 
         ![adminpanel](images/5-adminpanel.png)
+
+    1. You can also test this by running the following command.  Only a cluster-admin user can run this without errors.
+
+        `oc get all -n openshift-apiserver`
 
 1. Via OCM UI
     1. Log into OCM from <https://cloud.redhat.com/openshift>
@@ -43,7 +43,7 @@ Cluster admin rights are not automatically granted to any new users that you add
         ![adduser](images/5-adduser2.png)
 
 #### Granting dedicated-admin
-ROSA has a concept of an admin user that can complete most administrative tasks but is slightly limited to prevent anything damaging.  It is called a “dedicated-admin” role.  It is best practice to use dedicated admin when elevated privileges are needed.  You can read more about it [here](https://access.redhat.com/documentation/en-us/openshift_dedicated/4/html-single/authentication/index#dedicated-admin-role-overview_understanding-service-accounts).
+ROSA has a concept of an admin user that can complete most administrative tasks but is slightly limited to prevent anything damaging.  It is called a “dedicated-admin” role.  It is best practice to use dedicated admin when elevated privileges are needed.  You can read more about it [here](https://docs.openshift.com/dedicated/4/administering_a_cluster/dedicated-admin-role.html).
 
 1. Enter the following command to promote your user to a dedicated-admin
 

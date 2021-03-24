@@ -37,7 +37,7 @@ There are a few ways to install the `oc` CLI:
 Being Kubernetes, one can definitely use `kubectl` with their OpenShift cluster.  `oc` is specific to OpenShift in that it includes the standard set of features from `kubectl` plus additional support for OpenShift functionality.  See [Usage of oc and kubectl commands](https://docs.openshift.com/dedicated/4/cli_reference/openshift_cli/usage-oc-kubectl.html) for more details.
 
 ## Configure the AWS CLI
-If you've just installed the AWS CLI or want to simply make sure it is using the correct AWS account, follow these steps in a terminal:
+If you've just installed the AWS CLI or simply want to make sure it is using the correct AWS account, follow these steps in a terminal:
 
 >**NOTE:** You must use an actual IAM and not an assumed role
 
@@ -105,9 +105,12 @@ Verify that all the credentials set up are correct.
 ## Enable the AWS account to use ROSA (one time only)
 1. Visit <https://console.aws.amazon.com/rosa> to enable your account to use ROSA.
 1. Click on the orange "Enable service" button on the right.
+
+    ![Enable](images/1-enable.png)
+
 1. It will take about a minute and then you will see a green "service enabled" bar at the top.
 
-    ![Enable](images/1-enabled.png)
+    ![Enabled](images/1-enabled.png)
 
 ## Verify quota, permissions and initialize your AWS account
 This step runs a CloudFormation template that prepares your AWS account for cluster deployment and management. This step typically takes 1-2 minutes to complete. This step also will verify that your account quota is adequate and permissions are accurate.
