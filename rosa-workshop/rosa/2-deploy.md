@@ -48,7 +48,7 @@ Use the `rosa` CLI to create the ROSA cluster.
 
 1. You can run the following command to check the status of the cluster
 
-    `rosa describe cluster my-rosa-cluster`
+    `rosa describe cluster --cluster=my-rosa-cluster`
 
     You should notice the state change from “pending” to “installing”.
     
