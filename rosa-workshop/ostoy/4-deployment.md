@@ -60,11 +60,11 @@ The microservice serves internal web requests and returns a JSON object containi
 
 In your terminal deploy the microservice using the following command:
 
-`oc apply -f https://raw.githubusercontent.com/openshift-cs/rosaworkshop/master/ostoy/yaml/ostoy-microservice-deployment.yaml`
+`oc apply -f https://raw.githubusercontent.com/openshift-cs/rosaworkshop/master/rosa-workshop/ostoy/yaml/ostoy-microservice-deployment.yaml`
 
 You should see the following response:
 ```shell
-$ oc apply -f https://raw.githubusercontent.com/openshift-cs/rosaworkshop/master/ostoy/yaml/ostoy-microservice-deployment.yaml
+$ oc apply -f https://raw.githubusercontent.com/openshift-cs/rosaworkshop/master/rosa-workshop/ostoy/yaml/ostoy-microservice-deployment.yaml
 deployment.apps/ostoy-microservice created
 service/ostoy-microservice-svc created
 ```
@@ -83,12 +83,12 @@ The frontend deployment contains the node.js frontend for our application along 
 
 In your terminal, deploy the frontend along with creating all objects mentioned above by entering:
 
-`oc apply -f https://raw.githubusercontent.com/openshift-cs/rosaworkshop/master/ostoy/yaml/ostoy-fe-deployment.yaml`
+`oc apply -f https://raw.githubusercontent.com/openshift-cs/rosaworkshop/master/rosa-workshop/ostoy/yaml/ostoy-fe-deployment.yaml`
 
 You should see all objects created successfully
 
 ```shell
-$ oc apply -f https://raw.githubusercontent.com/openshift-cs/rosaworkshop/master/ostoy/yaml/ostoy-fe-deployment.yaml
+$ oc apply -f https://raw.githubusercontent.com/openshift-cs/rosaworkshop/master/rosa-workshop/ostoy/yaml/ostoy-fe-deployment.yaml
 persistentvolumeclaim/ostoy-pvc created
 deployment.apps/ostoy-frontend created
 service/ostoy-frontend-svc created
