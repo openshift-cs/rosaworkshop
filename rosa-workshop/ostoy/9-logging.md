@@ -42,10 +42,12 @@ You should see both the *stdout* and *stderr* messages.
 
 ### Using Kibana to search logs
 
+>**NOTE:** There are some known issues in this section that are being worked on.
+
 #### 5. View the Kibana console
 In the OpenShift Webconsole click on *Monitoring > Logging* in the left menu.
 
-Open up a new browser tab and go to `https://logs.<cluster name>.openshfit.com` to access the Kibana console.  Ensure the correct project is selected.  In the beginning of this lab we created the `ostoy` project. So select the one that begins with `project.ostoy...`.
+Open up a new browser tab and go to `https://logs.<cluster name>.openshift.com` to access the Kibana console.  Ensure the correct project is selected.  In the beginning of this lab we created the `ostoy` project. So select the one that begins with `project.ostoy...`.
 
 ![Kibana console](images/9-kibana.png)
 

@@ -13,7 +13,11 @@ But if the screen is too small or that just won't work, then open the OSToy appl
 ![Deploy Num](images/5-ostoy-deployview.png)
 
 #### 2. Intentionally crash the pod
-Go to the OSToy app, click on *Home* in the left menu, and enter a message in the "Crash Pod" tile (ie: "This is goodbye!") and press the "Crash Pod" button.  This will cause the pod to crash and Kubernetes should restart the pod. After you press the button you will see:
+Go to the OSToy app, click on *Home* in the left menu, and enter a message in the "Crash Pod" tile (ie: "This is goodbye!") and press the "Crash Pod" button.
+
+![Crash pod](images/5-ostoy-crashpod.png)
+
+This will cause the pod to crash and Kubernetes should restart the pod. After you press the button you will see:
 
 ![Crash Message](images/5-ostoy-crashmsg.png)
 

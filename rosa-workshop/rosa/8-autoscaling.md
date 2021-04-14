@@ -17,7 +17,7 @@ We will focus on the second as it relates to ROSA.
     You will see a response like:
 
         ID         AUTOSCALING  REPLICAS  INSTANCE TYPE  LABELS     TAINTS    AVAILABILITY ZONES
-        default    No           2         m5.xlarge                           us-east-1a
+        Default    No           2         m5.xlarge                           us-east-1a
 
 
 1. Now run the following to add autoscaling to that machine pool.
@@ -26,7 +26,7 @@ We will focus on the second as it relates to ROSA.
 
     For example:
     
-    `$ rosa edit machinepool -c my-rosa-cluster --enable-autoscaling default --min-replicas=2 --max-replicas=4`
+    `$ rosa edit machinepool -c my-rosa-cluster --enable-autoscaling Default --min-replicas=2 --max-replicas=4`
 
     This will create an autoscaler for the worker nodes to scale between 2 and 4 nodes depending on the resources. 
 
@@ -39,7 +39,7 @@ We will focus on the second as it relates to ROSA.
     You will see a response like:
 
         ID         AUTOSCALING  REPLICAS  INSTANCE TYPE  LABELS     TAINTS    AVAILABILITY ZONES
-        default    Yes          2-4       m5.xlarge                           us-east-1a
+        Default    Yes          2-4       m5.xlarge                           us-east-1a
 
 
 
