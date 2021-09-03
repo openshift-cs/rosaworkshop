@@ -1,9 +1,9 @@
-## Create a quick admin user
-If you want to be able to access your cluster immediately and have a cluster-admin user you can follow these steps.  This is good if you need quick access to the cluster, though the recommended approach is to use a formal identity provider to access the cluster.
+## Create an admin user for quick access
+If you want to be able to access your cluster immediately through a cluster-admin user, you can follow these steps. This is good if you need quick access to the cluster. Though the recommended approach is to use a formal identity provider to access the cluster (and then grant that user admin privileges, if desired).
 
 1. Run this command to create the admin user
 
-    `rosa create admin --cluster=my-rosa-cluster` 
+        rosa create admin --cluster=my-rosa-cluster
 
     You will see a response like the following:
 
@@ -33,7 +33,11 @@ If you want to be able to access your cluster immediately and have a cluster-adm
         $ oc whoami
         cluster-admin
 
-4. You can now use the cluster as an admin user, though it is highly recommended to set up an IdP.
+4. You can also confirm by running the following command. Only a cluster-admin user can run this without errors.
+
+        oc get all -n openshift-apiserver
+
+5. You can now use the cluster as an admin user, though it is highly recommended to set up an IdP.
 
 *[ROSA]: Red Hat OpenShift Service on AWS
 *[IdP]: Identity Provider

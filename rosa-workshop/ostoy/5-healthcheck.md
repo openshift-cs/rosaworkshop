@@ -6,9 +6,9 @@ It would be best to prepare by splitting your screen between the OpenShift Web U
 
 ![Splitscreen](images/5-ostoy-splitscreen.png)
 
-But if the screen is too small or that just won't work, then open the OSToy application in another tab so you can quickly switch to OpenShift Web Console once you click the button. To get to this deployment in the OpenShift Web Console go to: 
+But if the screen is too small or that just won't work, then open the OSToy application in another tab so you can quickly switch to OpenShift Web Console once you click the buttons in our app. To get to this deployment in the OpenShift Web Console go to: 
 
-*Workloads* > *Deployments* > *ostoy-frontend* > *Pods* 
+*Workloads* > *Pods* > *"OSToy" project*
 
 ![Deploy Num](images/5-ostoy-deployview.png)
 
@@ -22,12 +22,12 @@ This will cause the pod to crash and Kubernetes should restart the pod. After yo
 ![Crash Message](images/5-ostoy-crashmsg.png)
 
 #### 3. View the revival
-Quickly switch to the Deployment - Pods screen (from step 1). You will see that the pod is in an error state, meaning it is down but should quickly come back up. (**Note:** this may happen quickly. If you are switching tabs you might miss it).
+Quickly switch to the Pods screen (from step 1). You will see that the pod is in an error state, meaning it is down but should quickly come back up. (**Note:** this may happen quickly. If you are switching tabs you might miss it).
 
 ![Pod Crash](images/5-ostoy-podcrash.png)
 
 #### 4. Confirm
-You can also check in the pod events (click on  *Home > Events* in the left nav) and further verify that the container has crashed and been restarted.
+You can also check in the pod events. Click on the `ostoy-frontend-xxxxxxx-xxxx` pod (in the "Name" column) > *Events* and further verify that the container has crashed and been restarted.
 
 ![Pod Events](images/5-ostoy-events.png)
 

@@ -8,35 +8,44 @@ There are 3 ways to upgrade your cluster.
 
 We will go through these three scenarios.
 
+You can always use `--help` for more details like
+
+	rosa upgrade cluster --help
+
 #### Manually via the CLI
 1. Check if there is an upgrade available by running the following command
 
-	`rosa list upgrade -c <cluster-name>` 
+		rosa list upgrade -c <cluster-name>
 
 	You will get a list that shows the available version and the current version of your cluster.  For example:
 
     	$ rosa list upgrade -c <cluster-name>
     	VERSION  NOTES
-    	4.6.15   recommended
-    	4.6.13
+    	4.8.5   recommended
+    	4.8.4
+    	...
 
-    In our example we see that version 4.6.13 is available and so is 4.6.15.
+    In our example we see that version 4.8.4 is available and so is 4.8.5.
 
 1. Upgrade the cluster to the latest version by running
 
- 	`rosa upgrade cluster -c my-rosa-cluster --version 4.6.15`
+ 		rosa upgrade cluster -c my-rosa-cluster --version 4.8.5
 
-1. This will schedule the cluster for immediate upgrade.  It will take some time to complete.
+1. This will schedule the cluster for upgrade within the hour. It will take some time to complete.
+1. You can also schedule the upgrade for a later date/time by using the `--schedule-date` and `--schedule-time` flags
 
 #### Manually via OCM UI
-1. To perform or upgrade via the UI log into OCM (<https://cloud.redhat.com/openshift>) and select the cluster you want to upgrade.
-1. Click on the “Update Settings” tab
-1. Click on the “Update” button
+1. To perform an upgrade via the UI, log into OCM and select the cluster you want to upgrade.
+1. Click on the “Settings” tab.
+1. You will see if an upgrade is available and if so, click on the “Update” button.
 
-	![mp](images/10-upgrade.png)
+	![mp](images/9-upgrade.png)
+
+1. This will open a window allowing you to select the version to upgrade to.
+1. You can then schedule a time for the upgrade or begin it immediately.
 
 #### Set up automatic updates
-1. To set up your cluster to be updated automatically log into OCM (<https://cloud.redhat.com/openshift>) and select the cluster you want to upgrade.
+1. To set up your cluster to be updated automatically log into OCM and select the cluster you want to upgrade.
 1. Click on the “Update Settings” tab.
 1. Under “Update Strategy” click the “Automatic” radio button.
 1. This will open up options for a day of the week and time that you can set for the update to occur.
