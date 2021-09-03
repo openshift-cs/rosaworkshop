@@ -1,10 +1,10 @@
 ## Setting up an IdP with GitHub
 To log in to your cluster, it is recommended to set up an identity provider (IdP). This procedure uses GitHub as an example IdP. See the full list of [supported IdPs](https://docs.openshift.com/rosa/rosa_getting_started/rosa-config-identity-providers.html#supported-identity-providers) by ROSA. 
 
-> **NOTE:** To view all options run the `rosa create idp --help` command.
+> **NOTE:** To view all options run `rosa create idp --help`.
 
 1. Log into your GitHub account
-2. You can either use an existing Organization that you're an admin of or create a new one. If you already have one that you want to use skip to step “7”. Here we will create a new Organization for use with our new ROSA cluster.  Click on the “+”  icon in the top then click on “New Organization”.
+2. You can either use an existing Organization that you're an admin of, or create a new one. If you already have one that you want to use skip to step “7”. Here we will create a new Organization for use with our new ROSA cluster.  Click on the “+”  icon in the top then click on “New Organization”.
 
     ![New Org](images/4-new-org.png)
 
@@ -13,11 +13,11 @@ To log in to your cluster, it is recommended to set up an identity provider (IdP
 
     ![Team](images/4-team.png)
 
-5. If you have other users that you want to grant access to your ROSA cluster you can add their GitHub IDs to the organization or you can just add them later. We will just click “Complete Setup” without adding anyone else.
+5. If you have other users that you want to grant access to your ROSA cluster you can add their GitHub IDs to the organization or you can add them later. We will click “Complete Setup” without adding anyone else.
 6. You can fill in the requested information on the following page or just click “Submit” at the bottom.
 7. Go back to the terminal and enter the following command to set up the GitHub IdP.
 
-    `rosa create idp --cluster=<cluster name> --interactive`
+        rosa create idp --cluster=<cluster name> --interactive
 
 8. Enter the following values that are in bold below:
     
@@ -35,7 +35,7 @@ To log in to your cluster, it is recommended to set up an identity provider (IdP
     ![register](images/4-register.png)
 
 11. On the next page it will show you a “Client ID”.  Copy this and paste it back into the terminal where it asks for “Client ID”. **DO NOT CLOSE THIS TAB.**
-12. The CLI now asks for a “Client Secret”.  So go back in your browser click on “Generate a new client secret” near the middle of the page towards the right.
+12. The CLI now asks for a “Client Secret”.  So go back in your browser and click on “Generate a new client secret” near the middle of the page towards the right.
 
     ![secret](images/4-secret.png)
 

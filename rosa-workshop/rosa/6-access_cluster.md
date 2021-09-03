@@ -2,7 +2,10 @@
 There are multiple ways to interact with your cluster.  You can connect to it via the CLI or via the Web Console. We will review both options below.
 
 #### Accessing the cluster via the Web Console
-1. Copy the url provided from the previous step where we set up the IdP and paste it into your web browser.  It will be in the format of <https://console-openshift-console.apps.my-rosa-cluster.abcd.p1.openshiftapps.com> 
+1. Enter the console URL into your web browser.  If you need to retrieve it you can run:
+
+        rosa describe cluster -c <cluster-name> | grep Console
+
 1. Click on your IdP.  In the guide we created “rosa-github”.
 
     ![login](images/4-login.png)
@@ -13,7 +16,7 @@ There are multiple ways to interact with your cluster.  You can connect to it vi
     ![loggedin](images/6-logged.png)
 
 #### Accessing the cluster via the CLI
-In order to access the cluster via the CLI you must have the `oc` command installed.  Which if you followed the previous steps you already have.
+In order to access the cluster via the CLI you must have the `oc` CLI installed.  Which if you followed the previous steps you already have.
 
 1. Log into the web console as stated above.
 1. Click on your username in the top right corner

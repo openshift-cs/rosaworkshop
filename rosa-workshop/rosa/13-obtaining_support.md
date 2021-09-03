@@ -1,18 +1,13 @@
 ## Obtaining Support
 
-Finding the right help when you need it is important.  So we will review the resources at your disposal for when you need some assistance.
+Finding the right help when you need it is important. So we will review the resources at your disposal for when you need some assistance. See the links at the bottom of the [Home page](../../#resources) for more resources.
 
-- [ROSA Documentation](https://docs.openshift.com/rosa/welcome/index.html) (ROSA specific documentation)
-    - [Policies and Definitions](https://docs.openshift.com/rosa/rosa_policy/rosa-service-definition.html)
-    - [Responsibility Assignment Matrix](https://docs.openshift.com/rosa/rosa_policy/rosa-policy-responsibility-matrix.html)
-    - [Understanding Process and Security](https://docs.openshift.com/rosa/rosa_policy/rosa-policy-process-security.html)
-    - [About Availability](https://docs.openshift.com/rosa/rosa_policy/rosa-policy-understand-availability.html)
-    - [Updates Lifecycle](https://docs.openshift.com/rosa/rosa_policy/rosa-life-cycle.html)
-- [OpenShift Documentation](https://docs.openshift.com/container-platform/4.7/welcome/index.html) (for all OpenShift related information)
-- [Blogs](https://www.openshift.com/blog)
-- Contact Support - Reviewed in detail below
+
+#### Adding support contacts
+You can add additional email addresses to be contacted for any communication about your cluster by going to the OCM UI > *select cluster* > *Support* tab >  *Add notification contact*.
 
 #### Contacting Red Hat for support
+>**NOTE:** This can also be achived by using the OCM UI and clicking on the *Support* tab and then clicking *Open support case*.
 
 1. Go to <https://support.redhat.com>
 1. Click on “Open a new Case” on the left-most box
@@ -39,11 +34,11 @@ Finding the right help when you need it is important.  So we will review the res
 1. Enter the following information about your case
     1. **Support level:** Premium
     1. **Severity:** Review the Red Hat Support Severity Level Definitions to choose the correct one.
-    1. **Group:** If this is related to a few other cases you can select the corresponding group
+    1. **Group:** If this is related to a few other cases you can select the corresponding group.
     1. **Language**
-    1. **Send notifications:** Add colleagues’ email addresses who you want to keep notified of activity
+    1. **Send notifications:** Add colleagues’ email addresses who you want to keep notified of activity.
     1. **Red Hat associates:**  If you are working with any from Red Hat and want to keep them in the loop you can enter their email addresses here. 
-    1. **Alternate Case ID:** If you want to attach your own ID to it you can enter it here
+    1. **Alternate Case ID:** If you want to attach your own ID to it you can enter it here.
 1. Click Continue
 1. On the review screen make sure you select the correct cluster ID that you are contacting support about.
 

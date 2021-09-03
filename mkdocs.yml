@@ -33,10 +33,10 @@ nav:
     - Storage: 'ostoy/6-storage.md'
     - ConfigMaps, Secrets, Env Var: 'ostoy/7-confsecenv.md'
     - Networking: 'ostoy/8-networking.md'
+    - Scaling: 'ostoy/12-scaling.md'
     - Logging: 'ostoy/9-logging.md'
     - S2I Deployments: 'ostoy/10-deployment_s2i.md'
     - S2I Webhooks for CICD: 'ostoy/11-cicd_s2i.md'
-    - Autoscaling: 'ostoy/12-hpa.md'
   - Feedback: 'feedback.md'
 
 # Theme Configuration
