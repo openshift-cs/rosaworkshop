@@ -27,36 +27,36 @@ If this is the <u>first time</u> you are deploying ROSA in this account and have
 
 Run the following command (To see all available OpenShift versions available run: `rosa list versions`):
 
-        rosa create account-roles --mode auto --version 4.8 --yes
+    rosa create account-roles --mode auto --version 4.8 --yes
 
 You will see an output like the following:
 
-        I: Creating roles using 'arn:aws:iam::000000000000:user/rosa-user'
-        I: Created role 'ManagedOpenShift-ControlPlane-Role' with ARN 'arn:aws:iam::000000000000:role/ManagedOpenShift-ControlPlane-Role'
-        I: Created role 'ManagedOpenShift-Worker-Role' with ARN 'arn:aws:iam::000000000000:role/ManagedOpenShift-Worker-Role'
-        I: Created role 'ManagedOpenShift-Support-Role' with ARN 'arn:aws:iam::000000000000:role/ManagedOpenShift-Support-Role'
-        I: Created role 'ManagedOpenShift-Installer-Role' with ARN 'arn:aws:iam::000000000000:role/ManagedOpenShift-Installer-Role'
-        I: Created policy with ARN 'arn:aws:iam::000000000000:policy/ManagedOpenShift-openshift-machine-api-aws-cloud-credentials'
-        I: Created policy with ARN 'arn:aws:iam::000000000000:policy/ManagedOpenShift-openshift-cloud-credential-operator-cloud-crede'
-        I: Created policy with ARN 'arn:aws:iam::000000000000:policy/ManagedOpenShift-openshift-image-registry-installer-cloud-creden'
-        I: Created policy with ARN 'arn:aws:iam::000000000000:policy/ManagedOpenShift-openshift-ingress-operator-cloud-credentials'
-        I: Created policy with ARN 'arn:aws:iam::000000000000:policy/ManagedOpenShift-openshift-cluster-csi-drivers-ebs-cloud-credent'
-        I: To create a cluster with these roles, run the following command:
-        rosa create cluster --sts
+    I: Creating roles using 'arn:aws:iam::000000000000:user/rosa-user'
+    I: Created role 'ManagedOpenShift-ControlPlane-Role' with ARN 'arn:aws:iam::000000000000:role/ManagedOpenShift-ControlPlane-Role'
+    I: Created role 'ManagedOpenShift-Worker-Role' with ARN 'arn:aws:iam::000000000000:role/ManagedOpenShift-Worker-Role'
+    I: Created role 'ManagedOpenShift-Support-Role' with ARN 'arn:aws:iam::000000000000:role/ManagedOpenShift-Support-Role'
+    I: Created role 'ManagedOpenShift-Installer-Role' with ARN 'arn:aws:iam::000000000000:role/ManagedOpenShift-Installer-Role'
+    I: Created policy with ARN 'arn:aws:iam::000000000000:policy/ManagedOpenShift-openshift-machine-api-aws-cloud-credentials'
+    I: Created policy with ARN 'arn:aws:iam::000000000000:policy/ManagedOpenShift-openshift-cloud-credential-operator-cloud-crede'
+    I: Created policy with ARN 'arn:aws:iam::000000000000:policy/ManagedOpenShift-openshift-image-registry-installer-cloud-creden'
+    I: Created policy with ARN 'arn:aws:iam::000000000000:policy/ManagedOpenShift-openshift-ingress-operator-cloud-credentials'
+    I: Created policy with ARN 'arn:aws:iam::000000000000:policy/ManagedOpenShift-openshift-cluster-csi-drivers-ebs-cloud-credent'
+    I: To create a cluster with these roles, run the following command:
+    rosa create cluster --sts
 
 
 ### Create the cluster
 Run the following command to create a cluster with all the default options 
 
-        rosa create cluster --cluster-name <cluster name> --sts
+    rosa create cluster --cluster-name <cluster name> --sts
 
-    >**Note:** If you want to see all available options for your cluster use the `--help` flag or for interactive mode you can use `--interactive`
+>**Note:** If you want to see all available options for your cluster use the `--help` flag or for interactive mode you can use `--interactive`
 
-    For example: 
+For example: 
 
-        rosa create cluster --cluster-name my-rosa-cluster --sts
+    $ rosa create cluster --cluster-name my-rosa-cluster --sts
 
-    You should see a response like the following:
+You should see a response like the following:
 
         I: Creating cluster 'my-rosa-cluster'
         I: To view a list of clusters and their status, run 'rosa list clusters'
@@ -102,37 +102,37 @@ Run the following command to create a cluster with all the default options
         OIDC Endpoint URL:          https://rh-oidc.s3.us-east-1.amazonaws.com/1mlhulb3bo0l54ojd0jicqg2n9nh7c4o
 
     
-    This will take about 30-40 minutes to run.
+This will take about 30-40 minutes to run.
 
-    The default settings are as follows:
+The default settings are as follows:
 
-    * 3 Master Nodes, 2 Infra Nodes, 2 Worker Nodes
-    * Worker node type: m5.xlarge
-    * Region: As configured for the AWS CLI
-    * Networking IP ranges:
-        * Machine CIDR: 10.0.0.0/16 
-        * Service CIDR: 172.30.0.0/16
-        * Pod CIDR: 10.128.0.0/14
-    * The most recent version of OpenShift available to `rosa`
-    * A single availability zone
-    * Public cluster (Public API)
+* 3 Master Nodes, 2 Infra Nodes, 2 Worker Nodes
+* Worker node type: m5.xlarge
+* Region: As configured for the AWS CLI
+* Networking IP ranges:
+    * Machine CIDR: 10.0.0.0/16 
+    * Service CIDR: 172.30.0.0/16
+    * Pod CIDR: 10.128.0.0/14
+* The most recent version of OpenShift available to `rosa`
+* A single availability zone
+* Public cluster (Public API)
 
 >**NOTE:** The state will stay in “Pending” until the next two steps below are completed.
 
 ### Create operator roles
-These roles need to be created once per cluster. To create the roles run the following:
+These roles need to be created <u>once per cluster</u>. To create the roles run the following:
 
-    rosa create operator-roles --mode auto --cluster my-rosa-cluster --yes
+    rosa create operator-roles --mode auto --cluster <cluster-name> --yes
 
 ### Create the OIDC provider
 Run the following to create the OIDC provider:
 
-    rosa create oidc-provider --mode auto --cluster my-rosa-cluster --yes
+    rosa create oidc-provider --mode auto --cluster <cluster-name> --yes
 
 ### Check installation status
 1. You can run the following command to check the status of the cluster for a detailed view
 
-        rosa describe cluster --cluster my-rosa-cluster
+        rosa describe cluster --cluster <cluster-name>
 
     or you can also run the following for an abridged view of the status
 
