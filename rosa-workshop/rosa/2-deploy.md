@@ -56,7 +56,7 @@ For example:
 
     $ rosa create cluster --cluster-name my-rosa-cluster --sts
 
-    You should see a response like the following:
+You should see a response like the following:
 
         I: Creating cluster 'my-rosa-cluster'
         I: To view a list of clusters and their status, run 'rosa list clusters'
