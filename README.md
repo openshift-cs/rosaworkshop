@@ -13,7 +13,7 @@ These pages are split into two sections. One contains the steps to getting start
 
 If you'd like a preview of some of the things covered in this workshop, you can watch a short demo:
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/_3vaKfPHm1c" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+[Deploying our first app on a ROSA cluster](https://youtu.be/_3vaKfPHm1c)
 
 ### Creating your first ROSA Cluster
 If you'd like an easy to follow guide for creating your first ROSA cluster you've come to the right place.
