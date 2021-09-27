@@ -3,7 +3,7 @@ If you want to be able to access your cluster immediately through a cluster-admi
 
 1. Run this command to create the admin user
 
-        rosa create admin --cluster=my-rosa-cluster
+        rosa create admin --cluster=<cluster-name>
 
     You will see a response like the following:
 

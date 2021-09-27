@@ -14,9 +14,9 @@ nav:
   - Getting Started with ROSA:
     - Setup: 'rosa/1-account_setup.md'
     - Deploy the cluster: 'rosa/2-deploy.md'
-    - Create Admin user: 'rosa/3-create_initial_admin.md'
+    - Create an admin user: 'rosa/3-create_initial_admin.md'
     - Setup an IdP: 'rosa/4-setup_idp.md'
-    - Granting Admin Rights: 'rosa/5-grant_admin.md'
+    - Granting admin rights: 'rosa/5-grant_admin.md'
     - Accessing your cluster: 'rosa/6-access_cluster.md'
     - Managing worker nodes: 'rosa/7-managing_nodes.md'
     - Autoscaling: 'rosa/8-autoscaling.md'

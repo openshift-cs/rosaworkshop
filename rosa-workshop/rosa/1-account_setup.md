@@ -1,8 +1,8 @@
+There are currently two supported methods for creating a ROSA cluster. One method uses IAM with the *AdministratorAccess* policy (only for the account using ROSA).  The other, more recent version, uses AWS STS (as [described](../../index.html#what-is-red-hat-openshift-service-on-aws-rosa) on the home page). In this workshop we will only be using the STS method.
+
 ## Prerequisites
 
-Please review the prerequisites found in the documentation at [Prerequisites for ROSA](https://docs.openshift.com/rosa/rosa_getting_started/rosa-aws-prereqs.html) before getting started.
-
->**NOTE:** The Minimum SCP section as well as allowing *AdministratorAccess* does not apply to clusters that make use of STS.
+Please review the prerequisites found in the documentation at [Prerequisites for ROSA w/STS](https://docs.openshift.com/rosa/rosa_getting_started_sts/rosa-sts-aws-prereqs.html) before getting started.
 
 
 You will need the following pieces of information from your AWS account:
@@ -11,13 +11,13 @@ You will need the following pieces of information from your AWS account:
 - AWS Access Key ID
 - AWS Secret Access Key
 
-#### 1. A Red Hat Account
-If you do not already have a Red Hat account, create one here <https://console.redhat.com/>. Accept the required terms and conditions. Then check your email for a verification link.
+### A Red Hat account
+If you do not have a Red Hat account, create one here <https://console.redhat.com/>. Accept the required terms and conditions. Then check your email for a verification link.
 
-#### 2. Install the AWS CLI
+### Install the AWS CLI
 [Install the AWS CLI](https://aws.amazon.com/cli/) as per your operating system.
 
-#### 3. Enable ROSA
+### Enable ROSA
 Complete this step if you have *not* enabled ROSA in your AWS account.
 
 - Visit <https://console.aws.amazon.com/rosa> to enable your account to use ROSA.
@@ -29,26 +29,26 @@ Complete this step if you have *not* enabled ROSA in your AWS account.
 
     ![Enabled](images/1-enabled.png)
 
-#### 4. Install the ROSA CLI
+### Install the ROSA CLI
 - Install the [ROSA CLI](https://www.openshift.com/products/amazon-openshift/download) as per your operating system. 
 - Download and extract the relevant file for your operating system and store it in a location within your "PATH". 
 - Run `rosa version` to make sure it works and that it returns the version number.
 
-#### 5. Install the OpenShift CLI
+### Install the OpenShift CLI
 There are a few ways to install the `oc` CLI:
 
 - If you have the `rosa` CLI installed, the simplest way is to run `rosa download oc`
     - Once downloaded, move the executable into a directory in your PATH
 - You can [download and install](https://docs.openshift.com/container-platform/4.8/cli_reference/openshift_cli/getting-started-cli.html#installing-openshift-cli) the latest OpenShift CLI (oc).  
-- If you already have an OpenShift cluster you can access the command line tools page by clicking on the *Questionmark > Command Line Tools*.  Then download the relevant one for your operating system.
+- If you already have an OpenShift cluster you can access the command line tools page by clicking on the *Question mark > Command Line Tools*.  Then download the relevant one for your operating system.
 
   ![CLI Tools](images/0-cli_tools_page.png)
 
 **Why use `oc` over `kubectl`**<br>
 Being Kubernetes, one can definitely use `kubectl` with their OpenShift cluster.  `oc` is specific to OpenShift in that it includes the standard set of features from `kubectl` plus additional support for OpenShift functionality.  See [Usage of oc and kubectl commands](https://docs.openshift.com/container-platform/4.8/cli_reference/openshift_cli/usage-oc-kubectl.html) for more details.
 
-## Configure the AWS CLI
-If you've just installed the AWS CLI or simply want to make sure it is using the correct AWS account, follow these steps in a terminal:
+### Configure the AWS CLI
+If you've just installed the AWS CLI, or simply want to make sure it is using the correct AWS account, follow these steps in a terminal:
 
 >**NOTE:** You must use an actual IAM and not an assumed role
 
@@ -68,7 +68,7 @@ If you've just installed the AWS CLI or simply want to make sure it is using the
         Default output format: table 
 
 
-## Verify the Configuration
+### Verify the configuration
 Verify that the configuration is correct.
 
 1. Run the following command to query the AWS API      
@@ -86,7 +86,17 @@ Verify that the configuration is correct.
         |  000000000000|  arn:aws:iam::00000000000:user/myuser  |  AIDA00000000000000|
         +--------------+----------------------------------------+--------------------+
 
-## Log into your Red Hat account
+
+### Ensure the ELB service role exists
+Make sure that the service role for ELB already exists otherwise the cluster deployment could fail. As such, run the following to check for the role and create it if it is missing. 
+
+    aws iam get-role --role-name "AWSServiceRoleForElasticLoadBalancing" || aws iam create-service-linked-role --aws-service-name "elasticloadbalancing.amazonaws.com"
+
+If you received an error during cluster creation like below, then the above should correct it.
+
+    Error: Error creating network Load Balancer: AccessDenied: User: arn:aws:sts::970xxxxxxxxx:assumed-role/ManagedOpenShift-Installer-Role/163xxxxxxxxxxxxxxxx is not authorized to perform: iam:CreateServiceLinkedRole on resource: arn:aws:iam::970xxxxxxxxx:role/aws-service-role/elasticloadbalancing.amazonaws.com/AWSServiceRoleForElasticLoadBalancing"
+
+### Log into your Red Hat account
 1. Enter `rosa login` in a terminal.
 2. It will prompt you to open a web browser and go to:
 
@@ -94,11 +104,11 @@ Verify that the configuration is correct.
 
 3. If you are asked to log in, then please do.
 4. Click on the "Load token" button. 
-4. Copy the token and paste it back into the CLI prompt and press enter.  You can also just copy the full `rosa login --token=abc...` command and paste that in the terminal.
+5. Copy the token and paste it back into the CLI prompt and press enter.  You can also just copy the full `rosa login --token=abc...` command and paste that in the terminal.
 
     ![CLI Tools](images/1-token.png)
 
-## Verify Credentials
+### Verify credentials
 Verify that all the credentials set up are correctly. 
 
 1. Run `rosa whoami`
@@ -119,7 +129,7 @@ Verify that all the credentials set up are correctly.
 
 2. Please check all information for accuracy before proceeding.
 
-## Verify Quota
+### Verify quota
 Verify that your AWS account has ample quota in the region you will be deploying your cluster to.  Run the following: 
 
     rosa verify quota
@@ -129,7 +139,7 @@ Should return a response like
     I: Validating AWS quota...
     I: AWS quota ok. If cluster installation fails, validate actual AWS resource usage against https://docs.openshift.com/rosa/rosa_getting_started/rosa-required-aws-service-quotas.html
 
-## Verify `oc` CLI
+### Verify `oc` CLI
 Verify that the `oc` CLI is installed correctly
 
     rosa verify openshift-client

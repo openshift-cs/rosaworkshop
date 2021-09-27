@@ -6,7 +6,7 @@ Cluster admin rights are not automatically granted users that you add to the clu
 1. Via `rosa` CLI
     1. Assuming you are the user who created the cluster, you can grant cluster-admin to a user (or our GitHub user) by running
 
-            rosa grant user cluster-admin --user <idp_user_name> --cluster=<cluster_name>
+            rosa grant user cluster-admin --user <idp_user_name> --cluster=<cluster-name>
 
     1. Verify that we were added as a cluster-admin by running
 
@@ -43,11 +43,11 @@ Cluster admin rights are not automatically granted users that you add to the clu
         ![adduser](images/5-adduser2.png)
 
 #### Granting dedicated-admin
-ROSA has a concept of an admin user that can complete most administrative tasks but is slightly limited to prevent anything damaging.  It is called a “dedicated-admin” role.  It is best practice to use dedicated admin when elevated privileges are needed.  You can read more about it [here](https://docs.openshift.com/dedicated/4/administering_a_cluster/dedicated-admin-role.html).
+ROSA has a concept of an admin user that can complete most administrative tasks but is slightly limited to prevent anything damaging.  It is called a “dedicated-admin” role.  It is best practice to use dedicated-admin when elevated privileges are needed.  You can read more about it [here](https://docs.openshift.com/dedicated/administering_a_cluster/osd-admin-roles.html#the-dedicated-admin-role).
 
 1. Enter the following command to promote your user to a dedicated-admin
 
-        rosa grant user dedicated-admin --user <idp_user_name> --cluster <cluster_name>
+        rosa grant user dedicated-admin --user <idp_user_name> --cluster=<cluster-name>
 
 1. Enter the following command to verify that your user now has dedicated-admin access
 

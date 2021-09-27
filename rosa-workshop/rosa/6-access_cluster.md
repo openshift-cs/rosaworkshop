@@ -44,7 +44,7 @@ In order to access the cluster via the CLI you must have the `oc` CLI installed.
         $ oc whoami
         rosa-user
 
-1. We can now start using our cluster.
+1. We can start using our cluster.
 
 
 *[ROSA]: Red Hat OpenShift Service on AWS
