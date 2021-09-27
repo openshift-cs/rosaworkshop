@@ -42,7 +42,7 @@ To log in to your cluster, it is recommended to set up an identity provider (IdP
 13. A secret will be generated for you. Make sure to copy it as it will never be visible again.
 14. Paste it into the terminal where the CLI is asking for the Client Secret and press enter.
 15. Leave "GitHub Enterprise Hostname" blank.
-16. Select “claim” (For more details see [Identity provider parameters](https://docs.openshift.com/container-platform/4.7/post_installation_configuration/preparing-for-users.html#identity-provider-parameters_post-install-preparing-for-users))
+16. Select “claim” (For more details see [Identity provider parameters](https://docs.openshift.com/container-platform/4.8/post_installation_configuration/preparing-for-users.html#identity-provider-parameters_post-install-preparing-for-users))
 17. Then the IdP will be created but can take up to 1 minute for the configuration to land onto your cluster.
     
     Your inputs should look similar to the following:
