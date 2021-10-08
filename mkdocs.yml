@@ -11,7 +11,7 @@ repo_url: https://github.com/openshift-cs/rosaworkshop
 # Nav Menu Definition
 nav:
   - Home: index.md
-  - Getting Started with ROSA:
+  - Getting started with ROSA:
     - Setup: 'rosa/1-account_setup.md'
     - Deploy the cluster: 'rosa/2-deploy.md'
     - Create an admin user: 'rosa/3-create_initial_admin.md'
@@ -23,10 +23,9 @@ nav:
     - Upgrade the cluster: 'rosa/9-upgrade.md'
     - Delete the cluster: 'rosa/12-delete_cluster.md'
     - Obtaining support: 'rosa/13-obtaining_support.md'
-  - OpenShift Internals Lab:
+  - Deploy the application:
     - Introduction: 'ostoy/lab_intro.md'
     - Prerequisites: 'ostoy/1-prereqs.md'
-    - Concepts: 'ostoy/2-concepts.md'
     - Lab Overview: 'ostoy/3-lab_overview.md'
     - Deployment: 'ostoy/4-deployment.md'
     - Health Check: 'ostoy/5-healthcheck.md'
@@ -37,6 +36,7 @@ nav:
     - Logging: 'ostoy/9-logging.md'
     - S2I Deployments: 'ostoy/10-deployment_s2i.md'
     - S2I Webhooks for CICD: 'ostoy/11-cicd_s2i.md'
+  - OpenShift Concepts: 'ostoy/2-concepts.md'
   - Feedback: 'feedback.md'
 
 # Theme Configuration

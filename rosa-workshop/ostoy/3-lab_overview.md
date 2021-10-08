@@ -7,7 +7,7 @@
 	- [ostoy-fe-deployment.yaml](yaml/ostoy-fe-deployment.yaml)
 	- [ostoy-microservice-deployment.yaml](yaml/ostoy-microservice-deployment.yaml)
 
-> **Note** In order to simplify the deployment of the app we have included all the objects needed in the above YAMLs as "all-in-one" YAMLs.  Though in reality, an enterprise would most likely want to have a different yaml file for each Kubernetes object.
+> **Note:** In order to simplify the deployment of the app we have included all the objects needed in the above YAMLs as "all-in-one" YAMLs.  Though in reality, an enterprise would most likely want to have a different yaml file for each Kubernetes object.
 
 ### About OSToy
 
@@ -37,7 +37,7 @@ OSToy is a simple Node.js application that we will deploy to ROSA. It is used to
 8. **Auto Scaling:** Tool to increase the load of the pods and test the HPA.
 9. Shows some more information about the application.
 
-![Home Page](images/3-ostoy-homepage-1.png)
+	![Home Page](images/3-ostoy-homepage-1.png)
 
 ### Learn more about the application
 

@@ -9,7 +9,24 @@ A listing of the account-wide and per-cluster roles is provided in the documenta
 
 
 ### What information is on this site?
-These pages are split into two sections. One contains the steps to getting started on ROSA ("Getting started with ROSA").  While the other is about deploying an application to ROSA to get better familiar with the internals of OpenShift ("OpenShift Internals Lab") and deploy your first application on ROSA.
+These pages are split into three sections. One contains the steps to getting started on ROSA ("Getting started with ROSA").  Another is about deploying an application to ROSA to get better familiar with the internals of OpenShift ("Deploy the application"). While the last is a summary of a few key OpenShift concepts that will be used in the workshop.
+
+
+### What will we do in this workshop?
+In this workshop, you’ll go through a set of tasks that will help you understand the concepts of deploying and using container based applications on top of ROSA.
+
+Some of the things you’ll be going through:
+
+- Deploy a ROSA cluster using STS
+- Deploy a node.js based app via S2I and Kubernetes Deployment objects
+- Set up an continuous delivery pipeline to automatically push changes to the source code
+- Explore logging
+- Experience self healing of applications
+- Explore configuration management through configmaps, secrets and environment variables
+- Use persistent storage to share data across pod restarts
+- Explore networking within Kubernetes and applications
+- Familiarization with OpenShift and Kubernetes functionality
+- Automatically scale pods based on load via the Horizontal Pod Autoscaler
 
 If you'd like a preview of some of the things covered in this workshop, you can watch a short demo:
 
@@ -18,8 +35,8 @@ If you'd like a preview of some of the things covered in this workshop, you can 
 ### Creating your first ROSA Cluster
 If you'd like an easy to follow guide for creating your first ROSA cluster you've come to the right place.
 
-1. First please review the [prerequisites](https://docs.openshift.com/rosa/rosa_getting_started_sts/rosa-sts-aws-prereqs.html) which contains important information about the AWS account requirements.  
-1. Then visit the "Getting Started with ROSA" tutorial for [Setting up your account](rosa/1-account_setup.md).
+1. Please review the [prerequisites](https://docs.openshift.com/rosa/rosa_getting_started_sts/rosa-sts-aws-prereqs.html) which contains important information about the AWS account requirements.  
+1. Visit the "Getting Started with ROSA" tutorial for [Setting up your account](rosa/1-account_setup.md).
 
 
 ### Resources

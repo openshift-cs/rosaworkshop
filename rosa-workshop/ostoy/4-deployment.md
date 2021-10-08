@@ -2,7 +2,7 @@
 One way to deploy the application would be to have the images for the front-end and back-end microservice containers already created (via CI/CD) and stored in an image repository.  You can then create Kubernetes deployments (YAML) and use those to deploy the application.  We will do that now.
 
 #### 1. Retrieve the login command
-If not logged in via the CLI, click on the dropdown arrow next to your name in the top-right and select *Copy Login Command*.
+If you are not logged in via the CLI, [access your cluster via the web console](/rosa/6-access_cluster/#accessing-the-cluster-via-the-web-console), then click on the dropdown arrow next to your name in the top-right and select *Copy Login Command*.
 
 ![CLI Login](images/4-cli-login.png)
 
@@ -35,7 +35,7 @@ You should receive the following response
 
     to build a new example application in Ruby.
 
-Equivalently you can also create this new project using the [web console UI](/rosa/2-deploy/#obtain-the-console-url) by clicking on "Projects" under "Home" on the left menu, and then click "Create Project" button on the right.
+Equivalently you can also create this new project using the [web console UI](/rosa/6-access_cluster/#accessing-the-cluster-via-the-web-console) by clicking on "Projects" under "Home" on the left menu, and then click "Create Project" button on the right.
 
 ![UI Create Project](images/4-createnewproj.png)
 
