@@ -281,6 +281,7 @@ In this version we will also make use of the `--interactive` mode so that it wil
         Details Page:               https://console.redhat.com/openshift/details/s/1mkesci269png3tck0000000000000
         OIDC Endpoint URL:          https://rh-oidc.s3.us-east-1.amazonaws.com/1mkesci269png3tckknhh00000000000
 
+> **NOTE:** The state will stay in “waiting” <u>until the next two steps below are completed</u>.
 
 ### Create operator roles
 These roles need to be created <u>once per cluster</u>. To create the roles run the following:
