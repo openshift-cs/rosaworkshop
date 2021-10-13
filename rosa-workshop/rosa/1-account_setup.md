@@ -38,7 +38,7 @@ Complete this step if you have *not* enabled ROSA in your AWS account.
 There are a few ways to install the `oc` CLI:
 
 - If you have the `rosa` CLI installed, the simplest way is to run `rosa download oc`
-    - Once downloaded, move the executable into a directory in your PATH
+    - Once downloaded, untar (or unzip) the file and move the executables into a directory in your PATH
 - You can [download and install](https://docs.openshift.com/container-platform/4.8/cli_reference/openshift_cli/getting-started-cli.html#installing-openshift-cli) the latest OpenShift CLI (oc).  
 - If you already have an OpenShift cluster you can access the command line tools page by clicking on the *Question mark > Command Line Tools*.  Then download the relevant one for your operating system.
 
@@ -88,7 +88,7 @@ Verify that the configuration is correct.
 
 
 ### Ensure the ELB service role exists
-Make sure that the service role for ELB already exists otherwise the cluster deployment could fail. As such, run the following to check for the role and create it if it is missing. 
+Make sure that the service role for ELB already exists, otherwise the cluster deployment could fail. As such, run the following to check for the role and create it if it is missing. 
 
     aws iam get-role --role-name "AWSServiceRoleForElasticLoadBalancing" || aws iam create-service-linked-role --aws-service-name "elasticloadbalancing.amazonaws.com"
 
