@@ -10,7 +10,7 @@ For the purposes of this workshop either method will work. Though we do recommen
 ## Deployment flow
 The overall flow that we will follow boils down to:
 
-1. `rosa create account-roles` - This is executed only <u>once</u> per account, per OpenShift version.  Once created this does *not* need to be executed again for more clusters of the same y-stream version.
+1. `rosa create account-roles` - This is executed only <u>once</u> per account. Once created this does *not* need to be executed again for more clusters of the same y-stream version.
 1. `rosa create cluster`
 1. `rosa create operator-roles` (Manual mode only)
 1. `rosa create oidc-provider` (Manual mode only)
@@ -264,7 +264,7 @@ In this version we will also make use of the `--interactive` mode so that it wil
          - arn:aws:iam::000000000000:role/my-rosa-cluster-openshift-cloud-credential-operator-cloud-credential-ope
         State:                      waiting (Waiting for OIDC configuration)
         Private:                    No
-        Created:                    Oct 12 2021 04:33:58 UTC
+        Created:                    Oct 28 2021 04:33:58 UTC
         Details Page:               https://console.redhat.com/openshift/details/s/1mkesci269png3tck0000000000000
         OIDC Endpoint URL:          https://rh-oidc.s3.us-east-1.amazonaws.com/1mkesci269png3tckknhh00000000000
 
