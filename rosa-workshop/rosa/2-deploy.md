@@ -5,29 +5,27 @@ Valid options for `--mode` are:
 - **manual:** Role and Policy documents will be created and saved in the current directory. You will need to manually run the commands that are provided  as the next step.  This will allow you to review the policy and roles before creating them.
 - **auto:** Roles and policies will be created and applied automatically using the current AWS account, instead of having to manually run each command.
 
->**Note:** If no mode is selected the **auto** mode is the default.
-
-For the purposes of this workshop either method will work. Though we do recommend the `auto` method as that is quicker and has less steps.
+For the purposes of this workshop either method will work. Though we do recommend `auto` mode as that is quicker and has less steps.
 
 ## Deployment flow
-The overall flow that we will follow boils down to 4 (but really 3) steps.
+The overall flow that we will follow boils down to:
 
-1. `rosa create account-roles` - This is executed only <u>once</u> per account, per OpenShift version.  Once created this does *not* need to be executed again for more clusters of the same version.
+1. `rosa create account-roles` - This is executed only <u>once</u> per account, per OpenShift version.  Once created this does *not* need to be executed again for more clusters of the same y-stream version.
 1. `rosa create cluster`
-1. `rosa create operator-roles`
-1. `rosa create oidc-provider`
+1. `rosa create operator-roles` (Manual mode only)
+1. `rosa create oidc-provider` (Manual mode only)
 
-For each succeeding cluster in the same account for the same version, only steps 2-4 are needed.
+For each succeeding cluster in the same account for the same y-stream version, only step 2 is needed (or 2-4 for manual mode).
 
 ## Automatic Mode
 As mentioned above if you want the ROSA CLI to automate the creation of the roles and policies to create your cluster quickly, then use this method.
 
 ### Create account roles
-If this is the <u>first time</u> you are deploying ROSA in this account and have <u>not yet created the account roles</u> for the OpenShift version you are deploying, then enable ROSA to create JSON files for account-wide roles and policies, including Operator policies. 
+If this is the <u>first time</u> you are deploying ROSA in this account and have <u>not yet created the account roles</u> then enable ROSA to create JSON files for account-wide roles and policies, including Operator policies.
 
-Run the following command (to see all available OpenShift versions run: `rosa list versions`):
+Run the following command to create the account-wide roles:
 
-    rosa create account-roles --mode auto --version 4.8 --yes
+    rosa create account-roles --mode auto --yes
 
 You will see an output like the following:
 
@@ -46,18 +44,19 @@ You will see an output like the following:
 
 
 ### Create the cluster
-Run the following command to create a cluster with all the default options 
+Run the following command to create a cluster with all the default options:
 
-    rosa create cluster --cluster-name <cluster name> --sts
+    rosa create cluster --cluster-name <cluster name> --sts --mode auto --yes
 
->**Note:** If you want to see all available options for your cluster use the `--help` flag or for interactive mode you can use `--interactive`.
+> **Note:** This will also create the required operator roles and OIDC provider. If you want to see all available options for your cluster use the `--help` flag or for interactive mode you can use `--interactive`.
 
-For example: 
+For example:
 
-    $ rosa create cluster --cluster-name my-rosa-cluster --sts
+    $ rosa create cluster --cluster-name my-rosa-cluster --sts --mode auto --yes
 
 You should see a response like the following:
 
+    ...
     I: Creating cluster 'my-rosa-cluster'
     I: To view a list of clusters and their status, run 'rosa list clusters'
     I: Cluster 'my-rosa-cluster' has been created.
@@ -97,10 +96,10 @@ You should see a response like the following:
      - arn:aws:iam::000000000000:role/my-rosa-cluster-openshift-cloud-credential-operator-cloud-credential-oper
     State:                      waiting (Waiting for OIDC configuration)
     Private:                    No
-    Created:                    Oct 12 2021 20:28:09 UTC
+    Created:                    Oct 28 2021 20:28:09 UTC
     Details Page:               https://console.redhat.com/openshift/details/s/1wupmiQy45xr1nN000000000000
     OIDC Endpoint URL:          https://rh-oidc.s3.us-east-1.amazonaws.com/1mlhulb3bo0l54ojd0ji000000000000
-
+    ...
 
 The default settings are as follows:
 
@@ -108,37 +107,25 @@ The default settings are as follows:
     * See [here](https://docs.openshift.com/rosa/rosa_getting_started_sts/rosa-sts-aws-prereqs.html#rosa-ec2-instances_rosa-sts-aws-prerequisites) for more details.
 * Region: As configured for the AWS CLI
 * Networking IP ranges:
-    * Machine CIDR: 10.0.0.0/16 
+    * Machine CIDR: 10.0.0.0/16
     * Service CIDR: 172.30.0.0/16
     * Pod CIDR: 10.128.0.0/14
 * The most recent version of OpenShift available to `rosa`
 * A single availability zone
 * Public cluster (Public API)
 
-> **NOTE:** The state will stay in “waiting” <u>until the next two steps below are completed</u>.
-
-### Create operator roles
-These roles need to be created <u>once per cluster</u>. To create the roles run the following:
-
-    rosa create operator-roles --mode auto --cluster <cluster-name> --yes
-
-### Create the OIDC provider
-Run the following to create the OIDC provider:
-
-    rosa create oidc-provider --mode auto --cluster <cluster-name> --yes
-
 ### Check installation status
-1. You can run the following command to check the detailed status of the cluster
+1. You can run the following command to check the detailed status of the cluster:
 
         rosa describe cluster --cluster <cluster-name>
 
-    or you can also run the following for an abridged view of the status
+    or you can run the following for an abridged view of the status:
 
         rosa list clusters
 
     You should notice the state change from “waiting” to “installing” to "ready". This will take about 40 minutes to run.
-    
-1. Once the state has changed to “ready” your cluster is now installed.  
+
+1. Once the state changes to “ready” your cluster is now installed.  
 
 
 ## Manual Mode
@@ -147,11 +134,11 @@ As mentioned above if you want to be able to review the roles and policies creat
 In this version we will also make use of the `--interactive` mode so that it will be easier to follow along, though feel free to use the default cluster creation command above if you'd like.  See [here](https://docs.openshift.com/rosa/rosa_getting_started_sts/rosa_creating_a_cluster_with_sts/rosa-sts-interactive-mode-reference.html) for a description of the fields in this section.
 
 ### Create account roles
-1. If this is the <u>first time</u> you are deploying ROSA in this account and have <u>not yet created the account roles</u> for the OpenShift version you are deploying, then enable ROSA to create JSON files for account-wide roles and policies, including Operator policies. This command will create the needed JSON files for the required roles and policies for your account in the current directory.  This will also output the `aws` commands you need to run in order to create these objects.
+1. If this is the <u>first time</u> you are deploying ROSA in this account and have <u>not yet created the account roles</u>, then enable ROSA to create JSON files for account-wide roles and policies, including Operator policies. This command will create the needed JSON files for the required roles and policies for your account in the current directory.  This will also output the `aws` commands you need to run in order to create these objects.
 
-    Run the following command (to see all available OpenShift versions run: `rosa list versions`):
+    Run the following command to create the needed files and output the commands you need to run:
 
-        rosa create account-roles --mode manual --version 4.8
+        rosa create account-roles --mode manual
 
     You will see an output like the following:
 
@@ -214,7 +201,7 @@ In this version we will also make use of the `--interactive` mode so that it wil
 
     See [here](https://docs.openshift.com/rosa/rosa_getting_started_sts/rosa_creating_a_cluster_with_sts/rosa-sts-interactive-mode-reference.html) for a description of the fields below.
 
-    For the purpose of this tutorial please select the following values.  Please leave the default values for any of the ARNs:
+    For the purpose of this tutorial please select the following values.
 
     Cluster name: **my-rosa-cluster** <br>
     OpenShift version: **&lt;choose version&gt;** <br>
@@ -336,7 +323,7 @@ Your cluster will now continue the installation process.
         rosa list clusters
 
     You should notice the state change from “waiting” to “installing” to "ready". This will take about 40 minutes to run.
-    
+
 1. Once the state has changed to “ready” your cluster is now installed.  
 
 ## Obtain the Console URL
