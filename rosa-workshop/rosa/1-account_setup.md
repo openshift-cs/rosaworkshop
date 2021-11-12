@@ -30,22 +30,22 @@ Complete this step if you have *not* enabled ROSA in your AWS account.
     ![Enabled](images/1-enabled.png)
 
 ### Install the ROSA CLI
-- Install the [ROSA CLI](https://www.openshift.com/products/amazon-openshift/download) as per your operating system. 
-- Download and extract the relevant file for your operating system and store it in a location within your "PATH". 
+- Install the [ROSA CLI](https://www.openshift.com/products/amazon-openshift/download) as per your operating system.
+- Download and extract the relevant file for your operating system and store it in a location within your "PATH".
 - Run `rosa version` to make sure it works and that it returns the version number.
 
 ### Install the OpenShift CLI
 There are a few ways to install the `oc` CLI:
 
-- If you have the `rosa` CLI installed, the simplest way is to run `rosa download oc`
-    - Once downloaded, untar (or unzip) the file and move the executables into a directory in your PATH
-- You can [download and install](https://docs.openshift.com/container-platform/4.8/cli_reference/openshift_cli/getting-started-cli.html#installing-openshift-cli) the latest OpenShift CLI (oc).  
-- If you already have an OpenShift cluster you can access the command line tools page by clicking on the *Question mark > Command Line Tools*.  Then download the relevant one for your operating system.
+1. If you have the `rosa` CLI installed, the simplest way is to run `rosa download oc`
+    1. Once downloaded, untar (or unzip) the file and move the executables into a directory in your PATH
+1. Or, you can [download and install](https://docs.openshift.com/container-platform/4.9/cli_reference/openshift_cli/getting-started-cli.html#installing-openshift-cli) the latest OpenShift CLI (oc)  
+1. Or, if you already have an OpenShift cluster you can access the command line tools page by clicking on the *Question mark > Command Line Tools*.  Then download the relevant one for your operating system.
 
   ![CLI Tools](images/0-cli_tools_page.png)
 
 **Why use `oc` over `kubectl`**<br>
-Being Kubernetes, one can definitely use `kubectl` with their OpenShift cluster.  `oc` is specific to OpenShift in that it includes the standard set of features from `kubectl` plus additional support for OpenShift functionality.  See [Usage of oc and kubectl commands](https://docs.openshift.com/container-platform/4.8/cli_reference/openshift_cli/usage-oc-kubectl.html) for more details.
+Being Kubernetes, one can definitely use `kubectl` with their OpenShift cluster.  `oc` is specific to OpenShift in that it includes the standard set of features from `kubectl` plus additional support for OpenShift functionality.  See [Usage of oc and kubectl commands](https://docs.openshift.com/container-platform/4.9/cli_reference/openshift_cli/usage-oc-kubectl.html) for more details.
 
 ### Configure the AWS CLI
 If you've just installed the AWS CLI, or simply want to make sure it is using the correct AWS account, follow these steps in a terminal:
@@ -60,12 +60,12 @@ If you've just installed the AWS CLI, or simply want to make sure it is using th
 
     It should look like the following as an example:
 
-    
+
         $ aws configure
-        AWS Access Key ID: AKIA0000000000000000 
+        AWS Access Key ID: AKIA0000000000000000
         AWS Secret Access Key: NGvmP0000000000000000000000000
         Default region name: us-east-1
-        Default output format: table 
+        Default output format: table
 
 
 ### Verify the configuration
@@ -88,7 +88,7 @@ Verify that the configuration is correct.
 
 
 ### Ensure the ELB service role exists
-Make sure that the service role for ELB already exists, otherwise the cluster deployment could fail. As such, run the following to check for the role and create it if it is missing. 
+Make sure that the service role for ELB already exists, otherwise the cluster deployment could fail. As such, run the following to check for the role and create it if it is missing.
 
     aws iam get-role --role-name "AWSServiceRoleForElasticLoadBalancing" || aws iam create-service-linked-role --aws-service-name "elasticloadbalancing.amazonaws.com"
 
@@ -103,13 +103,13 @@ If you received an error during cluster creation like below, then the above shou
     <https://console.redhat.com/openshift/token/rosa>
 
 3. If you are asked to log in, then please do.
-4. Click on the "Load token" button. 
-5. Copy the token and paste it back into the CLI prompt and press enter.  You can also just copy the full `rosa login --token=abc...` command and paste that in the terminal.
+4. Click on the "Load token" button.
+5. Copy the token and paste it back into the CLI prompt and press enter.  Alternatively, you can just copy the full `rosa login --token=abc...` command and paste that in the terminal.
 
     ![CLI Tools](images/1-token.png)
 
 ### Verify credentials
-Verify that all the credentials set up are correctly. 
+Verify that all the credentials set up are correctly.
 
 1. Run `rosa whoami`
 
@@ -130,7 +130,7 @@ Verify that all the credentials set up are correctly.
 2. Please check all information for accuracy before proceeding.
 
 ### Verify quota
-Verify that your AWS account has ample quota in the region you will be deploying your cluster to.  Run the following: 
+Verify that your AWS account has ample quota in the region you will be deploying your cluster to.  Run the following:
 
     rosa verify quota
 
@@ -138,6 +138,8 @@ Should return a response like
 
     I: Validating AWS quota...
     I: AWS quota ok. If cluster installation fails, validate actual AWS resource usage against https://docs.openshift.com/rosa/rosa_getting_started/rosa-required-aws-service-quotas.html
+
+See [the documentation](https://docs.openshift.com/rosa/rosa_getting_started_sts/rosa-sts-required-aws-service-quotas.html) for more details regarding quotas.
 
 ### Verify `oc` CLI
 Verify that the `oc` CLI is installed correctly
