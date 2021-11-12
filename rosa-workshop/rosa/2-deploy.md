@@ -46,7 +46,7 @@ You will see an output like the following:
 ### Create the cluster
 Run the following command to create a cluster with all the default options:
 
-    rosa create cluster --cluster-name <cluster name> --sts --mode auto --yes
+    rosa create cluster --cluster-name <cluster-name> --sts --mode auto --yes
 
 > **Note:** This will also create the required operator roles and OIDC provider. If you want to see all available options for your cluster use the `--help` flag or for interactive mode you can use `--interactive`.
 

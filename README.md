@@ -30,7 +30,7 @@ Some of the things you’ll be going through:
 
 If you'd like a preview of the cluster deployment process, you can watch a short demo:
 
-[Deploying our first app on a ROSA cluster](https://youtu.be/_3vaKfPHm1c)
+[Deploying our first app on a ROSA cluster](https://youtu.be/KbzUbXWs6Ck)
 
 ### Creating your first ROSA Cluster
 If you'd like an easy to follow guide for creating your first ROSA cluster you've come to the right place.

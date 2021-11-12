@@ -6,8 +6,8 @@ When using your cluster there may be times when you need to change aspects of yo
 #### Creating a Machine pool (CLI)
 This can be accomplished though the `rosa` CLI or through the [OCM](https://console.redhat.com/openshift)  UI.
 
-1. If using the CLI run: 
-        
+1. If using the CLI run:
+
         rosa create machinepool --cluster=<cluster-name> --name=<machinepool-name> --replicas=<number-nodes>
 
     For example:
@@ -24,7 +24,7 @@ This can be accomplished though the `rosa` CLI or through the [OCM](https://cons
 
         $ rosa create machinepool --cluster=my-rosa-cluster --name=db-nodes-mp --replicas=2 --labels='app=db','tier=backend'
         I: Machine pool 'db-nodes-mp' created successfully on cluster 'my-rosa-cluster'
-        
+
     This will create an additional 2 nodes that can be managed as one unit and also assign them the labels shown.  
 
 1. Now run the following to see the new machine pool created along with the labels we gave.
@@ -89,7 +89,7 @@ This can be accomplished though the `rosa` CLI or through the [OCM](https://cons
         $ rosa describe cluster --cluster=my-rosa-cluster | grep Compute
 
         - Compute:                 3 (m5.xlarge)
-        
+
 1. One can also perform this by the OCM UI by clicking on the "three dots" on the right of the machine pool you want to edit and clicking "scale".
 
     --- ![mp](images/7-mp_scale.png)
@@ -114,6 +114,7 @@ This can be accomplished though the `rosa` CLI or through the [OCM](https://cons
 
 1. This command replaces all machine pool configurations with what is defined.  So if you just want to add another label and keep the old, you must state all the labels otherwise it will replace anything existing with the one you had wanted to add. By the same token if you want to delete a label just state the ones you want, excluding the one you want to delete.
 
+    >**NOTE:** Currently, adding node labels on an existing machine pool adds the labels to only new nodes that are created in that pool. The existing nodes will not have the node label applied. If you need nodes with the node label, you can either scale down the nodes in the machine pool to zero (this will not work with the 'default' machine pool), add the node label, and then scale back up to the desired amount. You can also create a new machine pool and define the node labels at creation time.
 
 #### Mixing different node types
 
@@ -123,7 +124,7 @@ This can be accomplished though the `rosa` CLI or through the [OCM](https://cons
         rosa create machinepool --cluster=<cluster-name> --name=<mp-name> --replicas=<number-nodes> --labels=’<key=pair>’ --instance-type=<type>
 
 	For example:
-	
+
         rosa create machinepool --cluster=my-rosa-cluster --name=db-nodes-large-mp --replicas=2 --labels='app=db','tier=backend' --instance-type=m5.2xlarge
 
 1. If you’d like to see all the [instance types available](https://docs.openshift.com/rosa/rosa_policy/rosa-service-definition.html#rosa-sdpolicy-aws-compute-types_rosa-service-definition) you can run:
