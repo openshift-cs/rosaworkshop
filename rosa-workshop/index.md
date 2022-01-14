@@ -16,6 +16,12 @@ In this workshop, you’ll go through a set of tasks that will help you understa
 Some of the things you’ll be going through:
 
 - Deploy a ROSA cluster using STS
+- Perform common tasks like:
+    - User access and elevated permissions
+    - Managing worker nodes
+    - Scaling and autoscaling
+    - Upgrading
+    - Delete the cluster
 - Deploy a node.js based app via S2I and Kubernetes Deployment objects
 - Set up a continuous delivery pipeline to automatically push changes to the source code
 - Explore logging
