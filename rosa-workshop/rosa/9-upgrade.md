@@ -1,10 +1,12 @@
 ## Upgrading the cluster
 
+All upgrades are fully executed by the service for your cluster (meaning that you won't need to execute any commands or make changes to the cluster) though you have choices on scheduling them.
+
 There are 3 ways to upgrade your cluster.
 
-- Manually via the CLI
-- Manually via the OCM UI
-- Automated upgrades
+- **Manually via the CLI** - Start a one-time immediate upgrade or schedule a one-time upgrade for a future date/time.
+- **Manually via the OCM UI** - Start a one-time immediate upgrade or schedule a one-time upgrade for a future date/time.
+- **Automated upgrades** - Set an upgrade window for reoccurring upgrades whenever a new version is available without needing to manually schedule it. (Ex: Saturday at 06:00 UTC)
 
 We will go through these three scenarios.
 
@@ -32,7 +34,7 @@ You can always use `--help` for more details like
  		rosa upgrade cluster -c my-rosa-cluster --version 4.8.5
 
 1. This will schedule the cluster for upgrade within the hour. It will take some time to complete.
-1. You can also schedule the upgrade for a later date/time by using the `--schedule-date` and `--schedule-time` flags
+1. You can also schedule the upgrade for a later date/time by using the `--schedule-date` and `--schedule-time` flags.
 
 #### Manually via OCM UI
 1. To perform an upgrade via the UI, log into OCM and select the cluster you want to upgrade.
@@ -45,7 +47,7 @@ You can always use `--help` for more details like
 1. You can then schedule a time for the upgrade or begin it immediately.
 
 #### Set up automatic updates
-1. To set up your cluster to be updated automatically log into OCM and select the cluster you want to upgrade.
+1. To set up your cluster for reoccurring upgrades, log into OCM and select the cluster you want to upgrade.
 1. Click on the “Update Settings” tab.
 1. Under “Update Strategy” click the “Automatic” radio button.
 1. This will open up options for a day of the week and time that you can set for the update to occur.

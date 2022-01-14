@@ -1,7 +1,7 @@
 <!---## Red Hat OpenShift Service on AWS (ROSA) information pages-->
 
 ### What is Red Hat OpenShift Service on AWS (ROSA)?
-ROSA is a _fully_ managed Red Hat OpenShift cluster running natively on Amazon Web Services (AWS), which allows customers to quickly and easily build, deploy, and manage Kubernetes applications on the industry’s most comprehensive Kubernetes platform in the AWS public cloud. 
+ROSA is a _fully_ managed Red Hat OpenShift cluster running natively on Amazon Web Services (AWS), which allows customers to quickly and easily build, deploy, and manage Kubernetes applications on the industry’s most comprehensive Kubernetes platform in the AWS public cloud.
 
 The latest version of ROSA makes use of AWS Secure Token Service (STS) for the ROSA cluster components. AWS STS is a global web service that allows the creation of temporary credentials for IAM users or federated users. ROSA uses this to assign IAM roles short-term, limited-privilege, security credentials. These credentials are associated with IAM roles that are specific to each component that makes AWS API calls. This better aligns with principals of least privilege and is much better aligned to secure practices in cloud service resource management. The ROSA CLI tool manages the STS credentials that are assigned for unique tasks and takes action upon AWS resources as part of OpenShift functionality. One limitation of using STS is that roles must be created for each ROSA cluster.
 
@@ -18,6 +18,12 @@ In this workshop, you’ll go through a set of tasks that will help you understa
 Some of the things you’ll be going through:
 
 - Deploy a ROSA cluster using STS
+- Perform common tasks like:
+    - User access and elevated permissions
+    - Managing worker nodes
+    - Scaling and autoscaling
+    - Upgrading
+    - Delete the cluster
 - Deploy a node.js based app via S2I and Kubernetes Deployment objects
 - Set up an continuous delivery pipeline to automatically push changes to the source code
 - Explore logging
