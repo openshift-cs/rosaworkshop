@@ -30,8 +30,11 @@ Complete this step if you have *not* enabled ROSA in your AWS account.
     ![Enabled](images/1-enabled.png)
 
 ### Install the ROSA CLI
-- Install the [ROSA CLI](https://www.openshift.com/products/amazon-openshift/download) as per your operating system.
-- Download and extract the relevant file for your operating system and store it in a location within your "PATH".
+- Install the [ROSA CLI](https://console.redhat.com/openshift/downloads) as per your operating system.
+- Download and extract the relevant file for your operating system
+    - ex: `tar -xvf rosa-linux.tar.gz`
+- Save it to a location within your "PATH".
+    - ex: `sudo mv rosa /usr/local/bin/rosa`
 - Run `rosa version` to make sure it works and that it returns the version number.
 
 ### Install the OpenShift CLI

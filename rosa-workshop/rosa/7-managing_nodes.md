@@ -90,11 +90,11 @@ This can be accomplished though the `rosa` CLI or through the [OCM](https://cons
 
         - Compute:                 3 (m5.xlarge)
 
-1. One can also perform this by the OCM UI by clicking on the "three dots" on the right of the machine pool you want to edit and clicking "scale".
+1. (Optional) One can also scale the cluster from the OCM UI by clicking on the "three dots" on the right of the machine pool you want to edit and clicking "scale".
 
-    --- ![mp](images/7-mp_scale.png)
+    ![mp](images/7-mp_scale.png)
 
-1. One can also confirm this by accessing OCM and selecting the cluster.
+1. We can also confirm this by accessing OCM and selecting the cluster.
 
 1. On the overview tab, scroll down to the middle section under details you will see Compute listing "3/3".
 
@@ -104,7 +104,7 @@ This can be accomplished though the `rosa` CLI or through the [OCM](https://cons
 
 >**NOTE:** Labels or taints cannot be added to the "Default" machine pool (yet).
 
-1. Adding node label(s) can be achived by the following command
+1. Adding node label(s) can be achieved by the following command
 
         rosa edit machinepool --cluster=<cluster-name> --replicas=<number-nodes> --labels='key=value' <machinepool-name>
 
