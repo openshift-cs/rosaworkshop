@@ -38,6 +38,7 @@ nav:
     - S2I Webhooks for CICD: 'ostoy/11-cicd_s2i.md'
   - OpenShift Concepts: 'ostoy/2-concepts.md'
   - Feedback: 'feedback.md'
+  - FAQ: 'rosa/14-faq.md'
 
 # Theme Configuration
 theme:

@@ -5,7 +5,7 @@ ROSA is a _fully_ managed Red Hat OpenShift cluster running natively on Amazon W
 
 The latest version of ROSA makes use of AWS Secure Token Service (STS) for the ROSA cluster components. AWS STS is a global web service that allows the creation of temporary credentials for IAM users or federated users. ROSA uses this to assign IAM roles short-term, limited-privilege, security credentials. These credentials are associated with IAM roles that are specific to each component that makes AWS API calls. This better aligns with principals of least privilege and is much better aligned to secure practices in cloud service resource management. The ROSA CLI tool manages the STS credentials that are assigned for unique tasks and takes action upon AWS resources as part of OpenShift functionality. One limitation of using STS is that roles must be created for each ROSA cluster.
 
-A listing of the account-wide and per-cluster roles is provided in the [documentation](https://docs.openshift.com/rosa/rosa_getting_started_sts/rosa_creating_a_cluster_with_sts/rosa-sts-about-iam-resources.html).
+A listing of the account-wide and per-cluster roles is provided in the [documentation](https://docs.openshift.com/rosa/rosa_architecture/rosa-sts-about-iam-resources.html).
 
 
 ### What information is on this site?
