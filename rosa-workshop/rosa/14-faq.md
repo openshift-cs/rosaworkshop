@@ -1,6 +1,5 @@
 # Red Hat OpenShift Service on AWS - FAQ
 
-
 ##General
 
 ###What is Red Hat OpenShift Service on AWS (ROSA)?
@@ -64,7 +63,7 @@ Your total cost in this case would be $15,242<br>
 _Pricing for Red Hat OpenShift Service on AWS is in addition to the costs of Amazon EC2 for control plane, infra & worker nodes and other AWS services used._
 
 ###When pricing out my EC2 instances, do I need to use RHEL for the operating system?
-No, being that ROSA includes Red Hat CoreOS as the operating system, you only need to choose Linux.
+No, being that ROSA includes Red Hat Enterprise Linux CoreOS (RHCOS) as the operating system, you only need to choose Linux.
 For clarity, ROSA cluster creation handles the setup of all the RHCOS nodes entirely.
 
 ###Does Red Hat OpenShift Service on AWS qualify for the AWS EDP Program?
@@ -179,8 +178,8 @@ The same as in OCP. The aescbc cypher is used and the setting is patched during 
 ###What infrastructure is provisioned as part of a new OSD cluster?
 ROSA makes use of a number of different cloud services such as virtual machines, storage, load balancers, etc. You can see a defined list in the [AWS prerequisites](https://docs.openshift.com/rosa/rosa_planning/rosa-sts-aws-prereqs.html#rosa-aws-policy-provisioned_rosa-sts-aws-prereqs).
 
-###I see there are two ways to deploy a ROSA cluster.  One using an IAM user with admin permissions and the other STS.  Which should I choose?
-STS. The roadmap forward is focused on STS, and IAM will eventually be deprecated. This better aligns with principles of least privilege and is much better aligned to secure practices in cloud service resource management.
+###I see there are two "kinds" of ROSA clusters. One uses an IAM user with admin permissions and the other AWS STS. Which should I choose?
+AWS STS. These aren't "kinds" but rather credential methods. Basically, "how do you grant Red Hat the permissions needed in order to perform the required actions in your AWS account?". The roadmap forward is focused on STS, and the IAM user method will eventually be deprecated. This better aligns with principles of least privilege and is much better aligned to secure practices in cloud service resource management. Please see the section "[ROSA with STS Explained](15-sts_explained.md)" for a detailed explanation.
 
 ###I’m seeing a number of permission or failure errors related to prerequisite tasks or cluster creation, what might be the problem?
 Please check for a newer version of the ROSA CLI. Every release of the ROSA CLI lands in two places: [Github](https://github.com/openshift/rosa/releases) and the [Red Hat signed binary releases](https://www.openshift.com/products/rosa/download).
@@ -201,9 +200,7 @@ Red Hat OpenShift Service on AWS uses the default OpenShift SDN network provider
 Cluster admins in ROSA can customize cross-namespace networking (including denying it) on a per project basis using NetworkPolicy objects. Refer to [Configuring multitenant isolation with network policy](https://docs.openshift.com/container-platform/4.10/networking/network_policy/multitenant-network-policy.html) on how to configure.
 
 ###Can more than one ROSA cluster be set up in one VPC?
-Yes, ROSA allows multiple clusters to share the same VPC.
-
-Essentially, the number of clusters would be limited by what AWS resource quota remains, as well as any chosen CIDR ranges that must not overlap. See [CIDR Range Definitions](https://docs.openshift.com/rosa/networking/cidr-range-definitions.html) for more information.
+Yes, ROSA allows multiple clusters to share the same VPC. Essentially, the number of clusters would be limited by what AWS resource quota remains, as well as any chosen CIDR ranges that must not overlap. See [CIDR Range Definitions](https://docs.openshift.com/rosa/networking/cidr-range-definitions.html) for more information.
 
 ###Can I use Prometheus/Grafana to monitor containers and manage capacity?
 Yes, using OpenShift User Workload Monitoring. This is a check-box option in OpenShift Cluster Manager (console.redhat.com/openshift)
