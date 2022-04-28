@@ -37,8 +37,9 @@ nav:
     - S2I Deployments: 'ostoy/10-deployment_s2i.md'
     - S2I Webhooks for CICD: 'ostoy/11-cicd_s2i.md'
   - OpenShift Concepts: 'ostoy/2-concepts.md'
-  - Feedback: 'feedback.md'
+  - ROSA with STS explained: 'rosa/15-sts_explained.md'
   - FAQ: 'rosa/14-faq.md'
+  - Feedback: 'feedback.md'
 
 # Theme Configuration
 theme:

@@ -1,4 +1,4 @@
-There are currently two supported methods for creating a ROSA cluster. One method uses IAM with the *AdministratorAccess* policy (only for the account using ROSA).  The other, more recent version, uses AWS STS (as [described](../../index.html#what-is-red-hat-openshift-service-on-aws-rosa) on the home page). In this workshop we will only be using the STS method.
+There are currently two supported credential methods when creating a ROSA cluster. One method uses an IAM user with the *AdministratorAccess* policy (only for the account using ROSA). The other, more recent, and **recommended** method uses AWS STS. Please see the section "[ROSA with STS Explained](15-sts_explained.md)" for a detailed explanation. In this workshop we will only be using the STS method.
 
 ## Prerequisites
 

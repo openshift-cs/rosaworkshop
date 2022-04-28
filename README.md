@@ -3,13 +3,17 @@
 ### What is Red Hat OpenShift Service on AWS (ROSA)?
 ROSA is a _fully_ managed Red Hat OpenShift cluster running natively on Amazon Web Services (AWS), which allows customers to quickly and easily build, deploy, and manage Kubernetes applications on the industry’s most comprehensive Kubernetes platform in the AWS public cloud.
 
-The latest version of ROSA makes use of AWS Secure Token Service (STS) for the ROSA cluster components. AWS STS is a global web service that allows the creation of temporary credentials for IAM users or federated users. ROSA uses this to assign IAM roles short-term, limited-privilege, security credentials. These credentials are associated with IAM roles that are specific to each component that makes AWS API calls. This better aligns with principals of least privilege and is much better aligned to secure practices in cloud service resource management. The ROSA CLI tool manages the STS credentials that are assigned for unique tasks and takes action upon AWS resources as part of OpenShift functionality. One limitation of using STS is that roles must be created for each ROSA cluster.
+The latest version of ROSA makes use of AWS Secure Token Service (STS) for the ROSA cluster components. AWS STS is a global web service that allows the creation of temporary credentials for IAM users or federated users. ROSA uses this to assign IAM roles short-term, limited-privilege, security credentials. These credentials are associated with IAM roles that are specific to each component that makes AWS API calls. This better aligns with principals of least privilege and is much better aligned to secure practices in cloud service resource management. The ROSA CLI tool manages the STS credentials that are assigned for unique tasks and takes action upon AWS resources as part of OpenShift functionality. Please see the section "[ROSA with STS Explained](rosa-workshop/rosa/15-sts_explained.md)" for a detailed explanation.
 
 A listing of the account-wide and per-cluster roles is provided in the [documentation](https://docs.openshift.com/rosa/rosa_architecture/rosa-sts-about-iam-resources.html).
 
 
 ### What information is on this site?
-These pages are split into three sections. One contains the steps to getting started on ROSA ("Getting started with ROSA").  Another is about deploying an application to ROSA to get better familiar with the internals of OpenShift ("Deploy the application"). While the last is a summary of a few key OpenShift concepts that will be used in the workshop.
+These pages are split into three sections.
+
+1. One contains the steps to getting started on ROSA ("Getting started with ROSA").  
+1. Another is about deploying an application to ROSA to get better familiar with the internals of OpenShift ("Deploy the application").
+1. Lastly, some reference pages with a summary of a few key OpenShift concepts that will be used in the workshop, an FAQ, and an explanation of ROSA with STS.
 
 
 ### What will we do in this workshop?
@@ -41,30 +45,30 @@ If you'd like a preview of the cluster deployment process, you can watch a short
 ### Creating your first ROSA Cluster
 If you'd like an easy to follow guide for creating your first ROSA cluster you've come to the right place.
 
-1. Please review the [prerequisites](https://docs.openshift.com/rosa/rosa_getting_started_sts/rosa-sts-aws-prereqs.html) which contains important information about the AWS account requirements.  
-1. Visit the "Getting Started with ROSA" tutorial for [Setting up your account](rosa/1-account_setup.md).
+1. Please review the [prerequisites](https://docs.openshift.com/rosa/rosa_planning/rosa-sts-aws-prereqs.html) which contains important information about the AWS account requirements.  
+1. Visit the "Getting Started with ROSA" tutorial for [Setting up your account](rosa-workshop/rosa/1-account_setup.md).
 
 
 ### Resources
 
-* ROSA Product Pages:
-    * <https://www.openshift.com/products/amazon-openshift>
-    * <https://aws.amazon.com/rosa/>
-    * <https://access.redhat.com/products/red-hat-openshift-service-aws>
-* [ROSA Documentation](https://docs.openshift.com/rosa/welcome/index.html) (only ROSA specific)
-    - [Service Definition](https://docs.openshift.com/rosa/rosa_policy/rosa-service-definition.html)
-    - [Responsibility Assignment Matrix](https://docs.openshift.com/rosa/rosa_policy/rosa-policy-responsibility-matrix.html)
-    - [Understanding Process and Security](https://docs.openshift.com/rosa/rosa_policy/rosa-policy-process-security.html)
-    - [About Availability](https://docs.openshift.com/rosa/rosa_policy/rosa-policy-understand-availability.html)
-    - [Updates Lifecycle](https://docs.openshift.com/rosa/rosa_policy/rosa-life-cycle.html)
+- ROSA Product Pages:
+    - <https://www.openshift.com/products/amazon-openshift>
+    - <https://aws.amazon.com/rosa/>
+    - <https://access.redhat.com/products/red-hat-openshift-service-aws>
+- [ROSA Documentation](https://docs.openshift.com/rosa/welcome/index.html) (only ROSA specific)
+  	- [Service Definition](https://docs.openshift.com/rosa/rosa_architecture/rosa_policy_service_definition/rosa-service-definition.html)
+    - [Responsibility Assignment Matrix](https://docs.openshift.com/rosa/rosa_architecture/rosa_policy_service_definition/rosa-policy-responsibility-matrix.html)
+    - [Understanding Process and Security](https://docs.openshift.com/rosa/rosa_architecture/rosa_policy_service_definition/rosa-policy-process-security.html)
+    - [About Availability](https://docs.openshift.com/rosa/rosa_architecture/rosa_policy_service_definition/rosa-policy-understand-availability.html)
+    - [Updates Lifecycle](https://docs.openshift.com/rosa/rosa_architecture/rosa_policy_service_definition/rosa-life-cycle.html)
     - [Limits and Scalability](https://docs.openshift.com/rosa/rosa_planning/rosa-limits-scalability.html)
     - [Planning Your Environment](https://docs.openshift.com/rosa/rosa_planning/rosa-planning-environment.html)
-* [ROSA Roadmap](https://red.ht/rosa-roadmap)
-* [OpenShift Container Platform Documentation](https://docs.openshift.com/container-platform/4.8/welcome/index.html) (for all other OpenShift related information)
-* [Red Hat Support](https://support.redhat.com)
-* [OpenShift Cluster Manager](https://console.redhat.com/OpenShift)
-* [Learn about OpenShift](https://learn.openshift.com)
-* [OpenShift Blog](https://www.openshift.com/blog)
+- [ROSA Roadmap](https://red.ht/rosa-roadmap)
+- [OpenShift Container Platform Documentation](https://docs.openshift.com/container-platform/4.8/welcome/index.html) (for all other OpenShift related information)
+- [Red Hat Support](https://support.redhat.com)
+- [OpenShift Cluster Manager](https://console.redhat.com/OpenShift)
+- [Learn about OpenShift](https://learn.openshift.com)
+- [OpenShift Blog](https://www.openshift.com/blog)
 
 
 **Note:** Anytime "ROSA" is used in this lab it stands for Red Hat OpenShift Service on AWS. The ROSA acronym will be used mostly.
