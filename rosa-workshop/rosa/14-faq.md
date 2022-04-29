@@ -242,4 +242,4 @@ No, the ROSA cluster must have egress to the internet to access our registry, S3
 Yes. Autoscaling allows you to automatically adjust the size of the cluster based on the current workload. See [About autoscaling nodes on a cluster](https://docs.openshift.com/rosa/rosa_cluster_admin/rosa_nodes/rosa-nodes-about-autoscaling-nodes.html) in the documentation for more details.
 
 ### What is the maximum number of worker nodes that a cluster can support?
-The maximum number of worker nodes is 180 per ROSA cluster.  See here for limits and scalability considerations and more details on node counts.
+The maximum number of worker nodes is 180 per ROSA cluster.  See here for [limits and scalability](https://docs.openshift.com/rosa/rosa_planning/rosa-limits-scalability.html) considerations and more details on node counts.

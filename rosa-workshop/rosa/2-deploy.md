@@ -335,4 +335,4 @@ The cluster has now been successfully deployed. In the next step we will create 
 
 
 *[ROSA]: Red Hat OpenShift Service on AWS
-*[STS]: AWS Secure Token Service
+*[STS]: AWS Security Token Service
