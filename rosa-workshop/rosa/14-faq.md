@@ -155,6 +155,10 @@ OpenID Connect (a profile of OAuth2), Google OAuth, GitHub OAuth, GitLab, and LD
 ### How will events such as product updates and scheduled maintenance be communicated?
 Red Hat will provide updates via email and Red Hat console service log.
 
+### Does ROSA have a hibernation or shut-down feature for any nodes in the cluster to save costs on infrastructure or to retain a configured cluster for long-term?
+No, not at this time. The shutdown/hibernation feature is an OpenShift platform feature not yet mature enough for widespread cloud services use.
+
+
 ## Deeper/Technical Questions
 
 ### Is SRE access to clusters secured by MFA?
@@ -215,18 +219,18 @@ Yes, using AWS Permissions Boundary is supported.
 ROSA worker nodes use a different AMI from OSD and OCP. Control Plane and Infra node AMIs are common across products in the same version.
 
 ### Are backups taken for clusters?
-Only non-STS clusters have SRE managed backups at this time, which means ROSA STS clusters don’t have backups. You can also see our [backup policy](https://docs.openshift.com/rosa/rosa_architecture/rosa_policy_service_definition/rosa-service-definition.html#rosa-sdpolicy-backup-policy_rosa-service-definition). It is imperative for users to have their own backup policies for applications and data.
+Only non-STS clusters have SRE managed backups at this time, which means that ROSA STS clusters don’t have backups. You can also see our [backup policy](https://docs.openshift.com/rosa/rosa_architecture/rosa_policy_service_definition/rosa-service-definition.html#rosa-sdpolicy-backup-policy_rosa-service-definition). It is imperative for users to have their own backup policies for applications and data.
 
 ### Is ROSA GDPR Compliant?
 Yes: [https://www.redhat.com/en/gdpr](https://www.redhat.com/en/gdpr)
 
 ### Does the ROSA CLI accept Multi-region KMS keys for EBS encryption?
-Not at this time. Though we do accept single region KMS keys for EBS Encryption as long as it is defined at cluster creation time.
+Not at this time. This feature is in our backlog. Though we do accept single region KMS keys for EBS Encryption as long as it is defined at cluster creation time.
 
 ### Can I define a custom domain and certificate for my applications?
 Yes. See [Configuring custom domains for applications](https://docs.openshift.com/rosa/applications/deployments/osd-config-custom-domains-applications.html) for more information.
 
-### How are the domain certificates managed?
+### How are the ROSA domain certificates managed?
 Red Hat infrastructure (Hive) manages certificate rotation for default application ingress (apps.*.openshiftapps.com)
 
 ### What features are upcoming for ROSA?
@@ -236,10 +240,10 @@ The current ROSA roadmap can be seen at: [https://red.ht/rosa-roadmap](https://r
 See [AWS compute types](https://docs.openshift.com/rosa/rosa_architecture/rosa_policy_service_definition/rosa-service-definition.html#rosa-sdpolicy-aws-compute-types_rosa-service-definition) in the service definition for the up to date list of supported instance types.  Additionally, spot instances are supported.
 
 ### Does ROSA support an air-gapped, disconnected environment where the ROSA cluster does not have internet access?  
-No, the ROSA cluster must have egress to the internet to access our registry, S3, send metrics etc.  Ingress can be limited to PrivateLink (for Red Hat SRE) and VPN or similar for the customer access.
+No, the ROSA cluster must have egress to the internet to access our registry, S3, send metrics etc. The service requires a number of [egress endpoints](https://docs.openshift.com/rosa/rosa_install_access_delete_clusters/rosa_getting_started_iam/rosa-aws-prereqs.html#osd-aws-privatelink-firewall-prerequisites). Ingress can be limited to PrivateLink (for Red Hat SRE) and VPN or similar for customer access.
 
 ### Is node autoscaling available?
 Yes. Autoscaling allows you to automatically adjust the size of the cluster based on the current workload. See [About autoscaling nodes on a cluster](https://docs.openshift.com/rosa/rosa_cluster_admin/rosa_nodes/rosa-nodes-about-autoscaling-nodes.html) in the documentation for more details.
 
 ### What is the maximum number of worker nodes that a cluster can support?
-The maximum number of worker nodes is 180 per ROSA cluster.  See here for limits and scalability considerations and more details on node counts.
+The maximum number of worker nodes is 180 per ROSA cluster.  See here for [limits and scalability](https://docs.openshift.com/rosa/rosa_planning/rosa-limits-scalability.html) considerations and more details on node counts.

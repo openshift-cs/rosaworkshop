@@ -38,4 +38,4 @@ To delete a ROSA cluster follow the steps below.
 *[ROSA]: Red Hat OpenShift Service on AWS
 *[IdP]: Identity Provider
 *[OCM]: OpenShift Cluster Manager
-*[STS]: AWS Secure Token Service
+*[STS]: AWS Security Token Service

@@ -174,4 +174,4 @@ This step runs a CloudFormation template that prepares your AWS account for clus
 We have now successfully set up our account and environment and are ready to deploy our cluster in the next step.
 
 *[ROSA]: Red Hat OpenShift Service on AWS
-*[STS]: AWS Secure Token Service
+*[STS]: AWS Security Token Service
