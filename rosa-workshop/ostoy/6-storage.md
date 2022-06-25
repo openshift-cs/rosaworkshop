@@ -6,14 +6,14 @@ ROSA supports both EBS and EFS for Persistent Volumes.
 
 [See here for information about using EFS in ROSA](https://docs.openshift.com/rosa/storage/persistent_storage/osd-persistent-storage-aws.html)
 
-[See here for information about using EBS in ROSA](https://docs.openshift.com/container-platform/4.8/storage/persistent_storage/persistent-storage-aws.html)
+[See here for information about using EBS in ROSA](https://docs.openshift.com/rosa/storage/persistent_storage/rosa-persistent-storage-aws-ebs.html)
 
 #### 1. View Persistent Volume Claims
-Inside the OpenShift web UI click on *Storage* in the left menu then *Persistent Volume Claims*. You will then see a list of all persistent volume claims that our application has made.  In this case there is just one called "ostoy-pvc".  If you click on it you will also see other pertinent information such as whether it is bound or not, size, access mode and age.  
+Inside the OpenShift web UI click on *Storage* in the left menu then *Persistent Volume Claims*. You will see a list of all persistent volume claims that our application has made.  In this case there is just one called "ostoy-pvc".  If you click on it you will also see other pertinent information such as whether it is bound or not, size, access mode, storage class.  
 
-In this case the mode is RWO (Read-Write-Once) which means that the volume can only be mounted to one node, but the pod(s) can both read and write to that volume.  As one option for Persistent Volumes in ROSA are backed by EBS it only supports RWO.  
+In this case the mode is RWO (Read-Write-Once) which means that the volume can only be mounted to one node, but the pod(s) can both read and write to that volume.  This option for Persistent Volumes in ROSA is backed by EBS thus it only supports RWO.  
 
-[See here for more info on access modes](https://docs.openshift.com/container-platform/4.8/storage/understanding-persistent-storage.html#pv-access-modes_understanding-persistent-storage)
+[See here for more info on access modes](https://docs.openshift.com/container-platform/latest/storage/understanding-persistent-storage.html#pv-access-modes_understanding-persistent-storage)
 
 #### 2. Create a file to store
 In the OSToy app click on *Persistent Storage* in the left menu.  In the "Filename" area enter a filename for the file you will create (ie: "test-pv.txt"). Please use a *".txt"* extension so that the file will be visible in the browser.
@@ -28,7 +28,7 @@ You will then see the file you created appear above, under "Existing files".  Cl
 ![View File](images/6-ostoy-viewfile.png)
 
 #### 4. Kill the pod
-We now want to kill the pod and ensure that the new pod that spins up will be able to see the file we created. Exactly like we did in the previous section. 
+We now want to kill the pod and ensure that the new pod that spins up will be able to see the file we created. Exactly like we did in the previous section.
 
 Click on *Home* in the left menu.
 
@@ -50,7 +50,7 @@ then get an SSH session into the container
 
 	oc rsh <podname>
 
-then 
+then
 
 	cd /var/demo_files
 
@@ -67,13 +67,13 @@ You should see the text you entered in the UI.  The whole flow would look like t
 	ostoy-microservice-6cf764974f-hx4qm   1/1       Running   0          18m
 
 	$ oc rsh ostoy-frontend-5fc8d486dc-wsw24
-	
+
 	$ cd /var/demo_files/
 
 	$ ls
 	lost+found   test-pv.txt
 
-	$ cat test-pv.txt 
+	$ cat test-pv.txt
 	OpenShift is the greatest thing since sliced bread!
 
 #### 7. Exit the session

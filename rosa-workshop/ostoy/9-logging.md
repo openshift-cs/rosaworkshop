@@ -1,5 +1,5 @@
 ## Logging
-We will take a look at the available options for logging in ROSA.  As ROSA does not come preconfigured with a logging solution, we can easily set one up. In this section review the [install proceedure](https://docs.openshift.com/dedicated/4/logging/dedicated-cluster-deploying.html#dedicated-cluster-install-deploy) for the EFK (Elasticsearch, Fluentd and Kibana) stack (via Operators), then we will take a look at three methods with which one can view their logs. 
+We will take a look at the available options for logging in ROSA.  As ROSA does not come preconfigured with a logging solution, we can easily set one up. In this section review the [install proceedure](https://docs.openshift.com/dedicated/4/logging/dedicated-cluster-deploying.html#dedicated-cluster-install-deploy) for the EFK (Elasticsearch, Fluentd and Kibana) stack (via Operators), then we will take a look at three methods with which one can view their logs.
 
 1. We will look at the logs directly through the pod using `oc logs`.  
 1. We will forward the logs to AWS CloudWatch and view them from there.
@@ -7,18 +7,81 @@ We will take a look at the available options for logging in ROSA.  As ROSA does 
 
 The cluster logging components are based upon Fluentd, (and Elasticsearch and Kibana, if deployed). The collector, Fluentd, is deployed to each node in the cluster. It collects application logs and writes them to Elasticsearch (ES) or forwards it to CloudWatch. Kibana is the centralized, web UI where users and administrators can create rich visualizations and dashboards with the aggregated data. We will also look at using AWS CloudWatch as well.
 
-* Learn more about [logging in OpenShift](https://docs.openshift.com/container-platform/4.8/logging/cluster-logging.html).
+* Learn more about [logging in OpenShift](https://docs.openshift.com/container-platform/latest/logging/cluster-logging.html).
 
-* Learn more about the [logging addon service](https://docs.openshift.com/rosa/logging/rosa-install-logging.html).
+* Learn more about the [logging add-on service](https://docs.openshift.com/rosa/rosa_cluster_admin/rosa_logging/rosa-install-logging.html).
 
-### Installing the Cluster Logging Addon service
+### Installing the Cluster Logging Add-on service
 
->**NOTE:** If you plan on running EFK <u>do not follow</u> the installation steps in this section but rather follow the [Installing OpenShift Logging](https://docs.openshift.com/container-platform/4.8/logging/cluster-logging-deploying.html) steps and skip down to [View logs with Kibana](#view-logs-with-kibana))
+>**NOTE:** If you plan on running EFK <u>do not follow</u> the installation steps in this section but rather follow the [Installing OpenShift Logging](https://docs.openshift.com/container-platform/latest/logging/cluster-logging-deploying.html) steps and skip down to [View logs with Kibana](#view-logs-with-kibana))
 
-In these steps we will install the logging addon service to forward our logs; in our case to CloudWatch. One can install the service though the OCM UI or by using the CLI. We will use the OCM UI below. If you want to use the CLI you can [see the steps here](https://docs.openshift.com/rosa/logging/rosa-install-logging.html).
+In these steps we will install the logging add-on service to forward our logs; in our case to CloudWatch. If you did not follow the "Getting Started" guide of this workshop and did not install ROSA with STS then you can skip to install the service though the OCM UI or by using the CLI (in step XXXXXXXX). There are a few steps we need to do first inorder to get this to work for ROSA with STS.
+
+>**NOTE:** These steps were adopted from our Managed OpenShift Black Belts [here](https://elixir.microsoft.com/practices/case-review-query?supportscope=88813bea-9f22-0270-5309-f9dd8e3956d7).
+
+**@#$#%#$TODO!!!!!!!!!!!**:We will use the OCM UI below. If you want to use the CLI you can [see the steps here](https://docs.openshift.com/rosa/rosa_cluster_admin/rosa_logging/rosa-install-logging.html).
+
+1. Create a IAM Trust Policy document
+
+		cat << EOF > /tmp/trust-policy.json
+		{
+		    "Version": "2012-10-17",
+		    "Statement": [
+		        {
+		            "Effect": "Allow",
+		            "Action": [
+		                "logs:CreateLogGroup",
+		                "logs:CreateLogStream",
+		                "logs:DescribeLogGroups",
+		                "logs:DescribeLogStreams",
+		                "logs:PutLogEvents",
+		                "logs:GetLogEvents",
+		                "logs:PutRetentionPolicy",
+		                "logs:GetLogRecord"
+		            ],
+		            "Resource": "arn:aws:logs:*:*:*"
+		        }
+		    ]
+		}
+		EOF
+
+1. Create IAM Policy
+
+		POLICY_ARN=$(aws iam create-policy --policy-name "RosaCloudWatchAddon" --policy-document file:///tmp/trust-policy.json --query Policy.Arn --output text)
+		echo $POLICY_ARN
 
 
-1. Access the [OCM UI](https://cloud.redhat.com/OpenShift), select your cluster, and click on the **Add-ons** tab.
+1. Create service account
+
+		aws iam create-user --user-name RosaCloudWatchAddon --query User.Arn --output text
+
+1. Attach policy to user
+
+		aws iam attach-user-policy --user-name RosaCloudWatchAddon --policy-arn ${POLICY_ARN}
+
+1. Create AccessKeyId and SecretAccessKey
+
+		aws iam create-access-key --user-name RosaCloudWatchAddon
+
+1. Save the output to the following environment variables
+
+		export AWS_ID=<from above>
+		export AWS_KEY=<from above>
+
+1. Create a secret for the addon to use
+
+		cat << EOF | kubectl apply -f -
+		apiVersion: v1
+		kind: Secret
+		metadata:
+		 name: instance
+		 namespace: openshift-logging
+		stringData:
+		  aws_access_key_id: ${AWS_ID}
+		  aws_secret_access_key: ${AWS_KEY}
+		EOF
+
+1. Access the [OCM UI](https://console.redhat.com/OpenShift), select your cluster, and click on the **Add-ons** tab.
 1. Click on the **Cluster Logging Operator**
 
 	![Logging addon](images/9-ostoy-logadd.png)
@@ -32,7 +95,7 @@ In these steps we will install the logging addon service to forward our logs; in
 
 ### Output data to the streams/logs
 
-1. Output a message to *stdout* 
+1. Output a message to *stdout*
 Click on the *Home* menu item and then click in the message box for "Log Message (stdout)" and write any message you want to output to the *stdout* stream.  You can try "**All is well!**".  Then click "Send Message".
 
 ![Logging stdout](images/9-ostoy-stdout.png)
@@ -80,16 +143,15 @@ You should see both the *stdout* and *stderr* messages.
 	![cloudwatch2](images/9-stderr.png)
 
 
-
 1. We can also see other messages in our logs from the app. Enter "microservice" in the search bar, and expand one of the entries. This shows us the color recieved from the microservice and which pod sent that color to our frontend pod.
 
-	![messages](images/9-messages.png) 
+	![messages](images/9-messages.png)
 
 
 You can also use some of the other features of CloudWatch to obtain useful information. But [how to use CloudWatch](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/WhatIsCloudWatch.html) is beyond the scope of this tutorial.
 
 ### View logs with Kibana
->**NOTE:** In order to use EFK, this section assumes that you have successfully completed the steps outlined in [Installing OpenShift Logging](https://docs.openshift.com/container-platform/4.8/logging/cluster-logging-deploying.html).
+>**NOTE:** In order to use EFK, this section assumes that you have successfully completed the steps outlined in [Installing OpenShift Logging](https://docs.openshift.com/container-platform/latest/logging/cluster-logging-deploying.html).
 
 1. Run the following command to get the route for the Kibana console:
 

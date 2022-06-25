@@ -53,16 +53,13 @@ Being Kubernetes, one can definitely use `kubectl` with their OpenShift cluster.
 ### Configure the AWS CLI
 If you've just installed the AWS CLI, or simply want to make sure it is using the correct AWS account, follow these steps in a terminal:
 
->**NOTE:** You must use an actual IAM and not an assumed role
-
 1. Enter `aws configure` in the terminal
-2. Enter the AWS Access Key ID and press enter
-3. Enter the AWS Secret Access Key and press enter
-4. Enter the default region you want to deploy into
-5. Enter the output format you want (“table” or “json”).  For this guide you can choose “table” as it is easier to read but either is fine.
+1. Enter the AWS Access Key ID and press enter
+1. Enter the AWS Secret Access Key and press enter
+1. Enter the default region you want to deploy into
+1. Enter the output format you want (“table” or “json”).  For this guide you can choose “table” as it is easier to read but either is fine.
 
     It should look like the following as an example:
-
 
         $ aws configure
         AWS Access Key ID: AKIA0000000000000000
