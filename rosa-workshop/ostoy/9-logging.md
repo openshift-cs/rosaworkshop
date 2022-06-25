@@ -19,8 +19,6 @@ In these steps we will install the logging add-on service to forward our logs; i
 
 >**NOTE:** These steps were adopted from our Managed OpenShift Black Belts [here](https://elixir.microsoft.com/practices/case-review-query?supportscope=88813bea-9f22-0270-5309-f9dd8e3956d7).
 
-**@#$#%#$TODO!!!!!!!!!!!**:We will use the OCM UI below. If you want to use the CLI you can [see the steps here](https://docs.openshift.com/rosa/rosa_cluster_admin/rosa_logging/rosa-install-logging.html).
-
 1. Create a IAM Trust Policy document
 
 		cat << EOF > /tmp/trust-policy.json
