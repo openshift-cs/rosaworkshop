@@ -1,6 +1,6 @@
 ## Managing Worker Nodes
 
-When using your cluster there may be times when you need to change aspects of your worker nodes. Things like scaling, changing the type, adding labels or taints to name a few. Most of these things are done through the use of machine pools in ROSA. Think of a machine pool as a “template” for the kinds of machines that make up the worker nodes of your cluster. A machine pool allows users to manage many machines as a single entity. If you'd like to learn more see [About machine pools and autoscaling](https://docs.openshift.com/rosa/nodes/nodes/nodes-machinepools-autoscaling-about.html).
+When using your cluster there may be times when you need to change aspects of your worker nodes. Things like scaling, changing the type, adding labels or taints to name a few. Most of these things are done through the use of machine pools in ROSA. Think of a machine pool as a “template” for the kinds of machines that make up the worker nodes of your cluster. A machine pool allows users to manage many machines as a single entity. Every ROSA cluster has a "Default" machine pool created when the cluster is created. If you'd like to learn more see [About machine pools and autoscaling](https://docs.openshift.com/rosa/nodes/nodes/nodes-machinepools-autoscaling-about.html).
 
 
 #### Creating a Machine pool (CLI)
@@ -37,8 +37,6 @@ This can be accomplished though the `rosa` CLI or through the [OCM](https://cons
         Default      No           2         m5.xlarge                                        us-east-1a            
         new-mp       No           2         m5.xlarge                                        us-east-1a             
         db-nodes-mp  No           2         m5.xlarge      app=db, tier=backend              us-east-1a             
-
-    <!-- ![mp](images/7-new_mp.png) -->
 
 #### Creating a Machine pool (UI)
 1. This can also be achieved through the [OCM](https://console.redhat.com/openshift) UI. Click on your cluster.
@@ -118,7 +116,7 @@ This can be accomplished though the `rosa` CLI or through the [OCM](https://cons
 
 #### Mixing different node types
 
-1. You can also mix different worker node machine types by using new machine pools. You cannot change the node type of a machine pool once created, but we can create a new machine pool with different nodes by adding the `--instance-type` flag.
+1. You can also mix different worker node machine types in the same cluster by using new machine pools. You cannot change the node type of a machine pool once created, but we can create a new machine pool with different nodes by adding the `--instance-type` flag.
 1. If we take the use case above (database nodes) but instead wanted to have a different node type when creating it, we would have ran
 
         rosa create machinepool --cluster=<cluster-name> --name=<mp-name> --replicas=<number-nodes> --labels=’<key=pair>’ --instance-type=<type>

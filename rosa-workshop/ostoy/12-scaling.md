@@ -1,17 +1,28 @@
 ## Scaling
-OpenShift allows one to scale up/down the number of pods for each part of an application as needed.  This can be accomplished via changing our *replicaset/deployment* definition (declarative), by the command line (imperative), or via the web UI (imperative). In our *deployment* definition (part of our `ostoy-fe-deployment.yaml`) we stated that we only want one pod for our microservice to start with. This means that the Kubernetes Replication Controller will always strive to keep one pod alive. We can also define [autoscaling](https://docs.openshift.com/dedicated/4/nodes/pods/nodes-pods-autoscaling.html) based on load to expand past what we defined if needed which we will do in a later section of this lab.
+
+Scaling can refer to a few things.
+
+1. Manually scaling pods
+1. Pod autoscaling (Horizontal Pod Autoscaler)
+1. Node autoscaling
+
+We will explore all three.
+
+### Pod scaling
+
+OpenShift allows one to scale up/down the number of pods for each part of an application as needed.  This can be accomplished via changing our *replicaset/deployment* definition (declarative), by the command line (imperative), or via the web console (imperative). In our *deployment* definition (part of our `ostoy-fe-deployment.yaml`) we stated that we only want one pod for our microservice to start with. This means that the Kubernetes Replication Controller will always strive to keep one pod alive. We can also define pod autoscaling using the [Horizontal Pod Autoscaler](https://docs.openshift.com/container-platform/latest/nodes/pods/nodes-pods-autoscaling.html)(HPA) based on load to expand past what we defined if needed which we will do in a later section of this lab.
 
 If we look at the tile on the left we should see one box randomly changing colors. This box displays the randomly generated color sent to the frontend by our microservice along with the pod name that sent it. Since we see only one box that means there is only one microservice pod.  We will now scale up our microservice pods and will see the number of boxes change.
 
 #### 1. Confirm number of pods running
-To confirm that we only have one pod running for our microservice, run the following command, or use the web UI.
+To confirm that we only have one pod running for our microservice, run the following command, or use the web console.
 
-
+```
 	$ oc get pods
 	NAME                                   READY     STATUS    RESTARTS   AGE
 	ostoy-frontend-679cb85695-5cn7x       1/1       Running   0          1h
 	ostoy-microservice-86b4c6f559-p594d   1/1       Running   0          1h
-
+```
 
 #### 2. Scale pods via Deployment definition
 Let's change our microservice definition yaml to reflect that we want 3 pods instead of the one we see. Download the [ostoy-microservice-deployment.yaml](https://raw.githubusercontent.com/openshift-cs/osdworkshop/master/OSD4/yaml/ostoy-microservice-deployment.yaml) and save it on your local machine, if you didn't do so already.
@@ -21,63 +32,61 @@ Let's change our microservice definition yaml to reflect that we want 3 pods ins
 
 It will look like this:
 
-
+```
 	spec:
 	    selector:
 	      matchLabels:
 	        app: ostoy-microservice
 	    replicas: 3
-
+```
 - Assuming you are still logged in via the CLI, execute the following command:
 
 		oc apply -f ostoy-microservice-deployment.yaml
 
->NOTE: (You could also change it directly in the OpenShift Web Console by going to Deployments > "ostoy-microservice" > "YAML" tab)
+>NOTE: You could also change it directly in the OpenShift Web Console by going to Deployments > "ostoy-microservice" > "YAML" tab.
 
-- Confirm that there are now 3 pods via the CLI (`oc get pods`) or the web UI (*Workloads > Deployments > ostoy-microservice*).
-- See this visually by visiting the OSToy app > Autoscaling in the left menu and counting how many boxes there are now.  It should be three.
+- Confirm that there are now 3 pods via the CLI (`oc get pods`) or the web console (*Workloads > Deployments > ostoy-microservice*).
+- See this visually by visiting the OSToy app > Networking in the left menu and counting how many boxes there are now.  It should be three.
 
 ![UI Scale](images/8-ostoy-colorspods.png)
 
 #### 3. Scale down via CLI
 Now we will scale the pods down using the command line.  
 
-- Execute the following command from the CLI: 
+- Execute the following command from the CLI:
 
 		oc scale deployment ostoy-microservice --replicas=2
 
-- Confirm that there are indeed 2 pods, via the CLI or the web UI.
+- Confirm that there are indeed 2 pods, via the CLI or the web console.
 
 		oc get pods
 
 - See this visually by visiting the OSToy app and counting how many boxes there are now.  It should be two.
 
-#### 4. Scale down via web UI
-Lastly, let's use the web UI to scale back down to one pod.  
+#### 4. Scale down via web console
+Lastly, let's use the web console to scale back down to one pod.  
 
-- In the project you created for this app (ie: "ostoy") in the left menu click *Workloads > Deployments > ostoy-microservice*.  On the left you will see a blue circle with the number 2 in the middle. 
+- In the project you created for this app (ex: "ostoy") in the left menu click *Workloads > Deployments > ostoy-microservice*.  On the left you will see a blue circle with the number 2 in the middle.
 - Click on the down arrow to the right of that to scale the number of pods down to 1.
 
-![UI Scale](images/8-ostoy-uiscale1.png)
+	![UI Scale](images/8-ostoy-uiscale1.png)
 
 - See this visually by visiting the OSToy app and counting how many boxes there are now.  It should be one.
-- You can also confirm this via the CLI or the web UI
+- You can also confirm this via the CLI or the web console.
 
 
+### Pod Autoscaling
 
+In this section we will explore how the [Horizontal Pod Autoscaler](https://docs.openshift.com/container-platform/latest/nodes/pods/nodes-pods-autoscaling.html) (HPA) can be used and works within Kubernetes/OpenShift. See here for [cluster autoscaling](/rosa/8-autoscaling) in ROSA.
 
-## Autoscaling
-
-In this section we will explore how the [Horizontal Pod Autoscaler](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/) (HPA) can be used and works within Kubernetes/OpenShift. See here for [cluster autoscaling](/rosa/8-autoscaling) in ROSA.
-
-As defined in the Kubernetes documentation:
-> Horizontal Pod Autoscaler automatically scales the number of pods in a replication controller, deployment, replica set or stateful set based on observed CPU utilization.
+As defined in the documentation:
+> [...] you can use a horizontal pod autoscaler (HPA) to specify how OpenShift Container Platform should automatically increase or decrease the scale of a replication controller or deployment configuration, based on metrics collected from the pods that belong to that replication controller or deployment configuration.
 
 We will create an HPA and then use OSToy to generate CPU intensive workloads.  We will then observe how the HPA will scale up the number of pods in order to handle the increased workloads.  
 
 #### 1. Create the Horizontal Pod Autoscaler
 
-Run the following command to create the autoscaler. This will create an HPA that maintains between 1 and 10 replicas of the Pods controlled by the *ostoy-microservice* Deployment created. Roughly speaking, the HPA will increase and decrease the number of replicas (via the deployment) to maintain an average CPU utilization across all Pods of 80% (since each pod requests 50 millicores, this means average CPU usage of 40 millicores)
+Run the following command to create the autoscaler. This will create an HPA that maintains between 1 and 10 replicas of the Pods controlled by the *ostoy-microservice* Deployment created. Roughly speaking, the HPA will increase and decrease the number of replicas (via the deployment) to maintain an average CPU utilization across all pods of 80% (since each pod requests 50 millicores, this means average CPU usage of 40 millicores).
 
 	oc autoscale deployment/ostoy-microservice --cpu-percent=80 --min=1 --max=10
 
@@ -87,7 +96,7 @@ In the OSToy app in the left menu click on "Autoscaling" to access this portion 
 
 ![HPA Menu](images/12-hpa-menu.png)
 
-As was in the networking section you will see the total number of pods available for the microservice by counting the number of colored boxes.  In this case we have only one.  This can be verified through the web UI or from the CLI.
+As was in the networking section you will see the total number of pods available for the microservice by counting the number of colored boxes.  In this case we have only one.  This can be verified through the web console or from the CLI.
 
 You can use the following command to see the running microservice pods only:
 
@@ -111,38 +120,74 @@ After about a minute the new pods will show up on the page (represented by the c
 
 > **Note:** The page may still lag a bit which is normal.
 
-#### 5. Review resources with monitoring
+#### 5. Review metrics with observability
 
-After confirming that the autoscaler did spin up new pods, switch to Grafana to visually see the resource consumption of the pods and see how the workloads were distributed.
+In the OpenShift web console left menu, click on *Observe > Dashboards*
 
-We can also view the same information through the OpenShift Web Console by going through *Monitoring* > *Dashboards* in the left-hand menu.
+In the dashboard, select *Kubernetes / Compute Resources / Namespace (Pods)* and our namespace *ostoy*.
 
-![Dashboard](images/12-dashboard.png)
+![select_metrics](images/12-hpametrics.png)
+
+Wait a few minutes and colorful graphs will appear showing resource usage across CPU and memory. The top graph will show recent CPU consumption per pod and the lower graph will indicate memory usage. Looking at this graph you can see how things developed. As soon as the load started to increase (A), two new pods started to spin up (B, C). The thickness of each graph is its CPU consumption indicating which pods handled more load. We also see that the load decreased (D), after which, the pods were spun back down.
+
+![select_metrics](images/12-metrics.png)
+
+### Node Autoscaling
+
+In ROSA one can also define [node autoscaling](https://docs.openshift.com/rosa/rosa_cluster_admin/rosa_nodes/rosa-nodes-about-autoscaling-nodes.html).  You can also visit the [Node Autoscaling](/rosa/8-autoscaling) section of this workshop for more information.
+
+#### 1. Enable Autoscaling nodes on the machine pool
+
+If you have not already enabled autoscaling on a machine pool the please see the [Setting up cluster autoscaling](/rosa/8-autoscaling/#setting-up-cluster-autoscaling) section and follow the steps there to either enable autoscaling on an existing machine pool or create a new one with autoscaling enabled.
+
+#### 2. Test the Cluster Autoscaler
+
+Create a new project where we will define a job with a load that this cluster cannot handle. This should force the cluster to automatically create new nodes to handle the load.
+
+Create a new project called "autoscale-ex":
+
+	oc new-project autoscale-ex
+
+Create the job
+
+	oc create -f https://raw.githubusercontent.com/openshift/training/master/assets/job-work-queue.yaml
+
+After a few seconds, run the following to see what pods have been created.
 
 
-Or to use Grafana directly, go to the following url:
+	$ oc get pods
+	NAME                     READY   STATUS    RESTARTS   AGE
+	work-queue-5x2nq-24xxn   0/1     Pending   0          10s
+	work-queue-5x2nq-57zpt   0/1     Pending   0          10s
+	work-queue-5x2nq-58bvs   0/1     Pending   0          10s
+	work-queue-5x2nq-6c5tl   1/1     Running   0          10s
+	work-queue-5x2nq-7b84p   0/1     Pending   0          10s
+	work-queue-5x2nq-7hktm   0/1     Pending   0          10s
+	work-queue-5x2nq-7md52   0/1     Pending   0          10s
+	work-queue-5x2nq-7qgmp   0/1     Pending   0          10s
+	work-queue-5x2nq-8279r   0/1     Pending   0          10s
+	work-queue-5x2nq-8rkj2   0/1     Pending   0          10s
+	work-queue-5x2nq-96cdl   0/1     Pending   0          10s
+	work-queue-5x2nq-96tfr   0/1     Pending   0          10s
 
-	https://grafana-openshift-monitoring.apps.<cluster-id>.<shard-id>.p1.openshiftapps.com
 
-(e.g., https://grafana-openshift-monitoring.apps.demo-cluster.a1b2.p1.openshiftapps.com/)
+We see a lot of pods in a pending state.  This should trigger the autoscaler to create more nodes in our machine pool.
 
+After a few minutes let's check how many worker nodes we have.
 
-Click on *General / Home* on the top left.
+	$ oc get nodes
+	NAME                                         STATUS   ROLES          AGE     VERSION
+	ip-10-0-138-106.us-west-2.compute.internal   Ready    infra,worker   22h     v1.23.5+3afdacb
+	ip-10-0-153-68.us-west-2.compute.internal    Ready    worker         2m12s   v1.23.5+3afdacb
+	ip-10-0-165-183.us-west-2.compute.internal   Ready    worker         2m8s    v1.23.5+3afdacb
+	ip-10-0-176-123.us-west-2.compute.internal   Ready    infra,worker   22h     v1.23.5+3afdacb
+	ip-10-0-195-210.us-west-2.compute.internal   Ready    master         23h     v1.23.5+3afdacb
+	ip-10-0-196-84.us-west-2.compute.internal    Ready    master         23h     v1.23.5+3afdacb
+	ip-10-0-203-104.us-west-2.compute.internal   Ready    worker         2m6s    v1.23.5+3afdacb
+	ip-10-0-217-202.us-west-2.compute.internal   Ready    master         23h     v1.23.5+3afdacb
+	ip-10-0-225-141.us-west-2.compute.internal   Ready    worker         23h     v1.23.5+3afdacb
+	ip-10-0-231-245.us-west-2.compute.internal   Ready    worker         2m11s   v1.23.5+3afdacb
+	ip-10-0-245-27.us-west-2.compute.internal    Ready    worker         2m8s    v1.23.5+3afdacb
+	ip-10-0-245-7.us-west-2.compute.internal     Ready    worker         23h     v1.23.5+3afdacb
 
-![Grafana](images/12-grafana-home.png)
-
-Select the *Default* folder then *"Default / Kubernetes / Compute Resources / Namespace (Pods)"* dashboard.
-
-![Select Dash](images/12-grafana-dash.png)
-
-Click on *Namespace* and select our project name "ostoy".
-
-![Select NS](images/12-grafana-ns.png)
-
-Colorful graphs will appear showing resource usage across CPU and memory.  The top graph will show recent CPU consumption per pod and the lower graph will indicate memory usage.  Looking at this graph you can see how things developed. As soon as the load started to increase (A), three new pods started to spin up (B, C, D). The thickness of each graph is its CPU consumption indicating which pods handled more load.  We also see that after the load decreased, the pods were spun back down (E).
-
-![CPU](images/12-grafana-cpu.png)
-
-Mouse over the graph and the tool will display the names and corresponding CPU consumption of each pod as seen below.
-
-![CPU](images/12-grafana-metrics.png)
+We can see that more worker nodes were automatically created to handle the workload.  

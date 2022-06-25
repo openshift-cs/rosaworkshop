@@ -6,7 +6,7 @@ If you are not logged in via the CLI, [access your cluster via the web console](
 
 ![CLI Login](images/4-cli-login.png)
 
-A new tab will open and select the authentication method you are using (in our case it's *github*)
+A new tab will open and select the authentication method you are using.
 
 Click *Display Token*
 
@@ -64,7 +64,7 @@ You should see the following response:
     service/ostoy-microservice-svc created
 
 #### 4. Deploy the front-end service
-The frontend deployment contains the node.js frontend for our application along with a few other Kubernetes objects to illustrate examples.
+The frontend deployment contains the node.js frontend for our application along with a few other Kubernetes objects.
 
  If you open the *ostoy-fe-deployment.yaml* you will see we are defining:
 
@@ -92,8 +92,8 @@ You should see all objects created successfully
     secret/ostoy-secret created
 
 #### 5. Get the route
-Get the route so that we can access the application via 
-    
+Get the route so that we can access the application via
+
     oc get route
 
 You should see the following response:
