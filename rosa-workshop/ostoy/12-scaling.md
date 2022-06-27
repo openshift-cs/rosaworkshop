@@ -82,6 +82,8 @@ In this section we will explore how the [Horizontal Pod Autoscaler](https://docs
 As defined in the documentation:
 > [...] you can use a horizontal pod autoscaler (HPA) to specify how OpenShift Container Platform should automatically increase or decrease the scale of a replication controller or deployment configuration, based on metrics collected from the pods that belong to that replication controller or deployment configuration.
 
+In more simple words, "if there is a lot of work, make more pods".
+
 We will create an HPA and then use OSToy to generate CPU intensive workloads.  We will then observe how the HPA will scale up the number of pods in order to handle the increased workloads.  
 
 #### 1. Create the Horizontal Pod Autoscaler

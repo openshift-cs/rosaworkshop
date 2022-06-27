@@ -15,7 +15,7 @@ The cluster logging components are based upon Fluentd, (and Elasticsearch and Ki
 
 >**NOTE:** If you plan on running EFK <u>do not follow</u> the installation steps in this section but rather follow the [Installing OpenShift Logging](https://docs.openshift.com/container-platform/latest/logging/cluster-logging-deploying.html) steps and skip down to [View logs with Kibana](#view-logs-with-kibana))
 
-In these steps we will install the logging add-on service to forward our logs; in our case to CloudWatch. If you did not follow the "Getting Started" guide of this workshop and did not install ROSA with STS then you can skip to install the service though the OCM UI or by using the CLI (in step XXXXXXXX). There are a few steps we need to do first inorder to get this to work for ROSA with STS.
+In the following steps we will install the logging add-on service to forward our logs; in our case to CloudWatch. If you did not follow the "Getting Started" guide of this workshop and **did not** install ROSA with STS then you can skip to install the service though the OCM UI or by using the CLI (in step 8). Otherwise, there are a few steps we need to do first in order to get this to work for ROSA with STS.
 
 >**NOTE:** These steps were adopted from our Managed OpenShift Black Belts [here](https://mobb.ninja/docs/rosa/sts-cluster-logging-addon/).
 
