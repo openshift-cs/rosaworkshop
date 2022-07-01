@@ -2,7 +2,7 @@ There are currently two supported credential methods when creating a ROSA cluste
 
 ## Prerequisites
 
-Please review the prerequisites found in the documentation at [Prerequisites for ROSA w/STS](https://docs.openshift.com/rosa/rosa_getting_started_sts/rosa-sts-aws-prereqs.html) before getting started.
+Please review the prerequisites found in the documentation at [Prerequisites for ROSA w/STS](https://docs.openshift.com/rosa/rosa_planning/rosa-sts-aws-prereqs.html) before getting started.
 
 
 You will need the following pieces of information from your AWS account:
@@ -42,13 +42,13 @@ There are a few ways to install the `oc` CLI:
 
 1. If you have the `rosa` CLI installed, the simplest way is to run `rosa download oc`
     1. Once downloaded, untar (or unzip) the file and move the executables into a directory in your PATH
-1. Or, you can [download and install](https://docs.openshift.com/container-platform/4.9/cli_reference/openshift_cli/getting-started-cli.html#installing-openshift-cli) the latest OpenShift CLI (oc)  
+1. Or, you can [download and install](https://docs.openshift.com/container-platform/latest/cli_reference/openshift_cli/getting-started-cli.html#installing-openshift-cli) the latest OpenShift CLI (oc)  
 1. Or, if you already have an OpenShift cluster you can access the command line tools page by clicking on the *Question mark > Command Line Tools*.  Then download the relevant one for your operating system.
 
   ![CLI Tools](images/0-cli_tools_page.png)
 
 **Why use `oc` over `kubectl`**<br>
-Being Kubernetes, one can definitely use `kubectl` with their OpenShift cluster.  `oc` is specific to OpenShift in that it includes the standard set of features from `kubectl` plus additional support for OpenShift functionality.  See [Usage of oc and kubectl commands](https://docs.openshift.com/container-platform/4.9/cli_reference/openshift_cli/usage-oc-kubectl.html) for more details.
+Being Kubernetes, one can definitely use `kubectl` with their OpenShift cluster.  `oc` is specific to OpenShift in that it includes the standard set of features from `kubectl` plus additional support for OpenShift functionality.  See [Usage of oc and kubectl commands](https://docs.openshift.com/container-platform/latest/cli_reference/openshift_cli/usage-oc-kubectl.html) for more details.
 
 ### Configure the AWS CLI
 If you've just installed the AWS CLI, or simply want to make sure it is using the correct AWS account, follow these steps in a terminal:
@@ -139,34 +139,12 @@ Should return a response like
     I: Validating AWS quota...
     I: AWS quota ok. If cluster installation fails, validate actual AWS resource usage against https://docs.openshift.com/rosa/rosa_getting_started/rosa-required-aws-service-quotas.html
 
-See [the documentation](https://docs.openshift.com/rosa/rosa_getting_started_sts/rosa-sts-required-aws-service-quotas.html) for more details regarding quotas.
+See [the documentation](https://docs.openshift.com/rosa/rosa_planning/rosa-sts-required-aws-service-quotas.html) for more details regarding quotas.
 
 ### Verify `oc` CLI
 Verify that the `oc` CLI is installed correctly
 
     rosa verify openshift-client
-
-
-<!--## Verify quota, permissions and initialize your AWS account
-This step runs a CloudFormation template that prepares your AWS account for cluster deployment and management. This step typically takes 1-2 minutes to complete. This step also will verify that your account quota is adequate and permissions are accurate.
-
-1. Run `rosa init` in your terminal window.  You will see a response like the below.  Make sure everything looks good and there are no errors.
-
-        I: Logged in as 'you@domain.com' on 'https://api.openshift.com'
-        I: Validating AWS credentials...
-        I: AWS credentials are valid!
-        I: Validating SCP policies...
-        I: AWS SCP policies ok
-        I: Validating AWS quota...
-        I: AWS quota ok
-        I: Ensuring cluster administrator user 'osdCcsAdmin'...
-        I: Admin user 'osdCcsAdmin' created successfully!
-        I: Validating SCP policies for 'osdCcsAdmin'...
-        I: AWS SCP policies ok
-        I: Validating cluster creation...
-        I: Cluster creation valid
-        I: Verifying whether OpenShift command-line tool is available...
-        I: Current OpenShift Client Version: 4.6. -->
 
 We have now successfully set up our account and environment and are ready to deploy our cluster in the next step.
 

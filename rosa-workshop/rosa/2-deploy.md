@@ -1,4 +1,4 @@
-There are two ways to deploy a cluster with STS mode. One is automatic, which is quicker and will do the manual work for you. The other is manual, which will require you to execute some extra commands, but will allow you to inspect the roles and policies being created. This workshop will document both options. If you just want to get your cluster created quickly, please use the automatic section, but if you would rather explore the objects being created, then feel free to use manual. This is achieved via the `--mode` flag in the relevant commands.  
+There are two modes with which to deploy a ROSA w/STS cluster. One is automatic, which is quicker and will do the manual work for you. The other is manual, which will require you to execute some extra commands, but will allow you to inspect the roles and policies being created. This workshop will document both options. If you just want to get your cluster created quickly, please use the automatic section, but if you would rather explore the objects being created, then feel free to use manual. This is achieved via the `--mode` flag in the relevant commands.  
 
 Valid options for `--mode` are:
 

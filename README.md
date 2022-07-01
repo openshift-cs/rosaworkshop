@@ -1,12 +1,11 @@
 <!---## Red Hat OpenShift Service on AWS (ROSA) information pages-->
 
 ### What is Red Hat OpenShift Service on AWS (ROSA)?
-ROSA is a _fully_ managed Red Hat OpenShift cluster running natively on Amazon Web Services (AWS), which allows customers to quickly and easily build, deploy, and manage Kubernetes applications on the industry’s most comprehensive Kubernetes platform in the AWS public cloud.
+Red Hat OpenShift Service on AWS (ROSA) is a _fully_-managed turnkey application platform that allows you to focus on what matters most, delivering value to your customers by building and deploying applications. Red Hat and AWS SRE experts manage the underlying platform so you don’t have to worry about the complexity of infrastructure management. ROSA provides seamless integration with a wide range of AWS compute, database, analytics, machine learning, networking, mobile, and other services to further accelerate the building and delivering of differentiating experiences to your customers.
 
-The latest version of ROSA makes use of AWS Secure Token Service (STS) for the ROSA cluster components. AWS STS is a global web service that allows the creation of temporary credentials for IAM users or federated users. ROSA uses this to assign IAM roles short-term, limited-privilege, security credentials. These credentials are associated with IAM roles that are specific to each component that makes AWS API calls. This better aligns with principals of least privilege and is much better aligned to secure practices in cloud service resource management. The ROSA CLI tool manages the STS credentials that are assigned for unique tasks and takes action upon AWS resources as part of OpenShift functionality. Please see the section "[ROSA with STS Explained](rosa-workshop/rosa/15-sts_explained.md)" for a detailed explanation.
+The latest version of ROSA makes use of AWS Security Token Service (STS) to obtain credentials to manage infrastructure in your AWS account. AWS STS is a global web service that allows the creation of temporary credentials for IAM users or federated users. ROSA uses this to assign IAM roles short-term, limited-privilege, security credentials. These credentials are associated with IAM roles that are specific to each component that makes AWS API calls. This better aligns with principals of least privilege and is much better aligned to secure practices in cloud service resource management. The ROSA CLI tool manages the STS credentials that are assigned for unique tasks and takes action upon AWS resources as part of OpenShift functionality. Please see the section "[ROSA with STS Explained](rosa-workshop/rosa/15-sts_explained.md)" for a detailed explanation.
 
 A listing of the account-wide and per-cluster roles is provided in the [documentation](https://docs.openshift.com/rosa/rosa_architecture/rosa-sts-about-iam-resources.html).
-
 
 ### What information is on this site?
 These pages are split into three sections.
@@ -14,7 +13,6 @@ These pages are split into three sections.
 1. One contains the steps to getting started on ROSA ("Getting started with ROSA").  
 1. Another is about deploying an application to ROSA to get better familiar with the internals of OpenShift ("Deploy the application").
 1. Lastly, some reference pages with a summary of a few key OpenShift concepts that will be used in the workshop, an FAQ, and an explanation of ROSA with STS.
-
 
 ### What will we do in this workshop?
 In this workshop, you’ll go through a set of tasks that will help you understand the concepts of deploying and using container based applications on top of ROSA.
@@ -29,7 +27,7 @@ Some of the things you’ll be going through:
     - Upgrading
     - Delete the cluster
 - Deploy a node.js based app via S2I and Kubernetes Deployment objects
-- Set up an continuous delivery pipeline to automatically push changes to the source code
+- Set up a continuous delivery pipeline to automatically push changes to the source code
 - Explore logging
 - Experience self healing of applications
 - Explore configuration management through configmaps, secrets and environment variables
@@ -43,7 +41,7 @@ If you'd like a preview of the cluster deployment process, you can watch a short
 [Deploying our first app on a ROSA cluster](https://youtu.be/KbzUbXWs6Ck)
 
 ### Creating your first ROSA Cluster
-If you'd like an easy to follow guide for creating your first ROSA cluster you've come to the right place.
+If you'd like an easy to follow guide for creating your first ROSA cluster:
 
 1. Please review the [prerequisites](https://docs.openshift.com/rosa/rosa_planning/rosa-sts-aws-prereqs.html) which contains important information about the AWS account requirements.  
 1. Visit the "Getting Started with ROSA" tutorial for [Setting up your account](rosa-workshop/rosa/1-account_setup.md).
