@@ -167,6 +167,9 @@ Yes, all SRE access is secured by MFA. See [SRE access](https://docs.openshift.c
 ### What encryption keys, if any, are used in a new ROSA cluster?
 We encrypt EBS volumes that we use for ROSA, using a key stored in KMS. Customers have the option to provide their own KMS keys at cluster creation time as well.
 
+### If I specify a KMS key to use, what exactly gets encrypted with that key?
+Control plane, infrastructure and worker node root volumes, along with your persistent volumes.
+
 ### Is data on my cluster encrypted?
 By default, there is encryption at rest. The AWS Storage platform automatically encrypts your data before persisting it, and decrypts the data before retrieval. See [AWS EBS Encryption](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html) details.
 There is also the ability to encrypt etcd in the cluster, and that would combine with AWS storage encryption, resulting in double the encryption (redundant), which adds up to 20% performance hit. For further details see [etcd encryption](https://docs.openshift.com/rosa/rosa_policy/rosa-service-definition.html#rosa-sdpolicy-etcd-encryption_rosa-service-definition).

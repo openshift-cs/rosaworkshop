@@ -18,10 +18,10 @@ The overall flow that we will follow boils down to:
 For each succeeding cluster in the same account for the same y-stream version, only step 2 is needed (or 2-4 for manual mode).
 
 ## Automatic Mode
-As mentioned above if you want the ROSA CLI to automate the creation of the roles and policies to create your cluster quickly, then use this method.
+As mentioned above, if you want the ROSA CLI to automate the creation of the roles and policies to create your cluster quickly, then use this method.
 
 ### Create account roles
-If this is the <u>first time</u> you are deploying ROSA in this account and have <u>not yet created the account roles</u> then enable ROSA to create JSON files for account-wide roles and policies, including Operator policies.
+If this is the <u>first time</u> you are deploying ROSA in this account and have <u>not yet created the account roles</u>, then enable ROSA to create the account-wide roles and policies, including Operator policies.
 
 Run the following command to create the account-wide roles:
 
@@ -104,7 +104,7 @@ You should see a response like the following:
 The default settings are as follows:
 
 * 3 Master Nodes, 2 Infra Nodes, 2 Worker Nodes
-    * See [here](https://docs.openshift.com/rosa/rosa_getting_started_sts/rosa-sts-aws-prereqs.html#rosa-ec2-instances_rosa-sts-aws-prerequisites) for more details.
+    * See [here](https://docs.openshift.com/rosa/rosa_planning/rosa-sts-aws-prereqs.html#rosa-ec2-instances_rosa-sts-aws-prereqs) for more details.
 * Region: As configured for the AWS CLI
 * Networking IP ranges:
     * Machine CIDR: 10.0.0.0/16
@@ -112,7 +112,7 @@ The default settings are as follows:
     * Pod CIDR: 10.128.0.0/14
 * The most recent version of OpenShift available to `rosa`
 * A single availability zone
-* Public cluster (Public API)
+* Public cluster
 
 ### Check installation status
 1. You can run the following command to check the detailed status of the cluster:
@@ -131,7 +131,7 @@ The default settings are as follows:
 ## Manual Mode
 As mentioned above if you want to be able to review the roles and policies created before applying them, you can use this manual method. Though it will require running a few extra commands to create the roles and policies.
 
-In this version we will also make use of the `--interactive` mode so that it will be easier to follow along, though feel free to use the default cluster creation command above if you'd like.  See [here](https://docs.openshift.com/rosa/rosa_getting_started_sts/rosa_creating_a_cluster_with_sts/rosa-sts-interactive-mode-reference.html) for a description of the fields in this section.
+In this section we will make use of the `--interactive` mode so that it will be easier to follow along, though feel free to use the default cluster creation command above if you'd like.  See [here](https://docs.openshift.com/rosa/rosa_install_access_delete_clusters/rosa-sts-interactive-mode-reference.html) for a description of the fields in this section.
 
 ### Create account roles
 1. If this is the <u>first time</u> you are deploying ROSA in this account and have <u>not yet created the account roles</u>, then enable ROSA to create JSON files for account-wide roles and policies, including Operator policies. This command will create the needed JSON files for the required roles and policies for your account in the current directory.  This will also output the `aws` commands you need to run in order to create these objects.
@@ -189,7 +189,7 @@ In this version we will also make use of the `--interactive` mode so that it wil
                 "ec2:AuthorizeSecurityGroupIngress",
                 [...]
 
-    You can also see these contents in the [documentation](https://docs.openshift.com/rosa/rosa_getting_started_sts/rosa_creating_a_cluster_with_sts/rosa-sts-about-iam-resources.html).
+    You can also see these contents in the [documentation](https://docs.openshift.com/rosa/rosa_architecture/rosa-sts-about-iam-resources.html#rosa-sts-account-wide-roles-and-policies-creation-methods_rosa-sts-about-iam-resources).
 
 4. Execute the `aws` commands presented from the above step.  You can copy and paste as long as you are in the same directory as the json files created.
 
@@ -199,7 +199,7 @@ In this version we will also make use of the `--interactive` mode so that it wil
 
         rosa create cluster --interactive --sts
 
-    See [here](https://docs.openshift.com/rosa/rosa_getting_started_sts/rosa_creating_a_cluster_with_sts/rosa-sts-interactive-mode-reference.html) for a description of the fields below.
+    See [here](https://docs.openshift.com/rosa/rosa_install_access_delete_clusters/rosa-sts-interactive-mode-reference.html) for a description of the fields below.
 
     For the purpose of this tutorial please select the following values.
 
@@ -219,6 +219,7 @@ In this version we will also make use of the `--interactive` mode so that it wil
     Service CIDR: **&lt;accept default&gt;** <br>
     Pod CIDR: **&lt;accept default&gt;** <br>
     Host prefix: **&lt;accept default&gt;** <br>
+    Encrypt etcd data (optional): **No** <br>
     Disable Workload monitoring: **No** <br>
 
     You will see the following response along with the command to create this cluster in the future so that you don’t need to go through the interactive mode again.
@@ -229,21 +230,19 @@ In this version we will also make use of the `--interactive` mode so that it wil
         I: To view a list of clusters and their status, run 'rosa list clusters'
         I: Cluster 'my-rosa-cluster' has been created.
         I: Once the cluster is installed you will need to add an Identity Provider before you can login into the cluster. See 'rosa create idp --help' for more information.
-        I: To determine when your cluster is Ready, run 'rosa describe cluster -c my-rosa-cluster'.
-        I: To watch your cluster installation logs, run 'rosa logs install -c my-rosa-cluster --watch'.
         Name:                       my-rosa-cluster
-        ID:                         1mkesci269png3tck000000000000000
+        ID:                         1t6i760dbum4mqltqh6o000000000000
         External ID:                
         OpenShift Version:          
         Channel Group:              stable
-        DNS:                        my-rosa-cluster.4h5l.p1.openshiftapps.com
+        DNS:                        my-rosa-cluster.abcd.p1.openshiftapps.com
         AWS Account:                000000000000
         API URL:                    
         Console URL:                
         Region:                     us-west-2
         Multi-AZ:                   false
         Nodes:
-         - Master:                  3
+         - Control plane:           3
          - Infra:                   2
          - Compute:                 2
         Network:
@@ -254,24 +253,34 @@ In this version we will also make use of the `--interactive` mode so that it wil
         STS Role ARN:               arn:aws:iam::000000000000:role/ManagedOpenShift-Installer-Role
         Support Role ARN:           arn:aws:iam::000000000000:role/ManagedOpenShift-Support-Role
         Instance IAM Roles:
-         - Master:                  arn:aws:iam::000000000000:role/ManagedOpenShift-ControlPlane-Role
+         - Control plane:           arn:aws:iam::000000000000:role/ManagedOpenShift-ControlPlane-Role
          - Worker:                  arn:aws:iam::000000000000:role/ManagedOpenShift-Worker-Role
         Operator IAM Roles:
-         - arn:aws:iam::000000000000:role/my-rosa-cluster-openshift-image-registry-installer-cloud-credentials
-         - arn:aws:iam::000000000000:role/my-rosa-cluster-openshift-ingress-operator-cloud-credentials
-         - arn:aws:iam::000000000000:role/my-rosa-cluster-openshift-cluster-csi-drivers-ebs-cloud-credentials
+         - arn:aws:iam::000000000000:role/my-rosa-cluster-w7i6-openshift-ingress-operator-cloud-credentials
+         - arn:aws:iam::000000000000:role/my-rosa-cluster-w7i6-openshift-cluster-csi-drivers-ebs-cloud-credentials
+         - arn:aws:iam::000000000000:role/my-rosa-cluster-w7i6-openshift-cloud-network-config-controller-cloud-cre
          - arn:aws:iam::000000000000:role/my-rosa-cluster-openshift-machine-api-aws-cloud-credentials
-         - arn:aws:iam::000000000000:role/my-rosa-cluster-openshift-cloud-credential-operator-cloud-credential-ope
+         - arn:aws:iam::000000000000:role/my-rosa-cluster-openshift-cloud-credential-operator-cloud-credentia
+         - arn:aws:iam::000000000000:role/my-rosa-cluster-openshift-image-registry-installer-cloud-credential
         State:                      waiting (Waiting for OIDC configuration)
         Private:                    No
-        Created:                    Oct 28 2021 04:33:58 UTC
-        Details Page:               https://console.redhat.com/openshift/details/s/1mkesci269png3tck0000000000000
-        OIDC Endpoint URL:          https://rh-oidc.s3.us-east-1.amazonaws.com/1mkesci269png3tckknhh00000000000
+        Created:                    Jul  1 2022 22:13:50 UTC
+        Details Page:               https://console.redhat.com/openshift/details/s/2BMQm8xz8Hq5yEN000000000000
+        OIDC Endpoint URL:          https://rh-oidc.s3.us-east-1.amazonaws.com/1t6i760dbum4mqltqh6o000000000000
+
+        I: Run the following commands to continue the cluster creation:
+
+        	rosa create operator-roles --cluster my-rosa-cluster
+        	rosa create oidc-provider --cluster my-rosa-cluster
+
+        I: To determine when your cluster is Ready, run 'rosa describe cluster -c my-rosa-cluster'.
+        I: To watch your cluster installation logs, run 'rosa logs install -c my-rosa-cluster --watch'.
+
 
 > **NOTE:** The state will stay in “waiting” <u>until the next two steps below are completed</u>.
 
 ### Create operator roles
-These roles need to be created <u>once per cluster</u>. To create the roles run the following:
+We can see at the end of the output from the above step we are told exactly what we need to run next. These roles need to be created <u>once per cluster</u>. To create the roles run the following:
 
     rosa create operator-roles --mode manual --cluster <cluster-name>
 
