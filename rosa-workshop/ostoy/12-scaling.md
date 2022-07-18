@@ -138,6 +138,8 @@ Wait a few minutes and colorful graphs will appear showing resource usage across
 
 In ROSA one can also define [node autoscaling](https://docs.openshift.com/rosa/rosa_cluster_admin/rosa_nodes/rosa-nodes-about-autoscaling-nodes.html).  You can also visit the [Node Autoscaling](/rosa/8-autoscaling) section of this workshop for more information.
 
+Before proceeding in this section please ensure that at least one machine pool has [autoscaling enabled](/rosa/8-autoscaling/#setting-up-cluster-autoscaling) otherwise this will not work.
+
 #### 1. Enable Autoscaling nodes on the machine pool
 
 If you have not already enabled autoscaling on a machine pool the please see the [Setting up cluster autoscaling](/rosa/8-autoscaling/#setting-up-cluster-autoscaling) section and follow the steps there to either enable autoscaling on an existing machine pool or create a new one with autoscaling enabled.

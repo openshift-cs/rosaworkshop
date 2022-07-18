@@ -6,7 +6,7 @@ There are 3 ways to upgrade your cluster.
 
 - **Manually via the CLI** - Start a one-time immediate upgrade or schedule a one-time upgrade for a future date/time.
 - **Manually via the OCM UI** - Start a one-time immediate upgrade or schedule a one-time upgrade for a future date/time.
-- **Automated upgrades** - Set an upgrade window for reoccurring upgrades whenever a new version is available without needing to manually schedule it. (Ex: Saturday at 06:00 UTC)
+- **Automated upgrades** - Set an upgrade window for recurring y-stream upgrades whenever a new version is available without needing to manually schedule it (Ex: Saturday at 06:00 UTC). Minor versions have to be manually scheduled.
 
 We will go through these three scenarios.
 
@@ -23,15 +23,15 @@ You can always use `--help` for more details like
 
     	$ rosa list upgrade -c <cluster-name>
     	VERSION  NOTES
-    	4.8.5   recommended
-    	4.8.4
+    	4.10.20   recommended
+    	4.10.18
     	...
 
-    In our example we see that version 4.8.4 is available and so is 4.8.5.
+    In our example we see that version 4.10.18 is available and so is 4.10.20.
 
 1. Upgrade the cluster to the latest version by running
 
- 		rosa upgrade cluster -c my-rosa-cluster --version 4.8.5
+ 		rosa upgrade cluster -c my-rosa-cluster --version 4.10.20
 
 1. This will schedule the cluster for upgrade within the hour. It will take some time to complete.
 1. You can also schedule the upgrade for a later date/time by using the `--schedule-date` and `--schedule-time` flags.
@@ -47,7 +47,7 @@ You can always use `--help` for more details like
 1. You can then schedule a time for the upgrade or begin it immediately.
 
 #### Set up automatic updates
-1. To set up your cluster for reoccurring upgrades, log into OCM and select the cluster you want to upgrade.
+1. To set up your cluster for recurring upgrades, log into OCM and select the cluster you want to upgrade.
 1. Click on the “Update Settings” tab.
 1. Under “Update Strategy” click the “Automatic” radio button.
 1. This will open up options for a day of the week and time that you can set for the update to occur.
