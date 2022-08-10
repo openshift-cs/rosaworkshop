@@ -24,7 +24,7 @@ For each succeeding cluster in the same account for the same y-stream version, o
 As mentioned above, if you want the ROSA CLI to automate the creation of the roles and policies to create your cluster quickly, then use this method.
 
 ### Create account roles
-If this is the <u>first time</u> you are deploying ROSA in this account and have <u>not yet created the account roles</u>, then enable ROSA to create the account-wide roles and policies, including Operator policies.
+If this is the <u>first time</u> you are deploying ROSA in this account and have <u>not yet created the account roles</u>, then create the account-wide roles and policies, including Operator policies.
 
 Run the following command to create the account-wide roles:
 
@@ -137,7 +137,7 @@ As mentioned above if you want to be able to review the roles and policies creat
 In this section we will make use of the `--interactive` mode so that it will be easier to follow along, though feel free to use the default cluster creation command above if you'd like.  See [here](https://docs.openshift.com/rosa/rosa_install_access_delete_clusters/rosa-sts-interactive-mode-reference.html) for a description of the fields in this section.
 
 ### Create account roles
-1. If this is the <u>first time</u> you are deploying ROSA in this account and have <u>not yet created the account roles</u>, then enable ROSA to create JSON files for account-wide roles and policies, including Operator policies. This command will create the needed JSON files for the required roles and policies for your account in the current directory.  This will also output the `aws` commands you need to run in order to create these objects.
+1. If this is the <u>first time</u> you are deploying ROSA in this account and have <u>not yet created the account roles</u>, then create the account-wide roles and policies, including Operator policies. This command will create the needed JSON files for the required roles and policies for your account in the current directory.  This will also output the `aws` commands you need to run in order to create these objects.
 
     Run the following command to create the needed files and output the commands you need to run:
 
