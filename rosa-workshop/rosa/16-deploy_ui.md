@@ -4,18 +4,47 @@ This page will take you through the steps to deploy a ROSA cluster using the Ope
 ## Deployment flow
 The overall flow that we will follow boils down to these steps. Steps 1 and 2 only need to be performed the *first time* you are deploying into an AWS account.  So for each successive cluster of the same y-stream version, you would just create the cluster.
 
+1. Create the account wide roles and policies
 1. Associate your AWS account with your Red Hat account
     1. Create and link OCM role
     1. Create and link User role
-1. Create the account wide roles and policies
 1. Create the cluster
 
+
+## Create account wide roles
+
+>NOTE: If you already have account roles (possibly from an earlier deployment) then skip this step. You will see that the UI will detect your existing roles after you select an associated AWS account.
+
+If this is the <u>first time</u> you are deploying ROSA in this account and have <u>not yet created the account roles</u>, then create the account-wide roles and policies, including Operator policies.
+
+In your terminal run the following command to create the account-wide roles:
+
+```
+rosa create account-roles --mode auto --yes
+```
+
+You will see an output like the following:
+
+```
+I: Creating roles using 'arn:aws:iam::000000000000:user/rosa-user'
+I: Created role 'ManagedOpenShift-ControlPlane-Role' with ARN 'arn:aws:iam::000000000000:role/ManagedOpenShift-ControlPlane-Role'
+I: Created role 'ManagedOpenShift-Worker-Role' with ARN 'arn:aws:iam::000000000000:role/ManagedOpenShift-Worker-Role'
+I: Created role 'ManagedOpenShift-Support-Role' with ARN 'arn:aws:iam::000000000000:role/ManagedOpenShift-Support-Role'
+I: Created role 'ManagedOpenShift-Installer-Role' with ARN 'arn:aws:iam::000000000000:role/ManagedOpenShift-Installer-Role'
+I: Created policy with ARN 'arn:aws:iam::000000000000:policy/ManagedOpenShift-openshift-machine-api-aws-cloud-credentials'
+I: Created policy with ARN 'arn:aws:iam::000000000000:policy/ManagedOpenShift-openshift-cloud-credential-operator-cloud-crede'
+I: Created policy with ARN 'arn:aws:iam::000000000000:policy/ManagedOpenShift-openshift-image-registry-installer-cloud-creden'
+I: Created policy with ARN 'arn:aws:iam::000000000000:policy/ManagedOpenShift-openshift-ingress-operator-cloud-credentials'
+I: Created policy with ARN 'arn:aws:iam::000000000000:policy/ManagedOpenShift-openshift-cluster-csi-drivers-ebs-cloud-credent'
+I: To create a cluster with these roles, run the following command:
+rosa create cluster --sts
+```
 
 ## Associate your AWS account with your Red Hat account
 
 >NOTE: If you have already associated AWS accounts that you want to use, please skip this step.
 
-The first step is to tell OCM what is/are your AWS account(s) that you want to use for deploying ROSA into.
+The next step is to tell OCM what is/are your AWS account(s) that you want to use for deploying ROSA into.
 
 Open OCM by visiting [https://console.redhat.com/openshift](https://console.redhat.com/openshift) and log in to your Red Hat account.
 
@@ -35,7 +64,7 @@ A pop up window will open instructing you to download the ROSA CLI, AWS CLI, and
 
 ![associate2](images/16-associate2.png)
 
-On the next page you will see the commands for creating the OCM role for the level of permissions that this role will have. You can create:
+On the next page you will see the commands to create the OCM role for the level of permissions that this role will have. You can create:
 
 - **Basic OCM role**: Allows OCM to have read only access to the account in order to check if the roles and policies that are required by ROSA are present before creating a cluster. You will need to manually create the required roles, policies and OIDC provider using the CLI.
 - **Admin OCM role**: Grants OCM additional permissions in order to create the required roles, policies, and OIDC provider for ROSA. Using this makes the deployment of a ROSA cluster quicker since OCM will be able to create the required resources for you avoiding the need for you to manually create them.
@@ -44,9 +73,9 @@ To read more about these roles, please click the tooltip or visit the [OpenShift
 
 For the purposes of this workshop, we'll use the Admin OCM role since we want the simplest and quickest approach.
 
-### Create and associate OCM role
+### Create and associate an OCM role
 
-You can copy the command for the Admin OCM Role from that window which will launch interactive mode. Or for simplicity switch to your terminal and execute:
+You can copy the command for the Admin OCM role from that window which will launch interactive mode. Or for simplicity switch to your terminal and execute:
 
 ```
 rosa create ocm-role --mode auto --admin --yes
@@ -98,43 +127,7 @@ Select the account.
 
 ![associate3](images/16-associate3.png)
 
-
-## Create account wide roles
-
->NOTE: If you already have account roles (possibly from an earlier deployment) then skip this step. You will see that the UI will detect your existing roles if you already have them.
-
-If this is the <u>first time</u> you are deploying ROSA in this account and have <u>not yet created the account roles</u>, then create the account-wide roles and policies, including Operator policies.
-
-If you see the following then you need to create the account-wide roles.
-
-![roles-missing](images/16-rolesmissing.png)
-
-Run the following command to create the account-wide roles:
-
-```
-rosa create account-roles --mode auto --yes
-```
-
-You will see an output like the following:
-
-```
-I: Creating roles using 'arn:aws:iam::000000000000:user/rosa-user'
-I: Created role 'ManagedOpenShift-ControlPlane-Role' with ARN 'arn:aws:iam::000000000000:role/ManagedOpenShift-ControlPlane-Role'
-I: Created role 'ManagedOpenShift-Worker-Role' with ARN 'arn:aws:iam::000000000000:role/ManagedOpenShift-Worker-Role'
-I: Created role 'ManagedOpenShift-Support-Role' with ARN 'arn:aws:iam::000000000000:role/ManagedOpenShift-Support-Role'
-I: Created role 'ManagedOpenShift-Installer-Role' with ARN 'arn:aws:iam::000000000000:role/ManagedOpenShift-Installer-Role'
-I: Created policy with ARN 'arn:aws:iam::000000000000:policy/ManagedOpenShift-openshift-machine-api-aws-cloud-credentials'
-I: Created policy with ARN 'arn:aws:iam::000000000000:policy/ManagedOpenShift-openshift-cloud-credential-operator-cloud-crede'
-I: Created policy with ARN 'arn:aws:iam::000000000000:policy/ManagedOpenShift-openshift-image-registry-installer-cloud-creden'
-I: Created policy with ARN 'arn:aws:iam::000000000000:policy/ManagedOpenShift-openshift-ingress-operator-cloud-credentials'
-I: Created policy with ARN 'arn:aws:iam::000000000000:policy/ManagedOpenShift-openshift-cluster-csi-drivers-ebs-cloud-credent'
-I: To create a cluster with these roles, run the following command:
-rosa create cluster --sts
-```
-
-Click "Refresh ARNs".
-
-You will then see the role ARNs populated in the window.
+You will then see the account role ARNs (created earlier) populated below.
 
 ![roles](images/16-accountroles.png)
 
