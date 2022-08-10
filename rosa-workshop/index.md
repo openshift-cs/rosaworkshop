@@ -44,7 +44,7 @@ If you'd like a preview of the cluster deployment process, you can watch a short
 If you'd like an easy to follow guide for creating your first ROSA cluster:
 
 1. Please review the [prerequisites](https://docs.openshift.com/rosa/rosa_planning/rosa-sts-aws-prereqs.html) which contains important information about the AWS account requirements.  
-1. Visit the "Getting Started with ROSA" tutorial for [Setting up your account](rosa/1-account_setup.md).
+1. Visit the "Getting Started with ROSA" tutorial starting with [Setting up your account](rosa/1-account_setup.md).
 
 
 ### Resources

@@ -1,3 +1,6 @@
+This page will take you through the steps to deploy a ROSA cluster using the ROSA CLI.  If you'd prefer a user interface for deploying your cluster please see the [User Interface](/rosa/16-deploy_ui) page.
+
+## CLI deployment modes
 There are two modes with which to deploy a ROSA w/STS cluster. One is automatic, which is quicker and will do the manual work for you. The other is manual, which will require you to execute some extra commands, but will allow you to inspect the roles and policies being created. This workshop will document both options. If you just want to get your cluster created quickly, please use the automatic section, but if you would rather explore the objects being created, then feel free to use manual. This is achieved via the `--mode` flag in the relevant commands.  
 
 Valid options for `--mode` are:
@@ -17,7 +20,7 @@ The overall flow that we will follow boils down to:
 
 For each succeeding cluster in the same account for the same y-stream version, only step 2 is needed (or 2-4 for manual mode).
 
-## Automatic Mode
+## Automatic mode (recommended)
 As mentioned above, if you want the ROSA CLI to automate the creation of the roles and policies to create your cluster quickly, then use this method.
 
 ### Create account roles

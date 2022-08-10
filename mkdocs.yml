@@ -1,6 +1,6 @@
 # Project Information
 site_name: Red Hat OpenShift Service on AWS
-site_url: https://rosaworkshop.io
+site_url: https://www.rosaworkshop.io
 site_description: A guided workshop that ranges from application deployment to cluster configuration for ROSA clusters.
 site_author: Red Hat
 
@@ -13,7 +13,9 @@ nav:
   - Home: index.md
   - Getting started with ROSA:
     - Setup: 'rosa/1-account_setup.md'
-    - Deploy the cluster: 'rosa/2-deploy.md'
+    - Deploy the cluster:
+      - ROSA CLI: 'rosa/2-deploy.md'
+      - User Interface: 'rosa/16-deploy_ui.md'
     - Create an admin user: 'rosa/3-create_initial_admin.md'
     - Setup an IdP: 'rosa/4-setup_idp.md'
     - Granting admin rights: 'rosa/5-grant_admin.md'
