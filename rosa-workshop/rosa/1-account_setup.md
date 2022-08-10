@@ -146,7 +146,18 @@ Verify that the `oc` CLI is installed correctly
 
     rosa verify openshift-client
 
-We have now successfully set up our account and environment and are ready to deploy our cluster in the next step.
+We have now successfully set up our account and environment and are ready to deploy our cluster.
+
+### Cluster Deployment
+In the next section you will deploy your cluster.  There are two mechanisms to do so:
+
+- Using the ROSA CLI
+- Using the OCM Web User Interface
+
+Either way is perfectly fine for the purposes of this workshop. Though keep in mind that if you are using the OCM UI, there will be a few extra steps to set it up in order to deploy into your AWS account for the first time.  This will not need to be repeated for subsequent deployments using the OCM UI for the same AWS account.
+
+Please select the desired mechanism in the left menu under "Deploy the cluster".
 
 *[ROSA]: Red Hat OpenShift Service on AWS
 *[STS]: AWS Security Token Service
+*[OCM]: OpenShift Cluster Manager
