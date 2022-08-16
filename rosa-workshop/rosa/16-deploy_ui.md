@@ -2,7 +2,7 @@ This page will take you through the steps to deploy a ROSA cluster using the Ope
 
 
 ## Deployment flow
-The overall flow that we will follow boils down to these steps. Steps 1 and 2 only need to be performed the *first time* you are deploying into an AWS account.  So for each successive cluster of the same y-stream version, you would just create the cluster.
+The overall flow that we will follow boils down to these steps. Step 1 only needs to be performed the *first time* you are deploying into an AWS account. Step 2 only needs to be performed the first time you are using the user interface. So for each successive cluster of the same y-stream version, you would just create the cluster.
 
 1. Create the account wide roles and policies
 1. Associate your AWS account with your Red Hat account

@@ -182,7 +182,7 @@ See the prior question about EBS encryption.
 ### How is etcd encryption configured in a ROSA cluster?
 The same as in OCP. The aescbc cypher is used and the setting is patched during cluster deployment. [Relevant Kubernetes documentation](https://kubernetes.io/docs/tasks/administer-cluster/encrypt-data/). For further details see [etcd encryption](https://docs.openshift.com/rosa/rosa_policy/rosa-service-definition.html#rosa-sdpolicy-etcd-encryption_rosa-service-definition).
 
-### What infrastructure is provisioned as part of a new OSD cluster?
+### What infrastructure is provisioned as part of a new ROSA cluster?
 ROSA makes use of a number of different cloud services such as virtual machines, storage, load balancers, etc. You can see a defined list in the [AWS prerequisites](https://docs.openshift.com/rosa/rosa_planning/rosa-sts-aws-prereqs.html#rosa-aws-policy-provisioned_rosa-sts-aws-prereqs).
 
 ### I see there are two "kinds" of ROSA clusters. One uses an IAM user with admin permissions and the other AWS STS. Which should I choose?
