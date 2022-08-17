@@ -104,15 +104,19 @@ You should see a response like the following:
     OIDC Endpoint URL:          https://rh-oidc.s3.us-east-1.amazonaws.com/1mlhulb3bo0l54ojd0ji000000000000
     ...
 
+#### Default configuration
 The default settings are as follows:
 
-* 3 Master Nodes, 2 Infra Nodes, 2 Worker Nodes
+* 3 Control plane nodes, 2 Infra nodes, 2 Worker nodes
     * See [here](https://docs.openshift.com/rosa/rosa_planning/rosa-sts-aws-prereqs.html#rosa-ec2-instances_rosa-sts-aws-prereqs) for more details.
-* Region: As configured for the AWS CLI
+    * No autoscaling
+* Region: As configured for the `aws` CLI
 * Networking IP ranges:
     * Machine CIDR: 10.0.0.0/16
     * Service CIDR: 172.30.0.0/16
     * Pod CIDR: 10.128.0.0/14
+* New VPC
+* Default AWS KMS key for encryption.
 * The most recent version of OpenShift available to `rosa`
 * A single availability zone
 * Public cluster

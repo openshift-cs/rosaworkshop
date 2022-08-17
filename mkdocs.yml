@@ -14,6 +14,7 @@ nav:
   - Getting started with ROSA:
     - Setup: 'rosa/1-account_setup.md'
     - Deploy the cluster:
+      - Simple guide: 'rosa/17-simple_deploy.md'
       - ROSA CLI: 'rosa/2-deploy.md'
       - User Interface: 'rosa/16-deploy_ui.md'
     - Create an admin user: 'rosa/3-create_initial_admin.md'
