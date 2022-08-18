@@ -12,7 +12,11 @@ We will explore all three.
 
 OpenShift allows one to scale up/down the number of pods for each part of an application as needed.  This can be accomplished via changing our *replicaset/deployment* definition (declarative), by the command line (imperative), or via the web console (imperative). In our *deployment* definition (part of our `ostoy-fe-deployment.yaml`) we stated that we only want one pod for our microservice to start with. This means that the Kubernetes Replication Controller will always strive to keep one pod alive. We can also define pod autoscaling using the [Horizontal Pod Autoscaler](https://docs.openshift.com/container-platform/latest/nodes/pods/nodes-pods-autoscaling.html)(HPA) based on load to expand past what we defined if needed which we will do in a later section of this lab.
 
-If we look at the tile on the left we should see one box randomly changing colors. This box displays the randomly generated color sent to the frontend by our microservice along with the pod name that sent it. Since we see only one box that means there is only one microservice pod.  We will now scale up our microservice pods and will see the number of boxes change.
+In the OSToy app click on "Networking" in the left menu to access this portion of the workshop.  
+
+If we look at the tile on the left ("Intra-cluster Communication") we should see one box randomly changing colors. This box displays the randomly generated color sent to the frontend by our microservice along with the pod name that sent it. Since we see only one box that means there is only one microservice pod.  We will now scale up our microservice pods and will see the number of boxes change.
+
+![HPA Menu](images/12-networking.png)
 
 #### 1. Confirm number of pods running
 To confirm that we only have one pod running for our microservice, run the following command, or use the web console.
@@ -86,6 +90,10 @@ In more simple words, "if there is a lot of work, make more pods".
 
 We will create an HPA and then use OSToy to generate CPU intensive workloads.  We will then observe how the HPA will scale up the number of pods in order to handle the increased workloads.  
 
+Click on the "Auto Scaling" in the left menu.
+
+![HPA Menu](images/12-hpa-menu.png)
+
 #### 1. Create the Horizontal Pod Autoscaler
 
 Run the following command to create the autoscaler. This will create an HPA that maintains between 1 and 10 replicas of the Pods controlled by the *ostoy-microservice* Deployment created. Roughly speaking, the HPA will increase and decrease the number of replicas (via the deployment) to maintain an average CPU utilization across all pods of 80% (since each pod requests 50 millicores, this means average CPU usage of 40 millicores).
@@ -94,11 +102,7 @@ Run the following command to create the autoscaler. This will create an HPA that
 
 #### 2. View the current number of pods
 
-In the OSToy app in the left menu click on "Autoscaling" to access this portion of the workshop.  
-
-![HPA Menu](images/12-hpa-menu.png)
-
-As was in the networking section you will see the total number of pods available for the microservice by counting the number of colored boxes.  In this case we have only one.  This can be verified through the web console or from the CLI.
+As was in the above section you will see the total number of pods available for the microservice by counting the number of colored boxes.  In this case we have only one.  This can be verified through the web console or from the CLI.
 
 You can use the following command to see the running microservice pods only:
 
