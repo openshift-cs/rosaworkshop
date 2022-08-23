@@ -198,4 +198,10 @@ After a few minutes let's check how many worker nodes we have.
 	ip-10-0-245-27.us-west-2.compute.internal    Ready    worker         2m8s    v1.23.5+3afdacb
 	ip-10-0-245-7.us-west-2.compute.internal     Ready    worker         23h     v1.23.5+3afdacb
 
-We can see that more worker nodes were automatically created to handle the workload.  
+We can see that more worker nodes were automatically created to handle the workload.
+
+Switch back to the "OSToy" project for the rest of the workshop.
+
+```
+oc project ostoy
+```
