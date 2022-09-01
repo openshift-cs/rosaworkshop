@@ -5,7 +5,7 @@
 Source-to-Image (S2I) is a toolkit and workflow for building reproducible container images from source code. S2I produces ready-to-run images by injecting source code into a container image and letting the container prepare that source code for execution. By creating self-assembling builder images, you can version and control your build environments exactly like you use container images to version your runtime environments.
 
   * [S2I Builds](https://github.com/openshift/source-to-image)
-  * [Creating Images](https://docs.openshift.com/container-platform/4.8/openshift_images/create-images.html)
+  * [Creating Images](https://docs.openshift.com/container-platform/latest/openshift_images/create-images.html)
 
 #### How it works
 
@@ -51,23 +51,24 @@ An OpenShift Route exposes a service at a host name, like www.example.com, so th
 
 ![routes vs ingress](images/2-routes_vs_ingress.png)
 
-> **NOTE:** DNS resolution for a host name is handled separately from routing; your administrator may have configured a cloud domain that will always correctly resolve to the router, or if using an unrelated host name you may need to modify its DNS records independently to resolve to the router.
+!!! note
+    DNS resolution for a host name is handled separately from routing; your administrator may have configured a cloud domain that will always correctly resolve to the router, or if using an unrelated host name you may need to modify its DNS records independently to resolve to the router.
 
-Also of note is that an individual route can override some defaults by providing specific configurations in its annotations.  See [route specific annotations](https://docs.openshift.com/container-platform/4.8/networking/routes/route-configuration.html#nw-route-specific-annotations_route-configuration) for more details.
+Also of note is that an individual route can override some defaults by providing specific configurations in its annotations.  See [route specific annotations](https://docs.openshift.com/container-platform/latest/networking/routes/route-configuration.html#nw-route-specific-annotations_route-configuration) for more details.
 
 ### ImageStreams
 An ImageStream stores a mapping of tags to images, metadata overrides that are applied when images are tagged in a stream, and an optional reference to a Docker image repository on a registry.
 
 
-#### What are the benefits? 
+#### What are the benefits?
 Using an ImageStream makes it easy to change a tag for a container image.  Otherwise to change a tag you need to download the whole image, change it locally, then push it all back. Also promoting applications by having to do that to change the tag and then update the deployment object entails many steps.  With ImageStreams you upload a container image once and then you manage it’s virtual tags internally in OpenShift.  In one project you may use the dev tag and only change reference to it internally, in prod you may use a prod tag and also manage it internally. You don't really have to deal with the registry!
 
 You can also use ImageStreams in conjunction with DeploymentConfigs to set a trigger that will start a deployment as soon as a new image appears or a tag changes its reference.
 
-See below for more details: 
+See below for more details:
 
 * [Image Streams Blog post](https://blog.openshift.com/image-streams-faq/)
-* [OpenShift Docs - Understanding containers, images, and image streams](https://docs.openshift.com/container-platform/4.8/openshift_images/images-understand.html)
+* [OpenShift Docs - Understanding containers, images, and image streams](https://docs.openshift.com/container-platform/latest/openshift_images/images-understand.html)
 * [ImageStream and Builds](https://cloudowski.com/articles/why-managing-container-images-on-openshift-is-better-than-on-kubernetes/)
 
 
@@ -78,4 +79,4 @@ OpenShift Container Platform leverages Kubernetes by creating Docker-formatted c
 
 Build objects share common characteristics: inputs for a build, the need to complete a build process, logging the build process, publishing resources from successful builds, and publishing the final status of the build. Builds take advantage of resource restrictions, specifying limitations on resources such as CPU usage, memory usage, and build or pod execution time.
 
-See [Understanding image builds](https://docs.openshift.com/container-platform/4.8/cicd/builds/understanding-image-builds.html) for more details.
+See [Understanding image builds](https://docs.openshift.com/container-platform/latest/cicd/builds/understanding-image-builds.html) for more details.

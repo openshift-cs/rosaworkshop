@@ -100,7 +100,8 @@ This can be accomplished though the `rosa` CLI or through the [OCM](https://cons
 
 #### Adding node labels
 
->**NOTE:** Labels or taints cannot be added to the "Default" machine pool (yet).
+!!! note
+    Labels or taints cannot be added to the "Default" machine pool (yet).
 
 1. Adding node label(s) can be achieved by the following command
 
@@ -110,9 +111,7 @@ This can be accomplished though the `rosa` CLI or through the [OCM](https://cons
 
         rosa edit machinepool --cluster=my-rosa-cluster --replicas=2 --labels 'foo=bar','baz=one' new-mp
 
-1. This command replaces all machine pool configurations with what is defined.  So if you just want to add another label and keep the old, you must state all the labels otherwise it will replace anything existing with the one you had wanted to add. By the same token if you want to delete a label just state the ones you want, excluding the one you want to delete.
-
-    >**NOTE:** Currently, adding node labels on an existing machine pool adds the labels to only new nodes that are created in that pool. The existing nodes will not have the node label applied. If you need nodes with the node label, you can either scale down the nodes in the machine pool to zero (this will not work with the 'default' machine pool), add the node label, and then scale back up to the desired amount. You can also create a new machine pool and define the node labels at creation time.
+1. This command replaces all machine pool configurations with what is defined.  So if you just want to add another label and keep the old, you must state all the labels. Otherwise it will replace anything existing with the one you had wanted to add. By the same token, if you want to delete a label just state the ones you want, excluding the one you want to delete.
 
 #### Mixing different node types
 

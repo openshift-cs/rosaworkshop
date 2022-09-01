@@ -51,7 +51,8 @@ Run the following command to create a cluster with all the default options:
 
     rosa create cluster --cluster-name <cluster-name> --sts --mode auto --yes
 
-> **Note:** This will also create the required operator roles and OIDC provider. If you want to see all available options for your cluster use the `--help` flag or for interactive mode you can use `--interactive`.
+!!! note
+    This will also create the required operator roles and OIDC provider. If you want to see all available options for your cluster use the `--help` flag or for interactive mode you can use `--interactive`.
 
 For example:
 
@@ -284,7 +285,8 @@ In this section we will make use of the `--interactive` mode so that it will be 
         I: To watch your cluster installation logs, run 'rosa logs install -c my-rosa-cluster --watch'.
 
 
-> **NOTE:** The state will stay in “waiting” <u>until the next two steps below are completed</u>.
+!!! note
+    The state will stay in “waiting” <u>until the next two steps below are completed</u>.
 
 ### Create operator roles
 We can see at the end of the output from the above step we are told exactly what we need to run next. These roles need to be created <u>once per cluster</u>. To create the roles run the following:

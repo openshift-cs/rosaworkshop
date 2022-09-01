@@ -13,11 +13,13 @@ The cluster logging components are based upon Fluentd, (and Elasticsearch and Ki
 
 ### Installing the Cluster Logging Add-on service
 
->**NOTE:** If you plan on running EFK <u>do not follow</u> the installation steps in this section but rather follow the [Installing OpenShift Logging](https://docs.openshift.com/container-platform/latest/logging/cluster-logging-deploying.html) steps and skip down to [View logs with Kibana](#view-logs-with-kibana))
+!!! danger
+		If you plan on running EFK <u>do not follow</u> the installation steps in this section but rather follow the [Installing OpenShift Logging](https://docs.openshift.com/container-platform/latest/logging/cluster-logging-deploying.html) steps and skip down to [View logs with Kibana](#view-logs-with-kibana).
 
 In the following steps we will install the logging add-on service to forward our logs; in our case to CloudWatch. If you did not follow the "Getting Started" guide of this workshop and **did not** install ROSA with STS then you can skip to install the service though the OCM UI or by using the CLI (in step 8). Otherwise, there are a few steps we need to do first in order to get this to work for ROSA with STS.
 
->**NOTE:** These steps were adopted from our Managed OpenShift Black Belts [here](https://mobb.ninja/docs/rosa/sts-cluster-logging-addon/).
+!!! note
+		These steps were adopted from our Managed OpenShift Black Belts [here](https://mobb.ninja/docs/rosa/sts-cluster-logging-addon/).
 
 1. Create a IAM Trust Policy document
 
@@ -149,13 +151,14 @@ You should see both the *stdout* and *stderr* messages.
 You can also use some of the other features of CloudWatch to obtain useful information. But [how to use CloudWatch](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/WhatIsCloudWatch.html) is beyond the scope of this tutorial.
 
 ### View logs with Kibana
->**NOTE:** In order to use EFK, this section assumes that you have successfully completed the steps outlined in [Installing OpenShift Logging](https://docs.openshift.com/container-platform/latest/logging/cluster-logging-deploying.html).
+!!! note
+ 		In order to use EFK, this section assumes that you have successfully completed the steps outlined in [Installing OpenShift Logging](https://docs.openshift.com/container-platform/latest/logging/cluster-logging-deploying.html).
 
 1. Run the following command to get the route for the Kibana console:
 
 		oc get route -n openshift-logging
 
-1. Open up a new browser tab and paste the URL. You will first have to define index patterns.  Please see the [Defining Kibana index patterns](https://docs.openshift.com/container-platform/4.8/logging/cluster-logging-deploying.html#cluster-logging-visualizer-indices_cluster-logging-deploying) section of the documentation for further instructions on doing so.
+1. Open up a new browser tab and paste the URL. You will first have to define index patterns.  Please see the [Defining Kibana index patterns](https://docs.openshift.com/container-platform/latest/logging/cluster-logging-deploying.html#cluster-logging-visualizer-indices_cluster-logging-deploying) section of the documentation for further instructions on doing so.
 
 	<!--![Kibana console](images/9-kibana.png)-->
 
@@ -191,4 +194,5 @@ You should see now only one row is returned that contains our error message.
 
 ![Expand data](images/9-erronly.png)
 
-> **NOTE:** If nothing is returned, depending on how much time has elapsed since you've outputted the messages to the *stdout* and *stderr* streams you may need to set the proper time frame for the filter.  If you are following this lab consistently then the default should be fine.  Otherwise, in the Kibana console click on the top right where it should say "Last 15 minutes" and click on "Quick" then "Last 1 hour" (though adjust to your situation as needed).
+!!! note
+		If nothing is returned, depending on how much time has elapsed since you've outputted the messages to the *stdout* and *stderr* streams you may need to set the proper time frame for the filter.  If you are following this lab consistently then the default should be fine.  Otherwise, in the Kibana console, click on the top right where it should say "Last 15 minutes" and click on "Quick" then "Last 1 hour" (though adjust to your situation as needed).

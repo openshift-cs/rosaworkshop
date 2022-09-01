@@ -1,6 +1,6 @@
 ## Using S2I to build and deploy our application
 
-There are multiple methods to deploy applications in OpenShift. Let's explore using the integrated Source-to-Image (S2I) builder. As mentioned in the [concepts](2-concepts.md) section, S2I is a tool for building reproducible, Docker-formatted container images. 
+There are multiple methods to deploy applications in OpenShift. Let's explore using the integrated Source-to-Image (S2I) builder. As mentioned in the [concepts](2-concepts.md) section, S2I is a tool for building reproducible, Docker-formatted container images.
 
 ### Before Starting
 
@@ -12,9 +12,13 @@ Follow the steps from [Step 1](4-deployment.md#1-retrieve-the-login-command) of 
 #### Fork the repository
 In the next section we will trigger automated builds based on changes to the source code. In order to trigger S2I builds when you push code into your GitHub repo, you’ll need to setup the GitHub webhook.  And in order to setup the webhook, you’ll first need to fork the application into your personal GitHub repository.
 
-<a class="github-button" href="https://github.com/openshift-cs/ostoy/fork" data-icon="octicon-repo-forked" data-size="large" aria-label="Fork openshift-cs/ostoy on GitHub">Click here to fork the repo</a>
+<!--<a class="github-button" href="https://github.com/openshift-cs/ostoy/fork" data-icon="octicon-repo-forked" data-size="large" aria-label="Fork openshift-cs/ostoy on GitHub">Click here to fork the repo</a> -->
 
-> **NOTE:** Going forward you will need to replace any reference to "< username >" in any of the URLs for commands with your own GitHub username.
+[Fork the repository :material-source-fork:](https://github.com/openshift-cs/ostoy/fork){ .md-button .md-button--primary }
+
+
+!!! note
+    Going forward you will need to replace any reference to "< username >" in any of the URLs for commands with your own GitHub username.
 
 #### Create a project
 Create a new project for this part. Let's call it `ostoy-s2i`.  
@@ -34,7 +38,7 @@ The example emulates a `.env` file and shows how easy it is to move these direct
 #### Add ConfigMap to OpenShift
 The example emulates an HAProxy config file, and is typically used for overriding default configurations in an OpenShift application. Files can even be renamed in the ConfigMap.
 
-Enter the following into your CLI 
+Enter the following into your CLI
 
     oc create -f https://raw.githubusercontent.com/<username>/ostoy/master/deployment/yaml/configmap.yaml
 
@@ -74,7 +78,7 @@ You will see a response like:
 
     svc/ostoy-microservice - 172.30.47.74:8080
       dc/ostoy-microservice deploys istag/ostoy-microservice:latest <-
-        bc/ostoy-microservice source builds https://github.com/0kashi/ostoy on openshift/nodejs:14-ubi8 
+        bc/ostoy-microservice source builds https://github.com/0kashi/ostoy on openshift/nodejs:14-ubi8
         deployment #1 deployed 34 seconds ago - 1 pod
 
 
@@ -101,13 +105,13 @@ You will see a response like:
       Run 'oc status' to view your app.
 
 
-#### Update the Deployment 
+#### Update the Deployment
 We need to update the deployment to use a "Recreate" deployment strategy (as opposed to the default of `RollingUpdate`) for consistent deployments with persistent volumes. Reasoning here is that the PV is backed by EBS and as such only supports the `RWO` method.  If the deployment is updated without all existing pods being killed it may not be able to schedule a new pod and create a PVC for the PV as it's still bound to the existing pod. If you will be using EFS you do not have to change this.
 
     oc patch dc/ostoy -p '{"spec": {"strategy": {"type": "Recreate"}}}'
 
 
-#### Set a Liveness probe 
+#### Set a Liveness probe
 We need to create a Liveness Probe on the Deployment to ensure the pod is restarted if something isn't healthy within the application.  Enter the following into the CLI:
 
     oc set probe dc/ostoy --liveness --get-url=http://:8080/health
