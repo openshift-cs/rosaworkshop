@@ -108,7 +108,7 @@ objects:
           from:
             kind: "ImageStreamTag"
             namespace: "${NAMESPACE}"
-        name: 'python:3.9-ubi8'
+            name: 'python:3.9-ubi8'
       output:
         to:
           kind: "ImageStreamTag"
