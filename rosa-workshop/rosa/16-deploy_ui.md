@@ -13,7 +13,8 @@ The overall flow that we will follow boils down to these steps. Step 1 only need
 
 ## Create account wide roles
 
->NOTE: If you already have account roles (possibly from an earlier deployment) then skip this step. You will see that the UI will detect your existing roles after you select an associated AWS account.
+!!! note
+    If you already have account roles (possibly from an earlier deployment) then skip this step. You will see that the UI will detect your existing roles after you select an associated AWS account.
 
 If this is the <u>first time</u> you are deploying ROSA in this account and have <u>not yet created the account roles</u>, then create the account-wide roles and policies, including Operator policies.
 
@@ -42,7 +43,8 @@ rosa create cluster --sts
 
 ## Associate your AWS account with your Red Hat account
 
->NOTE: If you have already associated AWS accounts that you want to use, please skip this step.
+!!! note
+    If you have already associated AWS accounts that you want to use, please skip this step.
 
 The next step is to tell OCM what is/are your AWS account(s) that you want to use for deploying ROSA into.
 
@@ -91,7 +93,8 @@ I: Linking OCM role
 I: Successfully linked role-arn 'arn:aws:iam::000000000000:role/ManagedOpenShift-OCM-Role-12561000' with organization account '1MpZfntsZeUdjWHg7XRgP000000'
 ```  
 
->NOTE: As an alternative, you can define `--mode manual` if you'd prefer to execute the AWS CLI commands yourself. The AWS commands will be outputted to the CLI and the relevant JSON files will be created in the current directory.  Also make sure to link the role as well which is the last command outputted. Also, if you insist on creating a Basic OCM role, then just remove `--admin` from the command above.
+!!! note
+    As an alternative, you can define `--mode manual` if you'd prefer to execute the AWS CLI commands yourself. The AWS commands will be outputted to the CLI and the relevant JSON files will be created in the current directory.  Also make sure to link the role as well which is the last command outputted. Also, if you insist on creating a Basic OCM role, then just remove `--admin` from the command above.
 
 Click "Next".
 
@@ -115,7 +118,8 @@ I: Linking User role
 I: Successfully linked role ARN 'arn:aws:iam::000000000000:role/ManagedOpenShift-User-rosa-user-Role' with account '1rbOQez0z5j1YolInhcXY000000'
 ```
 
->NOTE: As before, you can define `--mode manual` if you'd prefer to execute the AWS CLI commands yourself. The AWS commands will be outputted to the CLI and the relevant JSON files will be created in the current directory.  Also make sure to link the role as well which is the last command outputted.
+!!! note
+    As before, you can define `--mode manual` if you'd prefer to execute the AWS CLI commands yourself. The AWS commands will be outputted to the CLI and the relevant JSON files will be created in the current directory.  Also make sure to link the role as well which is the last command outputted.
 
 Click "Ok".
 
@@ -173,7 +177,8 @@ Click "Next".
 ### Cluster roles and policies
 For the purposes of this workshop leave "Auto" selected and it will make the cluster deployment process simpler and quicker.
 
->NOTE: If you selected a Basic OCM role earlier you can only use manual mode and you must manually create the operator roles and OIDC provider.  See "For Basic OCM roles only" section below after you've completed the "Cluster updates" section and started the cluster creation.
+!!! note
+    If you selected a Basic OCM role earlier you can only use manual mode and you must manually create the operator roles and OIDC provider.  See "For Basic OCM roles only" section below after you've completed the "Cluster updates" section and started the cluster creation.
 
 ### Cluster updates
 Leave all the default options.
@@ -198,7 +203,8 @@ If you created a Basic OCM Role earlier, you will need to manually create 2 more
 - Operator roles
 - OIDC provider
 
->NOTE: To understand what these do, please see the [ROSA with AWS STS Explained](/rosa/15-sts_explained/) section.
+!!! note
+    To understand what these do, please see the [ROSA with AWS STS Explained](/rosa/15-sts_explained/) section.
 
 There will be a pop up window that will show you the commands to run.
 

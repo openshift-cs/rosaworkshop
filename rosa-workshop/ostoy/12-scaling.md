@@ -47,7 +47,8 @@ It will look like this:
 
 		oc apply -f ostoy-microservice-deployment.yaml
 
->NOTE: You could also change it directly in the OpenShift Web Console by going to Deployments > "ostoy-microservice" > "YAML" tab.
+!!! note
+		You could also change it directly in the OpenShift Web Console by going to *Deployments* > *"ostoy-microservice"* > *"YAML"* tab.
 
 - Confirm that there are now 3 pods via the CLI (`oc get pods`) or the web console (*Workloads > Deployments > ostoy-microservice*).
 - See this visually by visiting the OSToy app > Networking in the left menu and counting how many boxes there are now.  It should be three.
@@ -114,17 +115,22 @@ or visually in our application:
 
 #### 3. Increase the load
 
-Now that we know that we only have one pod let's increase the workload that the pod needs to perform. Click the link in the center of the card that says "increase the load".  **Please click only *ONCE*!**
+Now that we know that we only have one pod let's increase the workload that the pod needs to perform. Click the link in the center of the card that says "increase the load".  
+
+!!! danger
+		**Please click only *ONCE*!**
 
 This will generate some CPU intensive calculations.  (If you are curious about what it is doing you can click [here](https://github.com/openshift-cs/ostoy/blob/master/microservice/app.js#L32)).
 
-> **Note:** The page may become slightly unresponsive.  This is normal; so be patient while the new pods spin up.
+!!! note
+		The page may become slightly unresponsive.  This is normal; so be patient while the new pods spin up.
 
 #### 4. See the pods scale up
 
 After about a minute the new pods will show up on the page (represented by the colored rectangles). Confirm that the pods did indeed scale up through the OpenShift Web Console or the CLI (you can use the command above).
 
-> **Note:** The page may still lag a bit which is normal.
+!!! note
+		The page may still lag a bit which is normal.
 
 #### 5. Review metrics with observability
 

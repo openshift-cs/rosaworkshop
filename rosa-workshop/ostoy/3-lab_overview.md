@@ -7,7 +7,8 @@
 	- [ostoy-fe-deployment.yaml](yaml/ostoy-fe-deployment.yaml)
 	- [ostoy-microservice-deployment.yaml](yaml/ostoy-microservice-deployment.yaml)
 
-> **Note:** In order to simplify the deployment of the app we have included all the objects needed in the above YAMLs as "all-in-one" YAMLs.  Though in reality, an enterprise would most likely want to have a different yaml file for each Kubernetes object.
+!!! note
+		In order to simplify the deployment of the app we have included all the objects needed in the above YAMLs as "all-in-one" YAMLs.  Though in reality, an enterprise would most likely want to have a different yaml file for each Kubernetes object.
 
 ### About OSToy
 

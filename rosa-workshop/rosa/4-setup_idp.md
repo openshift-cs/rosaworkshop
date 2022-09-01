@@ -1,7 +1,8 @@
 ## Setting up an IdP with GitHub
-To log in to your cluster, it is recommended to set up an identity provider (IdP). This procedure uses GitHub as an example IdP. See the full list of [supported IdPs](https://docs.openshift.com/rosa/rosa_getting_started/rosa-config-identity-providers.html#supported-identity-providers) by ROSA. 
+To log in to your cluster, it is recommended to set up an identity provider (IdP). This procedure uses GitHub as an example IdP. See the full list of [supported IdPs](https://docs.openshift.com/rosa/rosa_install_access_delete_clusters/rosa-sts-config-identity-providers.html#understanding-idp-supported_rosa-sts-config-identity-providers) by ROSA.
 
-> **NOTE:** To view all options run `rosa create idp --help`.
+!!! note
+    To view all options run `rosa create idp --help`.
 
 1. Log into your GitHub account
 2. You can either use an existing Organization that you're an admin of, or create a new one. If you already have one that you want to use skip to step “7”. Here we will create a new Organization for use with our new ROSA cluster.  Click on the “+”  icon in the top then click on “New Organization”.
@@ -20,7 +21,7 @@ To log in to your cluster, it is recommended to set up an identity provider (IdP
         rosa create idp --cluster=<cluster name> --interactive
 
 8. Enter the following values that are in bold below:
-    
+
     * Type of identity provider: **github**
     * Identity Provider Name: **rosa-github** (Or this can be any name you choose)
     * Restrict to members of: **organizations**
@@ -44,7 +45,7 @@ To log in to your cluster, it is recommended to set up an identity provider (IdP
 15. Leave "GitHub Enterprise Hostname" blank.
 16. Select “claim” (For more details see [Identity provider parameters](https://docs.openshift.com/container-platform/4.8/post_installation_configuration/preparing-for-users.html#identity-provider-parameters_post-install-preparing-for-users))
 17. Then the IdP will be created but can take up to 1 minute for the configuration to land onto your cluster.
-    
+
     Your inputs should look similar to the following:
 
     ![inputs](images/4-inputs.png)

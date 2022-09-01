@@ -7,7 +7,8 @@ Autoscaling can refer to two things.  Either:
 
 We will focus on the second as it relates to ROSA.
 
->**NOTE:** Cluster autoscaling can also be enabled at cluster creation time using the `--enable-autoscaling` flag. This will enable autoscaling on the "Default" machine pool. It can also be enabled when creating a machine pool.
+!!! note
+    Cluster autoscaling can also be enabled at cluster creation time using the `--enable-autoscaling` flag. This will enable autoscaling on the "Default" machine pool. It can also be enabled when creating a machine pool.
 
 #### Setting up cluster autoscaling
 1. Autoscaling is set per machine pool definition. To find out which machine pools are available in our cluster run
