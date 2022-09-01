@@ -12,7 +12,8 @@ To delete a ROSA cluster follow the steps below.
 
 1. It will prompt you to confirm that you want to delete it. Press “y”, then enter. The cluster will be deleted and all its associated infrastructure. **THIS IS NON-RECOVERABLE.**
 
-	> Note: All AWS STS/IAM roles and policies will remain and must be deleted manually once the cluster deletion is complete by following the steps below.
+	!!! note
+			All AWS STS/IAM roles and policies will remain and must be deleted manually once the cluster deletion is complete by following the steps below.
 
 1. The command will output the next two commands to delete the other resources that were created.  You must wait until the cluster has finished deleting (from the previous command). You can use `rosa list clusters` to do a quick status check.
 
