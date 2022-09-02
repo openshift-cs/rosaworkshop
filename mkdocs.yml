@@ -1,12 +1,15 @@
 # Project Information
 site_name: Red Hat OpenShift Service on AWS
 site_url: https://www.rosaworkshop.io
-site_description: A guided workshop that ranges from application deployment to cluster configuration for ROSA clusters.
+site_description: A guided workshop that ranges from cluster creation and configuration to application deployment for ROSA clusters.
 site_author: Red Hat
 
 # Repository
 repo_name: openshift-cs/rosaworkshop
 repo_url: https://github.com/openshift-cs/rosaworkshop
+
+# Edit icon
+edit_uri: edit/master/rosa-workshop/
 
 # Nav Menu Definition
 nav:
