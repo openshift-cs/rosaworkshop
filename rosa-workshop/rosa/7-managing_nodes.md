@@ -6,7 +6,7 @@ When using your cluster there may be times when you need to change aspects of yo
 #### Creating a Machine pool (CLI)
 This can be accomplished though the `rosa` CLI or through the [OCM](https://console.redhat.com/openshift)  UI.
 
-1. If using the CLI run:
+1. If using the CLI, run:
 
         rosa create machinepool --cluster=<cluster-name> --name=<machinepool-name> --replicas=<number-nodes>
 

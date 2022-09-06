@@ -1,7 +1,7 @@
 ##  Granting admin rights to users
 
 #### Granting cluster-admin rights
-Cluster admin rights are not automatically granted users that you add to the cluster.  If there are users that you want to grant this level of privilege to you will need to manually add it to each user.  Let's start off with granting it to ourselves using the GitHub username we just created for the cluster. There are two ways to do this; either from the ROSA CLI or the OCM web UI.
+Cluster admin rights are not automatically granted users that you add to the cluster.  If there are users that you want to grant this level of privilege to, you will need to manually grant it to each user.  Let's start off with granting it to ourselves using the GitHub username we just created for the cluster. There are two ways to do this; either from the ROSA CLI or the OCM web UI.
 
 1. Via `rosa` CLI
     1. Assuming you are the user who created the cluster, you can grant cluster-admin to a user (or our GitHub user) by running
