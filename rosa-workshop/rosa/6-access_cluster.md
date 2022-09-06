@@ -16,7 +16,7 @@ There are multiple ways to interact with your cluster.  You can connect to it vi
     ![loggedin](images/6-logged.png)
 
 #### Accessing the cluster via the CLI
-In order to access the cluster via the CLI you must have the `oc` CLI installed.  Which if you followed the previous steps you already have.
+In order to access the cluster via the CLI you must have the `oc` CLI installed.  Which, if you followed the previous steps, you already have.
 
 1. Log into the web console as stated above.
 1. Click on your username in the top right corner
@@ -34,9 +34,9 @@ In order to access the cluster via the CLI you must have the `oc` CLI installed.
 
         $ oc login --token=sha256~GBAfS4JQ0t1UTKYHbWAK6OUWGUkdMGz000000000000 --server=https://api.my-rosa-cluster.abcd.p1.openshiftapps.com:6443
         Logged into "https://api.my-rosa-cluster.abcd.p1.openshiftapps.com:6443" as "rosa-user" using the token provided.
-        
+
         You have access to 79 projects, the list has been suppressed. You can list all projects with ' projects'
-        
+
         Using project "default".
 
 1. We can confirm that we are now the user we logged in with by running `oc whoami`
