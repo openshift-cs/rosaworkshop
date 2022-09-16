@@ -53,6 +53,7 @@ If you'd like an easy to follow guide for creating your first ROSA cluster:
     - <https://www.openshift.com/products/amazon-openshift>
     - <https://aws.amazon.com/rosa/>
     - <https://access.redhat.com/products/red-hat-openshift-service-aws>
+- [AWS ROSA Getting Started Guide](https://docs.aws.amazon.com/ROSA/latest/userguide/getting-started.html)
 - [ROSA Documentation](https://docs.openshift.com/rosa/welcome/index.html) (only ROSA specific)
   	- [Service Definition](https://docs.openshift.com/rosa/rosa_architecture/rosa_policy_service_definition/rosa-service-definition.html)
     - [Responsibility Assignment Matrix](https://docs.openshift.com/rosa/rosa_architecture/rosa_policy_service_definition/rosa-policy-responsibility-matrix.html)
