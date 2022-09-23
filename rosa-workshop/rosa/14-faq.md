@@ -81,14 +81,11 @@ You can acquire the service directly from the AWS console. As with other AWS ser
 ### Do I need to sign/have a contract with Red Hat?
 No. You do not need to have a contract with Red Hat to use ROSA. You will need a Red Hat account for use on console.redhat.com which includes accepting our Enterprise Agreement and Online services terms.
 
-### Can I bring my own license to the service (e.g. Red Hat Cloud Access)?
-No. Billing occurs directly through AWS, preventing OpenShift Container Platform or OpenShift Dedicated subscriptions from being used with Red Hat OpenShift Service on AWS.
+### Is there a discount if I have unused OCP subscriptions?
+Yes! Customers migrating non-ROSA OpenShift workloads to ROSA are eligible for a 75% discount off the ROSA service fee 1-year contract rate over the remaining term of their non-ROSA OpenShift subscriptions. IBM Cloud Pak customers migrating their Cloud Pak workloads to ROSA are eligible for a 50% discount off the ROSA service fee 1-year contract rate over the remaining term of their Cloud Pak licenses. These discounts can be obtained by contacting [aws-redhat-partnerteam@amazon.com](mailto:aws-redhat-partnerteam@amazon.com). The discounts apply only to ROSA service fees associated with the worker nodes running the migrated workloads. See also the [AWS ROSA pricing page](https://aws.amazon.com/rosa/pricing/).
 
-### Can I migrate my existing OpenShift Subscriptions to AWS?
-  - OpenShift (OCP, OSD, OKE) subscriptions cannot be used with ROSA.
-  - It is not possible to transfer the unused part of your Red Hat OpenShift subscription to ROSA.
-  - Subscriptions included with a purchase of an IBM CloudPak cannot be used with ROSA.
-  - ROSA subscriptions can only be purchased directly from AWS & AWS resellers.
+### Can I bring my own subscription to the service (e.g. Red Hat Cloud Access, OCP, IBM CloudPak)?
+Existing non-ROSA OpenShift subscriptions cannot be directly used for ROSA, as billing occurs directly through AWS, preventing OpenShift Container Platform or OpenShift Dedicated subscriptions from being used with ROSA. Though, as stated in the previous question, customers can get a discount for unused subscriptions for the remaining term of their subscription, including IBM CloudPaks.
 
 ### Can I purchase middleware subscriptions on-demand for my ROSA clusters?
 Middleware subscriptions (e.g, Integration or Runtimes) are purchased from Red Hat yearly via the standard process.  Currently, there is no on-demand purchasing ability for your ROSA clusters.
