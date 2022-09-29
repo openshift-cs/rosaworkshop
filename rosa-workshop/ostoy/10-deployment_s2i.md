@@ -12,6 +12,8 @@ Follow the steps from [Step 1](4-deployment.md#1-retrieve-the-login-command) of 
 #### Fork the repository
 In the next section we will trigger automated builds based on changes to the source code. In order to trigger S2I builds when you push code into your GitHub repo, you’ll need to setup the GitHub webhook.  And in order to setup the webhook, you’ll first need to fork the application into your personal GitHub repository.
 
+Click the button to fork the repository:
+
 <!--<a class="github-button" href="https://github.com/openshift-cs/ostoy/fork" data-icon="octicon-repo-forked" data-size="large" aria-label="Fork openshift-cs/ostoy on GitHub">Click here to fork the repo</a> -->
 
 [Fork the repository :material-source-fork:](https://github.com/openshift-cs/ostoy/fork){ .md-button .md-button--primary }

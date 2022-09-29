@@ -187,14 +187,16 @@ Leave all the default options.
 Review the content for the cluster configuration and click "Create cluster".
 
 ### Monitor installation progress
-Stay at the current page to monitor the installation progress.
+Stay at the current page to monitor the installation progress. It should take about 40 minutes.
 
 ![roles](images/16-clustcreate.png)
 
 Once the installation is complete, continue to the next step [Create an admin user](/rosa/3-create_initial_admin).
 
 ## For Basic OCM Role only
-If you created an Admin OCM role as directed above **please ignore** this entire section since OCM will create it for you.
+
+!!! attention
+    If you created an Admin OCM role as directed above **please ignore** this entire section since OCM will create it for you.
 
 ### Create operator roles
 
