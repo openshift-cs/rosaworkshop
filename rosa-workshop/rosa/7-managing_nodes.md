@@ -43,11 +43,11 @@ This can be accomplished though the `rosa` CLI or through the [OCM](https://cons
 
     ![mp](images/7-ocm_cluster.png)
 
-1. Then click on the "Machine Pools" tab.
+1. Then click on the "Machine pools" tab.
 
     ![mp](images/7-mp_ocm.png)
 
-1. Click the "Add Machine pool" button.
+1. Click the "Add machine pool" button.
 
 1. Fill in the desired configuration. At this point you can also and expand the "Edit node labels and taints" section to add node lables and taints to the nodes in this machine pool.
 

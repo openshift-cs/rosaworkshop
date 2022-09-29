@@ -22,10 +22,10 @@ If we look at the tile on the left ("Intra-cluster Communication") we should see
 To confirm that we only have one pod running for our microservice, run the following command, or use the web console.
 
 ```
-	$ oc get pods
-	NAME                                   READY     STATUS    RESTARTS   AGE
-	ostoy-frontend-679cb85695-5cn7x       1/1       Running   0          1h
-	ostoy-microservice-86b4c6f559-p594d   1/1       Running   0          1h
+$ oc get pods
+NAME                                   READY     STATUS    RESTARTS   AGE
+ostoy-frontend-679cb85695-5cn7x       1/1       Running   0          1h
+ostoy-microservice-86b4c6f559-p594d   1/1       Running   0          1h
 ```
 
 #### 2. Scale pods via Deployment definition
@@ -37,11 +37,11 @@ Let's change our microservice definition yaml to reflect that we want 3 pods ins
 It will look like this:
 
 ```
-	spec:
-	    selector:
-	      matchLabels:
-	        app: ostoy-microservice
-	    replicas: 3
+spec:
+    selector:
+      matchLabels:
+        app: ostoy-microservice
+    replicas: 3
 ```
 - Assuming you are still logged in via the CLI, execute the following command:
 
@@ -99,7 +99,9 @@ Click on the "Auto Scaling" in the left menu.
 
 Run the following command to create the autoscaler. This will create an HPA that maintains between 1 and 10 replicas of the Pods controlled by the *ostoy-microservice* Deployment created. Roughly speaking, the HPA will increase and decrease the number of replicas (via the deployment) to maintain an average CPU utilization across all pods of 80% (since each pod requests 50 millicores, this means average CPU usage of 40 millicores).
 
-	oc autoscale deployment/ostoy-microservice --cpu-percent=80 --min=1 --max=10
+```
+oc autoscale deployment/ostoy-microservice --cpu-percent=80 --min=1 --max=10
+```
 
 #### 2. View the current number of pods
 
@@ -107,7 +109,9 @@ As was in the above section you will see the total number of pods available for 
 
 You can use the following command to see the running microservice pods only:
 
-	oc get pods --field-selector=status.phase=Running | grep microservice
+```
+oc get pods --field-selector=status.phase=Running | grep microservice
+```
 
 or visually in our application:
 
@@ -160,49 +164,55 @@ Create a new project where we will define a job with a load that this cluster ca
 
 Create a new project called "autoscale-ex":
 
-	oc new-project autoscale-ex
+```
+oc new-project autoscale-ex
+```
 
 Create the job
 
-	oc create -f https://raw.githubusercontent.com/openshift/training/master/assets/job-work-queue.yaml
+```
+oc create -f https://raw.githubusercontent.com/openshift/training/master/assets/job-work-queue.yaml
+```
 
 After a few seconds, run the following to see what pods have been created.
 
-
-	$ oc get pods
-	NAME                     READY   STATUS    RESTARTS   AGE
-	work-queue-5x2nq-24xxn   0/1     Pending   0          10s
-	work-queue-5x2nq-57zpt   0/1     Pending   0          10s
-	work-queue-5x2nq-58bvs   0/1     Pending   0          10s
-	work-queue-5x2nq-6c5tl   1/1     Running   0          10s
-	work-queue-5x2nq-7b84p   0/1     Pending   0          10s
-	work-queue-5x2nq-7hktm   0/1     Pending   0          10s
-	work-queue-5x2nq-7md52   0/1     Pending   0          10s
-	work-queue-5x2nq-7qgmp   0/1     Pending   0          10s
-	work-queue-5x2nq-8279r   0/1     Pending   0          10s
-	work-queue-5x2nq-8rkj2   0/1     Pending   0          10s
-	work-queue-5x2nq-96cdl   0/1     Pending   0          10s
-	work-queue-5x2nq-96tfr   0/1     Pending   0          10s
-
+```
+$ oc get pods
+NAME                     READY   STATUS    RESTARTS   AGE
+work-queue-5x2nq-24xxn   0/1     Pending   0          10s
+work-queue-5x2nq-57zpt   0/1     Pending   0          10s
+work-queue-5x2nq-58bvs   0/1     Pending   0          10s
+work-queue-5x2nq-6c5tl   1/1     Running   0          10s
+work-queue-5x2nq-7b84p   0/1     Pending   0          10s
+work-queue-5x2nq-7hktm   0/1     Pending   0          10s
+work-queue-5x2nq-7md52   0/1     Pending   0          10s
+work-queue-5x2nq-7qgmp   0/1     Pending   0          10s
+work-queue-5x2nq-8279r   0/1     Pending   0          10s
+work-queue-5x2nq-8rkj2   0/1     Pending   0          10s
+work-queue-5x2nq-96cdl   0/1     Pending   0          10s
+work-queue-5x2nq-96tfr   0/1     Pending   0          10s
+```
 
 We see a lot of pods in a pending state.  This should trigger the autoscaler to create more nodes in our machine pool.
 
 After a few minutes let's check how many worker nodes we have.
 
-	$ oc get nodes
-	NAME                                         STATUS   ROLES          AGE     VERSION
-	ip-10-0-138-106.us-west-2.compute.internal   Ready    infra,worker   22h     v1.23.5+3afdacb
-	ip-10-0-153-68.us-west-2.compute.internal    Ready    worker         2m12s   v1.23.5+3afdacb
-	ip-10-0-165-183.us-west-2.compute.internal   Ready    worker         2m8s    v1.23.5+3afdacb
-	ip-10-0-176-123.us-west-2.compute.internal   Ready    infra,worker   22h     v1.23.5+3afdacb
-	ip-10-0-195-210.us-west-2.compute.internal   Ready    master         23h     v1.23.5+3afdacb
-	ip-10-0-196-84.us-west-2.compute.internal    Ready    master         23h     v1.23.5+3afdacb
-	ip-10-0-203-104.us-west-2.compute.internal   Ready    worker         2m6s    v1.23.5+3afdacb
-	ip-10-0-217-202.us-west-2.compute.internal   Ready    master         23h     v1.23.5+3afdacb
-	ip-10-0-225-141.us-west-2.compute.internal   Ready    worker         23h     v1.23.5+3afdacb
-	ip-10-0-231-245.us-west-2.compute.internal   Ready    worker         2m11s   v1.23.5+3afdacb
-	ip-10-0-245-27.us-west-2.compute.internal    Ready    worker         2m8s    v1.23.5+3afdacb
-	ip-10-0-245-7.us-west-2.compute.internal     Ready    worker         23h     v1.23.5+3afdacb
+```
+$ oc get nodes
+NAME                                         STATUS   ROLES          AGE     VERSION
+ip-10-0-138-106.us-west-2.compute.internal   Ready    infra,worker   22h     v1.23.5+3afdacb
+ip-10-0-153-68.us-west-2.compute.internal    Ready    worker         2m12s   v1.23.5+3afdacb
+ip-10-0-165-183.us-west-2.compute.internal   Ready    worker         2m8s    v1.23.5+3afdacb
+ip-10-0-176-123.us-west-2.compute.internal   Ready    infra,worker   22h     v1.23.5+3afdacb
+ip-10-0-195-210.us-west-2.compute.internal   Ready    master         23h     v1.23.5+3afdacb
+ip-10-0-196-84.us-west-2.compute.internal    Ready    master         23h     v1.23.5+3afdacb
+ip-10-0-203-104.us-west-2.compute.internal   Ready    worker         2m6s    v1.23.5+3afdacb
+ip-10-0-217-202.us-west-2.compute.internal   Ready    master         23h     v1.23.5+3afdacb
+ip-10-0-225-141.us-west-2.compute.internal   Ready    worker         23h     v1.23.5+3afdacb
+ip-10-0-231-245.us-west-2.compute.internal   Ready    worker         2m11s   v1.23.5+3afdacb
+ip-10-0-245-27.us-west-2.compute.internal    Ready    worker         2m8s    v1.23.5+3afdacb
+ip-10-0-245-7.us-west-2.compute.internal     Ready    worker         23h     v1.23.5+3afdacb
+```
 
 We can see that more worker nodes were automatically created to handle the workload.
 

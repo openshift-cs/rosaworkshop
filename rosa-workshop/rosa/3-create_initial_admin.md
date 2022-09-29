@@ -1,5 +1,5 @@
 ## Create an admin user for quick access
-If you want to be able to access your cluster immediately through a cluster-admin user, you can follow these steps. This is good if you need quick access to the cluster. Though the recommended approach is to use a formal identity provider to access the cluster (and then grant that user admin privileges, if desired).
+If you want to be able to access your cluster immediately through a cluster-admin user, you can follow these steps. This is good if you need quick access to the cluster, which is great for this workshop. Though the recommended approach is to use a formal identity provider to access the cluster (and then grant that user admin privileges, if desired).
 
 1. Run this command to create the admin user
 
@@ -15,7 +15,7 @@ If you want to be able to access your cluster immediately through a cluster-admi
         --password FWGYL-2mkJI-00000-00000
 
 2. Copy the login command returned to you in the previous step and paste that into your terminal. This should log you into the cluster via the CLI so you can start using the cluster.
-    
+
         $ oc login https://api.my-rosa-cluster.abcd.p1.openshiftapps.com:6443 \
         >    --username cluster-admin \
         >    --password FWGYL-2mkJI-00000-00000
@@ -29,7 +29,7 @@ If you want to be able to access your cluster immediately through a cluster-admi
 3. To check that you are logged in as the admin user you can run `oc whoami`
 
     You will see a response like the following
-    
+
         $ oc whoami
         cluster-admin
 
@@ -37,7 +37,7 @@ If you want to be able to access your cluster immediately through a cluster-admi
 
         oc get all -n openshift-apiserver
 
-5. You can now use the cluster as an admin user, though it is highly recommended to set up an IdP.
+5. You can now use the cluster as an admin user, which will suffice for this workshop. Though, for any other use, it is highly recommended to set up an IdP (next step).
 
 *[ROSA]: Red Hat OpenShift Service on AWS
 *[IdP]: Identity Provider
