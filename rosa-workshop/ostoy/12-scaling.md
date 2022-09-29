@@ -34,15 +34,16 @@ Let's change our microservice definition yaml to reflect that we want 3 pods ins
 - Open the file using your favorite editor. Ex: `vi ostoy-microservice-deployment.yaml`
 - Find the line that states `replicas: 1` and change that to `replicas: 3`. Then save and quit.
 
-It will look like this:
+    It will look like this:
 
-```
-spec:
-    selector:
-      matchLabels:
-        app: ostoy-microservice
-    replicas: 3
-```
+    ``` yaml hl_lines="5"
+    spec:
+        selector:
+          matchLabels:
+            app: ostoy-microservice
+        replicas: 3
+    ```
+
 - Assuming you are still logged in via the CLI, execute the following command:
 
 		oc apply -f ostoy-microservice-deployment.yaml
@@ -160,64 +161,62 @@ If you have not already enabled autoscaling on a machine pool the please see the
 
 #### 2. Test the Cluster Autoscaler
 
-Create a new project where we will define a job with a load that this cluster cannot handle. This should force the cluster to automatically create new nodes to handle the load.
+- Create a new project where we will define a job with a load that this cluster cannot handle. This should force the cluster to automatically create new nodes to handle the load.
 
-Create a new project called "autoscale-ex":
+    Create a new project called "autoscale-ex":
 
-```
-oc new-project autoscale-ex
-```
+    ```
+    oc new-project autoscale-ex
+    ```
 
-Create the job
+- Create the job
 
-```
-oc create -f https://raw.githubusercontent.com/openshift/training/master/assets/job-work-queue.yaml
-```
+    ```
+    oc create -f https://raw.githubusercontent.com/openshift/training/master/assets/job-work-queue.yaml
+    ```
 
-After a few seconds, run the following to see what pods have been created.
+- After a few seconds, run the following to see what pods have been created.
 
-```
-$ oc get pods
-NAME                     READY   STATUS    RESTARTS   AGE
-work-queue-5x2nq-24xxn   0/1     Pending   0          10s
-work-queue-5x2nq-57zpt   0/1     Pending   0          10s
-work-queue-5x2nq-58bvs   0/1     Pending   0          10s
-work-queue-5x2nq-6c5tl   1/1     Running   0          10s
-work-queue-5x2nq-7b84p   0/1     Pending   0          10s
-work-queue-5x2nq-7hktm   0/1     Pending   0          10s
-work-queue-5x2nq-7md52   0/1     Pending   0          10s
-work-queue-5x2nq-7qgmp   0/1     Pending   0          10s
-work-queue-5x2nq-8279r   0/1     Pending   0          10s
-work-queue-5x2nq-8rkj2   0/1     Pending   0          10s
-work-queue-5x2nq-96cdl   0/1     Pending   0          10s
-work-queue-5x2nq-96tfr   0/1     Pending   0          10s
-```
+    ```
+    $ oc get pods
+    NAME                     READY   STATUS    RESTARTS   AGE
+    work-queue-5x2nq-24xxn   0/1     Pending   0          10s
+    work-queue-5x2nq-57zpt   0/1     Pending   0          10s
+    work-queue-5x2nq-58bvs   0/1     Pending   0          10s
+    work-queue-5x2nq-6c5tl   1/1     Running   0          10s
+    work-queue-5x2nq-7b84p   0/1     Pending   0          10s
+    work-queue-5x2nq-7hktm   0/1     Pending   0          10s
+    work-queue-5x2nq-7md52   0/1     Pending   0          10s
+    work-queue-5x2nq-7qgmp   0/1     Pending   0          10s
+    work-queue-5x2nq-8279r   0/1     Pending   0          10s
+    work-queue-5x2nq-8rkj2   0/1     Pending   0          10s
+    work-queue-5x2nq-96cdl   0/1     Pending   0          10s
+    work-queue-5x2nq-96tfr   0/1     Pending   0          10s
+    ```
 
-We see a lot of pods in a pending state.  This should trigger the autoscaler to create more nodes in our machine pool.
+- We see a lot of pods in a pending state.  This should trigger the autoscaler to create more nodes in our machine pool.
+- After a few minutes let's check how many worker nodes we have.
 
-After a few minutes let's check how many worker nodes we have.
+    ```
+    $ oc get nodes
+    NAME                                         STATUS   ROLES          AGE     VERSION
+    ip-10-0-138-106.us-west-2.compute.internal   Ready    infra,worker   22h     v1.23.5+3afdacb
+    ip-10-0-153-68.us-west-2.compute.internal    Ready    worker         2m12s   v1.23.5+3afdacb
+    ip-10-0-165-183.us-west-2.compute.internal   Ready    worker         2m8s    v1.23.5+3afdacb
+    ip-10-0-176-123.us-west-2.compute.internal   Ready    infra,worker   22h     v1.23.5+3afdacb
+    ip-10-0-195-210.us-west-2.compute.internal   Ready    master         23h     v1.23.5+3afdacb
+    ip-10-0-196-84.us-west-2.compute.internal    Ready    master         23h     v1.23.5+3afdacb
+    ip-10-0-203-104.us-west-2.compute.internal   Ready    worker         2m6s    v1.23.5+3afdacb
+    ip-10-0-217-202.us-west-2.compute.internal   Ready    master         23h     v1.23.5+3afdacb
+    ip-10-0-225-141.us-west-2.compute.internal   Ready    worker         23h     v1.23.5+3afdacb
+    ip-10-0-231-245.us-west-2.compute.internal   Ready    worker         2m11s   v1.23.5+3afdacb
+    ip-10-0-245-27.us-west-2.compute.internal    Ready    worker         2m8s    v1.23.5+3afdacb
+    ip-10-0-245-7.us-west-2.compute.internal     Ready    worker         23h     v1.23.5+3afdacb
+    ```
 
-```
-$ oc get nodes
-NAME                                         STATUS   ROLES          AGE     VERSION
-ip-10-0-138-106.us-west-2.compute.internal   Ready    infra,worker   22h     v1.23.5+3afdacb
-ip-10-0-153-68.us-west-2.compute.internal    Ready    worker         2m12s   v1.23.5+3afdacb
-ip-10-0-165-183.us-west-2.compute.internal   Ready    worker         2m8s    v1.23.5+3afdacb
-ip-10-0-176-123.us-west-2.compute.internal   Ready    infra,worker   22h     v1.23.5+3afdacb
-ip-10-0-195-210.us-west-2.compute.internal   Ready    master         23h     v1.23.5+3afdacb
-ip-10-0-196-84.us-west-2.compute.internal    Ready    master         23h     v1.23.5+3afdacb
-ip-10-0-203-104.us-west-2.compute.internal   Ready    worker         2m6s    v1.23.5+3afdacb
-ip-10-0-217-202.us-west-2.compute.internal   Ready    master         23h     v1.23.5+3afdacb
-ip-10-0-225-141.us-west-2.compute.internal   Ready    worker         23h     v1.23.5+3afdacb
-ip-10-0-231-245.us-west-2.compute.internal   Ready    worker         2m11s   v1.23.5+3afdacb
-ip-10-0-245-27.us-west-2.compute.internal    Ready    worker         2m8s    v1.23.5+3afdacb
-ip-10-0-245-7.us-west-2.compute.internal     Ready    worker         23h     v1.23.5+3afdacb
-```
+- We can see that more worker nodes were automatically created to handle the workload.
+- Switch back to the "OSToy" project for the rest of the workshop.
 
-We can see that more worker nodes were automatically created to handle the workload.
-
-Switch back to the "OSToy" project for the rest of the workshop.
-
-```
-oc project ostoy
-```
+    ```
+    oc project ostoy
+    ```
