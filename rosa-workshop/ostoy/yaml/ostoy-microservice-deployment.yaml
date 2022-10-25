@@ -5,22 +5,22 @@ metadata:
   labels:
     app: ostoy
 spec:
-    selector:
-      matchLabels:
+  selector:
+    matchLabels:
+      app: ostoy-microservice
+  replicas: 1
+  template:
+    metadata:
+      labels:
         app: ostoy-microservice
-    replicas: 1
-    template:
-      metadata:
-        labels:
-          app: ostoy-microservice
-      spec:
-        containers:
+    spec:
+      containers:
         - name: ostoy-microservice
-          image: quay.io/ostoylab/ostoy-microservice:1.4.0
+          image: quay.io/ostoylab/ostoy-microservice:1.5.0
           imagePullPolicy: IfNotPresent
           ports:
-          - containerPort: 8080
-            protocol: TCP
+            - containerPort: 8080
+              protocol: TCP
           resources:
             requests:
               memory: "128Mi"
