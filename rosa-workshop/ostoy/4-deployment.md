@@ -27,17 +27,19 @@ Create a new project called "ostoy" in your cluster by entering the following co
 You should receive the following response
 
     $ oc new-project ostoy
-    Now using project "ostoy" on server "https://api.osd4-demo.abc1.p1.openshiftapps.com:6443".
+    Now using project "ostoy" on server "https://api.wz1jqkya.eastus.aroapp.io:6443".
 
     You can add applications to this project with the 'new-app' command. For example, try:
 
-        oc new-app centos/ruby-25-centos7~https://github.com/sclorg/ruby-ex.git
+        oc new-app rails-postgresql-example
 
-    to build a new example application in Ruby.
+    to build a new example application in Ruby. Or use kubectl to deploy a simple Kubernetes application:
 
+        kubectl create deployment hello-node --image=k8s.gcr.io/e2e-test-images/agnhost:2.33 -- /agnhost serve-hostname
+        
 Equivalently you can also create this new project using the [web console UI](/rosa/6-access_cluster/#accessing-the-cluster-via-the-web-console) by clicking on "Projects" under "Home" on the left menu, and then click "Create Project" button on the right.
 
-![UI Create Project](images/4-createnewproj.png)
+![UI Create Project](images/Lab1CreateProject.png)
 
 <!---
 #### 3. Download the YAML configuration
