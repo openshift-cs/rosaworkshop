@@ -183,7 +183,7 @@ The same as in OCP. The aescbc cypher is used and the setting is patched during 
 ROSA makes use of a number of different cloud services such as virtual machines, storage, load balancers, etc. You can see a defined list in the [AWS prerequisites](https://docs.openshift.com/rosa/rosa_planning/rosa-sts-aws-prereqs.html#rosa-aws-policy-provisioned_rosa-sts-aws-prereqs).
 
 ### I see there are two "kinds" of ROSA clusters. One uses an IAM user with admin permissions and the other AWS STS. Which should I choose?
-AWS STS. These aren't "kinds" but rather credential methods. Basically, "how do you grant Red Hat the permissions needed in order to perform the required actions in your AWS account?". The roadmap forward is focused on STS, and the IAM user method will eventually be deprecated. This better aligns with principles of least privilege and is much better aligned to secure practices in cloud service resource management. Please see the section "[ROSA with STS Explained](15-sts_explained.md)" for a detailed explanation.
+AWS STS. These aren't "kinds" but rather credential methods. Basically, "how do you grant Red Hat the permissions needed in order to perform the required actions in your AWS account?". The roadmap forward is focused on STS, and the IAM user method will eventually be deprecated. This better aligns with principles of least privilege and is much better aligned to secure practices in cloud service resource management. Please see the section [ROSA with STS Explained](/rosa/15-sts_explained) for a detailed explanation.
 
 ### I’m seeing a number of permission or failure errors related to prerequisite tasks or cluster creation, what might be the problem?
 Please check for a newer version of the ROSA CLI. Every release of the ROSA CLI lands in two places: [Github](https://github.com/openshift/rosa/releases) and the [Red Hat signed binary releases](https://www.openshift.com/products/rosa/download).
@@ -237,7 +237,7 @@ Red Hat infrastructure (Hive) manages certificate rotation for default applicati
 The current ROSA roadmap can be seen at: [https://red.ht/rosa-roadmap](https://red.ht/rosa-roadmap)
 
 ### What kind of instances are supported for worker nodes?
-See [AWS compute types](https://docs.openshift.com/rosa/rosa_architecture/rosa_policy_service_definition/rosa-service-definition.html#rosa-sdpolicy-aws-compute-types_rosa-service-definition) in the service definition for the up to date list of supported instance types.  Additionally, spot instances are supported.
+See [AWS compute types](https://docs.openshift.com/rosa/rosa_architecture/rosa_policy_service_definition/rosa-service-definition.html#rosa-sdpolicy-aws-instance-types_rosa-service-definition) in the service definition for the up to date list of supported instance types.  Additionally, spot instances are supported.
 
 ### Does ROSA support an air-gapped, disconnected environment where the ROSA cluster does not have internet access?  
 No, the ROSA cluster must have egress to the internet to access our registry, S3, send metrics etc. The service requires a number of [egress endpoints](https://docs.openshift.com/rosa/rosa_install_access_delete_clusters/rosa_getting_started_iam/rosa-aws-prereqs.html#osd-aws-privatelink-firewall-prerequisites). Ingress can be limited to PrivateLink (for Red Hat SRE) and VPN or similar for customer access.

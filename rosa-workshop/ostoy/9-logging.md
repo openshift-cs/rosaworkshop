@@ -14,72 +14,85 @@ The cluster logging components are based upon Fluentd, (and Elasticsearch and Ki
 ### Installing the Cluster Logging Add-on service
 
 !!! danger
-		If you plan on running EFK <u>do not follow</u> the installation steps in this section but rather follow the [Installing OpenShift Logging](https://docs.openshift.com/container-platform/latest/logging/cluster-logging-deploying.html) steps and skip down to [View logs with Kibana](#view-logs-with-kibana).
+	If you plan on running EFK <u>do not follow</u> the installation steps in this section but rather follow the [Installing OpenShift Logging](https://docs.openshift.com/container-platform/latest/logging/cluster-logging-deploying.html) steps and skip down to [View logs with Kibana](#view-logs-with-kibana).
 
-In the following steps we will install the logging add-on service to forward our logs; in our case to CloudWatch. If you did not follow the "Getting Started" guide of this workshop and **did not** install ROSA with STS then you can skip to install the service though the OCM UI or by using the CLI (in step 8). Otherwise, there are a few steps we need to do first in order to get this to work for ROSA with STS.
+In the following steps we will install the logging add-on service to forward our logs; in our case to CloudWatch. If you did not follow the "Getting Started" guide of this workshop and **did not** install ROSA with STS, then you can skip to install the service though the OCM UI or by using the CLI (in step 8). Otherwise, there are a few steps we need to do first in order to get this to work for ROSA with STS.
 
 !!! note
-		These steps were adopted from our Managed OpenShift Black Belts [here](https://mobb.ninja/docs/rosa/sts-cluster-logging-addon/).
+	These steps were adopted from our Managed OpenShift Black Belts [here](https://mobb.ninja/docs/rosa/sts-cluster-logging-addon/).
 
-1. Create a IAM Trust Policy document
+1. Create a IAM Trust Policy document.
 
-		cat << EOF > /tmp/trust-policy.json
-		{
-		    "Version": "2012-10-17",
-		    "Statement": [
-		        {
-		            "Effect": "Allow",
-		            "Action": [
-		                "logs:CreateLogGroup",
-		                "logs:CreateLogStream",
-		                "logs:DescribeLogGroups",
-		                "logs:DescribeLogStreams",
-		                "logs:PutLogEvents",
-		                "logs:GetLogEvents",
-		                "logs:PutRetentionPolicy",
-		                "logs:GetLogRecord"
-		            ],
-		            "Resource": "arn:aws:logs:*:*:*"
-		        }
-		    ]
-		}
-		EOF
+	```
+	cat << EOF > /tmp/trust-policy.json
+	{
+		"Version": "2012-10-17",
+		"Statement": [
+			{
+				"Effect": "Allow",
+				"Action": [
+					"logs:CreateLogGroup",
+					"logs:CreateLogStream",
+					"logs:DescribeLogGroups",
+					"logs:DescribeLogStreams",
+					"logs:PutLogEvents",
+					"logs:GetLogEvents",
+					"logs:PutRetentionPolicy",
+					"logs:GetLogRecord"
+				],
+				"Resource": "arn:aws:logs:*:*:*"
+			}
+		]
+	}
+	EOF
+	```
 
 1. Create IAM Policy
 
-		POLICY_ARN=$(aws iam create-policy --policy-name "RosaCloudWatchAddon" --policy-document file:///tmp/trust-policy.json --query Policy.Arn --output text)
-		echo $POLICY_ARN
-
+	```
+	POLICY_ARN=$(aws iam create-policy --policy-name "RosaCloudWatchAddon" --policy-document file:///tmp/trust-policy.json --query Policy.Arn --output text)
+	echo $POLICY_ARN
+	```
 
 1. Create service account
 
-		aws iam create-user --user-name RosaCloudWatchAddon --query User.Arn --output text
+	```
+	aws iam create-user --user-name RosaCloudWatchAddon --query User.Arn --output text
+	```
 
 1. Attach policy to user
 
-		aws iam attach-user-policy --user-name RosaCloudWatchAddon --policy-arn ${POLICY_ARN}
+	```
+	aws iam attach-user-policy --user-name RosaCloudWatchAddon --policy-arn ${POLICY_ARN}
+	```
 
 1. Create AccessKeyId and SecretAccessKey
 
-		aws iam create-access-key --user-name RosaCloudWatchAddon
+	```
+	aws iam create-access-key --user-name RosaCloudWatchAddon
+	```
 
 1. Save the output to the following environment variables
 
-		export AWS_ID=<from above>
-		export AWS_KEY=<from above>
+	```
+	export AWS_ID=<from above>
+	export AWS_KEY=<from above>
+	```
 
 1. Create a secret for the addon to use
 
-		cat << EOF | kubectl apply -f -
-		apiVersion: v1
-		kind: Secret
-		metadata:
-		 name: instance
-		 namespace: openshift-logging
-		stringData:
-		  aws_access_key_id: ${AWS_ID}
-		  aws_secret_access_key: ${AWS_KEY}
-		EOF
+	```
+	cat << EOF | kubectl apply -f -
+	apiVersion: v1
+	kind: Secret
+	metadata:
+		name: instance
+		namespace: openshift-logging
+	stringData:
+		aws_access_key_id: ${AWS_ID}
+		aws_secret_access_key: ${AWS_KEY}
+	EOF
+	```
 
 1. Access the [OCM UI](https://console.redhat.com/OpenShift), select your cluster, and click on the **Add-ons** tab.
 1. Click on the **Cluster Logging Operator**
@@ -98,31 +111,35 @@ In the following steps we will install the logging add-on service to forward our
 1. Output a message to *stdout*
 Click on the *Home* menu item and then click in the message box for "Log Message (stdout)" and write any message you want to output to the *stdout* stream.  You can try "**All is well!**".  Then click "Send Message".
 
-![Logging stdout](images/9-ostoy-stdout.png)
+	![Logging stdout](images/9-ostoy-stdout.png)
 
 2. Output a message to *stderr*
 Click in the message box for "Log Message (stderr)" and write any message you want to output to the *stderr* stream. You can try "**Oh no! Error!**".  Then click "Send Message".
 
-![Logging stderr](images/9-ostoy-stderr.png)
+	![Logging stderr](images/9-ostoy-stderr.png)
 
 ### View application logs using `oc`
 
 1. Go to the CLI and enter the following command to retrieve the name of your frontend pod which we will use to view the pod logs:
 
-		$ oc get pods -o name
-		pod/ostoy-frontend-679cb85695-5cn7x
-		pod/ostoy-microservice-86b4c6f559-p594d
+	```
+	$ oc get pods -o name
+	pod/ostoy-frontend-679cb85695-5cn7x
+	pod/ostoy-microservice-86b4c6f559-p594d
+	```
 
 So the pod name in this case is **ostoy-frontend-679cb85695-5cn7x**.  
 
 1. Run `oc logs ostoy-frontend-679cb85695-5cn7x` and you should see your messages:
 
-		$ oc logs ostoy-frontend-679cb85695-5cn7x
-		[...]
-		ostoy-frontend-679cb85695-5cn7x: server starting on port 8080
-		Redirecting to /home
-		stdout: All is well!
-		stderr: Oh no! Error!
+	```
+	$ oc logs ostoy-frontend-679cb85695-5cn7x
+	[...]
+	ostoy-frontend-679cb85695-5cn7x: server starting on port 8080
+	Redirecting to /home
+	stdout: All is well!
+	stderr: Oh no! Error!
+	```
 
 You should see both the *stdout* and *stderr* messages.
 
@@ -195,4 +212,4 @@ You should see now only one row is returned that contains our error message.
 ![Expand data](images/9-erronly.png)
 
 !!! note
-		If nothing is returned, depending on how much time has elapsed since you've outputted the messages to the *stdout* and *stderr* streams you may need to set the proper time frame for the filter.  If you are following this lab consistently then the default should be fine.  Otherwise, in the Kibana console, click on the top right where it should say "Last 15 minutes" and click on "Quick" then "Last 1 hour" (though adjust to your situation as needed).
+	If nothing is returned, depending on how much time has elapsed since you've outputted the messages to the *stdout* and *stderr* streams you may need to set the proper time frame for the filter.  If you are following this lab consistently then the default should be fine.  Otherwise, in the Kibana console, click on the top right where it should say "Last 15 minutes" and click on "Quick" then "Last 1 hour" (though adjust to your situation as needed).

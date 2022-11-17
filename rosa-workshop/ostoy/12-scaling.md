@@ -10,7 +10,7 @@ We will explore all three.
 
 ### Pod scaling
 
-OpenShift allows one to scale up/down the number of pods for each part of an application as needed.  This can be accomplished via changing our *replicaset/deployment* definition (declarative), by the command line (imperative), or via the web console (imperative). In our *deployment* definition (part of our `ostoy-fe-deployment.yaml`) we stated that we only want one pod for our microservice to start with. This means that the Kubernetes Replication Controller will always strive to keep one pod alive. We can also define pod autoscaling using the [Horizontal Pod Autoscaler](https://docs.openshift.com/container-platform/latest/nodes/pods/nodes-pods-autoscaling.html)(HPA) based on load to expand past what we defined if needed which we will do in a later section of this lab.
+OpenShift allows one to scale up/down the number of pods for each part of an application as needed.  This can be accomplished via changing our *replicaset/deployment* definition (declarative), by the command line (imperative), or via the web console (imperative). In our *deployment* definition (part of our `ostoy-frontend-deployment.yaml`) we stated that we only want one pod for our microservice to start with. This means that the Kubernetes Replication Controller will always strive to keep one pod alive. We can also define pod autoscaling using the [Horizontal Pod Autoscaler](https://docs.openshift.com/container-platform/latest/nodes/pods/nodes-pods-autoscaling.html)(HPA) based on load to expand past what we defined if needed which we will do in a later section of this lab.
 
 In the OSToy app click on "Networking" in the left menu to access this portion of the workshop.  
 
@@ -29,7 +29,7 @@ ostoy-microservice-86b4c6f559-p594d   1/1       Running   0          1h
 ```
 
 #### 2. Scale pods via Deployment definition
-Let's change our microservice definition yaml to reflect that we want 3 pods instead of the one we see. Download the [ostoy-microservice-deployment.yaml](https://raw.githubusercontent.com/openshift-cs/osdworkshop/master/OSD4/yaml/ostoy-microservice-deployment.yaml) and save it on your local machine, if you didn't do so already.
+Let's change our microservice definition yaml to reflect that we want 3 pods instead of the one we see. Download the [ostoy-microservice-deployment.yaml](yaml/ostoy-microservice-deployment.yaml) and save it to your local machine, if you didn't do so already.
 
 - Open the file using your favorite editor. Ex: `vi ostoy-microservice-deployment.yaml`
 - Find the line that states `replicas: 1` and change that to `replicas: 3`. Then save and quit.
@@ -48,8 +48,8 @@ Let's change our microservice definition yaml to reflect that we want 3 pods ins
 
 		oc apply -f ostoy-microservice-deployment.yaml
 
-!!! note
-		You could also change it directly in the OpenShift Web Console by going to *Deployments* > *"ostoy-microservice"* > *"YAML"* tab.
+    !!! note
+        You could also change it directly in the OpenShift Web Console by going to *Deployments* > *"ostoy-microservice"* > *"YAML"* tab.
 
 - Confirm that there are now 3 pods via the CLI (`oc get pods`) or the web console (*Workloads > Deployments > ostoy-microservice*).
 - See this visually by visiting the OSToy app > Networking in the left menu and counting how many boxes there are now.  It should be three.
@@ -123,19 +123,19 @@ or visually in our application:
 Now that we know that we only have one pod let's increase the workload that the pod needs to perform. Click the link in the center of the card that says "increase the load".  
 
 !!! danger
-		**Please click only *ONCE*!**
+	**Please click only *ONCE*!**
 
 This will generate some CPU intensive calculations.  (If you are curious about what it is doing you can click [here](https://github.com/openshift-cs/ostoy/blob/master/microservice/app.js#L32)).
 
 !!! note
-		The page may become slightly unresponsive.  This is normal; so be patient while the new pods spin up.
+	The page may become slightly unresponsive.  This is normal; so be patient while the new pods spin up.
 
 #### 4. See the pods scale up
 
 After about a minute the new pods will show up on the page (represented by the colored rectangles). Confirm that the pods did indeed scale up through the OpenShift Web Console or the CLI (you can use the command above).
 
 !!! note
-		The page may still lag a bit which is normal.
+	The page may still lag a bit which is normal.
 
 #### 5. Review metrics with observability
 
@@ -152,8 +152,6 @@ Wait a few minutes and colorful graphs will appear showing resource usage across
 ### Node Autoscaling
 
 In ROSA one can also define [node autoscaling](https://docs.openshift.com/rosa/rosa_cluster_admin/rosa_nodes/rosa-nodes-about-autoscaling-nodes.html).  You can also visit the [Node Autoscaling](/rosa/8-autoscaling) section of this workshop for more information.
-
-Before proceeding in this section please ensure that at least one machine pool has [autoscaling enabled](/rosa/8-autoscaling/#setting-up-cluster-autoscaling) otherwise this will not work.
 
 #### 1. Enable Autoscaling nodes on the machine pool
 
@@ -172,7 +170,7 @@ If you have not already enabled autoscaling on a machine pool the please see the
 - Create the job
 
     ```
-    oc create -f https://raw.githubusercontent.com/openshift/training/master/assets/job-work-queue.yaml
+    oc create -f https://raw.githubusercontent.com/openshift-cs/rosaworkshop/master/rosa-workshop/ostoy/yaml/job-work-queue.yaml
     ```
 
 - After a few seconds, run the following to see what pods have been created.

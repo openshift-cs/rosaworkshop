@@ -14,13 +14,11 @@ In the next section we will trigger automated builds based on changes to the sou
 
 Click the button to fork the repository:
 
-<!--<a class="github-button" href="https://github.com/openshift-cs/ostoy/fork" data-icon="octicon-repo-forked" data-size="large" aria-label="Fork openshift-cs/ostoy on GitHub">Click here to fork the repo</a> -->
-
 [Fork the repository :material-source-fork:](https://github.com/openshift-cs/ostoy/fork){ .md-button .md-button--primary }
 
 
 !!! note
-    Going forward you will need to replace any reference to "< username >" in any of the URLs for commands with your own GitHub username.
+    Going forward you will need to replace any reference to "<username\>" in any of the URLs for commands with your own GitHub username.
 
 #### Create a project
 Create a new project for this part. Let's call it `ostoy-s2i`.  

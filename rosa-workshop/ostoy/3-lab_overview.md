@@ -4,11 +4,12 @@
 - OSToy front-end container image: <https://quay.io/ostoylab/ostoy-frontend>
 - OSToy microservice container image: <https://quay.io/ostoylab/ostoy-microservice>
 - Deployment Definition YAMLs:
-	- [ostoy-fe-deployment.yaml](yaml/ostoy-fe-deployment.yaml)
+	- [ostoy-fronend-deployment.yaml](yaml/ostoy-frontend-deployment.yaml)
 	- [ostoy-microservice-deployment.yaml](yaml/ostoy-microservice-deployment.yaml)
+- S3 bucket manifest for ACK S3: [s3-bucket.yaml](yaml/s3-bucket.yaml)
 
 !!! note
-		In order to simplify the deployment of the app we have included all the objects needed in the above YAMLs as "all-in-one" YAMLs.  Though in reality, an enterprise would most likely want to have a different yaml file for each Kubernetes object.
+		In order to simplify the deployment of the app we have included all the objects needed in the above deployment manifests as an "all-in-one" manifest.  Though in reality, an enterprise would most likely want to have a different manifest file for each Kubernetes object.
 
 ### About OSToy
 
@@ -21,6 +22,7 @@ OSToy is a simple Node.js application that we will deploy to ROSA. It is used to
 - if connected to shared storage, read and write files
 - check network connectivity, intra-cluster DNS, and intra-communication with an included microservice
 - increase the load to view automatic scaling of the pods to handle the load (via the Horizontal Pod Autoscaler)
+- connect to an AWS S3 bucket to read and write objects (Optional)
 
 ### OSToy Application Diagram
 
@@ -35,16 +37,15 @@ OSToy is a simple Node.js application that we will deploy to ROSA. It is used to
 5. **Secrets:** Shows the contents of secrets available to the application and the key:value pairs.
 6. **ENV Variables:** Shows the environment variables available to the application.
 7. **Networking:** Tools to illustrate networking within the application.
-8. **Auto Scaling:** Tool to increase the load of the pods and test the HPA.
-9. Shows some more information about the application.
+8. **Pod Auto Scaling:** Tool to increase the load of the pods and test the HPA.
+9. **ACK S3:** Integrate with AWS S3 to read and write objects to a bucket. (Optional)
 
-	![Home Page](images/3-ostoy-homepage-1.png)
+	!!! important
+		In order see the "ACK S3" section of OSToy, you must complete the [ACK section](13-ack.md) of this workshop. If you decide not to complete that section, the OSToy application will work regardless.
 
-### Learn more about the application
+10. **About:** Shows some more information about the application.
 
-To learn more, click on the "About" menu item on the left once we deploy the app.
-
-![ostoy About](images/3-ostoy-about.png)
+	![Home Page](images/3-ostoy-homepage.png)
 
 *[ROSA]: Red Hat OpenShift Service on AWS
 *[IdP]: Identity Provider
