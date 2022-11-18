@@ -16,5 +16,6 @@ Some of the things you’ll be going through:
 - Explore networking within Kubernetes and applications
 - Familiarization with OpenShift and Kubernetes functionality
 - Automatically scale pods based on load via the Horizontal Pod Autoscaler
+- Use ACK to deploy an S3 bucket and upload and read files from it
 
 You’ll be doing the majority of the labs using the OpenShift CLI, but you can also accomplish them using the OpenShift web console.

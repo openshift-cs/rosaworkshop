@@ -1,7 +1,7 @@
 ## Leveraging Source-to-Image (S2I) webhooks for automated deployment
 If we'd like to automatically trigger a build and deploy anytime we change the source code we can do that by using a webhook.
 
-See [Triggering Builds](https://docs.openshift.com/container-platform/4.8/cicd/builds/triggering-builds-build-hooks.html) for more details.
+See [Triggering Builds](https://docs.openshift.com/container-platform/latest/cicd/builds/triggering-builds-build-hooks.html) for more details.
 
 #### Get the trigger secret
 Retrieve the GitHub webhook trigger secret using the command below. You’ll need use this secret in the GitHub webhook URL.
@@ -33,13 +33,13 @@ In the URL retrieved in the last step replace the `<secret>` text with the actua
 #### Setup the webhook URL in GitHub repository
 - In your repository, click on *Settings > Webhooks > Add webhook*
 
-![Add Webhook](images/11-webhook.png)
+	![Add Webhook](images/11-webhook.png)
 
 - Paste the URL from step 4 into the "Payload URL" field
 - Change the "Content type" to `application/json`
 - Click add webhook at the bottom
 
-![Finish Add Webhook](images/11-webhookfinish.png)
+	![Finish Add Webhook](images/11-webhookfinish.png)
 
 You should see a message from GitHub stating that your webhook was successfully configured. Now, whenever you push a change to your GitHub repository, a new build will automatically start, and upon a successful build a new deployment will start.
 
@@ -53,6 +53,15 @@ Now we will make a change in our source code and see it automatically trigger a 
 - Edit the file
 - Comment out line 8 (containing `let randomColor = getRandomColor();`)
 - Uncomment line 9 (containing `let randomColor = getRandomGrayScaleColor();`)
+
+	```js hl_lines="3" linenums="7"
+	app.get('/', function(request, response) {
+  	//let randomColor = getRandomColor(); // <-- comment this
+  	let randomColor = getRandomGrayScaleColor(); // <-- uncomment this
+
+  	response.writeHead(200, {'Content-Type': 'application/json'});
+	```
+
 - Enter a message for the update like "changed box to greyscale colors"
 - Click *Commit* at the bottom to commit the changes to the master branch
 

@@ -5,29 +5,37 @@ metadata:
   labels:
     app: ostoy
 spec:
-    selector:
-      matchLabels:
+  selector:
+    matchLabels:
+      app: ostoy-microservice
+  replicas: 1
+  template:
+    metadata:
+      labels:
         app: ostoy-microservice
-    replicas: 1
-    template:
-      metadata:
-        labels:
-          app: ostoy-microservice
-      spec:
-        containers:
-        - name: ostoy-microservice
-          image: quay.io/ostoylab/ostoy-microservice:1.4.0
-          imagePullPolicy: IfNotPresent
-          ports:
-          - containerPort: 8080
-            protocol: TCP
-          resources:
-            requests:
-              memory: "128Mi"
-              cpu: "50m"
-            limits:
-              memory: "256Mi"
-              cpu: "100m"
+    spec:
+      containers:
+      - name: ostoy-microservice
+        securityContext:
+          allowPrivilegeEscalation: false
+          runAsNonRoot: true
+          seccompProfile:
+            type: RuntimeDefault
+          capabilities:
+            drop:
+            - ALL
+        image: quay.io/ostoylab/ostoy-microservice:1.5.0
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "50m"
+          limits:
+            memory: "256Mi"
+            cpu: "100m"
 ---
 apiVersion: v1
 kind: Service

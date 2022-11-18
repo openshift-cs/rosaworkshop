@@ -12,12 +12,14 @@ Click *Display Token*
 
 Copy the command under where it says "Log in with this token". Then go to your terminal and paste that command and press enter.  You will see a similar confirmation message if you successfully logged in.
 
-    $ oc login --token=RYhFlXXXXXXXXXXXX --server=https://api.osd4-demo.abc1.p1.openshiftapps.com:6443
-    Logged into "https://api.osd4-demo.abc1.p1.openshiftapps.com:6443" as "0kashi" using the token provided.
+```
+$ oc login --token=RYhFlXXXXXXXXXXXX --server=https://api.osd4-demo.abc1.p1.openshiftapps.com:6443
+Logged into "https://api.osd4-demo.abc1.p1.openshiftapps.com:6443" as "0kashi" using the token provided.
 
-    You don't have any projects. You can try to create a new project, by running
+You don't have any projects. You can try to create a new project, by running
 
-    oc new-project <projectname>
+oc new-project <projectname>
+```
 
 #### 2. Create new project
 Create a new project called "ostoy" in your cluster by entering the following command:
@@ -39,17 +41,6 @@ Equivalently you can also create this new project using the [web console UI](/ro
 
 ![UI Create Project](images/4-createnewproj.png)
 
-<!---
-#### 3. Download the YAML configuration
-Download the Kubernetes deployment object yamls from the following locations to your local machine, in a directory of your choosing (just remember where you placed them for the next step).
-
-[ostoy-fe-deployment.yaml](https://raw.githubusercontent.com/openshift-cs/rosaworkshop/master/ostoy/yaml/ostoy-fe-deployment.yaml)
-
-[ostoy-microservice-deployment.yaml](https://raw.githubusercontent.com/openshift-cs/rosaworkshop/master/ostoy/yaml/ostoy-microservice-deployment.yaml)
-
-Feel free to open them up and take a look at what we will be deploying. For simplicity of this lab we have placed all the Kubernetes objects for the front-end in an "all-in-one" yaml file.  Though in reality there are benefits (ease of maintenance and less risk) to separating these out into individual yaml files.
--->
-
 #### 3. Deploy the backend microservice
 The microservice serves internal web requests and returns a JSON object containing the current hostname and a randomly generated color string.
 
@@ -66,7 +57,7 @@ You should see the following response:
 #### 4. Deploy the front-end service
 The frontend deployment contains the node.js frontend for our application along with a few other Kubernetes objects.
 
- If you open the *ostoy-fe-deployment.yaml* you will see we are defining:
+ If you open the *ostoy-frontend-deployment.yaml* you will see we are defining:
 
 - Persistent Volume Claim
 - Deployment Object
@@ -77,11 +68,11 @@ The frontend deployment contains the node.js frontend for our application along 
 
 In your terminal, deploy the frontend along with creating all objects mentioned above by entering:
 
-    oc apply -f https://raw.githubusercontent.com/openshift-cs/rosaworkshop/master/rosa-workshop/ostoy/yaml/ostoy-fe-deployment.yaml
+    oc apply -f https://raw.githubusercontent.com/openshift-cs/rosaworkshop/master/rosa-workshop/ostoy/yaml/ostoy-frontend-deployment.yaml
 
 You should see all objects created successfully
 
-    $ oc apply -f https://raw.githubusercontent.com/openshift-cs/rosaworkshop/master/rosa-workshop/ostoy/yaml/ostoy-fe-deployment.yaml
+    $ oc apply -f https://raw.githubusercontent.com/openshift-cs/rosaworkshop/master/rosa-workshop/ostoy/yaml/ostoy-frontend-deployment.yaml
     persistentvolumeclaim/ostoy-pvc created
     deployment.apps/ostoy-frontend created
     service/ostoy-frontend-svc created

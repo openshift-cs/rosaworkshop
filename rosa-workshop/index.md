@@ -35,6 +35,8 @@ Some of the things you’ll be going through:
 - Explore networking within Kubernetes and applications
 - Familiarization with OpenShift and Kubernetes functionality
 - Automatically scale pods based on load via the Horizontal Pod Autoscaler
+- Automatically scale the cluster based on load
+- Integrate with an AWS S3 bucket to read or write objects
 
 If you'd like a preview of the cluster deployment process, you can watch a short demo:
 
@@ -69,5 +71,5 @@ If you'd like an easy to follow guide for creating your first ROSA cluster:
 - [Learn about OpenShift](https://learn.openshift.com)
 - [OpenShift Blog](https://www.openshift.com/blog)
 
-
-**Note:** Anytime "ROSA" is used in this lab it stands for Red Hat OpenShift Service on AWS. The ROSA acronym will be used mostly.
+!!! note
+    Anytime "ROSA" is used in this lab it stands for Red Hat OpenShift Service on AWS. The ROSA acronym will be mostly used.
