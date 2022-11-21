@@ -137,7 +137,7 @@ Next, we need to create a service account so that OSToy can read the contents of
 1. Get the OIDC provider
 
     ```
-    export OIDC_PROVIDER=$(oc get authentication.config.openshift.io cluster -o json | jq -r .spec.serviceAccountIssuer | sed 's/https:\/\///')
+    export OIDC_PROVIDER=$(oc get authentication.config.openshift.io cluster -o jsonpath='{.spec.serviceAccountIssuer}' | sed 's/https:\/\///')
     ```
 
 1. Create the trust policy file
