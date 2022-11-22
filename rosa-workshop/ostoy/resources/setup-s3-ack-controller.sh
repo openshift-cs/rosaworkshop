@@ -31,7 +31,7 @@ INLINE_POLICY="$(wget -qO- ${INLINE_POLICY_URL})"
 # If it does, then stop the script since the trust relationship may be different for this run that what is already there.
 if aws iam get-role --role-name ${ACK_CONTROLLER_IAM_ROLE} > /dev/null 2>&1; then
 cat << EOF
-Error...${ACK_CONTROLLER_IAM_ROLE} role exists.
+Error...${ACK_CONTROLLER_IAM_ROLE} role already exists.
 Please delete the ${ACK_CONTROLLER_IAM_ROLE} role from AWS as the trust relationship may have changed
 and this may be referring to an old role.
 
@@ -80,7 +80,7 @@ cat <<EOF > trust.json
 }
 EOF
 
-#create the AWS IAM Role
+# create the AWS IAM Role
 aws iam create-role --role-name "${ACK_CONTROLLER_IAM_ROLE}" --assume-role-policy-document file://trust.json --description "${ACK_CONTROLLER_IAM_ROLE_DESCRIPTION}" > /dev/null 2>&1
 echo "IAM role ${ACK_CONTROLLER_IAM_ROLE} created."
 
@@ -112,6 +112,12 @@ IRSA_ROLE_ARN="eks.amazonaws.com/role-arn=${ACK_CONTROLLER_IAM_ROLE_ARN}"
 oc annotate serviceaccount --overwrite -n $ACK_K8S_NAMESPACE $ACK_K8S_SERVICE_ACCOUNT_NAME $IRSA_ROLE_ARN > /dev/null 2>&1
 echo "Annotated service account."
 echo "Operator deployment restarting..."
-sleep 10
-oc rollout restart deployment ack-s3-controller -n $ACK_K8S_NAMESPACE > /dev/null 2>&1
+
+IRSA_ENVVAR=$(oc describe pod ack-$SERVICE-controller -n $ACK_K8S_NAMESPACE | grep "^\s*AWS_WEB_IDENTITY_TOKEN")
+while [ -z "$IRSA_ENVVAR" ] ; do
+        echo "...Not ready yet"
+        oc rollout restart deployment ack-$SERVICE-controller -n $ACK_K8S_NAMESPACE > /dev/null 2>&1
+        sleep 10
+        IRSA_ENVVAR=$(oc describe pod ack-$SERVICE-controller -n $ACK_K8S_NAMESPACE | grep "^\s*AWS_WEB_IDENTITY_TOKEN")
+    done
 echo "Complete."
