@@ -11,13 +11,15 @@ In order to illustrate the use of the ACK on ROSA, we will walk through a simple
 To make the process clearer, here is an overview of the procedure we are going to follow. There are two main "parts".
 
 1. **ACK Controller for the cluster** - This allows you to create/delete buckets in the S3 service through the use of a Kubernetes Custom Resource for the bucket.
-    1. Install the controller (in our case an Operator)
-    1. Create the needed service account and AWS IAM role for the ACK controller
-    1. Associate AWS IAM role with the service account
+    1. Install the controller (in our case an Operator) which will also create the required namespace and the service account.
+    1. Run a script which will:
+        1. Create the AWS IAM role for the ACK controller and assign the S3 policy
+        1. Associate the AWS IAM role with the service account
 1. **Application access** - Granting access to our application container/pod to access our S3 bucket.
-    1. Create needed service account and AWS IAM role for the ACK controller
-    1. Associate AWS IAM role with the service account
-    1. Update application to use the service account
+    1. Create a service account for the application
+    1. Create an AWS IAM role for the application and assign the S3 policy
+    1. Associate the AWS IAM role with the service account
+    1. Update application deployment manifest to use the service account
 
 ### Install an ACK controller
 
@@ -116,17 +118,16 @@ We can now create/delete buckets through Kubernetes using the ACK. In the next s
 
 ### Set up access for our application
 
-#### Create a service account
+In this section we will create an AWS IAM role and service account so that OSToy can read and write objects to the S3 bucket that we will create. 
 
-Next, we need to create a service account so that OSToy can read the contents of the S3 bucket that we will create and to create objects in that bucket.
+Before starting, ensure that you are in your OSToy project. If your project is named differently, then use the name for your project.
 
-1. Switch back to your OSToy project. If your project is named differently, then use the name for your project.
+```
+oc project ostoy
+```
 
-    ```
-    oc project ostoy
-    ```
+#### Create an AWS IAM role
 
-#### Create the AWS IAM role for accessing the AWS service
 
 1. Get your AWS account ID
 
@@ -140,7 +141,13 @@ Next, we need to create a service account so that OSToy can read the contents of
     export OIDC_PROVIDER=$(oc get authentication.config.openshift.io cluster -o jsonpath='{.spec.serviceAccountIssuer}' | sed 's/https:\/\///')
     ```
 
-1. Create the trust policy file
+1. Get the current namespace
+
+    ```
+    export OSTOY_NAMESPACE=$(oc config view --minify -o 'jsonpath={..namespace}')
+    ```
+
+1. Create the trust policy file.
 
     ```
     cat <<EOF > ./ostoy-sa-trust.json
@@ -155,7 +162,7 @@ Next, we need to create a service account so that OSToy can read the contents of
           "Action": "sts:AssumeRoleWithWebIdentity",
           "Condition": {
             "StringEquals": {
-              "${OIDC_PROVIDER}:sub": "system:serviceaccount:ostoy:ostoy-s3-sa"
+              "${OIDC_PROVIDER}:sub": "system:serviceaccount:${OSTOY_NAMESPACE}:ostoy-s3-sa"
             }
           }
         }
@@ -170,7 +177,7 @@ Next, we need to create a service account so that OSToy can read the contents of
     aws iam create-role --role-name "ostoy-s3-sa-role" --assume-role-policy-document file://ostoy-sa-trust.json
     ```
 
-####  Attach the S3 policy to the IAM role for the service account
+####  Attach the S3 policy to the IAM role
 
 1. Get the Full Access policy ARN
 
@@ -192,9 +199,9 @@ Next, we need to create a service account so that OSToy can read the contents of
     export APP_IAM_ROLE_ARN=$(aws iam get-role --role-name=ostoy-s3-sa-role --query Role.Arn --output text)
     ```
 
-1. Create the service account manifest. Replace the namespace value with your namespace if it is different. 
+1. Create the service account manifest. Replace the `namespace` value with your OSToy namespace if it is different. Note the annotation to reference our AWS IAM role.
 
-    ```
+    ``` hl_lines="8"
     cat <<EOF > ostoy-serviceaccount.yaml
     apiVersion: v1
     kind: ServiceAccount
@@ -205,6 +212,9 @@ Next, we need to create a service account so that OSToy can read the contents of
         eks.amazonaws.com/role-arn: "$APP_IAM_ROLE_ARN"
     EOF
     ```
+
+    !!! warning
+        Do not change the name of the service account from "ostoy-s3-sa".  Otherwise you will have to change the trust relationship for the AWS IAM role.
 
 1. Create the service account
 
@@ -220,7 +230,7 @@ Next, we need to create a service account so that OSToy can read the contents of
 
     You should see an output like the one below with the correct annotation:
 
-    ``` yaml hl_lines="4"
+    ```hl_lines="4"
     Name:                ostoy-s3-sa
     Namespace:           ostoy
     Labels:              <none>
@@ -233,20 +243,21 @@ Next, we need to create a service account so that OSToy can read the contents of
 
 ### Create an S3 bucket
 
-1. Create a manifest file for your bucket. Copy the yaml file below and save it as `s3-bucket.yaml`. Or download it from [here](yaml/s3-bucket.yaml). Please replace `<namespace>` with your namespace/project for OSToy.
-
-    For example, the value for name should be `ostoy-bucket` if our project is `ostoy`.
+1. Create a manifest file for your bucket. Copy the bucket manifest file below and save it as `s3-bucket.yaml`. Or download it from [here](yaml/s3-bucket.yaml).
 
     !!! warning
-        The OSToy application expects to find a bucket that is named based on the namespace that OSToy is in. Like "<namespace\>-bucket". If you place anything other than the namespace of OSToy, this feature will not work.
+        The OSToy application expects to find a bucket that is named based on the namespace/project that OSToy is in. Like "<namespace\>-bucket". If you place anything other than the namespace of your OSToy project, this feature will not work.
 
-    ``` yaml hl_lines="4 6"
+        For example, if our project is "ostoy", the value for `name` must be "ostoy-bucket".
+
+    ``` yaml hl_lines="4 7"
     apiVersion: s3.services.k8s.aws/v1alpha1
     kind: Bucket
     metadata:
-      name: <namespace>-bucket
+      name: ostoy-bucket
+      namespace: ostoy
     spec:
-      name: <namespace>-bucket
+      name: ostoy-bucket
     ```
 
 1. Create the bucket.
@@ -258,16 +269,13 @@ Next, we need to create a service account so that OSToy can read the contents of
 1. Confirm the bucket was created
 
     ```
-    aws s3 ls | grep <namespace>-bucket
+    aws s3 ls | grep ostoy-bucket
     ```
 
 
 ### Redeploy the OSToy app with the new service account
 
 1. Open the `ostoy-frontend-deployment.yaml` file (or download it [here](yaml/ostoy-frontend-deployment.yaml)) and uncomment `spec.template.spec.serviceAccount`, so it likes like the example below. Save the file.
-
-    !!! note
-        If you followed the steps above exactly then the service account name is the same. If you used a *different* service account name in the previous steps, you will need to replace the name with the one you created.
 
     ``` yaml hl_lines="4" linenums="29"
     spec:

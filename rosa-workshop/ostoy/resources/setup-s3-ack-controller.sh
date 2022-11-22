@@ -20,7 +20,7 @@ ACK_K8S_SERVICE_ACCOUNT_NAME="ack-${SERVICE}-controller"     # This should not b
 ACK_CONTROLLER_IAM_ROLE="ack-${SERVICE}-controller"          # This may be renamed if you are running multiple clusters in the same AWS account
 ACK_CONTROLLER_IAM_ROLE_DESCRIPTION="IRSA role for ACK ${SERVICE} controller deployment" # This may be modified
 AWS_ACCOUNT_ID=$(aws sts get-caller-identity --query "Account" --output text)
-OIDC_PROVIDER=$(oc get authentication cluster -o json | jq -r .spec.serviceAccountIssuer | sed -e "s/^https:\/\///")
+OIDC_PROVIDER=$(oc get authentication.config.openshift.io cluster -o jsonpath='{.spec.serviceAccountIssuer}' | sed 's/https:\/\///')
 BASE_URL="https://raw.githubusercontent.com/aws-controllers-k8s/${SERVICE}-controller/main"
 POLICY_ARN_URL="${BASE_URL}/config/iam/recommended-policy-arn"
 POLICY_ARN_STRINGS="$(wget -qO- ${POLICY_ARN_URL})"
