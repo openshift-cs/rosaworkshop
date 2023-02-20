@@ -100,7 +100,7 @@ Please see the [Red Hat Subprocessor List](https://access.redhat.com/articles/55
 Please refer to the [product regional availability](https://docs.openshift.com/rosa/rosa_architecture/rosa_policy_service_definition/rosa-service-definition.html#rosa-sdpolicy-regions-az_rosa-service-definition) page for an up-to-date view of where Red Hat OpenShift Service on AWS is available.
 
 ### Which compliance certifications does ROSA have so far?
-Red Hat OpenShift Service on AWS is currently compliant with SOC-2 type 1 & type 2, ISO-27001, ISO 27017, ISO 27018, HIPAA & PCI-DSS. We are also currently working towards FedRAMP High.
+Red Hat OpenShift Service on AWS is currently compliant with SOC-2 type 2, SOC 3, ISO-27001, ISO 27017, ISO 27018, HIPAA & PCI-DSS. We are also currently working towards FedRAMP High.
 
 ### Can a cluster have worker nodes across multiple AWS regions?
 No, all nodes in a Red Hat OpenShift Service on AWS cluster must be located in the same AWS region; this follows the same model as that of OCP. For clusters configured for multiple availability zones control plane nodes and worker nodes will be distributed across the availability zones.
