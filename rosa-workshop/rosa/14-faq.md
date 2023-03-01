@@ -198,7 +198,7 @@ AWS EFS (Using AWS EFS CSI Driver, OpenShift includes the CSI driver out of the 
 Yes.  At install time you are able to select whether you’d like to deploy to an existing VPC and then choose that VPC.  You will then be able to select the desired subnets and also provide a valid CIDR range (encompassing the subnets) the installer will handle using those subnets. Please see the [VPC](https://docs.openshift.com/rosa/rosa_planning/rosa-sts-aws-prereqs.html#rosa-vpc_rosa-sts-aws-prereqs) section in the documentation for further details.
 
 ### Which network plugin is used in Red Hat OpenShift Service on AWS?
-Red Hat OpenShift Service on AWS uses the default OpenShift SDN network provider configured to NetworkPolicy mode. OVN-Kubernetes is on our roadmap.
+Red Hat OpenShift Service on AWS uses the OpenShift OVN-Kubernetes default CNI network provider.
 
 ### Is cross-namespace networking supported?
 Cluster admins in ROSA can customize cross-namespace networking (including denying it) on a per project basis using NetworkPolicy objects. Refer to [Configuring multitenant isolation with network policy](https://docs.openshift.com/container-platform/4.10/networking/network_policy/multitenant-network-policy.html) on how to configure.
