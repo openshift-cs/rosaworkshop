@@ -37,7 +37,7 @@ Now using project "ostoy" on server "https://api.myrosacluster.abcd.p1.openshift
 ```
 
 !!! note
-    If you need a unique project name you can run:
+    If you need a unique project name you can run the below command.  This is recommended if you plan on using the [ACK](/ostoy/13-ack) section of this workshop.
 
     ```
     oc new-project ostoy-$(uuidgen | cut -d - -f 2 | tr '[:upper:]' '[:lower:]')
