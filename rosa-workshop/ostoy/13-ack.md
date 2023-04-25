@@ -246,9 +246,9 @@ oc project ostoy
 1. Create a manifest file for your bucket. Copy the bucket manifest file below and save it as `s3-bucket.yaml`. Or download it from [here](yaml/s3-bucket.yaml).
 
     !!! warning
-        The OSToy application expects to find a bucket that is named based on the namespace/project that OSToy is in. Like "<namespace\>-bucket". If you place anything other than the namespace of your OSToy project, this feature will not work.
+        The OSToy application expects to find a bucket that is named based on the namespace/project that OSToy is in. Like "<namespace\>-bucket". If you place anything other than the namespace of your OSToy project, this feature will not work. For example, if our project is "ostoy", the value for `name` must be "ostoy-bucket".
 
-        For example, if our project is "ostoy", the value for `name` must be "ostoy-bucket".
+        You must also consider that becuase Amazon S3 requires that bucket names be globally unique, you must run OSToy in a project that is unique as well.  See the note in [Create a new project](/ostoy/4-deployment/#create-new-project) for how to deploy OSToy into a unique project.
 
     ``` yaml hl_lines="4 7"
     apiVersion: s3.services.k8s.aws/v1alpha1
