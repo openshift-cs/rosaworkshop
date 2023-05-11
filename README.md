@@ -65,7 +65,7 @@ If you'd like an easy to follow guide for creating your first ROSA cluster:
     - [Limits and Scalability](https://docs.openshift.com/rosa/rosa_planning/rosa-limits-scalability.html)
     - [Planning Your Environment](https://docs.openshift.com/rosa/rosa_planning/rosa-planning-environment.html)
 - [ROSA Roadmap](https://red.ht/rosa-roadmap)
-- [OpenShift Container Platform Documentation](https://docs.openshift.com/container-platform/4.8/welcome/index.html) (for all other OpenShift related information)
+- [OpenShift Container Platform Documentation](https://docs.openshift.com/container-platform/latest/welcome/index.html) (for all other OpenShift related information)
 - [Red Hat Support](https://support.redhat.com)
 - [OpenShift Cluster Manager](https://console.redhat.com/OpenShift)
 - [Learn about OpenShift](https://learn.openshift.com)

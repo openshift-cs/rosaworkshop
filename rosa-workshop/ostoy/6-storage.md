@@ -42,7 +42,7 @@ You will see the file you created is still there and you can open it to view its
 ![ExistingFile](images/6-ostoy-existingfile.png)
 
 #### 6. Confirm via the container
-Now let's confirm that it's actually there by using the CLI and checking if it is available to the container.  If you looked inside the deployment YAML file, we mounted the directory `/var/demo_files` to our PVC.  So get the name of your front-end pod
+Now let's confirm that it's actually there by using the CLI and checking if it is available to the container.  If you looked inside the deployment YAML file, we [mounted the directory](https://github.com/openshift-cs/rosaworkshop/blob/master/rosa-workshop/ostoy/yaml/ostoy-frontend-deployment.yaml#L61) `/var/demo_files` to our PVC.  So get the name of your front-end pod
 
 	oc get pods
 

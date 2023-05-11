@@ -24,20 +24,13 @@ ACK_CONTROLLER_IAM_ROLE_DESCRIPTION="IRSA role for ACK ${SERVICE} controller dep
 
 # Logic to set the OIDC_PROVIDER since it would differ if the cluster is ROSA HCP
 # Confirm that the operator was already installed on the cluster
+
 echo -n "Confirming that the ack-${SERVICE}-controller operator is present..."
+
 if oc get subscriptions.operators.coreos.com -n $ACK_K8S_NAMESPACE 2>/dev/null | awk '{print $1}' | grep -q "ack-${SERVICE}-controller"; 
-then
-  OIDC_PROVIDER=$(oc get authentication.config.openshift.io cluster -o jsonpath='{.spec.serviceAccountIssuer}' | sed 's/https:\/\///')
-  if [ -n "$OIDC_PROVIDER" ]
-  then 
-    echo "ok."
-  else
-  # If OIDC_PROVIDER is null, it is probably becuase this is a ROSA HCP cluster since it is not stored on cluster in HCP.
-  # Then get the cluster id
-    CLUSTER_ID=$(oc get clusterversion -o jsonpath='{.items[].spec.clusterID}{"\n"}')
-    OIDC_PROVIDER=$(rosa describe cluster -c $CLUSTER_ID -o yaml | grep "oidc_endpoint_url" | sed -E 's|^.*oidc_endpoint_url: https://(.*)|\1|')
-    echo "ok."
-  fi
+then 
+  OIDC_PROVIDER=$(rosa describe cluster -c $(oc get clusterversion -o jsonpath='{.items[].spec.clusterID}{"\n"}') -o yaml | awk '/oidc_endpoint_url/ {print $2}' | cut -d '/' -f 3,4)
+  echo "ok."
 else
   echo "failed."
   echo "ack-${SERVICE}-controller was not found in ${ACK_K8S_NAMESPACE} namespace. Please ensure that you are logged into the correct cluster or that the operator was deployed."

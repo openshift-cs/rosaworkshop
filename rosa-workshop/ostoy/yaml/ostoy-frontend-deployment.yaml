@@ -29,7 +29,7 @@ spec:
     spec:
       # Uncomment to use with ACK portion of the workshop
       # If you chose a different service account name please replace it.
-      # serviceAccount: ostoy-s3-sa
+      # serviceAccount: ostoy-sa
       containers:
       - name: ostoy-frontend
         securityContext:
@@ -40,7 +40,7 @@ spec:
           capabilities:
             drop:
             - ALL
-        image: quay.io/ostoylab/ostoy-frontend:1.5.0
+        image: quay.io/ostoylab/ostoy-frontend:1.6.0
         imagePullPolicy: IfNotPresent
         ports:
         - name: ostoy-port
