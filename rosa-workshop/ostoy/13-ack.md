@@ -273,7 +273,13 @@ export OSTOY_NAMESPACE=$(oc config view --minify -o 'jsonpath={..namespace}')
 
 ## Redeploy the OSToy app with the new service account
 
-1. Open the `ostoy-frontend-deployment.yaml` file (or download it [here](yaml/ostoy-frontend-deployment.yaml)) and uncomment `spec.template.spec.serviceAccount`, so it looks like the example below. Save the file.
+1. We now need to run our pod with the service account we created.  Patch the `ostoy-frontend` deployment to add it.
+
+    ```
+    oc patch deploy ostoy-frontend -n ${OSTOY_NAMESPACE} --type=merge --patch '{"spec": {"template": {"spec":{"serviceAccount":"ostoy-sa"}}}}'
+    ```
+
+1. In effect we are making our deployment manifest look like the example below by specifying the service account.
 
     ``` yaml hl_lines="4" linenums="29"
     spec:
@@ -284,18 +290,7 @@ export OSTOY_NAMESPACE=$(oc config view --minify -o 'jsonpath={..namespace}')
       - name: ostoy-frontend
         image: quay.io/ostoylab/ostoy-frontend:1.6.0
         imagePullPolicy: IfNotPresent
-    ```
-
-1. Apply the change.
-
-    ```
-    oc apply -f ostoy-frontend-deployment.yaml -n ${OSTOY_NAMESPACE}
-    ```
-
-    Or you can do it all in one step with:
-
-    ```
-    curl https://raw.githubusercontent.com/openshift-cs/rosaworkshop/master/rosa-workshop/ostoy/yaml/ostoy-frontend-deployment.yaml | sed 's/# serviceAccount: ostoy-s3-sa/serviceAccount: ostoy-s3-sa/g' | oc apply -n ${OSTOY_NAMESPACE} -f -
+    [...]
     ```
 
 1. Also deploy the microservice.

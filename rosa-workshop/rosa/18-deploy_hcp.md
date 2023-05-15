@@ -15,7 +15,12 @@ ROSA HCP requires two things to be created before deploying the cluster:
 Let's create those first.
 
 ### VPC
+1. Before creating your VPC ensure that your `aws` cli is configured to use a region where ROSA w/HCP is available.  To find out which regions are supported run:
 
+    ```
+    rosa list regions --hosted-cp
+    ```
+    
 1. Create the VPC. For this workshop, there is a script provided that will create the VPC and its required components for you. It will use the region configured for the `aws` cli.
 
     Please feel free to read it first, or live on the edge and just run it.
@@ -64,12 +69,9 @@ If this is the <u>first time</u> you are deploying ROSA in this account and have
     ```
     rosa create cluster --cluster-name $CLUSTER_NAME \
         --subnet-ids ${PUBLIC_SUBNET_ID},${PRIVATE_SUBNET_ID} \
-        --machine-cidr 10.0.0.0/16 \
-        --compute-machine-type m6a.xlarge \
         --hosted-cp \
         --region $REGION \
         --oidc-config-id $OIDC_ID \
-        --version 4.12.14 \
         --sts --mode auto --yes
     ```
 
@@ -79,7 +81,7 @@ If this is the <u>first time</u> you are deploying ROSA in this account and have
 1. You can run the following command to check the detailed status of the cluster:
 
     ```
-    rosa describe cluster --cluster <cluster-name>
+    rosa describe cluster --cluster $CLUSTER_NAME
     ```
 
     or you can run the following for an abridged view of the status:
@@ -91,7 +93,7 @@ If this is the <u>first time</u> you are deploying ROSA in this account and have
     Lastly, you can also watch the logs as it progresses:
 
     ```
-    rosa logs install --cluster <cluster-name> --watch
+    rosa logs install --cluster $CLUSTER_NAME --watch
     ```
 
 1. Once the state changes to “ready” your cluster is now installed. It may take a few more minutes for the worker nodes to come online.
