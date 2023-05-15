@@ -81,8 +81,10 @@ spec:
   sourceNamespace: openshift-marketplace
 EOF
 
+sleep 7
+
 # wait for the OpenShift Cluster Logging Operator to install
-while ! oc-n openshift-logging rollout status deployment cluster-logging-operator | grep "successfully"; do
+while ! oc -n openshift-logging rollout status deployment cluster-logging-operator | grep -q "successfully"; do
     echo "Waiting for deployment to complete..."
     sleep 10
 done
