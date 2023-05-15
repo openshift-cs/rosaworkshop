@@ -4,7 +4,7 @@
 - OSToy front-end container image: <https://quay.io/ostoylab/ostoy-frontend>
 - OSToy microservice container image: <https://quay.io/ostoylab/ostoy-microservice>
 - Deployment Definition YAMLs:
-	- [ostoy-fronend-deployment.yaml](yaml/ostoy-frontend-deployment.yaml)
+	- [ostoy-frontend-deployment.yaml](yaml/ostoy-frontend-deployment.yaml)
 	- [ostoy-microservice-deployment.yaml](yaml/ostoy-microservice-deployment.yaml)
 - S3 bucket manifest for ACK S3: [s3-bucket.yaml](yaml/s3-bucket.yaml)
 
