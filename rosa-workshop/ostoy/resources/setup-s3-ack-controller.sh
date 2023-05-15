@@ -27,6 +27,7 @@ ACK_CONTROLLER_IAM_ROLE_DESCRIPTION="IRSA role for ACK ${SERVICE} controller dep
 
 echo -n "Confirming that the ack-${SERVICE}-controller operator is present..."
 
+# TODO: THIS WILL ONLY CHECK IF THE OPERATOR IS SUBSCRIBED TO BUT THE PODS IT MAY NOT BE PRESENT ON THE CLUSTER
 if oc get subscriptions.operators.coreos.com -n $ACK_K8S_NAMESPACE 2>/dev/null | awk '{print $1}' | grep -q "ack-${SERVICE}-controller"; 
 then 
   OIDC_PROVIDER=$(rosa describe cluster -c $(oc get clusterversion -o jsonpath='{.items[].spec.clusterID}{"\n"}') -o yaml | awk '/oidc_endpoint_url/ {print $2}' | cut -d '/' -f 3,4)
