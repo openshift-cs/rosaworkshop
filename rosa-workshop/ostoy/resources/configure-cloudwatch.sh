@@ -81,13 +81,17 @@ spec:
   sourceNamespace: openshift-marketplace
 EOF
 
-sleep 7
+echo "Waiting for cluster logging operator deployment to complete..."
+
+sleep 15
 
 # wait for the OpenShift Cluster Logging Operator to install
-while ! oc -n openshift-logging rollout status deployment cluster-logging-operator | grep -q "successfully"; do
-    echo "Waiting for deployment to complete..."
+while ! oc -n openshift-logging rollout status deployment cluster-logging-operator 2>/dev/null | grep -q "successfully"; do
+    echo "Waiting for cluster logging operator deployment to complete..."
     sleep 10
 done
+
+echo "Cluster logging operator deployed."
 
 # create a secret containing the ARN of the IAM role that we previously created above.
 cat << EOF | oc apply -f -
