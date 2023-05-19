@@ -12,6 +12,18 @@ POLICY_ARN=$(aws iam list-policies --query "Policies[?PolicyName=='RosaCloudWatc
 OIDC_ENDPOINT=$(rosa describe cluster -c $(oc get clusterversion -o jsonpath='{.items[].spec.clusterID}{"\n"}') -o yaml | awk '/oidc_endpoint_url/ {print $2}' | cut -d '/' -f 3,4)
 AWS_ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
 
+if [ -z "$OIDC_ENDPOINT" ] && [ -z "$AWS_ACCOUNT_ID" ]; then
+    echo "All variables are null."
+elif [ -z "$OIDC_ENDPOINT" ]; then
+    echo "OIDC_ENDPOINT is null."
+    exit 1
+elif [ -z "$AWS_ACCOUNT_ID" ]; then
+    echo "AWS_ACCOUNT_ID is null."
+    exit 1
+else
+    echo "Varaibles are set...ok."
+fi
+
 # Create an IAM Policy for OpenShift Log Forwarding if it doesnt already exist
 if [[ -z "${POLICY_ARN}" ]]; then
 cat << EOF > ${HOME}/cw-policy.json
