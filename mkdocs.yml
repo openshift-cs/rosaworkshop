@@ -26,7 +26,7 @@ nav:
         - Detailed CLI guide: 'rosa/2-deploy.md'
         - Simple UI guide: 'rosa/19-simple-ui-deploy.md'
         - Detailed UI guide: 'rosa/16-deploy_ui.md'
-        #- ROSA w/Hosted Control Planes: 'rosa/18-deploy_hcp.md'
+        - Hosted Control Planes: 'rosa/18-deploy_hcp.md'
     - Create an admin user: 'rosa/3-create_initial_admin.md'
     - Setup an IdP: 'rosa/4-setup_idp.md'
     - Granting admin rights: 'rosa/5-grant_admin.md'
