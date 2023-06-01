@@ -9,7 +9,7 @@ The cluster logging components are based upon Fluentd, (and Elasticsearch and Ki
 
 * Learn more about [logging](https://docs.openshift.com/rosa/logging/cluster-logging.html).
 
-### Installing the Cluster Logging Add-on service
+### Configure forwarding to AWS CloudWatch
 <!--
 !!! danger
 	If you plan on running EFK <u>do not follow</u> the installation steps in this section but rather follow the [Installing OpenShift Logging](https://docs.openshift.com/container-platform/latest/logging/cluster-logging-deploying.html) steps and skip down to [View logs with Kibana](#view-logs-with-kibana).
