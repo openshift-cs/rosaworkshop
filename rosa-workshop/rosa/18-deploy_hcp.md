@@ -9,8 +9,8 @@ In short, with ROSA HCP you can decouple the control plane from the data plane (
 
 ROSA HCP requires two things to be created before deploying the cluster:
 
-1. VPC - This is a "BYO VPC" model
-1. OIDC configuration
+1. VPC - This is a "bring-your-own VPC" model (also referred to as BYO-VPC)
+1. OIDC configuration (and an OIDC provider with that specific configuration)
 
 Let's create those first.
 
@@ -38,9 +38,21 @@ Let's create those first.
     export PRIVATE_SUBNET_ID=<private subnet id here>
     ```
 
+1. Confirm that the environment variables are, in fact, set.
+
+    ```
+    echo "Public Subnet: $PUBLIC_SUBNET_ID"; echo "Private Subnet: $PRIVATE_SUBNET_ID"
+    ```
+
+    Sample Output:
+    ```
+    Public Subnet: subnet-0faeeeb0000000000
+    Private Subnet: subnet-011fe340000000000
+    ```
+
 ### OIDC Configuration
 
-To create the OIDC configuration to be used in this workshop, run the following command.  We are opting for the automatic mode as this is simpler for the workshop purposes as well as for it to be Red Hat managed. We are also going to store the OIDC ID to an environment variable for later use.
+To create the OIDC configuration to be used in this workshop, run the following command.  We are opting for the automatic mode as this is simpler for the workshop purposes as well as for it to be Red Hat managed. We are also going to store the OIDC ID to an environment variable for later use. Notice that the following command uses the ROSA CLI to create your cluster’s unique OIDC configuration.
 
 ```
 export OIDC_ID=$(rosa create oidc-config --mode auto --managed --yes -o json | jq -r '.id')
@@ -56,7 +68,7 @@ export REGION=<region VPC was created in>
 ```
 
 ## Create the cluster
-If this is the <u>first time</u> you are deploying ROSA in this account and have <u>not yet created the account roles</u>, then create the account-wide roles and policies, including Operator policies.
+If this is the <u>first time</u> you are deploying ROSA in this account and have <u>not yet created the account roles</u>, then create the account-wide roles and policies, including Operator policies. Since ROSA makes use of AWS Security Token Service (STS), this step creates the AWS IAM roles and policies that are needed for ROSA to interact within your account.
 
 1. Run the following command to create the account-wide roles:
 
@@ -75,7 +87,7 @@ If this is the <u>first time</u> you are deploying ROSA in this account and have
         --sts --mode auto --yes
     ```
 
-    In about 10 minutes the control plane and API will be up, and about 5-10 minutes after, the worker nodes will be up and the cluster will be completely usable.  
+    In about 10 minutes the control plane and API will be up, and about 5-10 minutes after, the worker nodes will be up and the cluster will be completely usable. This cluster will have a control plane across three AWS availability zones in your selected region, in a Red Hat AWS account and will also create 2 worker nodes in your AWS account.  
 
 ## Check installation status
 1. You can run the following command to check the detailed status of the cluster:
