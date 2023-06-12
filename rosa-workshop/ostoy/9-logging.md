@@ -1,5 +1,5 @@
 ## Logging
-We will take a look at the available options for logging in ROSA. <!--> As ROSA does not come preconfigured with a logging solution, we can easily set one up. In this section review the [install proceedure](https://docs.openshift.com/dedicated/4/logging/dedicated-cluster-deploying.html#dedicated-cluster-install-deploy) for the EFK (Elasticsearch, Fluentd and Kibana) stack (via Operators), then we will take a look at three methods with which one can view their logs. -->
+We will take a look at the available options for logging in ROSA. <!-- As ROSA does not come preconfigured with a logging solution, we can easily set one up. In this section review the [install proceedure](https://docs.openshift.com/dedicated/4/logging/dedicated-cluster-deploying.html#dedicated-cluster-install-deploy) for the EFK (Elasticsearch, Fluentd and Kibana) stack (via Operators), then we will take a look at three methods with which one can view their logs. -->
 
 1. We will look at the logs directly through the pod using `oc logs`.  
 1. We will forward the logs to AWS CloudWatch and view them from there.
