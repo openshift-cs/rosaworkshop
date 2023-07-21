@@ -14,11 +14,11 @@ Copy the command under where it says "Log in with this token". Then go to your t
 
 ```
 $ oc login --token=RYhFlXXXXXXXXXXXX --server=https://api.osd4-demo.abc1.p1.openshiftapps.com:6443
-Logged into "https://api.myrosacluster.abcd.p1.openshiftapps.com:6443" as "0kashi" using the token provided.
+Logged into "https://api.myrosacluster.abcd.p1.openshiftapps.com:6443" as "rosa-user" using the token provided.
 
 You don't have any projects. You can try to create a new project, by running
 
-oc new-project <projectname>
+oc new-project <project name>
 ```
 
 ### Create new project

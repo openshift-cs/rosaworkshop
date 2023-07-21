@@ -192,7 +192,7 @@ Please check for a newer version of the ROSA CLI. Every release of the ROSA CLI 
 Please refer to the [storage](https://docs.openshift.com/rosa/rosa_architecture/rosa_policy_service_definition/rosa-service-definition.html#rosa-sdpolicy-storage_rosa-service-definition) section of the service definition.
 
 ### What options are available to use shared storage in containers?
-AWS EFS (Using AWS EFS CSI Driver, OpenShift includes the CSI driver out of the box in 4.10.). See [Setting up AWS EFS for Red Hat OpenShift Service on AWS](https://docs.openshift.com/rosa/storage/persistent_storage/osd-persistent-storage-aws.html).
+AWS EFS (Using AWS EFS CSI Driver, OpenShift includes the CSI driver out of the box in 4.10.). See [Setting up AWS EFS for Red Hat OpenShift Service on AWS](https://docs.openshift.com/rosa/storage/container_storage_interface/osd-persistent-storage-aws-efs-csi.html).
 
 ### Can I deploy into an already existing VPC and choose the specific subnets?
 Yes.  At install time you are able to select whether you’d like to deploy to an existing VPC and then choose that VPC.  You will then be able to select the desired subnets and also provide a valid CIDR range (encompassing the subnets) the installer will handle using those subnets. Please see the [VPC](https://docs.openshift.com/rosa/rosa_planning/rosa-sts-aws-prereqs.html#rosa-vpc_rosa-sts-aws-prereqs) section in the documentation for further details.
