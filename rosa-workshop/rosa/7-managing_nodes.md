@@ -49,7 +49,7 @@ This can be accomplished though the `rosa` CLI or through the [OCM](https://cons
 
 1. Click the "Add machine pool" button.
 
-1. Fill in the desired configuration. At this point you can also and expand the "Edit node labels and taints" section to add node lables and taints to the nodes in this machine pool.
+1. Fill in the desired configuration. At this point you can also and expand the "Edit node labels and taints" section to add node labels and taints to the nodes in this machine pool.
 
     ![mp](images/7-mp_nlt.png)
 
@@ -124,7 +124,7 @@ This can be accomplished though the `rosa` CLI or through the [OCM](https://cons
 
         rosa create machinepool --cluster=my-rosa-cluster --name=db-nodes-large-mp --replicas=2 --labels='app=db','tier=backend' --instance-type=m5.2xlarge
 
-1. If you’d like to see all the [instance types available](https://docs.openshift.com/rosa/rosa_policy/rosa-service-definition.html#rosa-sdpolicy-aws-compute-types_rosa-service-definition) you can run:
+1. If you’d like to see all the [instance types available](https://docs.openshift.com/rosa/rosa_architecture/rosa_policy_service_definition/rosa-service-definition.html#rosa-sdpolicy-aws-instance-types_rosa-service-definition) you can run:
 
         rosa list instance-types
 
