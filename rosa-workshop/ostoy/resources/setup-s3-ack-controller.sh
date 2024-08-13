@@ -45,7 +45,7 @@ POLICY_ARN_STRINGS="$(wget -qO- ${POLICY_ARN_URL})"
 INLINE_POLICY_URL="${BASE_URL}/config/iam/recommended-inline-policy"
 INLINE_POLICY="$(wget -qO- ${INLINE_POLICY_URL})"
 
-# Check if the AWS role already existins in the AWS account
+# Check if the AWS role already exists in the AWS account
 # If it does, then stop the script since the trust relationship may be different for this run that what is already there.
 if aws iam get-role --role-name ${ACK_CONTROLLER_IAM_ROLE} > /dev/null 2>&1; then
 cat << EOF
@@ -64,12 +64,15 @@ fi
 # create a configmap to configure the operator. Leave ACK_WATCH_NAMESPACE blank so the controller
 # can properly watch all namespaces, and change any other values to suit your needs
 cat <<EOF > config.txt
-  ACK_ENABLE_DEVELOPMENT_LOGGING=true
-  ACK_LOG_LEVEL=debug
-  ACK_WATCH_NAMESPACE=
-  AWS_REGION=${AWS_REGION}
-  AWS_ENDPOINT_URL=
-  ACK_RESOURCE_TAGS=rosa_cluster_ack
+ACK_ENABLE_DEVELOPMENT_LOGGING=true
+ACK_LOG_LEVEL=debug
+ACK_WATCH_NAMESPACE=
+AWS_REGION=${AWS_REGION}
+AWS_ENDPOINT_URL=
+ACK_RESOURCE_TAGS=rosa_cluster_ack
+ENABLE_LEADER_ELECTION=true
+LEADER_ELECTION_NAMESPACE=
+RECONCILE_DEFAULT_MAX_CONCURRENT_SYNCS=1
 EOF
 
 # If you change the name of the ConfigMap from the values given which is, "ack-$SERVICE-user-config",
@@ -113,14 +116,14 @@ while IFS= read -r POLICY_ARN; do
     echo "ok."
 done <<< "$POLICY_ARN_STRINGS"
 
-if [ ! -z "$INLINE_POLICY" ]; then
-    echo -n "Putting inline policy ... "
-    aws iam put-role-policy \
-        --role-name "${ACK_CONTROLLER_IAM_ROLE}" \
-        --policy-name "ack-recommended-policy" \
-        --policy-document "$INLINE_POLICY"
-    echo "ok."
-fi
+# if [ ! -z "$INLINE_POLICY" ]; then
+#     echo -n "Putting inline policy ... "
+#     aws iam put-role-policy \
+#         --role-name "${ACK_CONTROLLER_IAM_ROLE}" \
+#         --policy-name "ack-recommended-policy" \
+#         --policy-document "$INLINE_POLICY"
+#     echo "ok."
+# fi
 
 # Generate the IRSA_ROLE_ARN for associating the service account
 ACK_CONTROLLER_IAM_ROLE_ARN=$(aws iam get-role --role-name=$ACK_CONTROLLER_IAM_ROLE --query Role.Arn --output text)
