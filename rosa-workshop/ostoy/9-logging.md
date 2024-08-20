@@ -36,6 +36,7 @@ The steps to configure ROSA to send logs to CloudWatch is not covered in this la
 	clusterlogging.logging.openshift.io/instance created
 	Complete.
 	```
+ 
 1. After a few minutes, you should begin to see log groups inside of AWS CloudWatch. Repeat this command until you do or continue the lab if you don't want to wait.
 
 	```
