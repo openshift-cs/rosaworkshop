@@ -3,23 +3,14 @@ We will take a look at the available options for logging in ROSA. <!-- As ROSA d
 
 1. We will look at the logs directly through the pod using `oc logs`.  
 1. We will forward the logs to AWS CloudWatch and view them from there.
-1. We will use Kibana (EFK Stack) to search our logs.
-
-The cluster logging components are based upon Fluentd, (and Elasticsearch and Kibana, if deployed). The collector, Fluentd, is deployed to each node in the cluster. It collects application logs and writes them to Elasticsearch (ES) or forwards it to CloudWatch. Kibana is the centralized, web UI where users and administrators can create rich visualizations and dashboards with the aggregated data. We will also look at using AWS CloudWatch as well.
-
-* Learn more about [logging](https://docs.openshift.com/rosa/logging/cluster-logging.html).
+1. On cluster logging.  This will not be covered in this workshop but you could see more information in the [About Logging](https://docs.openshift.com/rosa/observability/logging/cluster-logging.html) section of the documentation and follow the steps there to install it if you wish.
 
 ### Configure forwarding to AWS CloudWatch
-<!--
-!!! danger
-	If you plan on running EFK <u>do not follow</u> the installation steps in this section but rather follow the [Installing OpenShift Logging](https://docs.openshift.com/container-platform/latest/logging/cluster-logging-deploying.html) steps and skip down to [View logs with Kibana](#view-logs-with-kibana).
-
-In the following steps we will install the logging add-on service to forward our logs; in our case to AWS CloudWatch. If you did not follow the "Getting Started" guide of this workshop and **did not** install ROSA with STS, then you can skip to install the service though the OCM UI or by using the CLI (in step 8). Otherwise, there are a few steps we need to do first in order to get this to work for ROSA with STS. -->
 
 !!! note
-	These steps were adopted from our Managed OpenShift Black Belts [here](https://mobb.ninja/docs/rosa/clf-cloudwatch-sts/).
+	These steps were adopted from our [Configuring log forwarding](https://docs.openshift.com/rosa/observability/logging/log_collection_forwarding/configuring-log-forwarding.html#rosa-cluster-logging-collector-log-forward-sts-cloudwatch_configuring-log-forwarding) section of the documentation.
 
-Configuring ROSA to send logs to CloudWatch is not covered in this lab, as it goes beyond the lab's scope. However, integrating with AWS and enabling CloudWatch logging is an important aspect of ROSA's integration with AWS, so a script has been included to simplify the configuration process. The script will automatically set up AWS CloudWatch. If you're interested, you can examine the script to understand the steps involved.
+The steps to configure ROSA to send logs to CloudWatch is not covered in this lab, as it goes beyond the lab's scope (see the docs above). However, integrating with AWS and enabling CloudWatch logging is an important aspect of ROSA's integration with AWS, so a script has been included to simplify the configuration process. The script will automatically set up AWS CloudWatch. If you're interested, you can examine the script to understand the steps involved.
 
 1. Run the following script to configure your ROSA cluster to forward logs to CloudWatch.
 
@@ -30,38 +21,51 @@ Configuring ROSA to send logs to CloudWatch is not covered in this lab, as it go
 	Sample Output:
 
 	```
-	deployment "cluster-logging-operator" successfully rolled out
+ 	Varaibles are set...ok.
+	Created policy.
+	Created RosaCloudWatch-mycluster role.
+	Attached role policy.
+	Deploying the Red Hat OpenShift Logging Operator
+	namespace/openshift-logging configured
+	operatorgroup.operators.coreos.com/cluster-logging created
+	subscription.operators.coreos.com/cluster-logging created
+	Waiting for Red Hat OpenShift Logging Operator deployment to complete...
+	Red Hat OpenShift Logging Operator deployed.
 	secret/cloudwatch-credentials created
 	clusterlogforwarder.logging.openshift.io/instance created
 	clusterlogging.logging.openshift.io/instance created
+	Complete.
 	```
 1. After a few minutes, you should begin to see log groups inside of AWS CloudWatch. Repeat this command until you do or continue the lab if you don't want to wait.
 
 	```
-	aws logs describe-log-groups --log-group-name-prefix rosa-${GUID}
+	aws logs describe-log-groups --log-group-name-prefix rosa-<CLUSTER_NAME>
 	```
 
 	Sample Output:
 
 	```
 	{
-		"logGroups": [
-			{
-				"logGroupName": "rosa-fxxj9.audit",
-				"creationTime": 1682098364311,
-				"metricFilterCount": 0,
-				"arn": "arn:aws:logs:us-east-2:511846242393:log-group:rosa-fxxj9.audit:*",
-				"storedBytes": 0
-			},
-			{
-				"logGroupName": "rosa-fxxj9.infrastructure",
-				"creationTime": 1682098364399,
-				"metricFilterCount": 0,
-				"arn": "arn:aws:logs:us-east-2:511846242393:log-group:rosa-fxxj9.infrastructure:*",
-				"storedBytes": 0
-			}
-		]
-	}
+ 	"logGroups": [
+        	{
+            	"logGroupName": "rosa-mycluster.application",
+            	"creationTime": 1724104537717,
+            	"metricFilterCount": 0,
+            	"arn": "arn:aws:logs:us-west-2:000000000000:log-group:rosa-mycluster.application:*",
+            	"storedBytes": 0,
+            	"logGroupClass": "STANDARD",
+            	"logGroupArn": "arn:aws:logs:us-west-2:000000000000:log-group:rosa-mycluster.application"
+        	},
+        	{
+            	"logGroupName": "rosa-mycluster.audit",
+            	"creationTime": 1724104152968,
+            	"metricFilterCount": 0,
+            	"arn": "arn:aws:logs:us-west-2:000000000000:log-group:rosa-mycluster.audit:*",
+            	"storedBytes": 0,
+            	"logGroupClass": "STANDARD",
+            	"logGroupArn": "arn:aws:logs:us-west-2:000000000000:log-group:rosa-mycluster.audit"
+        	},
+	...
 	```
 
 ### Output data to the streams/logs
@@ -104,11 +108,11 @@ You should see both the *stdout* and *stderr* messages.
 
 ### View logs with CloudWatch
 1. Access the web console for your AWS account and go to CloudWatch.
-1. Click on *Logs* > *Log groups* in the left menu to see the different groups of logs depending on what you selected during installation. If you followed the previous steps you should see 2 groups.  One for `<cluster-name>-XXXXX-application` and one for `<cluster-name>-XXXXX-infrastructure`.
+1. Click on *Logs* > *Log groups* in the left menu to see the different groups of logs depending on what you selected during installation. If you followed the previous steps you should see 3 groups.  One for `rosa-<CLUSTER_NAME>.application`, `rosa-<CLUSTER_NAME>.audit`, and `rosa-<CLUSTER_NAME>.infrastructure`.
 
 	![cloudwatch](images/9-cw.png)
 
-1. Click on `<cluster-name>-XXXXX.application`
+1. Click on `rosa-<CLUSTER_NAME>.application`
 1. Click on the log stream for the "frontend" pod.  It will be titled something like `kubernetes.var[...]ostoy-frontend-[...]`
 
 	![cloudwatch2](images/9-logstream.png)
@@ -118,13 +122,14 @@ You should see both the *stdout* and *stderr* messages.
 	![cloudwatch2](images/9-stderr.png)
 
 
-1. We can also see other messages in our logs from the app. Enter "microservice" in the search bar, and expand one of the entries. This shows us the color received from the microservice and which pod sent that color to our frontend pod.
+1. We can also see other messages in our logs from the app. Return to the LogStreams and select the microservice pod. Enter "microservice" in the search bar, and expand one of the entries. This shows us the color received from the microservice and which pod sent that color to our frontend pod.
 
 	![messages](images/9-messages.png)
 
 
-You can also use some of the other features of CloudWatch to obtain useful information. But [how to use CloudWatch](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/WhatIsCloudWatch.html) is beyond the scope of this tutorial.
+You can also use some of the other features of CloudWatch to obtain useful information. But [AWS CloudWatch](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/WhatIsCloudWatch.html) is beyond the scope of this tutorial.
 
+<!--
 ### View logs with Kibana
 !!! note
  		In order to use EFK, this section assumes that you have successfully completed the steps outlined in [Installing OpenShift Logging](https://docs.openshift.com/container-platform/latest/logging/cluster-logging-deploying.html).
@@ -134,8 +139,6 @@ You can also use some of the other features of CloudWatch to obtain useful infor
 		oc get route -n openshift-logging
 
 1. Open up a new browser tab and paste the URL. You will first have to define index patterns.  Please see the [Defining Kibana index patterns](https://docs.openshift.com/container-platform/latest/logging/cluster-logging-deploying.html#cluster-logging-visualizer-indices_cluster-logging-deploying) section of the documentation for further instructions on doing so.
-
-	<!--![Kibana console](images/9-kibana.png)-->
 
 #### Familiarization with the data
 In the main part of the console you should see three entries. These will contain what we saw in the above section (viewing through the pods).  You will see the *stdout* and *stderr* messages that we inputted earlier (though you may not see it right away as we might have to filter for it).  In addition to the log output you will see information about each entry.  You can see things like:
@@ -171,3 +174,4 @@ You should see now only one row is returned that contains our error message.
 
 !!! note
 	If nothing is returned, depending on how much time has elapsed since you've outputted the messages to the *stdout* and *stderr* streams you may need to set the proper time frame for the filter.  If you are following this lab consistently then the default should be fine.  Otherwise, in the Kibana console, click on the top right where it should say "Last 15 minutes" and click on "Quick" then "Last 1 hour" (though adjust to your situation as needed).
+-->
