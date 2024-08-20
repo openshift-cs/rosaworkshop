@@ -278,6 +278,7 @@ export OSTOY_NAMESPACE=$(oc config view --minify -o 'jsonpath={..namespace}')
     ```
     oc apply -f https://raw.githubusercontent.com/openshift-cs/rosaworkshop/master/rosa-workshop/ostoy/yaml/ostoy-microservice-deployment.yaml
     ```
+    
 1. Deploy the frontend.
 
    ```
@@ -290,7 +291,7 @@ export OSTOY_NAMESPACE=$(oc config view --minify -o 'jsonpath={..namespace}')
     oc patch deploy ostoy-frontend -n ${OSTOY_NAMESPACE} --type=merge --patch '{"spec": {"template": {"spec":{"serviceAccount":"ostoy-sa"}}}}'
     ```
 
-   In effect we are making our deployment manifest look like the example below by specifying the service account.
+1. In effect we are making our deployment manifest look like the example below by specifying the service account.
 
     ``` yaml hl_lines="4" linenums="29"
     spec:
