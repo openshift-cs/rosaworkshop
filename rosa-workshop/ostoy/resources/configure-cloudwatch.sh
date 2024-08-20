@@ -1,24 +1,35 @@
 #!/bin/bash
 
 #########################################
-# This script is adapted from the Managed OpenShift Black Belts
-# https://mobb.ninja/docs/rosa/clf-cloudwatch-sts/
+# This script is adapted from the Red Hat OpenShift Documentation
+# https://docs.openshift.com/container-platform/4.15/observability/logging/cluster-logging-deploying.html#logging-loki-cli-install_cluster-logging-deploying
+# https://docs.openshift.com/rosa/observability/logging/log_collection_forwarding/configuring-log-forwarding.html#rosa-cluster-logging-collector-log-forward-sts-cloudwatch_configuring-log-forwarding
 # 
 # The script configures the cluster to be used with AWS CloudWatch for Logging
 #########################################
 
+AWS_REGION="us-west-2" # Update the region if needed. 
 
+# These should not be modified
 POLICY_ARN=$(aws iam list-policies --query "Policies[?PolicyName=='RosaCloudWatch'].{ARN:Arn}" --output text)
 OIDC_ENDPOINT=$(rosa describe cluster -c $(oc get clusterversion -o jsonpath='{.items[].spec.clusterID}{"\n"}') -o yaml | awk '/oidc_endpoint_url/ {print $2}' | cut -d '/' -f 3,4)
 AWS_ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
+CLUSTER_NAME=$(rosa describe cluster -c $(oc get clusterversion -o jsonpath='{.items[].spec.clusterID}{"\n"}') -o yaml | awk '/Name/ {print $2}')
 
-if [ -z "$OIDC_ENDPOINT" ] && [ -z "$AWS_ACCOUNT_ID" ]; then
+if [ -z "$OIDC_ENDPOINT" ] && [ -z "$AWS_ACCOUNT_ID" ] && [ -z "$CLUSTER_NAME" ]; then
     echo "All variables are null."
+    exit 1
 elif [ -z "$OIDC_ENDPOINT" ]; then
     echo "OIDC_ENDPOINT is null."
     exit 1
 elif [ -z "$AWS_ACCOUNT_ID" ]; then
     echo "AWS_ACCOUNT_ID is null."
+    exit 1
+elif [ -z "$CLUSTER_NAME" ]; then
+    echo "CLUSTER_NAME is null."
+    exit 1
+elif [ -z "$AWS_REGION" ]; then
+    echo "AWS_REGION is null."
     exit 1
 else
     echo "Varaibles are set...ok."
@@ -26,7 +37,7 @@ fi
 
 # Create an IAM Policy for OpenShift Log Forwarding if it doesnt already exist
 if [[ -z "${POLICY_ARN}" ]]; then
-cat << EOF > ${HOME}/cw-policy.json
+cat << EOF > cw-policy.json
 {
 "Version": "2012-10-17",
 "Statement": [
@@ -45,11 +56,14 @@ cat << EOF > ${HOME}/cw-policy.json
 ]
 }
 EOF
-POLICY_ARN=$(aws iam create-policy --policy-name "RosaCloudWatch" --policy-document file:///${HOME}/cw-policy.json --query Policy.Arn --output text)
+POLICY_ARN=$(aws iam create-policy --policy-name "RosaCloudWatch" --policy-document file://cw-policy.json --query Policy.Arn --output text)
+echo "Created policy."
+else 
+  echo "Policy already exists...ok."
 fi
 
 # Create an IAM Role trust policy for the cluster
-cat <<EOF > ${HOME}/cloudwatch-trust-policy.json
+cat <<EOF > cloudwatch-trust-policy.json
 {
   "Version": "2012-10-17",
   "Statement": [{
@@ -68,42 +82,67 @@ cat <<EOF > ${HOME}/cloudwatch-trust-policy.json
 EOF
 
 # Create the role
-export ROLE_ARN=$(aws iam create-role --role-name "RosaCloudWatch-${GUID}" \
---assume-role-policy-document file://${HOME}/cloudwatch-trust-policy.json \
+export ROLE_ARN=$(aws iam create-role --role-name "RosaCloudWatch-${CLUSTER_NAME}" \
+--assume-role-policy-document file://cloudwatch-trust-policy.json \
 --tags "Key=rosa-workshop,Value=true" \
 --query Role.Arn --output text)
 
-# Attach the IAM Policy to the IAM Role
-aws iam attach-role-policy --role-name "RosaCloudWatch-${GUID}" --policy-arn "${POLICY_ARN}"
+echo "Created RosaCloudWatch-${CLUSTER_NAME} role."
 
-# Deploy the Cluster Logging operator
+# Attach the IAM Policy to the IAM Role
+aws iam attach-role-policy --role-name "RosaCloudWatch-${CLUSTER_NAME}" --policy-arn "${POLICY_ARN}"
+echo "Attached role policy."
+
+# Deploy the Red Hat OpenShift Logging Operator
+echo "Deploying the Red Hat OpenShift Logging Operator"
+
+cat << EOF | oc apply -f -
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: openshift-logging 
+annotations:
+    openshift.io/node-selector: ""
+labels:
+    openshift.io/cluster-logging: "true"
+    openshift.io/cluster-monitoring: "true" 
+EOF
+
+cat << EOF | oc apply -f -
+apiVersion: operators.coreos.com/v1
+kind: OperatorGroup
+metadata:
+  name: cluster-logging
+  namespace: openshift-logging 
+spec:
+  targetNamespaces:
+  - openshift-logging
+EOF
+
 cat << EOF | oc apply -f -
 apiVersion: operators.coreos.com/v1alpha1
 kind: Subscription
 metadata:
-  labels:
-   operators.coreos.com/cluster-logging.openshift-logging: ""
   name: cluster-logging
-  namespace: openshift-logging
+  namespace: openshift-logging 
 spec:
-  channel: stable
-  installPlanApproval: Automatic
+  channel: stable 
   name: cluster-logging
-  source: redhat-operators
+  source: redhat-operators 
   sourceNamespace: openshift-marketplace
 EOF
 
-echo "Waiting for cluster logging operator deployment to complete..."
+echo "Waiting for Red Hat OpenShift Logging Operator deployment to complete..."
 
-sleep 15
+sleep 10
 
-# wait for the OpenShift Cluster Logging Operator to install
+# wait for the Red Hat OpenShift Logging Operator to install
 while ! oc -n openshift-logging rollout status deployment cluster-logging-operator 2>/dev/null | grep -q "successfully"; do
-    echo "Waiting for cluster logging operator deployment to complete..."
+    echo "Waiting for Red Hat OpenShift Logging Operator deployment to complete..."
     sleep 10
 done
 
-echo "Cluster logging operator deployed."
+echo "Red Hat OpenShift Logging Operator deployed."
 
 # create a secret containing the ARN of the IAM role that we previously created above.
 cat << EOF | oc apply -f -
@@ -113,7 +152,11 @@ metadata:
   name: cloudwatch-credentials
   namespace: openshift-logging
 stringData:
-  role_arn: ${ROLE_ARN}
+  credentials: |-
+    [default]
+    sts_regional_endpoints = regional
+    role_arn: ${ROLE_ARN} 
+    web_identity_token_file = /var/run/secrets/openshift/serviceaccount/token
 EOF
 
 # configure the OpenShift Cluster Logging Operator by creating a Cluster Log Forwarding custom resource that will forward logs to AWS CloudWatch
@@ -128,9 +171,9 @@ spec:
   - name: cw
     type: cloudwatch
     cloudwatch:
-      groupBy: namespaceName
-      groupPrefix: rosa-${GUID}
-      region: us-east-2
+      groupBy: logType
+      groupPrefix: rosa-${CLUSTER_NAME}
+      region: ${AWS_REGION}
     secret:
       name: cloudwatch-credentials
   pipelines:
@@ -148,14 +191,11 @@ cat << EOF | oc apply -f -
 apiVersion: logging.openshift.io/v1
 kind: ClusterLogging
 metadata:
-  name: instance
-  namespace: openshift-logging
+  name: instance 
+  namespace: openshift-logging 
 spec:
   collection:
-    logs:
-      type: fluentd
-  forwarder:
-    fluentd: {}
+    type: vector
   managementState: Managed
 EOF
 
