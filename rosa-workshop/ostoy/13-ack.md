@@ -278,13 +278,13 @@ export OSTOY_NAMESPACE=$(oc config view --minify -o 'jsonpath={..namespace}')
     ```
     oc apply -f https://raw.githubusercontent.com/openshift-cs/rosaworkshop/master/rosa-workshop/ostoy/yaml/ostoy-microservice-deployment.yaml
     ```
-    
+
 1. Deploy the frontend.
 
    ```
    oc apply -f https://raw.githubusercontent.com/openshift-cs/rosaworkshop/master/rosa-workshop/ostoy/yaml/ostoy-frontend-deployment.yaml
    ```
-   
+
 1. We now need to run our pod with the service account we created.  Patch the `ostoy-frontend` deployment to add it.
 
     ```
