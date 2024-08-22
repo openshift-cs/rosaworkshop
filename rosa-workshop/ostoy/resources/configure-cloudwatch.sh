@@ -14,7 +14,7 @@ AWS_REGION="us-west-2" # Update the region if needed.
 POLICY_ARN=$(aws iam list-policies --query "Policies[?PolicyName=='RosaCloudWatch'].{ARN:Arn}" --output text)
 OIDC_ENDPOINT=$(rosa describe cluster -c $(oc get clusterversion -o jsonpath='{.items[].spec.clusterID}{"\n"}') -o yaml | awk '/oidc_endpoint_url/ {print $2}' | cut -d '/' -f 3,4)
 AWS_ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
-CLUSTER_NAME=$(rosa describe cluster -c $(oc get clusterversion -o jsonpath='{.items[].spec.clusterID}{"\n"}') -o yaml | awk '/Name/ {print $2}')
+CLUSTER_NAME=$(rosa describe cluster -c $(oc get clusterversion -o jsonpath='{.items[].spec.clusterID}{"\n"}') -o yaml | awk '/displayName|display_name/ {print $2}')
 
 if [ -z "$OIDC_ENDPOINT" ] && [ -z "$AWS_ACCOUNT_ID" ] && [ -z "$CLUSTER_NAME" ]; then
     echo "All variables are null."
