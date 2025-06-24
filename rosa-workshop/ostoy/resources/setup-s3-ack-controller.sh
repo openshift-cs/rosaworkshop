@@ -73,6 +73,8 @@ ACK_RESOURCE_TAGS=rosa_cluster_ack
 ENABLE_LEADER_ELECTION=true
 LEADER_ELECTION_NAMESPACE=
 RECONCILE_DEFAULT_MAX_CONCURRENT_SYNCS=1
+FEATURE_FLAGS=
+FEATURE_GATES=
 EOF
 
 # If you change the name of the ConfigMap from the values given which is, "ack-$SERVICE-user-config",
